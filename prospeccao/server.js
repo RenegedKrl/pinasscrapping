@@ -1,3 +1,11 @@
+// Prevenir que desconexões de socket ou erros assíncronos derrubem o servidor
+process.on('uncaughtException', (err) => {
+  console.error('[Servidor Aviso] Erro não capturado (mantendo servidor ativo):', err.message || err);
+});
+process.on('unhandledRejection', (reason) => {
+  console.error('[Servidor Aviso] Rejeição de Promise não capturada:', reason);
+});
+
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
