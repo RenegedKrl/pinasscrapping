@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pinas Prospector — Machine de Prospecção Local</title>
+  <meta name="description" content="Painel de Prospecção Ativa, Scraper Google Maps e Disparador de Mensagens da Pinas (@pinas.studio)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=6.0">
+</head>
+<body>
+  <!-- Topbar / Header -->
+  <header class="app-header">
+    <div class="header-left">
+      <img src="logo-branco.png" alt="Pinas Logo" class="brand-logo">
+      <div class="brand-text">
+        <h1 class="brand-title">PINAS <span>PROSPECTOR</span></h1>
+        <p class="brand-subtitle">Machine de Prospecção Ativa & Captação Local</p>
+      </div>
+    </div>
+
+    <!-- Quick KPIs -->
+    <div class="header-stats">
+      <div class="stat-pill">
+        <span class="stat-label">Total Leads</span>
+        <span class="stat-value" id="kpi-total">0</span>
+      </div>
+      <div class="stat-pill highlight-green">
+        <span class="stat-label">Com WhatsApp</span>
+        <span class="stat-value" id="kpi-whatsapp">0</span>
+      </div>
+      <div class="stat-pill highlight-red">
+        <span class="stat-label">Sem Site (Oportunidade)</span>
+        <span class="stat-value" id="kpi-nosite">0</span>
+      </div>
+      <div class="stat-pill highlight-gold">
+        <span class="stat-label">Disparos Hoje</span>
+        <span class="stat-value" id="kpi-sent-today">0 / 30</span>
+      </div>
+      <button class="header-wa-btn" id="btn-header-wa" title="Status da Conexão do WhatsApp">
+        <span class="status-indicator-dot dot-disconnected" id="header-wa-dot"></span>
+        <span id="header-wa-text">Conectar WhatsApp</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar">
+      <nav class="nav-menu">
+        <button class="nav-item active" data-tab="tab-scraper" id="nav-scraper">
+          <span class="nav-icon">🔍</span>
+          <span class="nav-label">Varredura (Scraper)</span>
+        </button>
+        <button class="nav-item" data-tab="tab-leads" id="nav-leads">
+          <span class="nav-icon">📋</span>
+          <span class="nav-label">Base de Leads (CRM)</span>
+          <span class="badge-count" id="badge-leads-count">0</span>
+        </button>
+        <button class="nav-item" data-tab="tab-cadence" id="nav-cadence">
+          <span class="nav-icon">🚀</span>
+          <span class="nav-label">Esteira & Disparo</span>
+        </button>
+        <button class="nav-item" data-tab="tab-inbox" id="nav-inbox">
+          <span class="nav-icon">💬</span>
+          <span class="nav-label">Conversas & Chat</span>
+          <span class="badge-count" id="badge-unread-chat" style="display: none;">0</span>
+        </button>
+        <button class="nav-item" data-tab="tab-whatsapp" id="nav-whatsapp">
+          <span class="nav-icon">📱</span>
+          <span class="nav-label">WhatsApp Direto</span>
+          <span class="sidebar-status-pill disconnected" id="sidebar-wa-pill">Off</span>
+        </button>
+        <button class="nav-item" data-tab="tab-scripts" id="nav-scripts">
+          <span class="nav-icon">✍️</span>
+          <span class="nav-label">Roteiros do Kauê</span>
+        </button>
+        <button class="nav-item" data-tab="tab-settings" id="nav-settings">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-label">Filtros & Regras</span>
+        </button>
+        <a href="/slides" target="_blank" class="nav-item" id="nav-slides" style="text-decoration: none; border-left: 3px solid var(--color-red); margin-top: 0.75rem; background: rgba(255, 0, 85, 0.08);">
+          <span class="nav-icon">🖥️</span>
+          <span class="nav-label" style="color: var(--color-red); font-weight: 700;">Slides para Call ↗</span>
+        </a>
+      </nav>
+
+      <!-- Safety Daily Limit Card -->
+      <div class="safety-card">
+        <div class="safety-header">
+          <span class="safety-icon">🛡️</span>
+          <span class="safety-title">Segurança WhatsApp</span>
+        </div>
+        <div class="safety-bar-wrap">
+          <div class="safety-bar" id="safety-progress-bar" style="width: 0%;"></div>
+        </div>
+        <p class="safety-caption" id="safety-text">0 de 30 mensagens hoje</p>
+        <small class="safety-tip">Limite diário seguro para proteção de conta.</small>
+      </div>
+    </aside>
+
+    <!-- Content Area -->
+    <section class="app-content">
+      
+      <!-- ================= TAB 1: SCRAPER ================= -->
+      <div class="tab-pane active" id="tab-scraper">
+        <div class="pane-header">
+          <div>
+            <h2 class="pane-title">Varredura Google Maps & Comércios Locais</h2>
+            <p class="pane-desc">Selecione o estado, município e nicho para minerar empresas reais com telefone e WhatsApp.</p>
+          </div>
+          <div class="badge-exclusive">
+            <span>🛡️ Filtros Anti-Grandes Redes e Anti-Estética Ativos</span>
+          </div>
+        </div>
+
+        <div class="scraper-card">
+          <form id="form-scrape" class="scraper-form">
+            <!-- Linha 1: Nicho com Autocomplete A-Z Inteligente e Catálogo Comercial -->
+            <div class="form-row" style="margin-bottom: 1rem;">
+              <div class="form-group full-width" style="position: relative;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                  <label for="input-niche" class="form-label" style="margin-bottom: 0;">Nicho ou Tipo de Negócio:</label>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">💡 Digite qualquer letra (A, B, C...) para sugestões comerciais</span>
+                </div>
+                
+                <div class="niche-input-wrapper">
+                  <input type="text" id="input-niche" class="form-control" placeholder="Ex: digite 'A' para Advogado/Assessoria, 'B' para Boliche/Buffet..." required autocomplete="off" value="clinica veterinaria">
+                  <button type="button" id="btn-toggle-niche-dropdown" class="btn-niche-toggle" title="Explorar catálogo comercial A-Z">
+                    <span>▼ Explorar A-Z</span>
+                  </button>
+                </div>
+
+                <!-- Autocomplete Dropdown Flutuante -->
+                <div id="niche-autocomplete-dropdown" class="niche-autocomplete-dropdown" style="display: none;">
+                  <div class="niche-dropdown-header">
+                    <div class="niche-alphabet-filter" id="niche-alphabet-bar">
+                      <!-- Gerado dinamicamente: Todos, A, B, C, D... -->
+                    </div>
+                  </div>
+                  <div class="niche-suggestions-list" id="niche-suggestions-list">
+                    <!-- Itens renderizados dinamicamente -->
+                  </div>
+                  <div class="niche-dropdown-footer">
+                    <span>⚡ Nichos de alta demanda para Criação de Site e Google Ads</span>
+                    <span id="niche-count-info" style="color: var(--pinas-red); font-weight: 600;"></span>
+                  </div>
+                </div>
+
+                <!-- Tags Rápidas de Nichos em Destaque -->
+                <div class="quick-tags" id="niche-featured-tags">
+                  <span class="quick-tag" data-target="input-niche" data-val="advogado">⚖️ Advogados / Escritórios</span>
+                  <span class="quick-tag" data-target="input-niche" data-val="clinica veterinaria">🐾 Clínicas Veterinárias</span>
+                  <span class="quick-tag" data-target="input-niche" data-val="assessoria de marketing">📈 Assessoria de Marketing</span>
+                  <span class="quick-tag" data-target="input-niche" data-val="boliche">🎳 Boliches & Lazer</span>
+                  <span class="quick-tag" data-target="input-niche" data-val="contabilidade">📊 Contabilidade</span>
+                  <span class="quick-tag" data-target="input-niche" data-val="loja de roupas femininas">👗 Lojas de Roupas</span>
+                  <span class="quick-tag" data-target="input-niche" data-val="moda feminina atacado">👚 Moda Atacado / Brás</span>
+                  <span class="quick-tag" data-target="input-niche" data-val="dentista">🦷 Odontologia</span>
+                  <span class="quick-tag" data-target="input-niche" data-val="desentupidora">🚰 Desentupidora 24h</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Linha 2: Localização Estruturada em Cascata (Estado -> Região/Polo -> Município/Distrito) -->
+            <div class="scraper-location-box">
+              <div class="form-row" style="margin-bottom: 0.75rem;">
+                <div class="form-group flex-1">
+                  <label for="select-loc-state" class="form-label">1. Estado:</label>
+                  <select id="select-loc-state" class="form-control">
+                    <option value="SP" selected>São Paulo (SP)</option>
+                    <option value="RJ">Rio de Janeiro (RJ)</option>
+                    <option value="MG">Minas Gerais (MG)</option>
+                    <option value="PR">Paraná (PR)</option>
+                    <option value="SC">Santa Catarina (SC)</option>
+                    <option value="RS">Rio Grande do Sul (RS)</option>
+                    <option value="BA">Bahia (BA)</option>
+                  </select>
+                </div>
+
+                <div class="form-group flex-1" id="group-loc-region">
+                  <label for="select-loc-region" class="form-label">2. Região / Polo:</label>
+                  <select id="select-loc-region" class="form-control">
+                    <option value="capital" selected>🏙️ SP Capital (Bairros & Distritos)</option>
+                    <option value="metropolitana">🌆 Grande SP / Região Metropolitana</option>
+                    <option value="interior">🛣️ Interior & Litoral de SP</option>
+                  </select>
+                </div>
+
+                <div class="form-group flex-2">
+                  <label for="select-loc-city" class="form-label">3. Município / Distrito / Polo:</label>
+                  <select id="select-loc-city" class="form-control">
+                    <!-- Preenchido dinamicamente via JS -->
+                  </select>
+                </div>
+              </div>
+
+              <!-- Linha 3: Localização Consolidada enviada ao Google Maps -->
+              <div class="form-row" style="margin-bottom: 0.5rem;">
+                <div class="form-group flex-3">
+                  <label for="input-location" class="form-label">Localização no Google Maps (editável se quiser refinar bairro):</label>
+                  <input type="text" id="input-location" class="form-control highlight-location" placeholder="Ex: Santo Amaro, São Paulo - SP" required value="Santo Amaro, São Paulo - SP">
+                </div>
+
+                <div class="form-group flex-1">
+                  <label for="select-qty" class="form-label">Qtd. Máxima:</label>
+                  <select id="select-qty" class="form-control">
+                    <option value="15">15 leads</option>
+                    <option value="25" selected>25 leads</option>
+                    <option value="40">40 leads</option>
+                    <option value="60">60 leads</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="quick-tags">
+                <span style="font-size: 0.75rem; color: var(--text-muted); align-self: center;">Polos Rápidos da Pinas:</span>
+                <span class="quick-tag" data-target="input-location" data-val="Santo Amaro, São Paulo - SP">📍 Santo Amaro</span>
+                <span class="quick-tag" data-target="input-location" data-val="Embu-Guaçu, SP">📍 Embu-Guaçu</span>
+                <span class="quick-tag" data-target="input-location" data-val="Brás, São Paulo - SP">📍 Brás</span>
+                <span class="quick-tag" data-target="input-location" data-val="Bom Retiro, São Paulo - SP">📍 Bom Retiro</span>
+                <span class="quick-tag" data-target="input-location" data-val="Moema, São Paulo - SP">📍 Moema</span>
+                <span class="quick-tag" data-target="input-location" data-val="Alphaville, Barueri - SP">📍 Alphaville / Barueri</span>
+                <span class="quick-tag" data-target="input-location" data-val="São Bernardo do Campo, SP">📍 São Bernardo</span>
+                <span class="quick-tag" data-target="input-location" data-val="Campinas, SP">📍 Campinas</span>
+              </div>
+            </div>
+
+            <div class="filter-toggles">
+              <label class="toggle-wrap">
+                <input type="checkbox" id="check-filter-chains" checked>
+                <span class="toggle-label">Bloquear redes gigantes (Petz, Cobasi, Albert Einstein, C&A, Renner...)</span>
+              </label>
+              <label class="toggle-wrap">
+                <input type="checkbox" id="check-filter-aesthetic" checked>
+                <span class="toggle-label">Excluir ramo de estética (clínicas estéticas, botox, salões)</span>
+              </label>
+              <label class="toggle-wrap">
+                <input type="checkbox" id="check-only-whatsapp" checked>
+                <span class="toggle-label">Apenas com Celular/WhatsApp (Descartar fixos)</span>
+              </label>
+              <label class="toggle-wrap">
+                <input type="checkbox" id="check-filter-duplicates" checked>
+                <span class="toggle-label">Anti-Duplicidade (Pular quem já foi minerado antes)</span>
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary btn-lg" id="btn-start-scrape">
+                <span class="btn-icon">⚡</span>
+                <span class="btn-text">INICIAR VARREDURA GOOGLE MAPS</span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Live Progress Box -->
+          <div class="scrape-progress-box" id="scrape-progress-box" style="display: none;">
+            <div class="progress-info">
+              <span class="progress-status" id="scrape-status-text">Iniciando scraper...</span>
+              <span class="progress-percent" id="scrape-percent-text">0%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="scrape-progress-fill" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Results Snippet -->
+        <div class="recent-results-section">
+          <div class="section-title-wrap">
+            <h3 class="section-title">Últimos Leads Adicionados</h3>
+            <button class="btn btn-outline btn-sm" id="btn-go-to-leads">Ver Todos no CRM ➔</button>
+          </div>
+          <div class="cards-grid" id="recent-leads-grid">
+            <!-- Injetado dinamicamente -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= TAB 2: CRM LEADS ================= -->
+      <div class="tab-pane" id="tab-leads">
+        <!-- Header e Filtros Fixos do CRM -->
+        <div class="crm-sticky-header">
+          <div class="pane-header">
+            <div>
+              <h2 class="pane-title">Base de Leads & Gestão Comercial</h2>
+              <p class="pane-desc">Visualize, filtre e acione os contatos pelo WhatsApp com mensagens personalizadas.</p>
+            </div>
+            <div class="header-actions">
+              <button class="btn btn-outline" id="btn-export-csv">
+                <span class="btn-icon">📥</span> Exportar CSV / Excel
+              </button>
+              <button class="btn btn-primary" id="btn-open-modal-lead">
+                <span class="btn-icon">+</span> Adicionar Lead Manual
+              </button>
+            </div>
+          </div>
+
+          <!-- Table Filters Toolbar -->
+          <div class="toolbar-card">
+            <div class="toolbar-search">
+              <input type="text" id="filter-search" class="form-control" placeholder="Buscar por nome, telefone, bairro...">
+            </div>
+            <div class="toolbar-filters">
+              <select id="filter-niche" class="form-control form-control-sm" title="Filtrar tabela por nicho do negócio">
+                <option value="todos">Todos os Nichos</option>
+              </select>
+              <select id="filter-status" class="form-control form-control-sm">
+                <option value="todos">Todos os Status</option>
+                <option value="novo">Novo</option>
+                <option value="contatado">Contatado</option>
+                <option value="respondeu">Respondeu</option>
+                <option value="reuniao">Reunião Marcada</option>
+                <option value="proposta">Proposta Enviada</option>
+                <option value="ganho">Cliente Fechado 🎉</option>
+                <option value="perdido">Perdido</option>
+              </select>
+              <select id="filter-opportunity" class="form-control form-control-sm">
+                <option value="todos">🎯 Oportunidades (Todas)</option>
+                <option value="ouro">💎 Ouro: Site + Google Ads</option>
+                <option value="site">🌐 Sem Site Oficial</option>
+                <option value="expansao">🚀 Expansão Tráfego Pago</option>
+                <option value="gmb">⭐ Google Meu Negócio</option>
+              </select>
+              <select id="filter-website" class="form-control form-control-sm">
+                <option value="">Website (Todos)</option>
+                <option value="false">Sem Site (Oportunidades)</option>
+                <option value="true">Com Site</option>
+              </select>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="filter-only-mobile">
+                <span>Só Celular/WhatsApp</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leads Table -->
+        <div class="table-container">
+          <table class="leads-table" id="leads-table">
+            <thead>
+              <tr>
+                <th>Negócio</th>
+                <th>Diagnóstico & Score</th>
+                <th>Telefone / WhatsApp</th>
+                <th>Website</th>
+                <th>Avaliação GMB</th>
+                <th>Localização</th>
+                <th>Status</th>
+                <th class="text-right">Ação Direta</th>
+              </tr>
+            </thead>
+            <tbody id="leads-tbody">
+              <!-- Injetado via Javascript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ================= TAB 3: ESTEIRA / CADÊNCIA ================= -->
+      <div class="tab-pane" id="tab-cadence">
+        <div class="pane-header">
+          <div>
+            <h2 class="pane-title">Esteira de Disparo Automático (Piloto Automático)</h2>
+            <p class="pane-desc">Envie mensagens automaticamente com cadência humanizada e parada automática no limite diário.</p>
+          </div>
+          <div class="badge-exclusive">
+            <span>⚡ Modo Piloto Automático Ativo</span>
+          </div>
+        </div>
+
+        <div class="cadence-dashboard">
+          <!-- Daily Quota & Autopilot Controls -->
+          <div class="quota-card">
+            <h3>Disparos do Dia</h3>
+            <div class="quota-number">
+              <span id="cadence-sent-count">0</span>
+              <small>/ <span id="cadence-limit-count">30</span> limite</small>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill highlight" id="cadence-progress-fill" style="width: 0%;"></div>
+            </div>
+
+            <!-- WhatsApp Status Banner in Cadence -->
+            <div class="cadence-wa-banner" id="cadence-wa-banner">
+              <div class="cadence-wa-info">
+                <span class="status-indicator-dot dot-disconnected" id="cadence-wa-dot"></span>
+                <span id="cadence-wa-text" style="font-size: 0.85rem; font-weight: 600;">WhatsApp Desconectado</span>
+              </div>
+              <button class="btn btn-outline btn-sm" id="btn-cadence-connect-wa" type="button">Conectar Aparelho</button>
+            </div>
+
+            <!-- Autopilot Action Box -->
+            <div class="autopilot-box">
+              <div class="autopilot-status-bar">
+                <span class="status-indicator-dot" id="autopilot-dot"></span>
+                <span id="autopilot-status-label">Piloto Automático: <strong>Parado</strong></span>
+              </div>
+
+              <div class="form-group" style="margin-top: 1rem;">
+                <label class="form-label">Intervalo de Segurança:</label>
+                <select id="autopilot-delay-select" class="form-control form-control-sm">
+                  <option value="35">35 segundos (Rápido & Seguro)</option>
+                  <option value="50" selected>50 segundos (Recomendado)</option>
+                  <option value="75">75 segundos (Ultra Conservador)</option>
+                </select>
+              </div>
+
+              <div class="autopilot-countdown-box" id="autopilot-countdown-box" style="display: none;">
+                <span class="countdown-label">Próximo envio em:</span>
+                <span class="countdown-seconds" id="autopilot-seconds-left">50s</span>
+                <small id="autopilot-target-lead">Alvo: ...</small>
+              </div>
+
+              <div class="autopilot-btn-group" style="margin-top: 1.25rem;">
+                <button class="btn btn-whatsapp btn-lg full-width" id="btn-start-autopilot">
+                  <span>▶️ INICIAR PILOTO AUTOMÁTICO</span>
+                </button>
+                <button class="btn btn-outline full-width" id="btn-pause-autopilot" style="display: none;">
+                  <span>⏸️ PAUSAR PILOTO AUTOMÁTICO</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="quota-footer">
+              <p>⚡ O robô dispara as mensagens diretamente pelo WhatsApp conectado, 100% no fundo sem abrir abas.</p>
+            </div>
+          </div>
+
+          <!-- Queue Control -->
+          <div class="queue-card">
+            <div class="section-title-wrap">
+              <h3>Fila de Leads Pendentes (<span id="queue-pending-count">0</span>)</h3>
+              <div class="form-group" style="margin: 0; min-width: 280px;">
+                <select id="cadence-template-select" class="form-control form-control-sm">
+                  <!-- Injetado via JS -->
+                </select>
+              </div>
+            </div>
+
+            <div class="queue-list" id="queue-list">
+              <!-- Leads pendentes na fila -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= TAB 4: ROTEIROS DO KAUÊ ================= -->
+      <div class="tab-pane" id="tab-scripts">
+        <div class="pane-header">
+          <div>
+            <h2 class="pane-title">Roteiros de Abordagem (A Voz do Kauê)</h2>
+            <p class="pane-desc">Mensagens calibradas para soar naturais, diretas e focadas em negócios reais, sem clichês.</p>
+          </div>
+          <button class="btn btn-primary" id="btn-save-templates">Salvar Roteiros</button>
+        </div>
+
+        <div class="scripts-grid" id="scripts-container">
+          <!-- Injetado via JS -->
+        </div>
+      </div>
+
+      <!-- ================= TAB 5: CONFIGURAÇÕES ================= -->
+      <div class="tab-pane" id="tab-settings">
+        <div class="pane-header">
+          <div>
+            <h2 class="pane-title">Filtros de Exclusão & Configurações</h2>
+            <p class="pane-desc">Defina as regras para nunca prospectar grandes redes ou ramos fora do escopo.</p>
+          </div>
+          <button class="btn btn-primary" id="btn-save-settings">Salvar Configurações</button>
+        </div>
+
+        <div class="settings-grid">
+          <div class="settings-card">
+            <h3>Grandes Redes e Hospitais a Bloquear</h3>
+            <p class="settings-desc">Empresas que o scraper vai descartar automaticamente (uma por linha):</p>
+            <textarea id="settings-excluded-chains" class="form-control textarea-lg" rows="8"></textarea>
+          </div>
+
+          <div class="settings-card">
+            <h3>Termos do Ramo Estético a Bloquear</h3>
+            <p class="settings-desc">Palavras-chave bloqueadas para não trazer clínicas de estética ou salões:</p>
+            <textarea id="settings-excluded-keywords" class="form-control textarea-lg" rows="8"></textarea>
+          </div>
+
+          <div class="settings-card full-width">
+            <h3>Parâmetros da Operação</h3>
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label class="form-label">Limite de Disparos por Dia:</label>
+                <input type="number" id="settings-daily-limit" class="form-control" min="5" max="100" value="30">
+              </div>
+              <div class="form-group flex-1">
+                <label class="form-label">Delay Mínimo (segundos):</label>
+                <input type="number" id="settings-min-delay" class="form-control" min="10" max="120" value="30">
+              </div>
+              <div class="form-group flex-1">
+                <label class="form-label">Delay Máximo (segundos):</label>
+                <input type="number" id="settings-max-delay" class="form-control" min="20" max="300" value="60">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= TAB 6: CONEXÃO WHATSAPP DIRETO ================= -->
+      <div class="tab-pane" id="tab-whatsapp">
+        <div class="pane-header">
+          <div>
+            <h2 class="pane-title">Conexão WhatsApp (Disparo Direto da Pinas)</h2>
+            <p class="pane-desc">Conecte o seu WhatsApp uma única vez para disparar mensagens no piloto automático sem abrir nenhuma aba.</p>
+          </div>
+          <div id="tab-wa-header-badge">
+            <span class="badge-status-pill disconnected" id="tab-wa-badge-status">🔴 Desconectado</span>
+          </div>
+        </div>
+
+        <div class="wa-dashboard-grid">
+          <!-- Card de Conexão e QR Code -->
+          <div class="wa-connection-card">
+            
+            <!-- Estado 1: Desconectado / Gerando QR -->
+            <div id="wa-tab-disconnected" class="wa-tab-view">
+              <div class="wa-card-header">
+                <h3>Escaneie o QR Code no seu Celular</h3>
+                <p class="wa-card-subtitle">Conecte o WhatsApp da Pinas para habilitar o envio 100% autônomo.</p>
+              </div>
+
+              <div class="wa-steps-list">
+                <div class="wa-step-item"><span class="step-num">1</span> Abra o WhatsApp no celular do Kauê</div>
+                <div class="wa-step-item"><span class="step-num">2</span> Toque nos <strong>3 pontinhos</strong> (Android) ou <strong>Ajustes</strong> (iPhone)</div>
+                <div class="wa-step-item"><span class="step-num">3</span> Toque em <strong>Aparelhos Conectados</strong> > <strong>Conectar um aparelho</strong></div>
+                <div class="wa-step-item"><span class="step-num">4</span> Aponte a câmera para o QR Code abaixo:</div>
+              </div>
+
+              <div class="qr-display-box">
+                <div id="wa-tab-qr-loading" class="qr-loading-spinner">
+                  <div class="spinner"></div>
+                  <span style="font-size: 0.9rem; color: var(--text-secondary);">Gerando QR Code seguro...</span>
+                </div>
+                <img id="wa-tab-qr-img" class="qr-code-img" alt="QR Code WhatsApp" style="display: none;">
+              </div>
+
+              <div class="qr-actions" style="margin-top: 1rem; text-align: center;">
+                <button class="btn btn-outline btn-sm" id="btn-tab-refresh-qr">🔄 Atualizar QR Code</button>
+              </div>
+            </div>
+
+            <!-- Estado 2: Conectado com Sucesso -->
+            <div id="wa-tab-connected" class="wa-tab-view" style="display: none;">
+              <div class="wa-connected-hero">
+                <div class="connected-icon">✅</div>
+                <h3 class="connected-title">WhatsApp 100% Conectado!</h3>
+                <p class="connected-phone" id="wa-tab-user-phone">+55 (11) 94171-3647</p>
+                <span class="connected-tag">Pronto para Piloto Automático & Disparos</span>
+              </div>
+
+              <div class="wa-stats-row">
+                <div class="wa-mini-stat">
+                  <span class="stat-label">Disparos Hoje</span>
+                  <strong id="wa-tab-sent-count">0 / 30</strong>
+                </div>
+                <div class="wa-mini-stat">
+                  <span class="stat-label">Modo</span>
+                  <strong style="color: var(--color-green);">Direto via Backend</strong>
+                </div>
+                <div class="wa-mini-stat">
+                  <span class="stat-label">Proteção Meta</span>
+                  <strong style="color: var(--color-yellow);">Cadência Segura</strong>
+                </div>
+              </div>
+
+              <div class="wa-test-section">
+                <h4>Teste Rápido de Envio Direto</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">Envie uma mensagem de teste para um número para ver funcionando no fundo:</p>
+                <div style="display: flex; gap: 0.75rem; align-items: center;">
+                  <input type="text" id="wa-tab-test-phone" class="form-control" placeholder="DDD + Número (Ex: 11941713647)" style="max-width: 280px;">
+                  <button class="btn btn-whatsapp" id="btn-tab-send-test">🚀 Enviar Teste</button>
+                </div>
+                <div id="wa-tab-test-status" style="margin-top: 0.5rem; font-size: 0.85rem;"></div>
+              </div>
+
+              <div class="wa-disconnect-wrap">
+                <button class="btn btn-danger btn-sm" id="btn-tab-disconnect-wa">Desconectar Aparelho</button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Card de Regras e Segurança -->
+          <div class="wa-info-card">
+            <h3>🛡️ Piloto Automático Pinas & Segurança</h3>
+            <p class="wa-info-text">Como o novo sistema de disparo direto protege o WhatsApp da Pinas:</p>
+            
+            <div class="wa-safety-perks">
+              <div class="perk-item">
+                <span class="perk-icon">🤖</span>
+                <div>
+                  <strong>Zero Abas Abertas</strong>
+                  <p>O envio acontece 100% em segundo plano pelo servidor, liberando seu navegador e seu computador.</p>
+                </div>
+              </div>
+              <div class="perk-item">
+                <span class="perk-icon">⏱️</span>
+                <div>
+                  <strong>Cadência Humanizada</strong>
+                  <p>Intervalo seguro de 50 segundos entre cada disparo para simular o comportamento de digitação natural.</p>
+                </div>
+              </div>
+              <div class="perk-item">
+                <span class="perk-icon">🛑</span>
+                <div>
+                  <strong>Parada Automática na Cota</strong>
+                  <p>Ao atingir o limite diário de segurança (30 mensagens), o robô encerra sozinho para proteger seu chip.</p>
+                </div>
+              </div>
+              <div class="perk-item">
+                <span class="perk-icon">✍️</span>
+                <div>
+                  <strong>Textos Personalizados</strong>
+                  <p>Mensagens calibradas na voz do Kauê para veterinárias (Petiva), confecções (Chay B/Bem Zanza) ou comércios sem site.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= TAB 7: CENTRAL DE CONVERSAS & CHAT (INBOX) ================= -->
+      <div class="tab-pane" id="tab-inbox">
+        <div class="pane-header">
+          <div>
+            <h2 class="pane-title">Central de Conversas (WhatsApp Inbox)</h2>
+            <p class="pane-desc">Visualize mensagens antigas e novas, responda clientes, envie fotos, propostas e áudios direto pelo sistema.</p>
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: center;">
+            <span class="badge-status-pill connected" id="inbox-status-pill">🟢 WhatsApp Conectado</span>
+            <button class="btn btn-outline btn-sm" id="btn-refresh-inbox">🔄 Sincronizar Conversas</button>
+          </div>
+        </div>
+
+        <div class="inbox-container">
+          <!-- Coluna Esquerda: Lista de Conversas -->
+          <div class="inbox-sidebar">
+            <div class="inbox-search-box">
+              <input type="text" id="inbox-search-input" class="form-control form-control-sm" placeholder="🔍 Buscar contato ou número...">
+            </div>
+            
+            <div class="inbox-filter-tabs">
+              <button class="inbox-filter-tab active" data-filter="all">Todas</button>
+              <button class="inbox-filter-tab" data-filter="leads">🎯 Leads</button>
+              <button class="inbox-filter-tab" data-filter="direct">👤 Diretas (1x1)</button>
+              <button class="inbox-filter-tab" data-filter="groups">👥 Grupos</button>
+              <button class="inbox-filter-tab" data-filter="unread">Não Lidas (<span id="inbox-unread-count">0</span>)</button>
+            </div>
+
+            <div class="inbox-chats-list" id="inbox-chats-list">
+              <div class="inbox-empty-notice">
+                <div class="spinner"></div>
+                <p>Carregando conversas do WhatsApp...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coluna Direita: Conversa Ativa -->
+          <div class="inbox-chat-pane">
+            <!-- Estado Vazio (Sem chat selecionado) -->
+            <div class="chat-placeholder" id="chat-placeholder">
+              <div class="placeholder-icon">💬</div>
+              <h3>Nenhuma conversa selecionada</h3>
+              <p>Escolha um contato na lista ao lado para ver o histórico de mensagens e responder diretamente pelo WhatsApp.</p>
+            </div>
+
+            <!-- Janela do Chat Aberto -->
+            <div class="chat-active-window" id="chat-active-window" style="display: none;">
+              <!-- Header do Chat -->
+              <div class="active-chat-header">
+                <div class="chat-user-meta">
+                  <button type="button" class="btn-back-chat" id="btn-close-active-chat" onclick="closeActiveChat()" title="Fechar conversa e voltar para a lista">
+                    <span>◀</span> Voltar
+                  </button>
+                  <div class="chat-avatar" id="chat-avatar">K</div>
+                  <div class="chat-user-titles">
+                    <h4 id="chat-contact-name">Nome do Contato</h4>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                      <span id="chat-contact-phone">+55 11 99999-9999</span>
+                      <span class="chat-lead-badge" id="chat-lead-badge" style="display: none;">🎯 Lead Pinas</span>
+                      <span class="chat-group-badge" id="chat-group-badge" style="display: none;">👥 Grupo do WhatsApp</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="chat-lead-actions" style="display: flex; gap: 0.5rem; align-items: center;">
+                  <a id="btn-chat-open-slides" href="/slides" target="_blank" class="btn btn-outline btn-sm" style="display: none; border-color: var(--pinas-red); color: var(--pinas-red); font-weight: 700; text-decoration: none;">
+                    🖥️ Slides da Call ↗
+                  </a>
+                  <select id="chat-lead-status-dropdown" class="form-control form-control-sm" style="display: none;">
+                    <option value="novo">Status: Novo</option>
+                    <option value="contatado">Status: Contatado</option>
+                    <option value="reuniao">Status: Reunião Marcada</option>
+                    <option value="proposta">Status: Proposta Enviada</option>
+                    <option value="ganho">Status: Fechado (Cliente)</option>
+                    <option value="perdido">Status: Sem Interesse</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Mensagens -->
+              <div class="chat-messages-container" id="chat-messages-container">
+                <!-- Injetado dinamicamente -->
+              </div>
+
+              <!-- Prévia de Mídia Anexa (se houver) -->
+              <div class="chat-media-preview-bar" id="chat-media-preview-bar" style="display: none;">
+                <div class="media-preview-pill">
+                  <span id="chat-media-preview-icon">📷</span>
+                  <span id="chat-media-preview-name">imagem.jpg</span>
+                  <button type="button" class="btn-cancel-media" id="btn-cancel-media">&times;</button>
+                </div>
+              </div>
+
+              <!-- Barra de Gravação de Voz Ativa -->
+              <div class="chat-voice-recording-bar" id="chat-voice-recording-bar" style="display: none;">
+                <div class="voice-pulse-dot"></div>
+                <span style="font-size: 0.85rem; color: #EF4444; font-weight: 700;">Gravando áudio:</span>
+                <span class="voice-timer" id="voice-timer">00:00</span>
+                <div style="margin-left: auto; display: flex; gap: 0.5rem;">
+                  <button type="button" class="btn btn-outline btn-sm" id="btn-cancel-voice">Descartar</button>
+                  <button type="button" class="btn btn-whatsapp btn-sm" id="btn-send-voice">🚀 Enviar Áudio</button>
+                </div>
+              </div>
+
+              <!-- Barra de Respostas Rápidas (Snippets de 1 Clique) -->
+              <div class="chat-quick-snippets-bar" id="chat-quick-snippets-bar">
+                <span class="snippets-label">⚡ Respostas Rápidas:</span>
+                <button type="button" class="snippet-pill" data-snippet="call">📅 Propor Call 15 min</button>
+                <button type="button" class="snippet-pill" data-snippet="servico">🎯 Como Funciona</button>
+                <button type="button" class="snippet-pill" data-snippet="preco">💰 Quanto Custa?</button>
+                <button type="button" class="snippet-pill" data-snippet="meet">🔗 Link do Meet</button>
+                <button type="button" class="snippet-pill" data-snippet="proposta">📄 Apresentação Pinas</button>
+              </div>
+
+              <!-- Input Bar Inferior -->
+              <div class="chat-input-controls" id="chat-input-controls">
+                <input type="file" id="chat-media-file-input" accept="image/*,application/pdf" style="display: none;">
+                
+                <button type="button" class="chat-tool-btn" id="btn-chat-attach" title="Enviar Foto ou PDF de Proposta">📎</button>
+                <button type="button" class="chat-tool-btn" id="btn-chat-mic" title="Gravar Áudio de Voz">🎙️</button>
+                
+                <textarea id="chat-message-input" class="chat-input-field" placeholder="Digite uma mensagem... (Enter para enviar)" rows="1"></textarea>
+                
+                <button type="button" class="btn btn-whatsapp btn-send-message" id="btn-chat-send" title="Enviar Mensagem">
+                  <span>🚀</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Modal: Disparo WhatsApp com Mensagem Personalizada -->
+  <div class="modal-overlay" id="modal-whatsapp" style="display: none;">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modal-wa-title">Enviar Mensagem pelo WhatsApp</h3>
+        <button class="btn-close" id="btn-close-wa-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="lead-summary-box">
+          <strong id="modal-wa-lead-name">Nome da Empresa</strong>
+          <span id="modal-wa-lead-phone">(11) 99999-9999</span>
+          <span id="modal-wa-lead-bairro">Santo Amaro, SP</span>
+        </div>
+
+        <div class="form-group">
+          <label for="modal-wa-template-select" class="form-label">Escolha o Modelo de Mensagem:</label>
+          <select id="modal-wa-template-select" class="form-control"></select>
+        </div>
+
+        <div class="form-group">
+          <label for="modal-wa-message-preview" class="form-label">Prévia da Mensagem (Você pode editar antes de enviar):</label>
+          <textarea id="modal-wa-message-preview" class="form-control" rows="8"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer" style="display: flex; gap: 0.5rem; justify-content: flex-end; align-items: center; flex-wrap: wrap;">
+        <button class="btn btn-outline" id="btn-copy-wa-message">📋 Copiar Texto</button>
+        <button class="btn btn-outline" id="btn-open-wa-web-manual" title="Abrir no WhatsApp Web convencional">🌐 Abrir no Web</button>
+        <button class="btn btn-whatsapp" id="btn-confirm-wa-send">
+          <span class="btn-icon">🚀</span> Disparar Direto pelo WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Novo Lead Manual -->
+  <div class="modal-overlay" id="modal-lead" style="display: none;">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Adicionar Novo Lead Manual</h3>
+        <button class="btn-close" id="btn-close-lead-modal">&times;</button>
+      </div>
+      <form id="form-new-lead">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Nome do Estabelecimento *</label>
+            <input type="text" id="manual-name" class="form-control" required placeholder="Ex: Clínica Veterinária Amigo Fiel">
+          </div>
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label class="form-label">Nicho</label>
+              <input type="text" id="manual-niche" class="form-control" placeholder="Ex: Clínicas Veterinárias">
+            </div>
+            <div class="form-group flex-1">
+              <label class="form-label">Telefone / WhatsApp</label>
+              <input type="text" id="manual-phone" class="form-control" placeholder="Ex: (11) 98765-4321">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label class="form-label">Site (Deixe vazio se não tiver)</label>
+              <input type="url" id="manual-website" class="form-control" placeholder="https://...">
+            </div>
+            <div class="form-group flex-1">
+              <label class="form-label">Bairro / Região</label>
+              <input type="text" id="manual-neighborhood" class="form-control" placeholder="Ex: Santo Amaro, SP">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Anotações da Oportunidade</label>
+            <textarea id="manual-notes" class="form-control" rows="2" placeholder="Observações sobre o negócio..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" id="btn-cancel-lead">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Salvar Lead</button>
+        </div>
+      </form>
+    </div>
+  <!-- Modal: Conexão WhatsApp / Leitura de QR Code -->
+  <div class="modal-overlay" id="modal-wa-connect" style="display: none;">
+    <div class="modal-box modal-box-md">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <span style="font-size: 1.5rem;">📱</span>
+          <div>
+            <h3 id="modal-wa-connect-title" style="margin: 0;">Conectar WhatsApp</h3>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">Dispare mensagens automaticamente sem abrir abas</p>
+          </div>
+        </div>
+        <button class="btn-close" id="btn-close-wa-connect">&times;</button>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        
+        <!-- Estado: Desconectado / Gerando QR -->
+        <div id="modal-wa-state-qr">
+          <div class="wa-steps-list" style="text-align: left; margin-bottom: 1.25rem;">
+            <div class="wa-step-item"><span class="step-num">1</span> Abra o WhatsApp no celular do Kauê</div>
+            <div class="wa-step-item"><span class="step-num">2</span> Toque em <strong>Aparelhos Conectados</strong> > <strong>Conectar um aparelho</strong></div>
+            <div class="wa-step-item"><span class="step-num">3</span> Aponte a câmera para o QR Code abaixo:</div>
+          </div>
+
+          <div class="qr-display-box">
+            <div id="modal-wa-qr-loading" class="qr-loading-spinner">
+              <div class="spinner"></div>
+              <span style="font-size: 0.9rem; color: var(--text-secondary);">Gerando QR Code seguro...</span>
+            </div>
+            <img id="modal-wa-qr-img" class="qr-code-img" alt="QR Code WhatsApp" style="display: none;">
+          </div>
+
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.75rem;">
+            O QR Code atualiza dinamicamente. Aponte a câmera para autenticar.
+          </p>
+
+          <button class="btn btn-outline btn-sm" id="btn-modal-refresh-qr" style="margin-top: 0.5rem;">
+            🔄 Gerar Novo QR Code
+          </button>
+        </div>
+
+        <!-- Estado: Conectado com Sucesso -->
+        <div id="modal-wa-state-connected" style="display: none;">
+          <div class="wa-connected-hero">
+            <div class="connected-icon">✅</div>
+            <h3 class="connected-title">WhatsApp 100% Conectado!</h3>
+            <p class="connected-phone" id="modal-wa-user-phone">+55 (11) 94171-3647</p>
+            <span class="connected-tag">Pronto para Piloto Automático & Disparos</span>
+          </div>
+
+          <div style="margin-top: 1.5rem;">
+            <button class="btn btn-whatsapp full-width" id="btn-modal-close-connected">
+              Entendido, Continuar no Prospector
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Pop-up Central de Confirmação / Sucesso -->
+  <div class="modal-overlay" id="modal-success-alert" style="display: none;">
+    <div class="modal-box modal-box-sm modal-alert-card">
+      <div class="modal-alert-icon-wrap" id="modal-alert-icon">
+        ✅
+      </div>
+      <h3 class="modal-alert-title" id="modal-alert-title">Configurações Salvas!</h3>
+      <p class="modal-alert-message" id="modal-alert-message">
+        As configurações e regras de disparo foram atualizadas com sucesso e já estão ativas.
+      </p>
+      <div class="modal-alert-actions">
+        <button type="button" class="btn btn-primary" id="btn-modal-alert-confirm">
+          OK, Entendido
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox Modal: Visualizador de Fotos do Chat -->
+  <div class="lightbox-overlay" id="chat-lightbox-modal" style="display: none;">
+    <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+    <div class="lightbox-container" id="lightbox-container">
+      <div class="lightbox-header">
+        <div class="lightbox-counter-pill">
+          <span class="lightbox-icon">📷</span>
+          <span id="lightbox-counter">Foto 1 de 1</span>
+        </div>
+        <div class="lightbox-actions">
+          <a id="lightbox-btn-download" href="#" target="_blank" class="lightbox-tool-btn" title="Abrir imagem em tamanho original">
+            <span>↗</span> Abrir Original
+          </a>
+          <button type="button" class="lightbox-tool-btn lightbox-close" id="lightbox-btn-close" title="Fechar (Esc)">
+            ✕
+          </button>
+        </div>
+      </div>
+      <div class="lightbox-content">
+        <button type="button" class="lightbox-nav-btn prev" id="lightbox-btn-prev" title="Foto anterior (←)">
+          ‹
+        </button>
+        <div class="lightbox-image-box" id="lightbox-image-box">
+          <img id="lightbox-img" src="" alt="Foto expandida">
+        </div>
+        <button type="button" class="lightbox-nav-btn next" id="lightbox-btn-next" title="Próxima foto (→)">
+          ›
+        </button>
+      </div>
+      <div class="lightbox-caption-bar" id="lightbox-caption-bar" style="display: none;">
+        <p id="lightbox-caption-text"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Container de Notificações Toast Modernas (Substitui alerts do navegador) -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="app.js?v=6.0"></script>
+</body>
+</html>

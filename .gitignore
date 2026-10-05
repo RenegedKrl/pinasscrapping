@@ -1,0 +1,33 @@
+# Dependências
+node_modules/
+**/node_modules/
+
+# Sessões e credenciais confidenciais do WhatsApp (NUNCA subir para o GitHub)
+whatsapp_session/
+**/whatsapp_session/
+prospeccao/data/whatsapp_session/
+**/data/whatsapp_session/
+
+# Mídias pesadas recebidas no WhatsApp (vídeos/áudios > 100MB excedem limite do GitHub)
+media/
+**/media/
+prospeccao/data/media/
+**/data/media/
+
+# Logs e arquivos temporários
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Configurações de IDE / Editores
+.vscode/
+.idea/
+
+# Claude Code / Sessões locais
+.claude/projects/
+.claude/sessions/
+.claude/shell-snapshots/
+.claude/telemetry/
+.claude/file-history/
+.claude/backups/

@@ -1,0 +1,101 @@
+{
+  "dailyLimit": 32,
+  "sentToday": 32,
+  "lastResetDate": "2026-10-05",
+  "minDelaySeconds": 30,
+  "maxDelaySeconds": 60,
+  "excludedChains": [
+    "petz",
+    "cobasi",
+    "albert einstein",
+    "sirio libanes",
+    "sírio-libanês",
+    "hospital das clinicas",
+    "hospital das clínicas",
+    "dr. consulta",
+    "dr consulta",
+    "notredame",
+    "amil",
+    "prevent senior",
+    "hapvida",
+    "c&a",
+    "renner",
+    "riachuelo",
+    "marisa",
+    "zara",
+    "amaro",
+    "shein",
+    "pernambucanas",
+    "lojas americanas",
+    "torra",
+    "magalu",
+    "magazine luiza",
+    "carrefour",
+    "pão de açúcar",
+    "assai",
+    "atacadão",
+    "leroy merlin",
+    "pink luxo estética",
+    "pink luxo",
+    "bem zanza",
+    "chay b",
+    "chayb",
+    "happy play dogs",
+    "petiva"
+  ],
+  "excludedKeywords": [
+    "estética",
+    "estetica",
+    "harmonização",
+    "harmonizacao",
+    "botox",
+    "salão de beleza",
+    "salao de beleza",
+    "depilação",
+    "depilacao",
+    "lash",
+    "sobrancelhas",
+    "massagem estética",
+    "estética corporal",
+    "estética facial",
+    "pink luxo estética",
+    "pink luxo",
+    "bem zanza",
+    "chay b",
+    "chayb",
+    "happy play dogs",
+    "petiva"
+  ],
+  "defaultNiches": [
+    {
+      "name": "Clínicas Veterinárias",
+      "query": "clinica veterinaria",
+      "templateId": "veterinaria"
+    },
+    {
+      "name": "Consultórios Veterinários",
+      "query": "consultorio veterinario",
+      "templateId": "veterinaria"
+    },
+    {
+      "name": "Pet Shops com Veterinário",
+      "query": "pet shop veterinario",
+      "templateId": "veterinaria"
+    },
+    {
+      "name": "Lojas de Roupas no Brás",
+      "query": "loja de roupas bras",
+      "templateId": "roupas-moda"
+    },
+    {
+      "name": "Moda Feminina Bom Retiro",
+      "query": "moda feminina bom retiro",
+      "templateId": "roupas-moda"
+    },
+    {
+      "name": "Confecções e Roupas no Atacado",
+      "query": "confeccao roupas atacado",
+      "templateId": "roupas-moda"
+    }
+  ]
+}

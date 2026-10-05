@@ -1,0 +1,44 @@
+const fs = require('fs');
+const path = require('path');
+
+const templates = [
+  {
+    "id": "sem-site",
+    "name": "Sem Site (Google & Tráfego Local)",
+    "target": "Comércios locais sem site",
+    "subject": "Presença no Google e captação de clientes",
+    "text": "Olá, tudo bem? Aqui é o Kauê, da Pinas (@pinas.studio).\n\nEstava pesquisando o mercado de {bairro} no Google e encontrei a {nome}. Vocês têm ótimas avaliações, mas reparei que ainda não têm um site próprio para captar quem busca pelo serviço de vocês na região.\n\nNós trabalhamos com tráfego pago (Google Ads) e páginas de alta conversão, fazendo com que as pessoas que já estão procurando no Google caiam direto no seu WhatsApp.\n\nMontei um diagnóstico rápido de como a {nome} pode captar esses clientes locais no Google todo mês. Se fizer sentido, posso te mandar por aqui sem compromisso? Um abraço!"
+  },
+  {
+    "id": "veterinaria",
+    "name": "Clínica Veterinária (Consultas & Google Ads)",
+    "target": "Clínicas veterinárias e centros médicos",
+    "subject": "Captação de tutores e consultas",
+    "text": "Olá, tudo bem? Aqui é o Kauê, da Pinas (@pinas.studio).\n\nAcompanho o trabalho da {nome} aí em {bairro}. Nós somos especialistas em tráfego pago e captação de tutores para clínicas veterinárias (inclusive cuidamos da Petiva aqui em SP).\n\nNosso foco é colocar a clínica no topo do Google quando tutores da sua região procuram por consultas, exames ou emergências, trazendo esses contatos direto pro WhatsApp de vocês.\n\nVocê teria 5 minutinhos essa semana para um bate-papo rápido? Queria te mostrar o que tem gerado mais retorno no setor veterinário. Um abraço!"
+  },
+  {
+    "id": "roupas-moda",
+    "name": "Moda & Vestuário (Instagram & WhatsApp)",
+    "target": "Confecções, lojas de atacado e varejo",
+    "subject": "Vendas de moda e pedidos no WhatsApp",
+    "text": "Olá, tudo bem? Aqui é o Kauê, da Pinas (@pinas.studio).\n\nEstava dando uma olhada nas peças e no catálogo da {nome} e achei a coleção muito boa! A gente gerencia o tráfego pago de marcas de moda no Brás e Bom Retiro (como a Chay B e Bem Zanza).\n\nNosso trabalho é criar anúncios segmentados no Instagram e Meta Ads para colocar as peças de vocês na frente de compradoras prontas, gerando pedidos direto no WhatsApp da loja.\n\nComo está o volume de pedidos de vocês hoje? Se quiser, posso te mandar algumas ideias práticas que estão funcionando para moda. Um abraço!"
+  },
+  {
+    "id": "com-site",
+    "name": "Com Site (Otimização de Tráfego & Leads)",
+    "target": "Negócios que já têm site ou anúncios fracos",
+    "subject": "Otimização de tráfego e clientes locais",
+    "text": "Olá, tudo bem? Aqui é o Kauê, da Pinas (@pinas.studio).\n\nEstava pesquisando empresas em {bairro} e cheguei até a {nome}. Vi que vocês já têm uma estrutura e site no ar, muito bacana!\n\nNós somos uma assessoria de tráfego pago (Google e Meta Ads) focada em atração de clientes locais. Analisei a presença de vocês e notei algumas oportunidades práticas para aumentar o volume de contatos qualificados que chegam no site e no WhatsApp.\n\nVocê teria 5 minutinhos essa semana para um café virtual ou bate-papo rápido? Te mostro esses pontos sem compromisso nenhum. Um abraço!"
+  },
+  {
+    "id": "followup",
+    "name": "Follow-up Humanizado",
+    "target": "Leads que já receberam primeira mensagem",
+    "subject": "Follow-up rápido",
+    "text": "Opa, tudo bem? Kauê por aqui de novo!\n\nPassando rapidinho só para ver se conseguiu dar uma olhada na mensagem anterior sobre a {nome}. Imagino que a rotina por aí esteja bem corrida!\n\nSe fizer sentido batermos aquele papo rápido de 5 minutos sobre atração de clientes para a {nome}, me dá um toque por aqui. Um abraço!"
+  }
+];
+
+const targetPath = path.join(__dirname, 'data', 'templates.json');
+fs.writeFileSync(targetPath, JSON.stringify(templates, null, 2), 'utf8');
+console.log('Templates gravados com sucesso em UTF-8 estrito!');

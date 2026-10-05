@@ -1,0 +1,31 @@
+{
+  "mcpServers": {
+    "notion": {
+      "command": "npx",
+      "args": ["-y", "@notionhq/notion-mcp-server"],
+      "env": {
+        "NOTION_API_KEY": ""
+      }
+    },
+    "gmail": {
+      "command": "npx",
+      "args": ["-y", "@gongrzhe/server-gmail-autoauth-mcp"]
+    },
+    "google-calendar": {
+      "command": "npx",
+      "args": ["-y", "@gongrzhe/server-google-calendar-autoauth-mcp"]
+    },
+    "canva": {
+      "command": "npx",
+      "args": ["-y", "@canva/canva-mcp-server"]
+    },
+    "n8n": {
+      "command": "npx",
+      "args": ["-y", "n8n-mcp"],
+      "env": {
+        "N8N_API_URL": "",
+        "N8N_API_KEY": ""
+      }
+    }
+  }
+}
