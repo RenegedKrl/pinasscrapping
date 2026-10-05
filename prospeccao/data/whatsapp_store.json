@@ -55,15 +55,15 @@
       "jid": "120363423900883657@g.us",
       "name": "Alby&Co - Clientes",
       "phone": "120363423900883657",
-      "unreadCount": 26,
+      "unreadCount": 27,
       "lastMessage": {
-        "text": "Leandro Oliveira Rodrigues: 🎙️ Mensagem de voz",
-        "timestamp": 1791225199000,
+        "text": "Luana: Olá, vim do site protocolo o rejuvenescedor da Pink Luxo. Gostaria de agendar uma avaliação e saber mais sobre o procedimento",
+        "timestamp": 1791225364000,
         "fromMe": false,
-        "type": "audio",
-        "senderName": "Leandro Oliveira Rodrigues"
+        "type": "text",
+        "senderName": "Luana"
       },
-      "updatedAt": 1791225199000,
+      "updatedAt": 1791225364000,
       "isGroup": true,
       "isGroupSubject": true,
       "participantCount": 3
@@ -4138,6 +4138,19 @@
         "timestamp": 1791225199000,
         "type": "audio",
         "mediaUrl": "/media/audio_2AB1765386BA001FD643_1791225201422.mp4",
+        "fileName": null,
+        "status": "delivered"
+      },
+      {
+        "id": "3AC8EC5D224B7A3E3989",
+        "fromMe": false,
+        "senderName": "Luana",
+        "participant": "9724175073374@lid",
+        "isGroup": true,
+        "text": "Olá, vim do site protocolo o rejuvenescedor da Pink Luxo. Gostaria de agendar uma avaliação e saber mais sobre o procedimento",
+        "timestamp": 1791225364000,
+        "type": "text",
+        "mediaUrl": null,
         "fileName": null,
         "status": "delivered"
       }
@@ -11844,7 +11857,9 @@
     "163393726083159": "Eduardo Rezende",
     "247115406172403@lid": "Leandro Oliveira Rodrigues",
     "247115406172403": "Leandro Oliveira Rodrigues",
-    "120363423900883657@g.us": "Leandro Oliveira Rodrigues",
-    "120363423900883657": "Leandro Oliveira Rodrigues"
+    "120363423900883657@g.us": "Luana",
+    "120363423900883657": "Luana",
+    "9724175073374@lid": "Luana",
+    "9724175073374": "Luana"
   }
 }

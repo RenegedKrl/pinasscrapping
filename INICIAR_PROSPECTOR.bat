@@ -24,11 +24,7 @@ if exist "%~dp0prospeccao\server.js" (
 )
 
 if "%PROJECT_DIR%"=="" (
-    echo [ERRO] Nao foi possivel localizar a pasta do Prospector!
-    echo Procurado em:
-    echo  - %~dp0prospeccao
-    echo  - %~dp0
-    echo  - G:\Users\kauek\Desktop\claude\Pinas Scrapping\prospeccao
+    echo [ERRO] Nao foi possivel localizar a pasta do Prospector com server.js!
     echo.
     echo Pressione qualquer tecla para sair...
     pause >nul
@@ -57,9 +53,9 @@ if %errorlevel% neq 0 (
     )
 )
 
-:: 3. Verificar dependencias
+:: 3. Verificar dependencias do Node.js
 if not exist "node_modules\" (
-    echo [CONFIGURACAO] Dependencias nao encontradas. Instalando agora...
+    echo [CONFIGURACAO] Dependencias nao encontradas. Instalando agora via npm...
     call npm install
     if %errorlevel% neq 0 (
         echo [ERRO] Falha ao instalar dependencias do Node.js.
@@ -68,17 +64,17 @@ if not exist "node_modules\" (
     )
 )
 
-:: 4. Liberar porta 3333 se houver processo zumbi anterior (sem quebrar sintaxe do batch)
+:: 4. Liberar porta 3333 se houver processo anterior ocupando
 for /f "tokens=5" %%p in ('netstat -aon ^| findstr /r /c:":3333 " ^| findstr LISTENING 2^>nul') do (
-    echo [INFO] Liberando porta 3333 ocupada por processo anterior PID %%p...
+    echo [INFO] Liberando porta 3333 ocupada pelo processo PID %%p...
     taskkill /F /T /PID %%p >nul 2>&1
 )
 
 :: 5. Abrir navegador automaticamente apos 2 segundos em segundo plano
-start "" cmd /c "timeout /t 2 /nobreak >nul & start http://localhost:3333/?v=6.0"
+start "" cmd /c "timeout /t 2 /nobreak >nul & start http://localhost:3333/?v=7.0"
 
 echo [STATUS] Iniciando servidor do Pinas Prospector...
-echo [ACESSO] Abrindo http://localhost:3333/?v=6.0 no seu navegador...
+echo [ACESSO] Abrindo http://localhost:3333/?v=7.0 no seu navegador...
 echo.
 echo --------------------------------------------------------------
 echo  * O sistema ja esta rodando!
