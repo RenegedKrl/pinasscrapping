@@ -23,9 +23,11 @@
     },
     "score": 3,
     "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.608Z"
+    "status": "contatado",
+    "lastContact": "2026-10-08T17:53:30.470Z",
+    "createdAt": "2026-10-08T03:47:33.608Z",
+    "stage": 1,
+    "stageHistory": []
   },
   {
     "id": "lead-1791431253608-3gpnio",
@@ -51,9 +53,11 @@
     },
     "score": 4,
     "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.608Z"
+    "status": "contatado",
+    "lastContact": "2026-10-08T17:54:21.775Z",
+    "createdAt": "2026-10-08T03:47:33.608Z",
+    "stage": 1,
+    "stageHistory": []
   },
   {
     "id": "lead-1791431253608-lid4lo",
@@ -79,9 +83,19 @@
     },
     "score": 3,
     "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.608Z"
+    "status": "perdido",
+    "lastContact": "2026-10-08T17:56:08.152Z",
+    "createdAt": "2026-10-08T03:47:33.608Z",
+    "stage": 2,
+    "stageHistory": [
+      {
+        "stage": 2,
+        "sentAt": "2026-10-08T17:56:08.152Z",
+        "auto": true,
+        "text": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de Embu das Artes, SP.\n\nTava dando uma olhada rápida na CONPAVIM CONTRUTORA E PAVIMENTADORA aqui no Google e vi uma coisa que me chamou atenção."
+      }
+    ],
+    "repliedAt": "2026-10-08T18:03:21.831Z"
   },
   {
     "id": "lead-1791431253608-m3i2ax",
@@ -107,9 +121,11 @@
     },
     "score": 4,
     "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.608Z"
+    "status": "contatado",
+    "lastContact": "2026-10-08T17:58:43.086Z",
+    "createdAt": "2026-10-08T03:47:33.608Z",
+    "stage": 1,
+    "stageHistory": []
   },
   {
     "id": "lead-1791431253608-fu3p80",
@@ -135,9 +151,19 @@
     },
     "score": 3,
     "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.608Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-08T18:00:00.155Z",
+    "createdAt": "2026-10-08T03:47:33.608Z",
+    "stage": 2,
+    "stageHistory": [
+      {
+        "stage": 2,
+        "sentAt": "2026-10-08T18:00:00.155Z",
+        "auto": true,
+        "text": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de Embu das Artes, SP.\n\nTava dando uma olhada rápida na D.Lima Construtech e Engenharia aqui no Google e vi uma coisa que me chamou atenção."
+      }
+    ],
+    "repliedAt": "2026-10-08T17:59:36.727Z"
   },
   {
     "id": "lead-1791431253608-lagzta",
@@ -163,37 +189,11 @@
     },
     "score": 4,
     "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.608Z"
-  },
-  {
-    "id": "lead-1791431253608-j7hbat",
-    "name": "RJ Serviços Topografia",
-    "niche": "arquiteto",
-    "phone": "(11) 95950-5175",
-    "cleanPhone": "5511959505175",
-    "hasPhone": true,
-    "hasMobile": true,
-    "website": "",
-    "hasWebsite": false,
-    "mapsUrl": "https://www.google.com/maps/place/RJ+Servi%C3%A7os+Topografia/data=!4m7!3m6!1s0x94ce5370fc6a64fd:0xa4fe0bb9716cb4ed!8m2!3d-23.6535322!4d-46.7936181!16s%2Fg%2F1v5_bk7p!19sChIJ_WRq_HBTzpQR7bRscbkL_qQ?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAwNS4wIJJjKgBIAVAD&rclk=1",
-    "rating": "4.8",
-    "reviews": 4,
-    "address": "Empresa de topografia · R. Jaçanã, 253",
-    "neighborhood": "Embu das Artes, SP",
-    "city": "São Paulo",
-    "opportunity": {
-      "score": 4,
-      "type": "site",
-      "label": "🌐 Oportunidade: Criação de Site",
-      "attackAngle": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads."
-    },
-    "score": 4,
-    "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.608Z"
+    "status": "contatado",
+    "lastContact": "2026-10-08T18:00:25.470Z",
+    "createdAt": "2026-10-08T03:47:33.608Z",
+    "stage": 1,
+    "stageHistory": []
   },
   {
     "id": "lead-1791431253608-6eyvme",
@@ -219,9 +219,19 @@
     },
     "score": 3,
     "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.608Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-08T18:11:34.169Z",
+    "createdAt": "2026-10-08T03:47:33.608Z",
+    "stage": 2,
+    "stageHistory": [
+      {
+        "stage": 2,
+        "sentAt": "2026-10-08T18:11:34.169Z",
+        "auto": true,
+        "text": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de Embu das Artes, SP.\n\nTava dando uma olhada rápida na Arquitetura e Engenharia RipaMaxx aqui no Google e vi uma coisa que me chamou atenção."
+      }
+    ],
+    "repliedAt": "2026-10-08T18:11:10.486Z"
   },
   {
     "id": "lead-1791431253608-2ltmsr",
@@ -247,9 +257,11 @@
     },
     "score": 3,
     "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.608Z"
+    "status": "contatado",
+    "lastContact": "2026-10-08T18:07:03.397Z",
+    "createdAt": "2026-10-08T03:47:33.608Z",
+    "stage": 1,
+    "stageHistory": []
   },
   {
     "id": "lead-1791431253608-7c63rz",
@@ -274,10 +286,20 @@
       "attackAngle": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas."
     },
     "score": 4,
-    "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.608Z"
+    "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas. | Recusou: \"Kaue boa tarde tudo bem ? \nAgradeço o contato mas já temos site. \nAssim como temos quem cuida das nossas redes. Obrigada pelo contato mas não temos interesse! ☺️\"",
+    "status": "perdido",
+    "lastContact": "2026-10-08T18:08:29.096Z",
+    "createdAt": "2026-10-08T03:47:33.608Z",
+    "stage": 2,
+    "stageHistory": [
+      {
+        "stage": 2,
+        "sentAt": "2026-10-08T18:08:29.096Z",
+        "auto": true,
+        "text": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de Embu das Artes, SP.\n\nTava dando uma olhada rápida na Kauffman Arquitetura aqui no Google e vi uma coisa que me chamou atenção."
+      }
+    ],
+    "repliedAt": "2026-10-08T18:10:26.764Z"
   },
   {
     "id": "lead-1791431253608-dk9ljg",
@@ -303,9 +325,11 @@
     },
     "score": 5,
     "notes": "Clientela física forte (14 reviews, nota 4.6), mas perde buscas diárias no Google por não ter site próprio.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.608Z"
+    "status": "contatado",
+    "lastContact": "2026-10-08T18:08:45.268Z",
+    "createdAt": "2026-10-08T03:47:33.608Z",
+    "stage": 1,
+    "stageHistory": []
   },
   {
     "id": "lead-1791431253608-hsuhik",
@@ -331,9 +355,11 @@
     },
     "score": 3,
     "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.608Z"
+    "status": "contatado",
+    "lastContact": "2026-10-08T18:09:36.186Z",
+    "createdAt": "2026-10-08T03:47:33.608Z",
+    "stage": 1,
+    "stageHistory": []
   },
   {
     "id": "lead-1791431253608-h9q4b4",
@@ -359,9 +385,11 @@
     },
     "score": 4,
     "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.608Z"
+    "status": "contatado",
+    "lastContact": "2026-10-08T18:10:26.813Z",
+    "createdAt": "2026-10-08T03:47:33.608Z",
+    "stage": 1,
+    "stageHistory": []
   },
   {
     "id": "lead-1791431253608-jbubtf",
@@ -387,9 +415,12 @@
     },
     "score": 3,
     "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.608Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-08T18:11:17.570Z",
+    "createdAt": "2026-10-08T03:47:33.608Z",
+    "stage": 1,
+    "stageHistory": [],
+    "repliedAt": "2026-10-08T22:48:01.746Z"
   },
   {
     "id": "lead-1791431253608-dj1j5u",
@@ -415,9 +446,11 @@
     },
     "score": 4,
     "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.608Z"
+    "status": "contatado",
+    "lastContact": "2026-10-08T18:12:08.398Z",
+    "createdAt": "2026-10-08T03:47:33.608Z",
+    "stage": 1,
+    "stageHistory": []
   },
   {
     "id": "lead-1791431253608-is6ncx",
@@ -443,9 +476,11 @@
     },
     "score": 4,
     "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.608Z"
+    "status": "contatado",
+    "lastContact": "2026-10-08T18:12:59.114Z",
+    "createdAt": "2026-10-08T03:47:33.608Z",
+    "stage": 1,
+    "stageHistory": []
   },
   {
     "id": "lead-1791431253608-tw092g",
@@ -471,9 +506,19 @@
     },
     "score": 3,
     "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.608Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-08T22:48:26.250Z",
+    "createdAt": "2026-10-08T03:47:33.608Z",
+    "stage": 2,
+    "stageHistory": [
+      {
+        "stage": 2,
+        "sentAt": "2026-10-08T22:48:26.250Z",
+        "auto": true,
+        "text": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de Embu das Artes, SP.\n\nTava dando uma olhada rápida na JBraz Arquitetura & Interiores aqui no Google e vi uma coisa que me chamou atenção."
+      }
+    ],
+    "repliedAt": "2026-10-08T22:48:02.285Z"
   },
   {
     "id": "lead-1791431253608-lzu5r1",
@@ -499,9 +544,19 @@
     },
     "score": 3,
     "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.608Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-08T18:15:08.435Z",
+    "createdAt": "2026-10-08T03:47:33.608Z",
+    "stage": 2,
+    "stageHistory": [
+      {
+        "stage": 2,
+        "sentAt": "2026-10-08T18:15:08.435Z",
+        "auto": true,
+        "text": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de Embu das Artes, SP.\n\nTava dando uma olhada rápida na Decorace Arte & Design em Ferro aqui no Google e vi uma coisa que me chamou atenção."
+      }
+    ],
+    "repliedAt": "2026-10-08T18:14:45.081Z"
   },
   {
     "id": "lead-1791431253608-h3qf3e",
@@ -527,9 +582,19 @@
     },
     "score": 4,
     "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.608Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-08T18:16:22.927Z",
+    "createdAt": "2026-10-08T03:47:33.608Z",
+    "stage": 2,
+    "stageHistory": [
+      {
+        "stage": 2,
+        "sentAt": "2026-10-08T18:16:22.927Z",
+        "auto": true,
+        "text": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de Embu das Artes, SP.\n\nTava dando uma olhada rápida na WF PAISAGISMO aqui no Google e vi uma coisa que me chamou atenção."
+      }
+    ],
+    "repliedAt": "2026-10-08T18:16:00.560Z"
   },
   {
     "id": "lead-1791431253607-lqx34w",
@@ -555,9 +620,25 @@
     },
     "score": 3,
     "notes": "Comércio ativo na região com potencial de captação digital.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.607Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-08T18:18:20.000Z",
+    "createdAt": "2026-10-08T03:47:33.607Z",
+    "stage": 2,
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-08T18:16:22.656Z",
+        "auto": true,
+        "text": "Opa, tudo bem? Falo com o responsável pela Pamela Vasconcelos Arquitetura e Interiores?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-08T18:18:20.000Z",
+        "auto": true,
+        "text": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de Embu das Artes, SP.\n\nTava dando uma olhada rápida na Pamela Vasconcelos Arquitetura e Interiores aqui no Google e vi uma coisa que me chamou atenção."
+      }
+    ],
+    "repliedAt": "2026-10-08T18:17:19.375Z"
   },
   {
     "id": "lead-1791431253607-nn29g7",
@@ -583,9 +664,12 @@
     },
     "score": 5,
     "notes": "Clientela física forte (23 reviews, nota 4.8), mas perde buscas diárias no Google por não ter site próprio.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.607Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-08T18:16:52.454Z",
+    "createdAt": "2026-10-08T03:47:33.607Z",
+    "stage": 1,
+    "stageHistory": [],
+    "repliedAt": "2026-10-08T18:23:07.022Z"
   },
   {
     "id": "lead-1791431253607-nsphln",
@@ -611,9 +695,12 @@
     },
     "score": 3,
     "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.607Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-08T18:16:53.573Z",
+    "createdAt": "2026-10-08T03:47:33.607Z",
+    "stage": 1,
+    "stageHistory": [],
+    "repliedAt": "2026-10-08T18:17:03.069Z"
   },
   {
     "id": "lead-1791431253607-514iso",
@@ -639,9 +726,11 @@
     },
     "score": 5,
     "notes": "Clientela física forte (12 reviews, nota 5), mas perde buscas diárias no Google por não ter site próprio.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.607Z"
+    "status": "contatado",
+    "lastContact": "2026-10-08T18:16:54.671Z",
+    "createdAt": "2026-10-08T03:47:33.607Z",
+    "stage": 1,
+    "stageHistory": []
   },
   {
     "id": "lead-1791431253607-5qlt1v",
@@ -741,34 +830,6 @@
     "rating": "N/A",
     "reviews": 0,
     "address": "Maquetista de arquitetura e engenharia · Rua Santo Cristo, 07",
-    "neighborhood": "Embu das Artes, SP",
-    "city": "São Paulo",
-    "opportunity": {
-      "score": 3,
-      "type": "gmb",
-      "label": "⭐ Oportunidade: Google Meu Negócio",
-      "attackAngle": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local."
-    },
-    "score": 3,
-    "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.607Z"
-  },
-  {
-    "id": "lead-1791431253607-hzi6qe",
-    "name": "Marco Novo Engenharia, Arquitetura, Construções, Topografia e Ambiental",
-    "niche": "arquiteto",
-    "phone": "(11) 98308-6532",
-    "cleanPhone": "5511983086532",
-    "hasPhone": true,
-    "hasMobile": true,
-    "website": "https://www.instagram.com/marconovoengarq",
-    "hasWebsite": true,
-    "mapsUrl": "https://www.google.com/maps/place/Marco+Novo+Engenharia,+Arquitetura,+Constru%C3%A7%C3%B5es,+Topografia+e+Ambiental/data=!4m7!3m6!1s0x94cfabf94351f25f:0x11e91595198d2d81!8m2!3d-23.634887!4d-46.888697!16s%2Fg%2F11m9srn50r!19sChIJX_JRQ_mrz5QRgS2NGZUV6RE?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAwNS4wIJJjKgBIAVAD&rclk=1",
-    "rating": "5.0",
-    "reviews": 4,
-    "address": "5,0(4)",
     "neighborhood": "Embu das Artes, SP",
     "city": "São Paulo",
     "opportunity": {
@@ -1591,9 +1652,19 @@
     },
     "score": 4,
     "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:15.534Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-08T17:57:50.406Z",
+    "createdAt": "2026-10-08T03:47:15.534Z",
+    "stage": 2,
+    "stageHistory": [
+      {
+        "stage": 2,
+        "sentAt": "2026-10-08T17:57:50.406Z",
+        "auto": true,
+        "text": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de São Caetano do Sul, SP.\n\nTava dando uma olhada rápida na Tear Interiores | Designer de Interiores em São Caetano do Sul aqui no Google e vi uma coisa que me chamou atenção."
+      }
+    ],
+    "repliedAt": "2026-10-08T17:58:03.868Z"
   },
   {
     "id": "lead-1791431235534-wdwry7",
@@ -10152,7 +10223,7 @@
     "neighborhood": "Santo Amaro SP",
     "city": "São Paulo",
     "notes": "Sem site cadastrado no Maps (Oportunidade alta para site + Google Ads).",
-    "status": "respondeu",
+    "status": "novo",
     "lastContact": "2026-10-08T03:19:22.263Z",
     "createdAt": "2026-10-01T02:12:06.941Z",
     "opportunity": {
@@ -10162,16 +10233,8 @@
       "attackAngle": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local."
     },
     "score": 3,
-    "repliedAt": "2026-10-08T03:20:57.642Z",
-    "stage": 2,
-    "stageHistory": [
-      {
-        "stage": 2,
-        "sentAt": "2026-10-08T03:19:22.263Z",
-        "auto": true,
-        "text": "Meu nome é Kauê e trabalho criando sites profissionais de alta conversão e captação de clientes locais para empresas do segmento de loja de roupas femininas aqui em Santo Amaro SP."
-      }
-    ]
+    "stage": 1,
+    "stageHistory": []
   },
   {
     "id": "lead-1790820726941-mfd5j6",

@@ -369,8 +369,13 @@ app.post('/api/whatsapp/send', async (req, res) => {
     return res.status(400).json({ error: 'Telefone e texto da mensagem são obrigatórios.' });
   }
 
+  // Verifica se é um lead novo (prospecção fria) ou conversa em andamento
+  const leads = readJson(LEADS_FILE, []);
+  const lead = leadId ? leads.find(l => l.id === leadId) : null;
+  const isColdOutbound = lead ? (lead.status === 'novo' || (!lead.lastContact && lead.status !== 'respondeu')) : false;
+
   const config = checkAndResetDailyLimit(readJson(CONFIG_FILE, {}));
-  if (config.sentToday >= config.dailyLimit) {
+  if (isColdOutbound && config.sentToday >= config.dailyLimit) {
     return res.status(429).json({
       error: `Limite de segurança diário atingido (${config.sentToday}/${config.dailyLimit}). Disparo interrompido para proteção da sua conta.`
     });
@@ -381,23 +386,23 @@ app.post('/api/whatsapp/send', async (req, res) => {
 
     // Se fornecido leadId, atualizar status do lead
     let updatedLead = null;
-    if (leadId) {
-      const leads = readJson(LEADS_FILE, []);
-      const lead = leads.find(l => l.id === leadId);
-      if (lead) {
+    if (leadId && lead) {
+      if (lead.status === 'novo') {
         lead.status = 'contatado';
-        lead.lastContact = new Date().toISOString();
-        writeJson(LEADS_FILE, leads);
-        updatedLead = lead;
-        if (sendResult && sendResult.to) {
-          whatsapp.store.upsertChat(sendResult.to, { name: lead.name, phone: lead.phone });
-        }
+      }
+      lead.lastContact = new Date().toISOString();
+      writeJson(LEADS_FILE, leads);
+      updatedLead = lead;
+      if (sendResult && sendResult.to) {
+        whatsapp.store.upsertChat(sendResult.to, { name: lead.name, phone: lead.phone });
       }
     }
 
-    // Incrementar disparos do dia
-    config.sentToday = (config.sentToday || 0) + 1;
-    writeJson(CONFIG_FILE, config);
+    // Apenas disparos frios (outbound para novos contatos) incrementam o contador diário
+    if (isColdOutbound) {
+      config.sentToday = (config.sentToday || 0) + 1;
+      writeJson(CONFIG_FILE, config);
+    }
 
     res.json({
       success: true,
@@ -611,11 +616,14 @@ app.post('/api/leads/:id/stage', async (req, res) => {
   lead.stageHistory = lead.stageHistory || [];
 
   if (sendNow && text) {
-    const config = checkAndResetDailyLimit(readJson(CONFIG_FILE, {}));
-    if (config.sentToday >= config.dailyLimit) {
-      return res.status(429).json({
-        error: `Limite diário de segurança atingido (${config.sentToday}/${config.dailyLimit}).`
-      });
+    const isColdOutbound = (stage === 1 && lead.status === 'novo');
+    if (isColdOutbound) {
+      const config = checkAndResetDailyLimit(readJson(CONFIG_FILE, {}));
+      if (config.sentToday >= config.dailyLimit) {
+        return res.status(429).json({
+          error: `Limite diário de segurança atingido (${config.sentToday}/${config.dailyLimit}).`
+        });
+      }
     }
 
     try {
@@ -633,10 +641,14 @@ app.post('/api/leads/:id/stage', async (req, res) => {
         text
       });
 
-      config.sentToday = (config.sentToday || 0) + 1;
-      writeJson(CONFIG_FILE, config);
+      if (isColdOutbound) {
+        const config = checkAndResetDailyLimit(readJson(CONFIG_FILE, {}));
+        config.sentToday = (config.sentToday || 0) + 1;
+        writeJson(CONFIG_FILE, config);
+      }
       writeJson(LEADS_FILE, leads);
 
+      const config = readJson(CONFIG_FILE, {});
       return res.json({ success: true, lead, sendResult, sentToday: config.sentToday });
     } catch (err) {
       console.error('[Stage Send Error]:', err.message);
@@ -649,33 +661,92 @@ app.post('/api/leads/:id/stage', async (req, res) => {
 });
 
 // ==================== AUTO-RESPONDER INTELIGENTE DE ETAPAS ====================
+
+// Normaliza números brasileiros para comparação segura (DDD + 8 últimos dígitos)
+function extractDddAndNumber(raw) {
+  const d = String(raw || '').replace(/\D/g, '');
+  if (d.length < 10) return null;
+  let local = d;
+  if (local.startsWith('55') && (local.length === 12 || local.length === 13)) {
+    local = local.slice(2);
+  }
+  const ddd = local.slice(0, 2);
+  const last8 = local.slice(-8);
+  return { ddd, last8 };
+}
+
+// Localiza lead por telefone de forma robusta e à prova de falhas
+function findLeadByPhone(leads, cleanDigits) {
+  if (!cleanDigits) return null;
+  const digits = String(cleanDigits).replace(/\D/g, '');
+  if (!digits || digits.length < 8) return null;
+
+  // 1. Match exato
+  let match = leads.find(l => {
+    const lDigits = String(l.cleanPhone || l.phone || '').replace(/\D/g, '');
+    return lDigits && lDigits.length >= 8 && lDigits === digits;
+  });
+  if (match) return match;
+
+  // 2. Match por DDD + últimos 8 dígitos (independe de 55 ou 9º dígito extra)
+  const parsedTarget = extractDddAndNumber(digits);
+  if (parsedTarget) {
+    match = leads.find(l => {
+      const parsedLead = extractDddAndNumber(l.cleanPhone || l.phone);
+      return parsedLead && parsedLead.ddd === parsedTarget.ddd && parsedLead.last8 === parsedTarget.last8;
+    });
+    if (match) return match;
+  }
+
+  // 3. Fallback: terminação mútua (apenas se ambos tiverem >= 8 dígitos para evitar strings vazias)
+  return leads.find(l => {
+    const lDigits = String(l.cleanPhone || l.phone || '').replace(/\D/g, '');
+    if (!lDigits || lDigits.length < 8) return false;
+    return digits.endsWith(lDigits) || lDigits.endsWith(digits);
+  });
+}
+
 function classifyLeadResponse(text) {
   if (!text || typeof text !== 'string') return 'neutral';
   const t = text.toLowerCase().trim();
 
-  const negativePhrases = [
-    'não tenho interesse', 'nao tenho interesse', 'não quero', 'nao quero',
-    'não preciso', 'nao preciso', 'número errado', 'numero errado',
-    'não é daqui', 'nao e daqui', 'engano', 'pare de mandar', 'para de mandar',
-    'não mande mais', 'favor retirar', 'remova meu número', 'quem te deu meu numero',
-    'não sou eu', 'nao sou eu', 'desconheço', 'quem é vc', 'quem e vc', 'não', 'nao',
-    'sai fora', 'não me interessa', 'nao me interessa'
+  // Frases receptivas / positivas fortes (não podem ser canceladas por falsos positivos)
+  const positivePhrases = [
+    'posso ajudar', 'em que posso ajudar', 'como posso ajudar', 'como podemos ajudar',
+    'o que seria', 'qual o assunto', 'sobre o que', 'fala', 'diga', 'manda',
+    'pode falar', 'pode mandar', 'pode dizer', 'pode sim', 'sou eu', 'é ele', 'e ele',
+    'quem fala', 'com quem falo', 'quem gostaria', 'quem é', 'quem e', 'olá', 'ola',
+    'opa', 'tudo bem', 'tudo bom', 'boa tarde', 'bom dia', 'boa noite',
+    'sou a responsável', 'sou o responsável', 'sou a responsavel', 'sou o responsavel',
+    'quem tá falando', 'quem ta falando', 'o que precisa', 'orçamento', 'orcamento',
+    'dúvida', 'duvida', 'projeto', 'atendimento', 'consultor', 'consultora',
+    'já entraremos em contato', 'ja entraremos em contato'
   ];
 
-  if (t === 'não' || t === 'nao' || negativePhrases.some(p => t.includes(p))) {
+  const hasPositive = positivePhrases.some(p => t.includes(p));
+
+  // Frases de recusa explícita
+  const explicitNegativePhrases = [
+    'não tenho interesse', 'nao tenho interesse', 'sem interesse',
+    'não quero', 'nao quero', 'não preciso', 'nao preciso',
+    'número errado', 'numero errado', 'não é daqui', 'nao e daqui',
+    'engano', 'pare de mandar', 'para de mandar', 'não mande mais', 'nao mande mais',
+    'favor retirar', 'remova meu número', 'remova meu numero',
+    'quem te deu meu numero', 'sai fora', 'não me interessa', 'nao me interessa',
+    'não autorizei', 'nao autorizei', 'favor excluir'
+  ];
+
+  if (explicitNegativePhrases.some(p => t.includes(p))) {
     return 'negative';
   }
 
-  const positivePhrases = [
-    'sim', 'sou eu', 'é ele', 'e ele', 'pode falar', 'quem fala', 'com quem falo',
-    'quem gostaria', 'quem é', 'quem e', 'olá', 'ola', 'opa', 'tudo bem',
-    'boa tarde', 'bom dia', 'boa noite', 'em que posso ajudar', 'o que seria',
-    'qual o assunto', 'sobre o que é', 'sobre o que se trata', 'fala', 'diga',
-    'manda', 'pode mandar', 'pode dizer', 'pode sim', 'sou a responsável', 'sou o responsável',
-    'quem tá falando', 'quem ta falando', 'como posso te ajudar', 'o que precisa'
-  ];
+  // Se for apenas uma recusa monossilábica estrita isolada ("não", "nao", "não obrigado")
+  const isStrictNegative = /^(não|nao|não obrigado|nao obrigado|não valeu|nao valeu)[\.!\?]*$/i.test(t);
+  if (isStrictNegative && !hasPositive) {
+    return 'negative';
+  }
 
-  if (positivePhrases.some(p => t.includes(p)) || t.length >= 2) {
+  if (hasPositive || t.length >= 2) {
     return 'positive';
   }
 
@@ -726,23 +797,13 @@ function initAutoResponder() {
     if (!phone || !text) return;
     const cleanDigits = String(phone).replace(/\D/g, '');
 
-    // Localizar lead pelo número
+    // Localizar lead pelo número com match robusto
     const leads = readJson(LEADS_FILE, []);
-    const lead = leads.find(l => {
-      if (!l.phone && !l.cleanPhone) return false;
-      const lDigits = String(l.cleanPhone || l.phone).replace(/\D/g, '');
-      if (lDigits === cleanDigits) return true;
-      if (cleanDigits.endsWith(lDigits) || lDigits.endsWith(cleanDigits)) return true;
-      if (cleanDigits.length >= 10 && lDigits.length >= 10) {
-        return cleanDigits.slice(-8) === lDigits.slice(-8);
-      }
-      return false;
-    });
+    const lead = findLeadByPhone(leads, cleanDigits);
 
     if (!lead) return;
 
     // Atualiza status do lead para "respondeu"
-    const prevStatus = lead.status;
     lead.status = 'respondeu';
     lead.repliedAt = new Date().toISOString();
     writeJson(LEADS_FILE, leads);
@@ -751,96 +812,104 @@ function initAutoResponder() {
     const settings = stepData.settings || {};
 
     if (settings.autoResponderEnabled === false) {
-      console.log(`[Auto-Responder] Lead ${lead.name} respondeu, mas automação está desligada.`);
+      console.log(`[Auto-Responder] Lead "${lead.name}" respondeu, mas automação de resposta de etapas está pausada.`);
       return;
     }
 
     // Verificar intenção
     const intent = classifyLeadResponse(text);
     if (intent === 'negative') {
-      console.log(`[Auto-Responder] Lead ${lead.name} enviou recusa: "${text}". Marcando como perdido.`);
+      console.log(`[Auto-Responder] Lead "${lead.name}" enviou recusa explícita: "${text}". Marcando como perdido.`);
       lead.status = 'perdido';
       lead.notes = (lead.notes ? lead.notes + ' | ' : '') + `Recusou: "${text}"`;
       writeJson(LEADS_FILE, leads);
       return;
     }
 
-    // Se o lead estava na Etapa 1 (Abertura) e respondeu, agenda Etapa 2!
     const currentStage = lead.stage || 1;
     const maxStage = settings.maxAutoStage || 2;
 
-    if (currentStage === 1 && maxStage >= 2) {
-      if (autoResponderQueue.has(lead.id)) {
-        return; // Já há envio agendado para este lead
-      }
-
-      console.log(`[Auto-Responder] 🎯 Lead "${lead.name}" respondeu à Abertura: "${text}". Agendando Etapa 2...`);
-
-      const stage2Obj = (stepData.stages || []).find(s => s.number === 2);
-      if (!stage2Obj) return;
-
-      const hasSite = lead.hasWebsite === true;
-      const rawText = hasSite ? stage2Obj.templates.comSite : stage2Obj.templates.semSite;
-      let replyMessage = formatStepMessage(lead, rawText, hasSite);
-
-      if (settings.combineStages2and3) {
-        const stage3Obj = (stepData.stages || []).find(s => s.number === 3);
-        if (stage3Obj) {
-          const raw3 = hasSite ? stage3Obj.templates.comSite : stage3Obj.templates.semSite;
-          replyMessage += '\n\n' + formatStepMessage(lead, raw3, hasSite);
-        }
-      }
-
-      const delaySec = Math.max(8, settings.responseDelaySeconds || 18);
-      const jitter = Math.floor(Math.random() * 5);
-      const totalDelayMs = (delaySec + jitter) * 1000;
-
-      const timerId = setTimeout(async () => {
-        autoResponderQueue.delete(lead.id);
-
-        try {
-          const config = checkAndResetDailyLimit(readJson(CONFIG_FILE, {}));
-          if (config.sentToday >= config.dailyLimit) {
-            console.warn('[Auto-Responder] Limite diário atingido. Resposta pausada por segurança.');
-            return;
-          }
-
-          // Simular "digitando..." 4 segundos antes do envio real
-          try {
-            await whatsapp.sendTyping(lead.cleanPhone || phone);
-            await new Promise(r => setTimeout(r, 4000));
-          } catch (tErr) {}
-
-          const sendResult = await whatsapp.sendMessage(lead.cleanPhone || phone, replyMessage);
-
-          lead.stage = settings.combineStages2and3 ? 3 : 2;
-          lead.lastContact = new Date().toISOString();
-          lead.stageHistory = lead.stageHistory || [];
-          lead.stageHistory.push({
-            stage: lead.stage,
-            sentAt: new Date().toISOString(),
-            auto: true,
-            text: replyMessage
-          });
-
-          config.sentToday = (config.sentToday || 0) + 1;
-          writeJson(CONFIG_FILE, config);
-
-          const freshLeads = readJson(LEADS_FILE, []);
-          const idx = freshLeads.findIndex(l => l.id === lead.id);
-          if (idx !== -1) {
-            freshLeads[idx] = { ...freshLeads[idx], ...lead };
-            writeJson(LEADS_FILE, freshLeads);
-          }
-
-          console.log(`[Auto-Responder] ✅ Etapa ${lead.stage} disparada automaticamente para ${lead.name}!`);
-        } catch (sendErr) {
-          console.error(`[Auto-Responder] Erro ao responder ${lead.name}:`, sendErr.message);
-        }
-      }, totalDelayMs);
-
-      autoResponderQueue.set(lead.id, timerId);
+    // Se já atingiu ou ultrapassou a etapa máxima permitida para automação, mantém para atendimento manual
+    if (currentStage >= maxStage) {
+      console.log(`[Auto-Responder] ℹ️ Lead "${lead.name}" respondeu na Etapa ${currentStage}, atingindo o limite de automação (maxAutoStage = ${maxStage}). Mantendo para atendimento manual.`);
+      return;
     }
+
+    let targetStage = currentStage + 1;
+    let combineWithNext = false;
+
+    // Se estiver na etapa 1 e configurado para combinar 2 e 3
+    if (currentStage === 1 && settings.combineStages2and3) {
+      combineWithNext = true;
+    }
+
+    if (autoResponderQueue.has(lead.id)) {
+      return; // Já há envio agendado para este lead
+    }
+
+    console.log(`[Auto-Responder] 🎯 Lead "${lead.name}" respondeu à Etapa ${currentStage}: "${text}". Agendando Etapa ${targetStage}${combineWithNext ? '+3' : ''}...`);
+
+    const stageObj = (stepData.stages || []).find(s => s.number === targetStage);
+    if (!stageObj) {
+      console.warn(`[Auto-Responder] Template da Etapa ${targetStage} não encontrado para o lead "${lead.name}".`);
+      return;
+    }
+
+    const hasSite = lead.hasWebsite === true;
+    const rawText = hasSite ? stageObj.templates.comSite : stageObj.templates.semSite;
+    let replyMessage = formatStepMessage(lead, rawText, hasSite);
+
+    if (combineWithNext) {
+      const stage3Obj = (stepData.stages || []).find(s => s.number === 3);
+      if (stage3Obj) {
+        const raw3 = hasSite ? stage3Obj.templates.comSite : stage3Obj.templates.semSite;
+        replyMessage += '\n\n' + formatStepMessage(lead, raw3, hasSite);
+        targetStage = 3;
+      }
+    }
+
+    const delaySec = Math.max(8, settings.responseDelaySeconds || 18);
+    const jitter = Math.floor(Math.random() * 5);
+    const totalDelayMs = (delaySec + jitter) * 1000;
+
+    const timerId = setTimeout(async () => {
+      autoResponderQueue.delete(lead.id);
+
+      try {
+        // NOTA: Respostas automáticas a quem já respondeu NUNCA são barradas pelo limite diário de prospecção fria!
+
+        // Simular "digitando..." 4 segundos antes do envio real para comportamento 100% humanizado
+        try {
+          await whatsapp.sendTyping(lead.cleanPhone || phone);
+          await new Promise(r => setTimeout(r, 4000));
+        } catch (tErr) {}
+
+        const sendResult = await whatsapp.sendMessage(lead.cleanPhone || phone, replyMessage);
+
+        lead.stage = targetStage;
+        lead.lastContact = new Date().toISOString();
+        lead.stageHistory = lead.stageHistory || [];
+        lead.stageHistory.push({
+          stage: targetStage,
+          sentAt: new Date().toISOString(),
+          auto: true,
+          text: replyMessage
+        });
+
+        const freshLeads = readJson(LEADS_FILE, []);
+        const idx = freshLeads.findIndex(l => l.id === lead.id);
+        if (idx !== -1) {
+          freshLeads[idx] = { ...freshLeads[idx], ...lead };
+          writeJson(LEADS_FILE, freshLeads);
+        }
+
+        console.log(`[Auto-Responder] ✅ Etapa ${targetStage} disparada automaticamente para "${lead.name}"!`);
+      } catch (sendErr) {
+        console.error(`[Auto-Responder] Erro ao responder "${lead.name}":`, sendErr.message);
+      }
+    }, totalDelayMs);
+
+    autoResponderQueue.set(lead.id, timerId);
   });
 }
 
