@@ -87,7 +87,7 @@ class PinasLauncher
                 ProcessStartInfo psi = new ProcessStartInfo
                 {
                     FileName = "cmd.exe",
-                    Arguments = "/c start http://localhost:3333/?v=5.0",
+                    Arguments = "/c start http://localhost:3333/?v=8.0",
                     UseShellExecute = false,
                     CreateNoWindow = true
                 };
@@ -97,8 +97,8 @@ class PinasLauncher
         }).Start();
 
         Console.ForegroundColor = ConsoleColor.Cyan;
-        Console.WriteLine("[STATUS] Iniciando servidor do Pinas Prospector...");
-        Console.WriteLine("[ACESSO] Abrindo http://localhost:3333/?v=5.0 no navegador...");
+        Console.WriteLine("[STATUS] Iniciando servidor do Pinas Prospector (v8.0)...");
+        Console.WriteLine("[ACESSO] Abrindo http://localhost:3333/?v=8.0 no navegador...");
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine("--------------------------------------------------------------");

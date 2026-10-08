@@ -1,15 +1,14 @@
 @echo off
-chcp 65001 >nul
-title Pinas Prospector - Sistema Operacional Comercial
+title Pinas Prospector v8.1 - Sistema Comercial (@pinas.studio)
 color 0A
 cls
-
 echo ==============================================================
-echo   PINAS PROSPECTOR - SISTEMA OPERACIONAL COMERCIAL
+echo   PINAS PROSPECTOR - SISTEMA OPERACIONAL COMERCIAL (v8.1)
 echo ==============================================================
 echo   Responsavel : Kaue - Pinas Studio (@pinas.studio)
 echo   WhatsApp    : (11) 94171-3647
-echo   Plataforma  : Google Maps Scraper + CRM + WhatsApp Inbox
+echo   Plataforma  : Scraper Google Maps + Funil 5 Etapas + WhatsApp
+echo   Atualizacao : Audio continuo, Zoom de Fotos e Match Exato
 echo ==============================================================
 echo.
 
@@ -70,14 +69,17 @@ for /f "tokens=5" %%p in ('netstat -aon ^| findstr /r /c:":3333 " ^| findstr LIS
     taskkill /F /T /PID %%p >nul 2>&1
 )
 
-:: 5. Abrir navegador automaticamente apos 2 segundos em segundo plano
-start "" cmd /c "timeout /t 2 /nobreak >nul & start http://localhost:3333/?v=7.0"
+:: 5. Gerar identificador unico de cache buster para o navegador
+set /a CACHE_ID=%RANDOM% * 100 + %RANDOM% %% 100
 
-echo [STATUS] Iniciando servidor do Pinas Prospector...
-echo [ACESSO] Abrindo http://localhost:3333/?v=7.0 no seu navegador...
+:: 6. Abrir navegador automaticamente apos 2 segundos em segundo plano
+start "" cmd /c "timeout /t 2 /nobreak >nul & start http://localhost:3333/?v=8.1_%CACHE_ID%"
+
+echo [STATUS] Iniciando servidor do Pinas Prospector (v8.1)...
+echo [ACESSO] Abrindo http://localhost:3333/?v=8.1 no seu navegador...
 echo.
 echo --------------------------------------------------------------
-echo  * O sistema ja esta rodando!
+echo  * O sistema ja esta rodando com o novo funil de prospeccao!
 echo  * Mantenha esta janela aberta enquanto utiliza o Prospector.
 echo  * Para encerrar o sistema, basta fechar esta janela.
 echo --------------------------------------------------------------
@@ -86,8 +88,8 @@ echo.
 node server.js
 
 echo.
-echo ==============================================================
+echo ============================================================== 
 echo [AVISO] O servidor foi encerrado.
 echo Pressione qualquer tecla para fechar esta janela...
-echo ==============================================================
+echo ============================================================== 
 pause >nul

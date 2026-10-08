@@ -8,8 +8,10 @@ const pino = require('pino');
 const QRCode = require('qrcode');
 const path = require('path');
 const fs = require('fs');
+const EventEmitter = require('events');
 const store = require('./whatsapp_store');
 
+const waEvents = new EventEmitter();
 const SESSION_DIR = path.join(__dirname, 'data', 'whatsapp_session');
 
 let sock = null;
@@ -285,6 +287,23 @@ async function processIncomingMessage(m) {
     timestamp,
     status: 'delivered'
   });
+
+  // Notificar ouvintes (auto-responder de etapas) se for mensagem direta de lead externo
+  if (!fromMe && !isGroup && text) {
+    try {
+      const extractedPhone = store.extractPhone(jid) || phone;
+      waEvents.emit('message.received', {
+        jid,
+        phone: extractedPhone,
+        text: text.trim(),
+        senderName,
+        msgId,
+        timestamp
+      });
+    } catch (evtErr) {
+      console.warn('[WhatsApp] Erro ao emitir evento de mensagem recebida:', evtErr.message);
+    }
+  }
 
   // Se for mensagem de grupo e o grupo ainda não tem o nome oficial carregado, busca em background
   if (isGroup && sock) {
@@ -708,5 +727,14 @@ module.exports = {
   sendAudioMessage,
   cleanPhoneForWhatsApp,
   syncAllGroupsMetadata,
-  store
+  store,
+  events: waEvents,
+  sendTyping: async (rawPhoneOrJid) => {
+    try {
+      if (sock && typeof sock.sendPresenceUpdate === 'function') {
+        const jid = await resolveJid(rawPhoneOrJid);
+        await sock.sendPresenceUpdate('composing', jid);
+      }
+    } catch (e) {}
+  }
 };

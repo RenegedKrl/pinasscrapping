@@ -1,0 +1,66 @@
+{
+  "settings": {
+    "autoResponderEnabled": true,
+    "responseDelaySeconds": 18,
+    "combineStages2and3": false,
+    "maxAutoStage": 2,
+    "notifyOnReply": true
+  },
+  "stages": [
+    {
+      "number": 1,
+      "id": "abertura",
+      "name": "1. Abertura",
+      "goal": "Quebre o gelo com naturalidade e confirme o dono/responsável",
+      "dotColor": "#F59E0B",
+      "templates": {
+        "comSite": "Opa, tudo bem? Falo com o responsável pela {nome}?",
+        "semSite": "Opa, tudo bem? Falo com o responsável pela {nome}?"
+      }
+    },
+    {
+      "number": 2,
+      "id": "apresentacao",
+      "name": "2. Apresentação & Curiosidade",
+      "goal": "Quem é você e o gancho que desperta curiosidade imediata",
+      "dotColor": "#3B82F6",
+      "templates": {
+        "comSite": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de {regiao}.\n\nTava dando uma olhada rápida na {nome} aqui no Google e vi uma coisa que me chamou atenção.",
+        "semSite": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de {regiao}.\n\nTava dando uma olhada rápida na {nome} aqui no Google e vi uma coisa que me chamou atenção."
+      }
+    },
+    {
+      "number": 3,
+      "id": "diagnostico",
+      "name": "3. Diagnóstico (Tocar na Ferida)",
+      "goal": "Mostre na cara dura onde ele está perdendo dinheiro e clientes",
+      "dotColor": "#EC4899",
+      "templates": {
+        "comSite": "Fui entrar no site de vocês pelo celular e notei umas coisas que com certeza tão fazendo vocês perderem clientes todo dia.\n\nA pessoa pesquisa no Google em {bairro}, entra no site de vocês, mas a estrutura tá travando o contato... ela não sente firmeza ou não acha o botão rápido e pula direto pro concorrente da região. É cliente pronto batendo na porta e indo embora.",
+        "semSite": "Vocês têm uma nota excelente e ótimas avaliações no Google em {bairro}, mas vocês não têm um site próprio.\n\nCara, você não tem ideia do tanto de cliente da nossa região que pesquisa por {nicho} no Google todo santo dia com dinheiro na mão, não acha um site de vocês e clica direto no concorrente do lado.\n\nVocês tão praticamente dando cliente pronto de bandeja pra concorrência faturar em cima de vocês."
+      }
+    },
+    {
+      "number": 4,
+      "id": "proposta",
+      "name": "4. Solução Direta",
+      "goal": "Mostre como estancar essa perda de clientes de forma simples",
+      "dotColor": "#F97316",
+      "templates": {
+        "comSite": "Um ajuste certo na estrutura do site e nos botões de conversão faz essa galera que já entra pelo celular virar mensagem no WhatsApp de vocês todo dia, em vez de desistir e ir pro outro.",
+        "semSite": "Um site profissional e direto ao ponto faz o cliente bater o olho pelo celular, ver que vocês são de confiança e já chamar direto no WhatsApp pra fechar. Dá pra resolver isso rápido e parar de perder esse pessoal."
+      }
+    },
+    {
+      "number": 5,
+      "id": "fechamento",
+      "name": "5. Fechamento (Papo de 15 min)",
+      "goal": "Convite leve e direto para uma call rápida de 15 minutos",
+      "dotColor": "#10B981",
+      "templates": {
+        "comSite": "Eu separei esses pontos certinho pra te mostrar na prática.\n\nConsegue 15 minutinhos essa semana pra um papo rápido no Meet? Eu compartilho a tela e te mostro exatamente o que mudar, sem compromisso nenhum.",
+        "semSite": "Eu separei esses pontos certinho pra te mostrar na prática.\n\nConsegue 15 minutinhos essa semana pra um papo rápido no Meet? Eu compartilho a tela e te mostro exatamente como ficaria a estrutura ideal, sem compromisso nenhum."
+      }
+    }
+  ]
+}

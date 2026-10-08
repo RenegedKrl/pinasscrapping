@@ -13,7 +13,7 @@ Kauê atualmente divide o tempo entre trabalho CLT e a operação da Pinas. O ob
 
 1. **Prospecção e Aquisição de Novos Clientes:**
    - Criar scripts de abordagem humanizados e personalizados para prospecção ativa via WhatsApp e Instagram.
-   - Gerar propostas comerciais rápidas, visuais e convincentes (focadas em tráfego pago + criação de sites/GMB).
+   - Metodologia Consultiva em 2 Etapas (`saidas/Playbook_Vendas_Consultivas_Pinas.md`): Abordagem com Quick Win (Link do WhatsApp corrigido entregue na mão) ou Dor Aguda de perda financeira (para quem não tem site) ➔ Call 1 de Diagnóstico (30 min) ➔ Call 2 de Fechamento com proposta sob medida.
    - Fechar novos contratos recorrentes com ticket entre R$ 1.500 e R$ 2.500.
 
 ## Pra Tirar das Costas (Automação / Apoio do Agente)

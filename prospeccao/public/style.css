@@ -2805,6 +2805,514 @@ body {
   justify-content: space-between;
 }
 
+/* ===================================================
+   NOVA CADÊNCIA DE ABORDAGEM POR ETAPAS (5 PASSOS)
+   =================================================== */
+
+.stages-control-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65rem 1rem;
+  background: rgba(18, 22, 32, 0.85);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  gap: 0.75rem;
+}
+
+.stages-toggle-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.stages-center-pill {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.3px;
+}
+
+/* Switch UI Estilizado Moderno */
+.switch-ui {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+}
+
+.switch-ui input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #2D3748;
+  transition: 0.25s;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.switch-slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.25s;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+.switch-ui input:checked + .switch-slider {
+  background-color: #10B981;
+  border-color: #10B981;
+}
+
+.switch-ui input:checked + .switch-slider:before {
+  transform: translateX(18px);
+}
+
+.switch-label-text {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  user-select: none;
+}
+
+/* Modal Nav Tabs */
+.modal-nav-tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.modal-tab-btn {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.6rem 0.9rem;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+}
+
+.modal-tab-btn:hover {
+  color: var(--text-primary);
+}
+
+.modal-tab-btn.active {
+  color: var(--pinas-red);
+  border-bottom-color: var(--pinas-red);
+}
+
+/* Lista de Cards das 5 Etapas */
+.stages-flow-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.stage-card {
+  background: #11141C;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 0.9rem 1.1rem;
+  transition: var(--transition);
+  position: relative;
+}
+
+.stage-card:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: #141722;
+}
+
+.stage-card.stage-current {
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.15);
+  background: #131826;
+}
+
+.stage-card.stage-sent {
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.stage-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.55rem;
+}
+
+.stage-title-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.stage-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.35rem;
+}
+
+.stage-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.stage-goal {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.stage-badge-status {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+  margin-left: 0.5rem;
+}
+
+.stage-badge-status.badge-sent {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10B981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.stage-badge-status.badge-pending {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60A5FA;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.stage-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-stage-tool {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  padding: 0.3rem 0.6rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: var(--transition);
+  font-family: inherit;
+}
+
+.btn-stage-tool:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--text-primary);
+}
+
+.btn-stage-tool.btn-send-wa:hover {
+  background: #25D366;
+  color: #000;
+  border-color: #25D366;
+}
+
+.stage-textarea {
+  width: 100%;
+  background: #0A0D14;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  color: #F1F5F9;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  padding: 0.65rem 0.85rem;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 54px;
+  transition: var(--transition);
+}
+
+.stage-textarea:focus {
+  outline: none;
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+/* Dica de Ouro Card */
+.golden-tip-card {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.75rem 1rem;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: var(--radius-md);
+  margin-top: 0.85rem;
+  font-size: 0.82rem;
+  color: #FBBF24;
+  line-height: 1.45;
+}
+
+.golden-tip-icon {
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.golden-tip-content strong {
+  color: #FDE68A;
+}
+
+/* Pills de Etapas no Chat */
+.stage-pill {
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #93C5FD;
+  font-size: 0.76rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+  font-weight: 600;
+}
+
+.stage-pill:hover {
+  background: rgba(59, 130, 246, 0.25);
+  border-color: #3B82F6;
+  color: #FFFFFF;
+}
+
+.stage-current-pill {
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: #93C5FD;
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ==========================================================================
+   LIGHTBOX MODAL - VISUALIZADOR DE IMAGENS EM TELA CHEIA (FULLSCREEN)
+   ========================================================================== */
+.lightbox-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9999999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(4, 6, 12, 0.94) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  padding: 1.5rem !important;
+  user-select: none;
+}
+
+.lightbox-backdrop {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  cursor: zoom-out !important;
+  background: transparent !important;
+}
+
+.lightbox-container {
+  position: relative !important;
+  z-index: 2 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  max-width: 95vw !important;
+  max-height: 95vh !important;
+  pointer-events: none !important;
+}
+
+.lightbox-header {
+  pointer-events: auto !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 0.75rem !important;
+  padding: 0 0.5rem !important;
+}
+
+.lightbox-counter-pill {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #E2E8F0 !important;
+  padding: 0.35rem 0.85rem !important;
+  border-radius: 999px !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+}
+
+.lightbox-actions {
+  display: flex !important;
+  gap: 0.6rem !important;
+  align-items: center !important;
+}
+
+.lightbox-tool-btn {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  color: #F8FAFC !important;
+  padding: 0.45rem 0.95rem !important;
+  border-radius: 8px !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  transition: all 0.15s ease !important;
+}
+
+.lightbox-tool-btn:hover {
+  background: rgba(255, 255, 255, 0.22) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  color: #FFFFFF !important;
+}
+
+.lightbox-tool-btn.lightbox-close {
+  width: 40px !important;
+  height: 40px !important;
+  padding: 0 !important;
+  justify-content: center !important;
+  font-size: 1.25rem !important;
+  border-radius: 50% !important;
+  background: rgba(239, 68, 68, 0.25) !important;
+  border-color: rgba(239, 68, 68, 0.45) !important;
+  color: #FCA5A5 !important;
+}
+
+.lightbox-tool-btn.lightbox-close:hover {
+  background: #EF4444 !important;
+  border-color: #EF4444 !important;
+  color: #FFFFFF !important;
+  transform: scale(1.08) !important;
+}
+
+.lightbox-content {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  max-width: 92vw !important;
+  max-height: 82vh !important;
+  pointer-events: auto !important;
+}
+
+.lightbox-image-box {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  max-width: 90vw !important;
+  max-height: 80vh !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.88), 0 0 0 1px rgba(255, 255, 255, 0.12) !important;
+  background: #090D16 !important;
+}
+
+#lightbox-img {
+  max-width: 90vw !important;
+  max-height: 80vh !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+  border-radius: 12px !important;
+  user-select: none !important;
+  cursor: default !important;
+}
+
+.lightbox-nav-btn {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: rgba(15, 23, 42, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  color: #FFFFFF !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  font-size: 1.8rem !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.15s ease !important;
+  z-index: 10 !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.lightbox-nav-btn.prev {
+  left: -60px !important;
+}
+
+.lightbox-nav-btn.next {
+  right: -60px !important;
+}
+
+.lightbox-nav-btn:hover {
+  background: #2563EB !important;
+  border-color: #3B82F6 !important;
+  transform: translateY(-50%) scale(1.1) !important;
+}
+
+@media (max-width: 820px) {
+  .lightbox-nav-btn.prev { left: 8px !important; }
+  .lightbox-nav-btn.next { right: 8px !important; }
+  .lightbox-header { padding: 0 !important; }
+  .lightbox-overlay { padding: 0.5rem !important; }
+}
+
+.lightbox-caption-bar {
+  margin-top: 0.75rem !important;
+  pointer-events: auto !important;
+  background: rgba(15, 23, 42, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 0.5rem 1.25rem !important;
+  border-radius: 999px !important;
+  color: #E2E8F0 !important;
+  font-size: 0.85rem !important;
+  max-width: 80vw !important;
+  text-align: center !important;
+}
+
+
+
 
 
 

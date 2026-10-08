@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=6.0">
+  <link rel="stylesheet" href="style.css?v=8.1">
 </head>
 <body>
   <!-- Topbar / Header -->
@@ -400,7 +400,16 @@
                 <span id="autopilot-status-label">Piloto Automático: <strong>Parado</strong></span>
               </div>
 
+              <!-- Modo de Disparo -->
               <div class="form-group" style="margin-top: 1rem;">
+                <label class="form-label">Formato do Disparo:</label>
+                <select id="autopilot-dispatch-mode" class="form-control form-control-sm">
+                  <option value="stages" selected>📂 Por Etapas (Dispara Etapa 1 Abertura) ★ Recomendado</option>
+                  <option value="single">📄 Clássico (Dispara Mensagem Completa)</option>
+                </select>
+              </div>
+
+              <div class="form-group" style="margin-top: 0.75rem;">
                 <label class="form-label">Intervalo de Segurança:</label>
                 <select id="autopilot-delay-select" class="form-control form-control-sm">
                   <option value="35">35 segundos (Rápido & Seguro)</option>
@@ -409,7 +418,18 @@
                 </select>
               </div>
 
-              <div class="autopilot-countdown-box" id="autopilot-countdown-box" style="display: none;">
+              <!-- Auto-Responder Switch & Info -->
+              <div class="cadence-autoresponder-box" style="margin-top: 0.75rem; padding: 0.65rem 0.85rem; background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: var(--radius-sm);">
+                <label class="toggle-wrap" style="margin-bottom: 0;">
+                  <input type="checkbox" id="cadence-autoresponder-toggle" checked>
+                  <span class="toggle-label" style="font-weight: 600; font-size: 0.85rem; color: var(--color-green);">🤖 Auto-Resposta de Etapas Ativa</span>
+                </label>
+                <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0.35rem 0 0 0;">
+                  Quando o lead responder à Abertura (ex: "Sim, sou eu", "Pode falar"), o robô responde a Etapa 2 após 18s com presença humana.
+                </p>
+              </div>
+
+              <div class="autopilot-countdown-box" id="autopilot-countdown-box" style="display: none; margin-top: 0.75rem;">
                 <span class="countdown-label">Próximo envio em:</span>
                 <span class="countdown-seconds" id="autopilot-seconds-left">50s</span>
                 <small id="autopilot-target-lead">Alvo: ...</small>
@@ -455,11 +475,30 @@
             <h2 class="pane-title">Roteiros de Abordagem (A Voz do Kauê)</h2>
             <p class="pane-desc">Mensagens calibradas para soar naturais, diretas e focadas em negócios reais, sem clichês.</p>
           </div>
-          <button class="btn btn-primary" id="btn-save-templates">Salvar Roteiros</button>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-primary" id="btn-save-templates">Salvar Roteiros</button>
+          </div>
         </div>
 
-        <div class="scripts-grid" id="scripts-container">
-          <!-- Injetado via JS -->
+        <div class="modal-nav-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 1.25rem;">
+          <button type="button" class="modal-tab-btn active" id="btn-scripts-tab-stages" onclick="switchScriptsSubTab('stages')">
+            <span>📂 Cadência em 5 Etapas (Novo Formato)</span>
+          </button>
+          <button type="button" class="modal-tab-btn" id="btn-scripts-tab-classic" onclick="switchScriptsSubTab('classic')">
+            <span>📄 Roteiros Clássicos</span>
+          </button>
+        </div>
+
+        <div id="scripts-stages-section">
+          <div class="scripts-grid" id="scripts-stages-container">
+            <!-- Editor das 5 Etapas injetado dinamicamente -->
+          </div>
+        </div>
+
+        <div id="scripts-classic-section" style="display: none;">
+          <div class="scripts-grid" id="scripts-container">
+            <!-- Injetado via JS -->
+          </div>
         </div>
       </div>
 
@@ -694,6 +733,9 @@
                 </div>
 
                 <div class="chat-lead-actions" style="display: flex; gap: 0.5rem; align-items: center;">
+                  <button type="button" id="btn-chat-open-stages-modal" class="btn btn-outline btn-sm" style="display: none; border-color: var(--color-blue); color: var(--color-blue); font-weight: 700;">
+                    📂 Funil 5 Etapas
+                  </button>
                   <a id="btn-chat-open-slides" href="/slides" target="_blank" class="btn btn-outline btn-sm" style="display: none; border-color: var(--pinas-red); color: var(--pinas-red); font-weight: 700; text-decoration: none;">
                     🖥️ Slides da Call ↗
                   </a>
@@ -735,12 +777,22 @@
 
               <!-- Barra de Respostas Rápidas (Snippets de 1 Clique) -->
               <div class="chat-quick-snippets-bar" id="chat-quick-snippets-bar">
-                <span class="snippets-label">⚡ Respostas Rápidas:</span>
-                <button type="button" class="snippet-pill" data-snippet="call">📅 Propor Call 15 min</button>
-                <button type="button" class="snippet-pill" data-snippet="servico">🎯 Como Funciona</button>
-                <button type="button" class="snippet-pill" data-snippet="preco">💰 Quanto Custa?</button>
-                <button type="button" class="snippet-pill" data-snippet="meet">🔗 Link do Meet</button>
-                <button type="button" class="snippet-pill" data-snippet="proposta">📄 Apresentação Pinas</button>
+                <div style="display: flex; gap: 0.35rem; align-items: center; flex-wrap: wrap; margin-bottom: 0.35rem;">
+                  <span class="snippets-label">📂 Funil 5 Etapas:</span>
+                  <button type="button" class="snippet-pill stage-pill" data-stage="1" title="Etapa 1: Abertura (Quebrar o gelo)">1️⃣ Abertura</button>
+                  <button type="button" class="snippet-pill stage-pill" data-stage="2" title="Etapa 2: Apresentação (Quem é você)">2️⃣ Apresentação</button>
+                  <button type="button" class="snippet-pill stage-pill" data-stage="3" title="Etapa 3: Diagnóstico (Estudo do cliente)">3️⃣ Diagnóstico</button>
+                  <button type="button" class="snippet-pill stage-pill" data-stage="4" title="Etapa 4: Proposta (Os 3 resultados)">4️⃣ Proposta</button>
+                  <button type="button" class="snippet-pill stage-pill" data-stage="5" title="Etapa 5: Fechamento (CTA / Call)">5️⃣ Fechamento</button>
+                </div>
+                <div style="display: flex; gap: 0.35rem; align-items: center; flex-wrap: wrap;">
+                  <span class="snippets-label">⚡ Respostas Rápidas:</span>
+                  <button type="button" class="snippet-pill" data-snippet="call">📅 Propor Call 15 min</button>
+                  <button type="button" class="snippet-pill" data-snippet="servico">🎯 Como Funciona</button>
+                  <button type="button" class="snippet-pill" data-snippet="preco">💰 Quanto Custa?</button>
+                  <button type="button" class="snippet-pill" data-snippet="meet">🔗 Link do Meet</button>
+                  <button type="button" class="snippet-pill" data-snippet="proposta">📄 Apresentação Pinas</button>
+                </div>
               </div>
 
               <!-- Input Bar Inferior -->
@@ -764,36 +816,122 @@
     </section>
   </main>
 
-  <!-- Modal: Disparo WhatsApp com Mensagem Personalizada -->
+  <!-- Modal: Disparo WhatsApp com Abordagem por Etapas ou Mensagem Clássica -->
   <div class="modal-overlay" id="modal-whatsapp" style="display: none;">
-    <div class="modal-box">
+    <div class="modal-box modal-box-lg" style="max-width: 780px;">
       <div class="modal-header">
-        <h3 id="modal-wa-title">Enviar Mensagem pelo WhatsApp</h3>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <span style="font-size: 1.4rem;">💬</span>
+          <div>
+            <h3 id="modal-wa-title" style="margin: 0;">Disparo de Abordagem WhatsApp</h3>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">Prospecção personalizada na voz do Kauê (@pinas.studio)</p>
+          </div>
+        </div>
         <button class="btn-close" id="btn-close-wa-modal">&times;</button>
       </div>
-      <div class="modal-body">
-        <div class="lead-summary-box">
-          <strong id="modal-wa-lead-name">Nome da Empresa</strong>
-          <span id="modal-wa-lead-phone">(11) 99999-9999</span>
-          <span id="modal-wa-lead-bairro">Santo Amaro, SP</span>
-        </div>
 
-        <div class="form-group">
-          <label for="modal-wa-template-select" class="form-label">Escolha o Modelo de Mensagem:</label>
-          <select id="modal-wa-template-select" class="form-control"></select>
-        </div>
-
-        <div class="form-group">
-          <label for="modal-wa-message-preview" class="form-label">Prévia da Mensagem (Você pode editar antes de enviar):</label>
-          <textarea id="modal-wa-message-preview" class="form-control" rows="8"></textarea>
+      <!-- Lead Summary Header -->
+      <div class="lead-summary-box" style="margin: 0.75rem 1.5rem 0.5rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 0.75rem 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+          <div>
+            <strong id="modal-wa-lead-name" style="font-size: 1.1rem; color: var(--text-primary); font-family: 'Outfit', sans-serif;">Nome da Empresa</strong>
+            <div style="display: flex; gap: 0.75rem; font-size: 0.85rem; color: var(--text-secondary); margin-top: 3px; align-items: center; flex-wrap: wrap;">
+              <span id="modal-wa-lead-phone">📞 (11) 99999-9999</span>
+              <span id="modal-wa-lead-bairro">📍 Santo Amaro, SP</span>
+              <span id="modal-wa-lead-niche" class="badge-niche-subtle">🐾 Clínicas Veterinárias</span>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <button type="button" class="btn btn-outline btn-xs" id="btn-copy-wa-link" onclick="copyLeadWaLink()" title="Copiar link wa.me pronto para enviar ou testar" style="font-size: 0.78rem; padding: 4px 8px; border-color: rgba(255,255,255,0.18);">
+              🔗 Copiar Link WhatsApp Corrigido
+            </button>
+            <span class="stage-current-pill" id="modal-wa-lead-stage-badge">Etapa Atual: 1. Abertura</span>
+          </div>
         </div>
       </div>
-      <div class="modal-footer" style="display: flex; gap: 0.5rem; justify-content: flex-end; align-items: center; flex-wrap: wrap;">
-        <button class="btn btn-outline" id="btn-copy-wa-message">📋 Copiar Texto</button>
-        <button class="btn btn-outline" id="btn-open-wa-web-manual" title="Abrir no WhatsApp Web convencional">🌐 Abrir no Web</button>
-        <button class="btn btn-whatsapp" id="btn-confirm-wa-send">
-          <span class="btn-icon">🚀</span> Disparar Direto pelo WhatsApp
+
+      <!-- Mode Switcher Tabs -->
+      <div class="modal-nav-tabs" style="padding: 0 1.5rem; border-bottom: 1px solid var(--border-color); display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+        <button type="button" class="modal-tab-btn active" id="btn-mode-stages" onclick="switchModalMode('stages')">
+          <span>📂 Por Etapas (Novo Formato)</span>
         </button>
+        <button type="button" class="modal-tab-btn" id="btn-mode-classic" onclick="switchModalMode('classic')">
+          <span>📄 Mensagem Completa (Clássico)</span>
+        </button>
+      </div>
+
+      <div class="modal-body" style="padding: 1.25rem 1.5rem; max-height: calc(85vh - 200px); overflow-y: auto;">
+        
+        <!-- ================= MODO 1: POR ETAPAS ================= -->
+        <div id="modal-mode-stages-container">
+          <!-- Top bar: Toggle site pronto + Pill + Ação Principal -->
+          <div class="stages-control-bar">
+            <div class="stages-toggle-wrap">
+              <label class="switch-ui">
+                <input type="checkbox" id="toggle-has-website-preview">
+                <span class="switch-slider"></span>
+              </label>
+              <span class="switch-label-text">Enviar com site pronto</span>
+            </div>
+
+            <div class="stages-center-pill">
+              <span>📂 Por etapas</span>
+            </div>
+
+            <div class="stages-actions-top">
+              <button type="button" class="btn btn-whatsapp btn-sm" id="btn-send-current-stage" onclick="sendCurrentLeadStage()">
+                <span>💬 Enviar no WhatsApp</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- The 5 Stage Cards -->
+          <div class="stages-flow-grid" id="stages-cards-wrapper">
+            <!-- Injetado dinamicamente via Javascript -->
+          </div>
+
+          <!-- Dica de Ouro Card -->
+          <div class="golden-tip-card">
+            <span class="golden-tip-icon">💡</span>
+            <div class="golden-tip-content">
+              <strong>Dica de ouro:</strong> envie a abordagem antes de gerar o site. Quando o cliente demonstrar interesse, gere a prévia ao vivo e fecha a venda na hora.
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= MODO 2: CLÁSSICO (MENSAGEM COMPLETA) ================= -->
+        <div id="modal-mode-classic-container" style="display: none;">
+          <div class="form-group">
+            <label for="modal-wa-template-select" class="form-label">Escolha o Modelo de Mensagem:</label>
+            <select id="modal-wa-template-select" class="form-control"></select>
+          </div>
+
+          <div class="form-group">
+            <label for="modal-wa-message-preview" class="form-label">Prévia da Mensagem (Você pode editar antes de enviar):</label>
+            <textarea id="modal-wa-message-preview" class="form-control" rows="8"></textarea>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer" style="display: flex; gap: 0.5rem; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <a href="/slides" target="_blank" class="btn btn-outline btn-sm" style="border-color: var(--pinas-red); color: var(--pinas-red); text-decoration: none; font-weight: 700;">
+            🖥️ Slides / Prévia ↗
+          </a>
+          <button type="button" class="btn btn-outline btn-sm" id="btn-reset-lead-stage" onclick="resetCurrentLeadStage()" title="Reiniciar fluxo desde a etapa 1">
+            🔄 Reiniciar Processo
+          </button>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <button class="btn btn-outline" id="btn-copy-wa-message">📋 Copiar Texto</button>
+          <button class="btn btn-outline" id="btn-open-wa-web-manual" title="Abrir no WhatsApp Web convencional">🌐 Abrir no Web</button>
+          <button class="btn btn-whatsapp" id="btn-confirm-wa-send">
+            <span class="btn-icon">🚀</span> Disparar Direto pelo WhatsApp
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -958,6 +1096,6 @@
   <!-- Container de Notificações Toast Modernas (Substitui alerts do navegador) -->
   <div id="toast-container" class="toast-container"></div>
 
-  <script src="app.js?v=6.0"></script>
+  <script src="app.js?v=8.1"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 {
   "dailyLimit": 32,
-  "sentToday": 32,
-  "lastResetDate": "2026-10-05",
+  "sentToday": 2,
+  "lastResetDate": "2026-10-08",
   "minDelaySeconds": 30,
   "maxDelaySeconds": 60,
   "excludedChains": [

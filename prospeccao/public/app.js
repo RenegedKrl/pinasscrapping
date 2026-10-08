@@ -1,6 +1,9 @@
 // State
 let allLeads = [];
 let templates = [];
+let stepTemplatesData = null;
+let currentModalMode = 'stages'; // 'stages' | 'classic'
+let currentLeadHasWebsitePreview = false;
 let appConfig = { dailyLimit: 30, sentToday: 0 };
 let currentActiveLead = null;
 let scrapePollingInterval = null;
@@ -29,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initQuickTags();
   loadConfig();
   loadTemplates();
+  loadStepTemplates();
   loadLeads();
 
   // Listeners
@@ -146,6 +150,16 @@ async function loadTemplates() {
     renderScriptsEditor();
   } catch (err) {
     console.error('Erro ao carregar templates:', err);
+  }
+}
+
+async function loadStepTemplates() {
+  try {
+    const res = await fetch('/api/step-templates');
+    stepTemplatesData = await res.json();
+    renderScriptsStagesEditor();
+  } catch (err) {
+    console.error('Erro ao carregar templates de etapas:', err);
   }
 }
 
@@ -498,12 +512,30 @@ function renderCadenceQueue() {
 function initAutopilot() {
   const btnStart = document.getElementById('btn-start-autopilot');
   const btnPause = document.getElementById('btn-pause-autopilot');
+  const autoresponderToggle = document.getElementById('cadence-autoresponder-toggle');
 
   if (btnStart) {
     btnStart.addEventListener('click', startAutopilot);
   }
   if (btnPause) {
     btnPause.addEventListener('click', () => pauseAutopilot('Piloto Automático pausado manualmente pelo operador.'));
+  }
+
+  if (autoresponderToggle) {
+    autoresponderToggle.addEventListener('change', async () => {
+      if (stepTemplatesData) {
+        stepTemplatesData.settings = stepTemplatesData.settings || {};
+        stepTemplatesData.settings.autoResponderEnabled = autoresponderToggle.checked;
+        try {
+          await fetch('/api/step-templates', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(stepTemplatesData)
+          });
+          showToastNotification(`Auto-Resposta ${autoresponderToggle.checked ? 'ativada' : 'pausada'}.`);
+        } catch (e) {}
+      }
+    });
   }
 }
 
@@ -582,15 +614,25 @@ async function processNextAutopilotLead() {
     return;
   }
 
-  // 3. Montar mensagem personalizada com os sistemas proprietários da Pinas
-  const templateSelect = document.getElementById('cadence-template-select');
-  const templateId = templateSelect ? templateSelect.value : 'auto';
-  const personalizedMessage = buildPersonalizedMessage(nextLead, templateId);
+  // 3. Montar mensagem conforme modo de disparo
+  const dispatchMode = document.getElementById('autopilot-dispatch-mode')?.value || 'stages';
+  let personalizedMessage = '';
+
+  if (dispatchMode === 'stages') {
+    // No modo Por Etapas: envia apenas a Etapa 1 (Abertura para quebrar o gelo!)
+    personalizedMessage = formatStageText(nextLead, 1, !!nextLead.hasWebsite);
+    nextLead.stage = 1;
+  } else {
+    const templateSelect = document.getElementById('cadence-template-select');
+    const templateId = templateSelect ? templateSelect.value : 'auto';
+    personalizedMessage = buildPersonalizedMessage(nextLead, templateId);
+  }
 
   // Atualizar visualização do alvo atual
   const targetLeadEl = document.getElementById('autopilot-target-lead');
   if (targetLeadEl) {
-    targetLeadEl.innerHTML = `🚀 <strong>Enviando agora para:</strong> ${nextLead.name}...`;
+    const modeLabel = dispatchMode === 'stages' ? 'Etapa 1 (Abertura)' : 'Mensagem Completa';
+    targetLeadEl.innerHTML = `🚀 <strong>Enviando [${modeLabel}] para:</strong> ${nextLead.name}...`;
   }
 
   // 4. Enviar mensagem silenciosamente via WhatsApp direto no backend (SEM ABRIR JANELAS)
@@ -620,6 +662,23 @@ async function processNextAutopilotLead() {
     }
 
     nextLead.status = 'contatado';
+    if (dispatchMode === 'stages') {
+      nextLead.stage = 1;
+      nextLead.stageHistory = [{
+        stage: 1,
+        sentAt: new Date().toISOString(),
+        auto: true,
+        text: personalizedMessage
+      }];
+      try {
+        await fetch(`/api/leads/${nextLead.id}/stage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ stage: 1, text: personalizedMessage, sendNow: false })
+        });
+      } catch (e) {}
+    }
+
     if (sendData.sentToday !== undefined) {
       appConfig.sentToday = sendData.sentToday;
     } else {
@@ -1118,32 +1177,298 @@ function initModals() {
   }
 }
 
+function generateCleanWhatsAppLink(lead) {
+  if (!lead) return 'https://wa.me/5511999999999';
+  let raw = String(lead.cleanPhone || lead.phone || '').replace(/\D/g, '');
+  if (!raw) return 'https://wa.me/5511999999999?text=Ol%C3%A1!%20Vi%20no%20Google%20e%20gostaria%20de%20informa%C3%A7%C3%B5es';
+  if (raw.length === 10 || raw.length === 11) {
+    raw = '55' + raw;
+  }
+  const cleanName = (lead.name || '')
+    .replace(/\s*-\s*.*$/, '')
+    .replace(/\b(LTDA|ME|EPP|S\/A|EIRELI)\b/gi, '')
+    .trim();
+  const defaultMsg = encodeURIComponent(`Olá! Vi no Google e gostaria de informações sobre ${cleanName || 'os serviços'}.`);
+  return `https://wa.me/${raw}?text=${defaultMsg}`;
+}
+
+function copyLeadWaLink() {
+  if (!currentActiveLead) return;
+  const link = generateCleanWhatsAppLink(currentActiveLead);
+  navigator.clipboard.writeText(link).then(() => {
+    showToast('Link do WhatsApp copiado para a área de transferência!', 'success');
+  }).catch(() => {
+    prompt('Copie o link do WhatsApp abaixo:', link);
+  });
+}
+
 function getRecommendedTemplateId(lead) {
-  if (!lead.hasWebsite) return 'sem-site';
+  if (!lead.hasWebsite) return 'sem-site-dor';
   const niche = (lead.niche || '').toLowerCase();
   const name = (lead.name || '').toLowerCase();
   if (niche.includes('vet') || name.includes('vet') || niche.includes('pet') || name.includes('pet')) {
-    return 'veterinaria';
+    return 'veterinaria-dor';
   }
   if (niche.includes('roup') || niche.includes('moda') || name.includes('moda') || name.includes('boutique') || name.includes('calcado')) {
-    return 'roupas-moda';
+    return 'roupas-moda-dor';
   }
-  return 'com-site';
+  return 'com-site-analise';
+}
+
+function switchModalMode(mode) {
+  currentModalMode = mode;
+  const btnStages = document.getElementById('btn-mode-stages');
+  const btnClassic = document.getElementById('btn-mode-classic');
+  const containerStages = document.getElementById('modal-mode-stages-container');
+  const containerClassic = document.getElementById('modal-mode-classic-container');
+  const btnConfirmWa = document.getElementById('btn-confirm-wa-send');
+  const btnCopyWa = document.getElementById('btn-copy-wa-message');
+
+  if (mode === 'stages') {
+    if (btnStages) btnStages.classList.add('active');
+    if (btnClassic) btnClassic.classList.remove('active');
+    if (containerStages) containerStages.style.display = 'block';
+    if (containerClassic) containerClassic.style.display = 'none';
+    if (btnConfirmWa) btnConfirmWa.style.display = 'none';
+    if (btnCopyWa) btnCopyWa.style.display = 'none';
+  } else {
+    if (btnStages) btnStages.classList.remove('active');
+    if (btnClassic) btnClassic.classList.add('active');
+    if (containerStages) containerStages.style.display = 'none';
+    if (containerClassic) containerClassic.style.display = 'block';
+    if (btnConfirmWa) btnConfirmWa.style.display = 'inline-flex';
+    if (btnCopyWa) btnCopyWa.style.display = 'inline-flex';
+  }
+}
+
+function formatStageText(lead, stageNumber, withSite) {
+  if (!stepTemplatesData || !stepTemplatesData.stages) return '';
+  const stageObj = stepTemplatesData.stages.find(s => s.number === stageNumber);
+  if (!stageObj) return '';
+
+  const rawText = withSite ? stageObj.templates.comSite : stageObj.templates.semSite;
+  let cleanName = (lead.name || '')
+    .replace(/\s*-\s*.*$/, '')
+    .replace(/\b(LTDA|ME|EPP|S\/A|EIRELI)\b/gi, '')
+    .trim();
+
+  const waLink = generateCleanWhatsAppLink(lead);
+
+  let text = rawText;
+  text = text.replace(/{nome}/g, cleanName || 'empresa');
+  text = text.replace(/{nicho}/g, lead.niche || 'seu segmento');
+  text = text.replace(/{bairro}/g, lead.neighborhood || 'sua região');
+  text = text.replace(/{regiao}/g, lead.neighborhood || lead.city || 'São Paulo - SP');
+  text = text.replace(/{cidade}/g, lead.city || 'São Paulo');
+  text = text.replace(/{link_whatsapp}/g, waLink);
+  text = text.replace(/{link_whatsapp_corrigido}/g, waLink);
+  text = text.replace(/{telefone}/g, lead.phone || '');
+  text = text.replace(/{site}/g, lead.website || '');
+  return text;
+}
+
+function renderStagesCards(lead) {
+  const wrapper = document.getElementById('stages-cards-wrapper');
+  if (!wrapper || !stepTemplatesData || !stepTemplatesData.stages) return;
+
+  const currentStage = lead.stage || 1;
+  const withSite = currentLeadHasWebsitePreview;
+
+  wrapper.innerHTML = stepTemplatesData.stages.map(st => {
+    const isCurrent = st.number === currentStage;
+    const isSent = lead.stageHistory && lead.stageHistory.some(h => h.stage === st.number);
+    const formattedText = formatStageText(lead, st.number, withSite);
+
+    let statusBadge = '';
+    if (isSent) {
+      statusBadge = '<span class="stage-badge-status badge-sent">✅ Enviada</span>';
+    } else if (isCurrent) {
+      statusBadge = '<span class="stage-badge-status badge-pending">👉 Próxima etapa</span>';
+    }
+
+    return `
+      <div class="stage-card ${isCurrent ? 'stage-current' : ''} ${isSent ? 'stage-sent' : ''}" id="stage-card-${st.number}">
+        <div class="stage-card-header">
+          <div class="stage-title-wrap">
+            <span class="stage-dot" style="background-color: ${st.dotColor || '#3B82F6'};"></span>
+            <span class="stage-name">${st.name}</span>
+            <span class="stage-goal">${st.goal}</span>
+            ${statusBadge}
+          </div>
+          <div class="stage-actions-group">
+            <button type="button" class="btn-stage-tool" onclick="copyStageText(${st.number})" title="Copiar texto desta etapa">
+              📋 Copiar
+            </button>
+            <button type="button" class="btn-stage-tool btn-send-wa" onclick="sendLeadStage(${st.number})" title="Disparar esta etapa no WhatsApp">
+              💬 Enviar Etapa
+            </button>
+          </div>
+        </div>
+        <textarea class="stage-textarea" id="stage-textarea-${st.number}" rows="${st.number === 4 ? 6 : (st.number === 3 ? 3 : 2)}">${formattedText}</textarea>
+      </div>
+    `;
+  }).join('');
+
+  // Atualizar badge no header do modal
+  const badgeEl = document.getElementById('modal-wa-lead-stage-badge');
+  if (badgeEl) {
+    const stageNames = ['', 'Abertura', 'Apresentação', 'Diagnóstico', 'Proposta de Valor', 'Fechamento'];
+    badgeEl.textContent = `Etapa Atual: ${currentStage}. ${stageNames[currentStage] || 'Concluído'}`;
+  }
+
+  // Atualizar texto do botão do topo
+  const btnTopSend = document.getElementById('btn-send-current-stage');
+  if (btnTopSend) {
+    btnTopSend.innerHTML = `<span>💬 Enviar Etapa ${currentStage} no WhatsApp</span>`;
+  }
+}
+
+async function sendLeadStage(stageNum) {
+  if (!currentActiveLead) return;
+
+  const textarea = document.getElementById(`stage-textarea-${stageNum}`);
+  const text = textarea ? textarea.value : formatStageText(currentActiveLead, stageNum, currentLeadHasWebsitePreview);
+
+  if (!text) {
+    alert('Texto da etapa está vazio.');
+    return;
+  }
+
+  const cleanPhone = currentActiveLead.cleanPhone;
+  if (!cleanPhone || cleanPhone.length < 10) {
+    alert('Telefone do lead inválido ou incompleto.');
+    return;
+  }
+
+  if (!currentWaStatus.connected) {
+    alert('⚠️ O seu WhatsApp ainda não está conectado no Prospector.\n\nEscaneie o QR Code na aba WhatsApp Direto para disparar!');
+    openWhatsAppConnectModal();
+    return;
+  }
+
+  const btn = window.event?.currentTarget;
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+  }
+
+  try {
+    const res = await fetch(`/api/leads/${currentActiveLead.id}/stage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        stage: stageNum,
+        text,
+        sendNow: true
+      })
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.error || 'Erro ao disparar etapa');
+    }
+
+    if ((currentActiveLead.stage || 1) <= stageNum && stageNum < 5) {
+      currentActiveLead.stage = stageNum + 1;
+    }
+    currentActiveLead.stageHistory = data.lead.stageHistory;
+    currentActiveLead.status = data.lead.status;
+
+    if (data.sentToday !== undefined) {
+      appConfig.sentToday = data.sentToday;
+    }
+    updateSafetyWidget();
+    renderCadenceQueue();
+    renderLeadsTable(allLeads);
+    renderStagesCards(currentActiveLead);
+
+    showSuccessModal({
+      title: `Etapa ${stageNum} Enviada!`,
+      message: `Mensagem da Etapa ${stageNum} enviada com sucesso para "${currentActiveLead.name}" direto pelo WhatsApp!`,
+      icon: '🚀'
+    });
+  } catch (err) {
+    console.error('Erro ao enviar etapa:', err);
+    alert(`Erro no envio: ${err.message}`);
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = '💬 Enviar Etapa';
+    }
+  }
+}
+
+async function sendCurrentLeadStage() {
+  if (!currentActiveLead) return;
+  const currentStage = currentActiveLead.stage || 1;
+  await sendLeadStage(currentStage);
+}
+
+function copyStageText(stageNum) {
+  const textarea = document.getElementById(`stage-textarea-${stageNum}`);
+  if (textarea) {
+    navigator.clipboard.writeText(textarea.value);
+    showToastNotification(`Texto da Etapa ${stageNum} copiado!`);
+  }
+}
+
+async function resetCurrentLeadStage() {
+  if (!currentActiveLead) return;
+  if (!confirm(`Deseja reiniciar o fluxo da "${currentActiveLead.name}" voltando para a Etapa 1 (Abertura)?`)) return;
+
+  currentActiveLead.stage = 1;
+  currentActiveLead.stageHistory = [];
+
+  try {
+    await fetch(`/api/leads/${currentActiveLead.id}/stage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ stage: 1 })
+    });
+  } catch (e) {}
+
+  renderStagesCards(currentActiveLead);
+  showToastNotification('Fluxo reiniciado para a Etapa 1.');
 }
 
 function openWhatsAppModal(leadId) {
   const lead = allLeads.find(l => l.id === leadId);
   if (!lead) return;
   currentActiveLead = lead;
+  currentLeadHasWebsitePreview = !!lead.hasWebsite;
 
   document.getElementById('modal-wa-lead-name').textContent = lead.name;
-  document.getElementById('modal-wa-lead-phone').textContent = lead.phone;
-  document.getElementById('modal-wa-lead-bairro').textContent = lead.neighborhood || 'SP';
+  document.getElementById('modal-wa-lead-phone').textContent = lead.phone || 'Sem telefone';
+  document.getElementById('modal-wa-lead-bairro').textContent = lead.neighborhood ? `📍 ${lead.neighborhood}` : '📍 SP';
 
+  const nicheEl = document.getElementById('modal-wa-lead-niche');
+  if (nicheEl) {
+    nicheEl.textContent = lead.niche || 'Geral';
+  }
+
+  // Toggle switch do site pronto
+  const toggleSite = document.getElementById('toggle-has-website-preview');
+  if (toggleSite) {
+    toggleSite.checked = currentLeadHasWebsitePreview;
+    toggleSite.onchange = () => {
+      currentLeadHasWebsitePreview = toggleSite.checked;
+      renderStagesCards(lead);
+    };
+  }
+
+  // Preencher modo clássico
   const templateSelect = document.getElementById('modal-wa-template-select');
-  templateSelect.value = getRecommendedTemplateId(lead);
+  if (templateSelect) {
+    templateSelect.value = getRecommendedTemplateId(lead);
+    document.getElementById('modal-wa-message-preview').value = buildPersonalizedMessage(lead, templateSelect.value);
+  }
 
-  document.getElementById('modal-wa-message-preview').value = buildPersonalizedMessage(lead, templateSelect.value);
+  // Renderizar os 5 cards
+  renderStagesCards(lead);
+
+  // Iniciar na aba Por Etapas
+  switchModalMode('stages');
+
   document.getElementById('modal-whatsapp').style.display = 'flex';
 }
 
@@ -1154,21 +1479,69 @@ function buildPersonalizedMessage(lead, templateId) {
   const template = templates.find(t => t.id === templateId) || templates[0];
   if (!template) return '';
 
-  // Limpar nome do lead (remover termos societários ou sufixos longos)
-  let cleanName = lead.name
+  let cleanName = (lead.name || '')
     .replace(/\s*-\s*.*$/, '')
     .replace(/\b(LTDA|ME|EPP|S\/A|EIRELI)\b/gi, '')
     .trim();
 
+  const waLink = generateCleanWhatsAppLink(lead);
+
   let text = template.text;
-  text = text.replace(/{nome}/g, cleanName);
+  text = text.replace(/{nome}/g, cleanName || 'empresa');
   text = text.replace(/{bairro}/g, lead.neighborhood || 'sua região');
+  text = text.replace(/{regiao}/g, lead.neighborhood || lead.city || 'São Paulo - SP');
+  text = text.replace(/{cidade}/g, lead.city || 'São Paulo');
   text = text.replace(/{nicho}/g, lead.niche || 'seu segmento');
+  text = text.replace(/{link_whatsapp}/g, waLink);
+  text = text.replace(/{link_whatsapp_corrigido}/g, waLink);
+  text = text.replace(/{telefone}/g, lead.phone || '');
+  text = text.replace(/{site}/g, lead.website || '');
 
   return text;
 }
 
-// ==================== SCRIPTS EDITOR ====================
+// ==================== SUB-ABAS E EDITOR DE ROTEIROS ====================
+function switchScriptsSubTab(tab) {
+  const btnStages = document.getElementById('btn-scripts-tab-stages');
+  const btnClassic = document.getElementById('btn-scripts-tab-classic');
+  const secStages = document.getElementById('scripts-stages-section');
+  const secClassic = document.getElementById('scripts-classic-section');
+
+  if (tab === 'stages') {
+    if (btnStages) btnStages.classList.add('active');
+    if (btnClassic) btnClassic.classList.remove('active');
+    if (secStages) secStages.style.display = 'block';
+    if (secClassic) secClassic.style.display = 'none';
+  } else {
+    if (btnStages) btnStages.classList.remove('active');
+    if (btnClassic) btnClassic.classList.add('active');
+    if (secStages) secStages.style.display = 'none';
+    if (secClassic) secClassic.style.display = 'block';
+  }
+}
+
+function renderScriptsStagesEditor() {
+  const container = document.getElementById('scripts-stages-container');
+  if (!container || !stepTemplatesData || !stepTemplatesData.stages) return;
+
+  container.innerHTML = stepTemplatesData.stages.map(st => `
+    <div class="script-card" style="border-left: 3px solid ${st.dotColor || '#3B82F6'};">
+      <div class="script-card-header">
+        <h4 class="script-card-title">${st.name} — ${st.goal}</h4>
+        <span class="script-card-target">Cadência Conversacional</span>
+      </div>
+      <div style="margin-bottom: 0.6rem;">
+        <label style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Texto (Comércio SEM site):</label>
+        <textarea class="script-textarea" id="stage-edit-semsite-${st.number}" rows="3" style="margin-top: 0.25rem;">${st.templates.semSite}</textarea>
+      </div>
+      <div>
+        <label style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Texto (Comércio COM site):</label>
+        <textarea class="script-textarea" id="stage-edit-comsite-${st.number}" rows="3" style="margin-top: 0.25rem;">${st.templates.comSite}</textarea>
+      </div>
+    </div>
+  `).join('');
+}
+
 function renderScriptsEditor() {
   const container = document.getElementById('scripts-container');
   if (!container) return;
@@ -1186,6 +1559,7 @@ function renderScriptsEditor() {
   const btnSave = document.getElementById('btn-save-templates');
   if (btnSave) {
     btnSave.onclick = async () => {
+      // 1. Salvar templates clássicos
       templates.forEach((t, idx) => {
         const el = document.getElementById(`template-text-${idx}`);
         if (el) t.text = el.value;
@@ -1196,9 +1570,26 @@ function renderScriptsEditor() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(templates)
       });
+
+      // 2. Salvar etapas se estiverem carregadas
+      if (stepTemplatesData && stepTemplatesData.stages) {
+        stepTemplatesData.stages.forEach(st => {
+          const semSiteEl = document.getElementById(`stage-edit-semsite-${st.number}`);
+          const comSiteEl = document.getElementById(`stage-edit-comsite-${st.number}`);
+          if (semSiteEl) st.templates.semSite = semSiteEl.value;
+          if (comSiteEl) st.templates.comSite = comSiteEl.value;
+        });
+
+        await fetch('/api/step-templates', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(stepTemplatesData)
+        });
+      }
+
       showSuccessModal({
         title: 'Roteiros Salvos!',
-        message: 'Todos os modelos de abordagem foram gravados com sucesso e já estão ativos.',
+        message: 'Todos os modelos de abordagem (clássicos e por etapas) foram gravados com sucesso e já estão ativos.',
         icon: '✍️'
       });
     };
@@ -1936,13 +2327,34 @@ function initInbox() {
     });
   }
 
-  // Respostas Rápidas (Snippets de 1 Clique)
+  // Respostas Rápidas (Snippets de 1 Clique e Etapas do Funil)
   document.querySelectorAll('.snippet-pill').forEach(btn => {
     btn.addEventListener('click', () => {
       const snippetType = btn.getAttribute('data-snippet');
-      applyChatSnippet(snippetType);
+      if (snippetType) {
+        applyChatSnippet(snippetType);
+        return;
+      }
+      const stageNum = btn.getAttribute('data-stage');
+      if (stageNum) {
+        applyChatStageSnippet(parseInt(stageNum, 10));
+      }
     });
   });
+
+  const btnChatOpenStages = document.getElementById('btn-chat-open-stages-modal');
+  if (btnChatOpenStages) {
+    btnChatOpenStages.addEventListener('click', () => {
+      if (!activeChatJid) return;
+      const digits = cleanPhoneDigits(activeChatJid);
+      const lead = allLeads.find(l => cleanPhoneDigits(l.phone || '').includes(digits) || digits.includes(cleanPhoneDigits(l.phone || '')));
+      if (lead) {
+        openWhatsAppModal(lead.id);
+      } else {
+        alert('Este contato não está cadastrado na base de leads.');
+      }
+    });
+  }
 
   // Loop de Polling inteligente: atualiza quando a aba está ativa
   if (inboxPollingInterval) clearInterval(inboxPollingInterval);
@@ -2009,41 +2421,82 @@ async function loadInboxChats(showFeedback = false) {
   }
 }
 
+// Normalizar e extrair partes de telefone brasileiro (DDD e últimos 8 dígitos)
+function extractBrazilPhoneParts(phoneStr) {
+  let digits = cleanPhoneDigits(phoneStr);
+  if (!digits) return null;
+  // Se vier com DDI 55 e tiver 12 ou 13 dígitos, remove o prefixo 55
+  if (digits.startsWith('55') && digits.length >= 12) {
+    digits = digits.slice(2);
+  }
+  // Se tiver DDD + número (mínimo 10 dígitos)
+  if (digits.length >= 10) {
+    const ddd = digits.slice(0, 2);
+    const last8 = digits.slice(-8);
+    return { ddd, last8, full: digits };
+  }
+  return null;
+}
+
+function phonesMatch(phoneA, phoneB) {
+  const pA = extractBrazilPhoneParts(phoneA);
+  const pB = extractBrazilPhoneParts(phoneB);
+  if (!pA || !pB) return false;
+  // OBRIGATÓRIO: mesmo DDD e mesmos 8 dígitos finais
+  return pA.ddd === pB.ddd && pA.last8 === pB.last8;
+}
+
 // Helper para encontrar lead correspondente à conversa
 function findMatchingLead(chat) {
   if (!chat) return null;
   const jid = chat.jid || chat.id || '';
-  const digits = cleanPhoneDigits(jid);
-  const chatName = (chat.name || '').toLowerCase().trim();
+  if (!jid) return null;
 
-  // 1. Casamento direto de telefone (últimos 8 dígitos) quando não for LID interno
-  if (digits.length >= 8 && !jid.includes('@lid') && !jid.includes('@g.us')) {
-    const suffix = digits.slice(-8);
+  const isGroup = jid.endsWith('@g.us') || !!chat.isGroup;
+  if (isGroup) return null; // Grupos nunca casam como lead individual
+
+  const isLid = jid.includes('@lid');
+  const isDirectPhone = jid.includes('@s.whatsapp.net') || /^\d+$/.test(jid.replace(/@.*$/, ''));
+
+  // 1. CASAMENTO PARA CHATS DIRETOS COM NÚMERO (@s.whatsapp.net)
+  // Em conversas 1-para-1 normais, o JID É O NÚMERO REAL DO CONTATO!
+  // Casamos EXCLUSIVAMENTE pelo número exato (mesmo DDD + 8 dígitos finais).
+  // JAMAIS fazer match frouxo por substring de nome aqui (evita amigos como Antonio virarem Marcantonio).
+  if (isDirectPhone) {
+    const chatPhone = jid.split('@')[0];
     const matched = allLeads.find(l => {
-      const lDigits = cleanPhoneDigits(l.cleanPhone || l.phone || '');
-      return lDigits.length >= 8 && lDigits.slice(-8) === suffix;
+      const lPhone = l.cleanPhone || l.phone || '';
+      return phonesMatch(chatPhone, lPhone);
     });
-    if (matched) return matched;
+    return matched || null;
   }
 
-  // 2. Casamento por nome da empresa / contato
-  if (chatName && chatName.length >= 3 && !chatName.includes('kauê') && !chatName.includes('pinas')) {
-    const matched = allLeads.find(l => {
-      const lName = (l.name || '').toLowerCase().trim();
-      return lName && (lName.includes(chatName) || chatName.includes(lName));
-    });
-    if (matched) return matched;
-  }
-
-  // 3. Detecção por menção direta nos textos da conversa (ex: "Boutique Linda Rios")
-  const lastText = typeof chat.lastMessage === 'string' ? chat.lastMessage : (chat.lastMessage?.text || '');
-  if (lastText && lastText.length > 5) {
-    const textLower = lastText.toLowerCase();
-    const matched = allLeads.find(l => {
-      const lName = (l.name || '').toLowerCase().trim();
-      return lName && lName.length >= 5 && textLower.includes(lName);
-    });
-    if (matched) return matched;
+  // 2. CASAMENTO RESTRITO PARA DISPOSITIVOS COMPACTADOS (@lid)
+  // Somente quando o número real está mascarado pelo WhatsApp Multi-Device:
+  if (isLid) {
+    const chatName = (chat.name || '').trim();
+    if (chatName && chatName.length >= 4 && !chatName.toLowerCase().includes('kauê') && !chatName.toLowerCase().includes('pinas')) {
+      const normChat = chatName.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+      
+      const matched = allLeads.find(l => {
+        const lName = (l.name || '').trim();
+        if (!lName || lName.length < 4) return false;
+        const normLead = lName.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+        
+        // Match exato de nome completo
+        if (normChat === normLead) return true;
+        
+        // Match de palavras completas se tiver pelo menos 2 palavras (evita nomes próprios comuns)
+        const chatWords = normChat.split(/\s+/).filter(w => w.length >= 3);
+        if (chatWords.length >= 2) {
+          const leadWords = normLead.split(/\s+/).filter(w => w.length >= 3);
+          const allWordsMatch = chatWords.every(w => leadWords.includes(w));
+          if (allWordsMatch) return true;
+        }
+        return false;
+      });
+      if (matched) return matched;
+    }
   }
 
   return null;
@@ -2161,6 +2614,14 @@ async function openInboxChat(jid) {
   if (!jid || jid === 'undefined') return;
   activeChatJid = jid;
 
+  const containerMsg = document.getElementById('chat-messages-container');
+  if (containerMsg) {
+    containerMsg.querySelectorAll('audio, video').forEach(el => {
+      try { el.pause(); } catch(e) {}
+    });
+    containerMsg.dataset.renderedHash = '';
+  }
+
   const placeholder = document.getElementById('chat-placeholder');
   const activeWindow = document.getElementById('chat-active-window');
   if (placeholder) placeholder.style.display = 'none';
@@ -2221,10 +2682,18 @@ async function openInboxChat(jid) {
         btnSlides.href = `/slides?empresa=${encodeURIComponent(displayName)}&bairro=${encodeURIComponent(bairro)}&nicho=${encodeURIComponent(nicho)}`;
         btnSlides.style.display = 'inline-flex';
       }
+      const btnStagesModal = document.getElementById('btn-chat-open-stages-modal');
+      if (btnStagesModal) {
+        btnStagesModal.style.display = 'inline-flex';
+      }
     } else {
       if (leadBadgeEl) leadBadgeEl.style.display = 'none';
       if (statusDropdown) statusDropdown.style.display = 'none';
       if (btnSlides) btnSlides.style.display = 'none';
+      const btnStagesModal = document.getElementById('btn-chat-open-stages-modal');
+      if (btnStagesModal) {
+        btnStagesModal.style.display = 'none';
+      }
     }
   }
 
@@ -2291,12 +2760,111 @@ function getSenderDisplayName(msg) {
   return 'Participante';
 }
 
+// Helper para vincular listeners em elementos de áudio (pausar outros ao tocar um)
+function bindAudioElements(container) {
+  if (!container) return;
+  const audios = container.querySelectorAll('audio');
+  audios.forEach(audio => {
+    audio.onplay = () => {
+      audios.forEach(other => {
+        if (other !== audio && !other.paused) {
+          other.pause();
+        }
+      });
+    };
+  });
+}
+
+// Helper para gerar o HTML de um balão individual de mensagem
+function renderSingleMessageBubbleHtml(msg, isChatGroup) {
+  const isOut = !!msg.fromMe;
+  const timeStr = formatChatTime(msg.timestamp, true);
+  let contentHtml = '';
+
+  // Nome do participante remetente (destaque em grupos para saber quem mandou)
+  if (!isOut && (isChatGroup || msg.isGroup || (activeChatJid && activeChatJid.endsWith('@g.us')))) {
+    const sender = getSenderDisplayName(msg);
+    const color = getSenderColor(sender);
+    contentHtml += `
+      <div class="msg-sender-name" style="color: ${color};">
+        <span style="opacity: 0.85;">👤</span>
+        <span>${escapeHtml(sender)}</span>
+      </div>
+    `;
+  }
+
+  // Foto / Imagem / Figurinha (abre no Lightbox modal centralizado com setas)
+  const isImage = msg.type === 'image' || msg.type === 'sticker' || (msg.mediaUrl && (/\.(jpe?g|png|webp|gif)$/i.test(msg.mediaUrl) || msg.mediaUrl.includes('img_') || msg.mediaUrl.includes('sticker_')));
+  if (isImage && msg.mediaUrl) {
+    contentHtml += `
+      <div class="msg-img-wrap">
+        <img src="${msg.mediaUrl}" alt="Foto" loading="lazy" style="cursor: zoom-in;" onclick="openChatLightbox('${msg.mediaUrl}')" />
+      </div>
+    `;
+  }
+
+  // Vídeo
+  const isVideo = msg.type === 'video' || (msg.mediaUrl && (/\.(mp4|webm|mov)$/i.test(msg.mediaUrl) && !msg.mediaUrl.includes('audio_')));
+  if (isVideo && !isImage && msg.mediaUrl) {
+    contentHtml += `
+      <div class="msg-video-wrap">
+        <video controls preload="metadata" style="max-width: 100%; border-radius: 8px; max-height: 320px;">
+          <source src="${msg.mediaUrl}">
+          Seu navegador não suporta vídeo.
+        </video>
+      </div>
+    `;
+  }
+
+  // Áudio / Mensagem de Voz (PTT)
+  const isAudio = msg.type === 'audio' || (msg.mediaUrl && (msg.mediaUrl.includes('audio_') || /\.(ogg|mp3|m4a|wav)$/i.test(msg.mediaUrl)));
+  if (isAudio && !isImage && !isVideo && msg.mediaUrl) {
+    contentHtml += `
+      <div class="msg-audio-wrap">
+        <audio controls preload="metadata" style="max-width: 100%; border-radius: 20px; outline: none;">
+          <source src="${msg.mediaUrl}">
+          Seu navegador não suporta áudio.
+        </audio>
+      </div>
+    `;
+  }
+
+  // Documento / Arquivo / PDF
+  const isDoc = msg.type === 'document' || (msg.mediaUrl && !isImage && !isAudio && !isVideo);
+  if (isDoc && msg.mediaUrl) {
+    contentHtml += `
+      <div class="msg-doc-wrap">
+        <span>📄</span>
+        <a href="${msg.mediaUrl}" target="_blank" download="${escapeHtml(msg.fileName || 'arquivo')}">
+          ${escapeHtml(msg.fileName || 'Abrir Documento')} ↗
+        </a>
+      </div>
+    `;
+  }
+
+  // Texto da Mensagem
+  if (msg.text) {
+    contentHtml += `<div class="msg-text">${formatMessageText(msg.text)}</div>`;
+  }
+
+  return `
+    <div class="msg-bubble ${isOut ? 'outgoing' : 'incoming'}" data-msg-id="${escapeHtml(msg.id || '')}">
+      ${contentHtml}
+      <div class="msg-meta-row">
+        <span class="msg-time">${timeStr}</span>
+        ${isOut ? `<span class="msg-check">✓✓</span>` : ''}
+      </div>
+    </div>
+  `;
+}
+
 // 5. Renderizar Balões de Mensagem no Chat
 function renderChatMessages(messages, forceScroll = false) {
   const container = document.getElementById('chat-messages-container');
   if (!container) return;
 
   if (!Array.isArray(messages) || messages.length === 0) {
+    container.dataset.renderedHash = 'empty';
     container.innerHTML = `
       <div class="inbox-empty-notice" style="margin-top: 3rem;">
         <span style="font-size: 2.2rem; opacity: 0.6;">💬</span>
@@ -2319,87 +2887,43 @@ function renderChatMessages(messages, forceScroll = false) {
       timestamp: m.timestamp
     }));
 
-  container.innerHTML = messages.map(msg => {
-    const isOut = !!msg.fromMe;
-    const timeStr = formatChatTime(msg.timestamp, true);
-    let contentHtml = '';
+  // 1. Verificar se há algum áudio ou vídeo reproduzindo no momento
+  const isAnyMediaPlaying = Array.from(container.querySelectorAll('audio, video')).some(el => !el.paused && !el.ended && el.currentTime > 0);
 
-    // Nome do participante remetente (destaque em grupos para saber quem mandou)
-    if (!isOut && (isChatGroup || msg.isGroup || (activeChatJid && activeChatJid.endsWith('@g.us')))) {
-      const sender = getSenderDisplayName(msg);
-      const color = getSenderColor(sender);
-      contentHtml += `
-        <div class="msg-sender-name" style="color: ${color};">
-          <span style="opacity: 0.85;">👤</span>
-          <span>${escapeHtml(sender)}</span>
-        </div>
-      `;
+  // 2. Hash rápido do conjunto de mensagens para detectar mudanças
+  const lastMsg = messages[messages.length - 1];
+  const newHash = `${messages.length}_${lastMsg?.id || ''}_${lastMsg?.timestamp || ''}_${lastMsg?.status || ''}`;
+
+  // Se nada mudou e não é rolagem forçada: não tocar no DOM (preserva áudio rodando e posição)
+  if (container.dataset.renderedHash === newHash && !forceScroll) {
+    return;
+  }
+
+  // Se o usuário está ouvindo um áudio: NÃO destruir o DOM. Se novas mensagens chegaram, anexar ao fim
+  if (isAnyMediaPlaying && !forceScroll && container.dataset.renderedHash) {
+    const existingBubbles = container.querySelectorAll('[data-msg-id]');
+    const existingIds = new Set(Array.from(existingBubbles).map(b => b.getAttribute('data-msg-id')).filter(Boolean));
+    const newMessages = messages.filter(m => m.id && !existingIds.has(m.id));
+    if (newMessages.length > 0) {
+      newMessages.forEach(msg => {
+        const bubbleHtml = renderSingleMessageBubbleHtml(msg, isChatGroup);
+        const temp = document.createElement('div');
+        temp.innerHTML = bubbleHtml;
+        if (temp.firstElementChild) {
+          container.appendChild(temp.firstElementChild);
+        }
+      });
+      container.dataset.renderedHash = newHash;
+      bindAudioElements(container);
+      if (isNearBottom) container.scrollTop = container.scrollHeight;
     }
+    return;
+  }
 
-    // Foto / Imagem / Figurinha (abre no Lightbox modal centralizado com setas)
-    const isImage = msg.type === 'image' || msg.type === 'sticker' || (msg.mediaUrl && (/\.(jpe?g|png|webp|gif)$/i.test(msg.mediaUrl) || msg.mediaUrl.includes('img_') || msg.mediaUrl.includes('sticker_')));
-    if (isImage && msg.mediaUrl) {
-      contentHtml += `
-        <div class="msg-img-wrap">
-          <img src="${msg.mediaUrl}" alt="Foto" loading="lazy" style="cursor: zoom-in;" onclick="openChatLightbox('${msg.mediaUrl}')" />
-        </div>
-      `;
-    }
-
-    // Vídeo
-    const isVideo = msg.type === 'video' || (msg.mediaUrl && (/\.(mp4|webm|mov)$/i.test(msg.mediaUrl) && !msg.mediaUrl.includes('audio_')));
-    if (isVideo && !isImage && msg.mediaUrl) {
-      contentHtml += `
-        <div class="msg-video-wrap">
-          <video controls preload="metadata" style="max-width: 100%; border-radius: 8px; max-height: 320px;">
-            <source src="${msg.mediaUrl}">
-            Seu navegador não suporta vídeo.
-          </video>
-        </div>
-      `;
-    }
-
-    // Áudio / Mensagem de Voz (PTT)
-    const isAudio = msg.type === 'audio' || (msg.mediaUrl && (msg.mediaUrl.includes('audio_') || /\.(ogg|mp3|m4a|wav)$/i.test(msg.mediaUrl)));
-    if (isAudio && !isImage && !isVideo && msg.mediaUrl) {
-      contentHtml += `
-        <div class="msg-audio-wrap">
-          <audio controls preload="none">
-            <source src="${msg.mediaUrl}">
-            Seu navegador não suporta áudio.
-          </audio>
-        </div>
-      `;
-    }
-
-    // Documento / Arquivo / PDF
-    const isDoc = msg.type === 'document' || (msg.mediaUrl && !isImage && !isAudio && !isVideo);
-    if (isDoc && msg.mediaUrl) {
-      contentHtml += `
-        <div class="msg-doc-wrap">
-          <span>📄</span>
-          <a href="${msg.mediaUrl}" target="_blank" download="${escapeHtml(msg.fileName || 'arquivo')}">
-            ${escapeHtml(msg.fileName || 'Abrir Documento')} ↗
-          </a>
-        </div>
-      `;
-    }
-
-    // Texto da Mensagem
-    if (msg.text) {
-      contentHtml += `<div class="msg-text">${formatMessageText(msg.text)}</div>`;
-    }
-
-    return `
-      <div class="msg-bubble ${isOut ? 'outgoing' : 'incoming'}">
-        ${contentHtml}
-        <div class="msg-meta-row">
-          <span class="msg-time">${timeStr}</span>
-          ${isOut ? `<span class="msg-check">✓✓</span>` : ''}
-        </div>
-      </div>
-    `;
-  }).join('');
+  // Renderização inicial ou atualização com mensagens novas
+  container.dataset.renderedHash = newHash;
+  container.innerHTML = messages.map(msg => renderSingleMessageBubbleHtml(msg, isChatGroup)).join('');
+  bindAudioElements(container);
 
   if (forceScroll || isNearBottom) {
     container.scrollTop = container.scrollHeight;
@@ -2442,6 +2966,29 @@ function applyChatSnippet(snippetType) {
   input.focus();
   input.style.height = 'auto';
   input.style.height = Math.min(input.scrollHeight, 160) + 'px';
+}
+
+function applyChatStageSnippet(stageNum) {
+  const input = document.getElementById('chat-message-input');
+  if (!input || !activeChatJid) return;
+
+  const chat = inboxChats.find(c => (c.jid || c.id) === activeChatJid) || { jid: activeChatJid, id: activeChatJid };
+  const matchedLead = findMatchingLead(chat);
+  const leadObj = matchedLead || {
+    name: chat.name || 'empresa',
+    niche: 'seu segmento',
+    neighborhood: 'sua região',
+    hasWebsite: false
+  };
+
+  const text = formatStageText(leadObj, stageNum, !!leadObj.hasWebsite);
+  if (text) {
+    input.value = text;
+    input.focus();
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 160) + 'px';
+    showToastNotification(`Etapa ${stageNum} carregada no campo de envio.`);
+  }
 }
 
 // 6. Enviar Mensagem de Texto ou Mídia
@@ -3023,11 +3570,13 @@ function openChatLightbox(clickedSrc) {
 
   updateLightboxDisplay();
   modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
 }
 
 function closeChatLightbox() {
   const modal = document.getElementById('chat-lightbox-modal');
   if (modal) modal.style.display = 'none';
+  document.body.style.overflow = '';
 }
 
 function lightboxNext() {
@@ -3046,18 +3595,24 @@ function bindLightboxEvents() {
   const modal = document.getElementById('chat-lightbox-modal');
   if (!modal) return;
 
-  // FECHAR AO CLICAR FORA: Qualquer clique fora da imagem e das setas fecha o lightbox
+  // FECHAR AO CLICAR FORA: Qualquer clique fora da imagem e das ações fecha imediatamente a janela
   modal.onclick = (e) => {
-    // Se clicou na própria imagem, nas setas ou no botão de download/fechar, mantém aberto
-    if (e.target.closest('#lightbox-img') || 
-        e.target.closest('.lightbox-nav-btn') || 
-        e.target.closest('.lightbox-actions') || 
-        e.target.closest('.lightbox-counter-pill') ||
-        e.target.closest('#lightbox-caption-bar')) {
-      return;
+    // Se o clique foi na imagem ou dentro da caixa da foto, mantém aberto
+    const clickedInsidePhoto = e.target.closest('#lightbox-img') || e.target.closest('.lightbox-image-box');
+    const clickedControls = e.target.closest('.lightbox-nav-btn') || e.target.closest('.lightbox-actions') || e.target.closest('.lightbox-counter-pill') || e.target.closest('#lightbox-caption-bar');
+    
+    if (!clickedInsidePhoto && !clickedControls) {
+      closeChatLightbox();
     }
-    closeChatLightbox();
   };
+
+  const backdrop = document.getElementById('lightbox-backdrop');
+  if (backdrop) {
+    backdrop.onclick = (e) => {
+      e.stopPropagation();
+      closeChatLightbox();
+    };
+  }
 
   const closeBtn = document.getElementById('lightbox-btn-close');
   if (closeBtn) {

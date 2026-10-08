@@ -46,6 +46,7 @@ app.get('/apresentacao', (req, res) => {
 const LEADS_FILE = path.join(__dirname, 'data', 'leads.json');
 const CONFIG_FILE = path.join(__dirname, 'data', 'config.json');
 const TEMPLATES_FILE = path.join(__dirname, 'data', 'templates.json');
+const STEP_TEMPLATES_FILE = path.join(__dirname, 'data', 'step_templates.json');
 
 // Helpers de leitura e escrita
 function readJson(file, defaultVal = []) {
@@ -584,6 +585,265 @@ app.post('/api/templates', (req, res) => {
   res.json({ success: true, templates });
 });
 
+// ==================== ROTAS DE CADÊNCIA POR ETAPAS (5 PASSOS) ====================
+
+app.get('/api/step-templates', (req, res) => {
+  const stepTemplates = readJson(STEP_TEMPLATES_FILE, { settings: {}, stages: [] });
+  res.json(stepTemplates);
+});
+
+app.post('/api/step-templates', (req, res) => {
+  const data = req.body;
+  writeJson(STEP_TEMPLATES_FILE, data);
+  res.json({ success: true, stepTemplates: data });
+});
+
+// Atualizar ou disparar etapa de um lead
+app.post('/api/leads/:id/stage', async (req, res) => {
+  const { id } = req.params;
+  const { stage, text, sendNow = false } = req.body;
+  const leads = readJson(LEADS_FILE, []);
+  const lead = leads.find(l => l.id === id);
+
+  if (!lead) return res.status(404).json({ error: 'Lead não encontrado' });
+
+  lead.stage = stage;
+  lead.stageHistory = lead.stageHistory || [];
+
+  if (sendNow && text) {
+    const config = checkAndResetDailyLimit(readJson(CONFIG_FILE, {}));
+    if (config.sentToday >= config.dailyLimit) {
+      return res.status(429).json({
+        error: `Limite diário de segurança atingido (${config.sentToday}/${config.dailyLimit}).`
+      });
+    }
+
+    try {
+      const cleanPhone = lead.cleanPhone || whatsapp.cleanPhoneForWhatsApp(lead.phone);
+      const sendResult = await whatsapp.sendMessage(cleanPhone, text);
+
+      if (stage === 1 && lead.status === 'novo') {
+        lead.status = 'contatado';
+      }
+      lead.lastContact = new Date().toISOString();
+      lead.stageHistory.push({
+        stage,
+        sentAt: new Date().toISOString(),
+        manual: true,
+        text
+      });
+
+      config.sentToday = (config.sentToday || 0) + 1;
+      writeJson(CONFIG_FILE, config);
+      writeJson(LEADS_FILE, leads);
+
+      return res.json({ success: true, lead, sendResult, sentToday: config.sentToday });
+    } catch (err) {
+      console.error('[Stage Send Error]:', err.message);
+      return res.status(500).json({ error: err.message });
+    }
+  }
+
+  writeJson(LEADS_FILE, leads);
+  res.json({ success: true, lead });
+});
+
+// ==================== AUTO-RESPONDER INTELIGENTE DE ETAPAS ====================
+function classifyLeadResponse(text) {
+  if (!text || typeof text !== 'string') return 'neutral';
+  const t = text.toLowerCase().trim();
+
+  const negativePhrases = [
+    'não tenho interesse', 'nao tenho interesse', 'não quero', 'nao quero',
+    'não preciso', 'nao preciso', 'número errado', 'numero errado',
+    'não é daqui', 'nao e daqui', 'engano', 'pare de mandar', 'para de mandar',
+    'não mande mais', 'favor retirar', 'remova meu número', 'quem te deu meu numero',
+    'não sou eu', 'nao sou eu', 'desconheço', 'quem é vc', 'quem e vc', 'não', 'nao',
+    'sai fora', 'não me interessa', 'nao me interessa'
+  ];
+
+  if (t === 'não' || t === 'nao' || negativePhrases.some(p => t.includes(p))) {
+    return 'negative';
+  }
+
+  const positivePhrases = [
+    'sim', 'sou eu', 'é ele', 'e ele', 'pode falar', 'quem fala', 'com quem falo',
+    'quem gostaria', 'quem é', 'quem e', 'olá', 'ola', 'opa', 'tudo bem',
+    'boa tarde', 'bom dia', 'boa noite', 'em que posso ajudar', 'o que seria',
+    'qual o assunto', 'sobre o que é', 'sobre o que se trata', 'fala', 'diga',
+    'manda', 'pode mandar', 'pode dizer', 'pode sim', 'sou a responsável', 'sou o responsável',
+    'quem tá falando', 'quem ta falando', 'como posso te ajudar', 'o que precisa'
+  ];
+
+  if (positivePhrases.some(p => t.includes(p)) || t.length >= 2) {
+    return 'positive';
+  }
+
+  return 'neutral';
+}
+
+function generateCleanWhatsAppLink(lead) {
+  let raw = String(lead.cleanPhone || lead.phone || '').replace(/\D/g, '');
+  if (!raw) return 'https://wa.me/5511999999999?text=Ol%C3%A1!%20Vi%20no%20Google%20e%20gostaria%20de%20informa%C3%A7%C3%B5es';
+  if (raw.length === 10 || raw.length === 11) {
+    raw = '55' + raw;
+  }
+  const cleanName = (lead.name || '')
+    .replace(/\s*-\s*.*$/, '')
+    .replace(/\b(LTDA|ME|EPP|S\/A|EIRELI)\b/gi, '')
+    .trim();
+  const defaultMsg = encodeURIComponent(`Olá! Vi no Google e gostaria de informações sobre ${cleanName || 'os serviços'}.`);
+  return `https://wa.me/${raw}?text=${defaultMsg}`;
+}
+
+function formatStepMessage(lead, rawTemplate, withSite = false) {
+  if (!rawTemplate) return '';
+  let cleanName = (lead.name || '')
+    .replace(/\s*-\s*.*$/, '')
+    .replace(/\b(LTDA|ME|EPP|S\/A|EIRELI)\b/gi, '')
+    .trim();
+
+  const waLink = generateCleanWhatsAppLink(lead);
+
+  let text = rawTemplate;
+  text = text.replace(/{nome}/g, cleanName || 'empresa');
+  text = text.replace(/{nicho}/g, lead.niche || 'seu segmento');
+  text = text.replace(/{bairro}/g, lead.neighborhood || 'sua região');
+  text = text.replace(/{regiao}/g, lead.neighborhood || lead.city || 'São Paulo - SP');
+  text = text.replace(/{cidade}/g, lead.city || 'São Paulo');
+  text = text.replace(/{link_whatsapp}/g, waLink);
+  text = text.replace(/{link_whatsapp_corrigido}/g, waLink);
+  text = text.replace(/{telefone}/g, lead.phone || '');
+  return text;
+}
+
+const autoResponderQueue = new Map();
+
+function initAutoResponder() {
+  if (!whatsapp.events) return;
+
+  whatsapp.events.on('message.received', async ({ jid, phone, text }) => {
+    if (!phone || !text) return;
+    const cleanDigits = String(phone).replace(/\D/g, '');
+
+    // Localizar lead pelo número
+    const leads = readJson(LEADS_FILE, []);
+    const lead = leads.find(l => {
+      if (!l.phone && !l.cleanPhone) return false;
+      const lDigits = String(l.cleanPhone || l.phone).replace(/\D/g, '');
+      if (lDigits === cleanDigits) return true;
+      if (cleanDigits.endsWith(lDigits) || lDigits.endsWith(cleanDigits)) return true;
+      if (cleanDigits.length >= 10 && lDigits.length >= 10) {
+        return cleanDigits.slice(-8) === lDigits.slice(-8);
+      }
+      return false;
+    });
+
+    if (!lead) return;
+
+    // Atualiza status do lead para "respondeu"
+    const prevStatus = lead.status;
+    lead.status = 'respondeu';
+    lead.repliedAt = new Date().toISOString();
+    writeJson(LEADS_FILE, leads);
+
+    const stepData = readJson(STEP_TEMPLATES_FILE, { settings: {}, stages: [] });
+    const settings = stepData.settings || {};
+
+    if (settings.autoResponderEnabled === false) {
+      console.log(`[Auto-Responder] Lead ${lead.name} respondeu, mas automação está desligada.`);
+      return;
+    }
+
+    // Verificar intenção
+    const intent = classifyLeadResponse(text);
+    if (intent === 'negative') {
+      console.log(`[Auto-Responder] Lead ${lead.name} enviou recusa: "${text}". Marcando como perdido.`);
+      lead.status = 'perdido';
+      lead.notes = (lead.notes ? lead.notes + ' | ' : '') + `Recusou: "${text}"`;
+      writeJson(LEADS_FILE, leads);
+      return;
+    }
+
+    // Se o lead estava na Etapa 1 (Abertura) e respondeu, agenda Etapa 2!
+    const currentStage = lead.stage || 1;
+    const maxStage = settings.maxAutoStage || 2;
+
+    if (currentStage === 1 && maxStage >= 2) {
+      if (autoResponderQueue.has(lead.id)) {
+        return; // Já há envio agendado para este lead
+      }
+
+      console.log(`[Auto-Responder] 🎯 Lead "${lead.name}" respondeu à Abertura: "${text}". Agendando Etapa 2...`);
+
+      const stage2Obj = (stepData.stages || []).find(s => s.number === 2);
+      if (!stage2Obj) return;
+
+      const hasSite = lead.hasWebsite === true;
+      const rawText = hasSite ? stage2Obj.templates.comSite : stage2Obj.templates.semSite;
+      let replyMessage = formatStepMessage(lead, rawText, hasSite);
+
+      if (settings.combineStages2and3) {
+        const stage3Obj = (stepData.stages || []).find(s => s.number === 3);
+        if (stage3Obj) {
+          const raw3 = hasSite ? stage3Obj.templates.comSite : stage3Obj.templates.semSite;
+          replyMessage += '\n\n' + formatStepMessage(lead, raw3, hasSite);
+        }
+      }
+
+      const delaySec = Math.max(8, settings.responseDelaySeconds || 18);
+      const jitter = Math.floor(Math.random() * 5);
+      const totalDelayMs = (delaySec + jitter) * 1000;
+
+      const timerId = setTimeout(async () => {
+        autoResponderQueue.delete(lead.id);
+
+        try {
+          const config = checkAndResetDailyLimit(readJson(CONFIG_FILE, {}));
+          if (config.sentToday >= config.dailyLimit) {
+            console.warn('[Auto-Responder] Limite diário atingido. Resposta pausada por segurança.');
+            return;
+          }
+
+          // Simular "digitando..." 4 segundos antes do envio real
+          try {
+            await whatsapp.sendTyping(lead.cleanPhone || phone);
+            await new Promise(r => setTimeout(r, 4000));
+          } catch (tErr) {}
+
+          const sendResult = await whatsapp.sendMessage(lead.cleanPhone || phone, replyMessage);
+
+          lead.stage = settings.combineStages2and3 ? 3 : 2;
+          lead.lastContact = new Date().toISOString();
+          lead.stageHistory = lead.stageHistory || [];
+          lead.stageHistory.push({
+            stage: lead.stage,
+            sentAt: new Date().toISOString(),
+            auto: true,
+            text: replyMessage
+          });
+
+          config.sentToday = (config.sentToday || 0) + 1;
+          writeJson(CONFIG_FILE, config);
+
+          const freshLeads = readJson(LEADS_FILE, []);
+          const idx = freshLeads.findIndex(l => l.id === lead.id);
+          if (idx !== -1) {
+            freshLeads[idx] = { ...freshLeads[idx], ...lead };
+            writeJson(LEADS_FILE, freshLeads);
+          }
+
+          console.log(`[Auto-Responder] ✅ Etapa ${lead.stage} disparada automaticamente para ${lead.name}!`);
+        } catch (sendErr) {
+          console.error(`[Auto-Responder] Erro ao responder ${lead.name}:`, sendErr.message);
+        }
+      }, totalDelayMs);
+
+      autoResponderQueue.set(lead.id, timerId);
+    }
+  });
+}
+
 // Exportar CSV
 app.get('/api/export', (req, res) => {
   const leads = readJson(LEADS_FILE, []);
@@ -616,6 +876,9 @@ const server = app.listen(PORT, () => {
   console.log(`🚀 PINAS PROSPECTOR RODANDO NA PORTA ${PORT}`);
   console.log(`👉 Acesse no navegador: http://localhost:${PORT}`);
   console.log(`===============================================`);
+
+  // Iniciar ouvinte do Auto-Responder
+  initAutoResponder();
 
   // Tentar restaurar sessão salva do WhatsApp se existir credenciais
   const initialStatus = whatsapp.getStatus();
