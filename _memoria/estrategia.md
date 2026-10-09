@@ -21,6 +21,11 @@ Kauê atualmente divide o tempo entre trabalho CLT e a operação da Pinas. O ob
 - **Criação de conteúdo para clientes atuais:** Gerar cópias, roteiros de Reels e carrosséis para Petiva, Pink Luxo, Bem Zanza e Chay B sem travar o dia.
 - **Solução do gargalo da Pink Luxo:** Criar roteiros simples e fáceis para as clientes gravarem vídeos sem atrito + criar mini-playbook de atendimento no WhatsApp para aumentar a conversão de leads em agendamentos pagos.
 - **Relatórios de tráfego semanais:** Analisar exports de Meta/Google Ads via `/relatorio-ads` gerando relatórios executivos rápidos em minutos.
+- **SDR IA Autônomo de Prospecção (Pronto para Executar):**
+  - **Estratégia Conversacional Definida:** Não mandar a dor do site logo na primeira mensagem. Começar com abertura despretensiosa ("Opa, tudo bem? Falo com o responsável pela {nome}?"), ler a resposta da pessoa em tempo real com IA, interpretar se é dono/secretária e conduzir a conversa de forma inteligente até agendar a call de 15 min no Google Meet.
+  - **Lead Piloto Já Auditado e Salvo no Painel:** Clínica Veterinária Tatuapé (`lead-1791504801537`, WhatsApp: `(11) 93380-9012`, Dr. Rodrigo / Dra. Tatiana).
+  - **Modos de Operação:** Co-piloto (assistido no chat) ou SDR IA 24/7 (plugado no `server.js` via API gratuita do Google Gemini para rodar enquanto o Kauê está no CLT).
+
 
 ## O que Pode Esperar
 

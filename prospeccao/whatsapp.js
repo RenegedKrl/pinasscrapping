@@ -382,6 +382,7 @@ async function initWhatsApp(force = false) {
           name: sock.user && sock.user.name ? sock.user.name : 'Kauê • Pinas Studio'
         };
         console.log(`[WhatsApp] CONECTADO COM SUCESSO! Telefone: ${phone} (${connectedUser.name})`);
+        waEvents.emit('connected', connectedUser);
         
         // Sincronizar grupos do WhatsApp automaticamente
         setTimeout(() => {
@@ -722,6 +723,7 @@ module.exports = {
   initWhatsApp,
   disconnectWhatsApp,
   getStatus,
+  isReady: () => connectionStatus === 'connected' && !!sock,
   sendMessage,
   sendMediaMessage,
   sendAudioMessage,

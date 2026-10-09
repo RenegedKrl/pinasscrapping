@@ -39,6 +39,10 @@
         <span class="stat-label">Disparos Hoje</span>
         <span class="stat-value" id="kpi-sent-today">0 / 30</span>
       </div>
+      <div class="stat-pill highlight-gemini" id="header-gemini-free-pill" title="Cota Oficial do Google Gemini Free Tier (100% Gratuito)">
+        <span class="stat-label">⚡ Gemini Free Tier</span>
+        <span class="stat-value" id="kpi-gemini-usage">0 / 1500 (Grátis)</span>
+      </div>
       <button class="header-wa-btn" id="btn-header-wa" title="Status da Conexão do WhatsApp">
         <span class="status-indicator-dot dot-disconnected" id="header-wa-dot"></span>
         <span id="header-wa-text">Conectar WhatsApp</span>
@@ -404,8 +408,9 @@
               <div class="form-group" style="margin-top: 1rem;">
                 <label class="form-label">Formato do Disparo:</label>
                 <select id="autopilot-dispatch-mode" class="form-control form-control-sm">
-                  <option value="stages" selected>📂 Por Etapas (Dispara Etapa 1 Abertura) ★ Recomendado</option>
-                  <option value="single">📄 Clássico (Dispara Mensagem Completa)</option>
+                  <option value="ai_gemini" selected>🧠 IA Gemini + Auditoria Real (Site & Maps) ★ 100% Autônomo</option>
+                  <option value="stages">📂 Por Etapas (Dispara Etapa 1 Abertura)</option>
+                  <option value="single">📄 Clássico (Dispara Mensagem de Template)</option>
                 </select>
               </div>
 
@@ -413,20 +418,72 @@
                 <label class="form-label">Intervalo de Segurança:</label>
                 <select id="autopilot-delay-select" class="form-control form-control-sm">
                   <option value="35">35 segundos (Rápido & Seguro)</option>
-                  <option value="50" selected>50 segundos (Recomendado)</option>
-                  <option value="75">75 segundos (Ultra Conservador)</option>
+                  <option value="50">50 segundos (Recomendado)</option>
+                  <option value="75" selected>75 segundos (Ultra Conservador & Seguro)</option>
+                  <option value="120">2 minutos (Anti-Bloqueio Máximo)</option>
                 </select>
               </div>
 
+              <!-- Auto-Start 24/7 Permanente Toggle -->
+              <div class="cadence-autostart-box" style="margin-top: 0.75rem; padding: 0.65rem 0.85rem; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: var(--radius-sm);">
+                <label class="toggle-wrap" style="margin-bottom: 0;">
+                  <input type="checkbox" id="autopilot-autostart-toggle" checked>
+                  <span class="toggle-label" style="font-weight: 600; font-size: 0.85rem; color: #60a5fa;">⚡ Modo 24/7 Autônomo Permanente</span>
+                </label>
+                <p style="font-size: 0.74rem; color: var(--text-secondary); margin: 0.35rem 0 0 0; line-height: 1.3;">
+                  Inicia sozinho com o servidor. Atinge a meta do dia, entra em standby noturno e retoma automaticamente à meia-noite sem precisar clicar em nada.
+                </p>
+              </div>
+
               <!-- Auto-Responder Switch & Info -->
-              <div class="cadence-autoresponder-box" style="margin-top: 0.75rem; padding: 0.65rem 0.85rem; background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: var(--radius-sm);">
+              <div class="cadence-autoresponder-box" style="margin-top: 0.65rem; padding: 0.65rem 0.85rem; background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: var(--radius-sm);">
                 <label class="toggle-wrap" style="margin-bottom: 0;">
                   <input type="checkbox" id="cadence-autoresponder-toggle" checked>
-                  <span class="toggle-label" style="font-weight: 600; font-size: 0.85rem; color: var(--color-green);">🤖 Auto-Resposta de Etapas Ativa</span>
+                  <span class="toggle-label" style="font-weight: 600; font-size: 0.85rem; color: var(--color-green);">🤖 Conversa Contínua da IA Ativa (24/7)</span>
                 </label>
-                <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0.35rem 0 0 0;">
-                  Quando o lead responder à Abertura (ex: "Sim, sou eu", "Pode falar"), o robô responde a Etapa 2 após 18s com presença humana.
+                <p style="font-size: 0.74rem; color: var(--text-secondary); margin: 0.35rem 0 0 0; line-height: 1.3;">
+                  Quando o lead responder, o Gemini continua a conversa de forma infinita e adaptativa até fechar a call no Google Meet.
                 </p>
+              </div>
+
+              <!-- Janela Comercial de Disparos Novos Leads (10h às 19h) -->
+              <div class="cadence-window-box" style="margin-top: 0.65rem; padding: 0.65rem 0.85rem; background: rgba(59, 130, 246, 0.06); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: var(--radius-sm);">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span style="font-weight: 700; font-size: 0.82rem; color: #60A5FA; display: flex; align-items: center; gap: 6px;">
+                    <span>⏰</span> Janela de Novos Leads:
+                  </span>
+                  <span class="badge-status-pill" id="autopilot-window-status-pill" style="font-size: 0.72rem; padding: 2px 8px; border-radius: 999px; background: rgba(59, 130, 246, 0.2); color: #93C5FD; border: 1px solid rgba(59, 130, 246, 0.4);">
+                    10h às 19h (SP)
+                  </span>
+                </div>
+                <p style="font-size: 0.74rem; color: var(--text-secondary); margin: 0.35rem 0 0 0; line-height: 1.3;">
+                  Novos contatos são disparados apenas entre <strong>10:00 e 19:00</strong>. Respostas de leads que já falaram continuam <strong>24/7</strong>.
+                </p>
+              </div>
+
+              <!-- Caixa de Auditoria e Pitch ao Vivo da IA -->
+              <div class="autopilot-audit-box" id="autopilot-audit-box" style="display: none; margin-top: 0.75rem; padding: 0.75rem; background: rgba(255, 0, 85, 0.05); border: 1px solid rgba(255, 0, 85, 0.25); border-radius: var(--radius-sm);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+                  <strong style="font-size: 0.8rem; color: var(--color-red);">🔍 Auditoria de Site & Maps em Tempo Real</strong>
+                  <span id="autopilot-audit-status" style="font-size: 0.75rem; color: var(--text-secondary);">Analisando...</span>
+                </div>
+                <div id="autopilot-audit-details" style="font-size: 0.78rem; color: var(--text-primary); line-height: 1.4;"></div>
+              </div>
+
+              <!-- Feed de Atividades ao Vivo da IA -->
+              <div class="autopilot-live-feed-box" style="margin-top: 0.75rem; padding: 0.65rem 0.85rem; background: rgba(0, 0, 0, 0.35); border: 1px solid var(--border-color); border-radius: var(--radius-sm);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
+                  <span style="font-size: 0.76rem; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 6px;">
+                    <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--color-green); box-shadow: 0 0 6px var(--color-green);"></span>
+                    Feed de Ações da IA ao Vivo
+                  </span>
+                  <button type="button" id="btn-enable-desktop-notifications" class="btn btn-outline btn-xs" style="font-size: 0.68rem; padding: 2px 7px; border-color: rgba(255,255,255,0.2);">
+                    🔔 Alertas Desktop
+                  </button>
+                </div>
+                <div id="autopilot-live-logs" style="max-height: 110px; overflow-y: auto; font-family: monospace; font-size: 0.72rem; color: #a1a1aa; display: flex; flex-direction: column; gap: 4px;">
+                  <div style="color: #71717a;">Carregando logs do motor autônomo...</div>
+                </div>
               </div>
 
               <div class="autopilot-countdown-box" id="autopilot-countdown-box" style="display: none; margin-top: 0.75rem;">
@@ -435,13 +492,19 @@
                 <small id="autopilot-target-lead">Alvo: ...</small>
               </div>
 
-              <div class="autopilot-btn-group" style="margin-top: 1.25rem;">
+              <div class="autopilot-btn-group" style="margin-top: 1rem;">
                 <button class="btn btn-whatsapp btn-lg full-width" id="btn-start-autopilot">
-                  <span>▶️ INICIAR PILOTO AUTOMÁTICO</span>
+                  <span>🚀 INICIAR PILOTO AUTOMÁTICO IA</span>
                 </button>
                 <button class="btn btn-outline full-width" id="btn-pause-autopilot" style="display: none;">
                   <span>⏸️ PAUSAR PILOTO AUTOMÁTICO</span>
                 </button>
+              </div>
+
+              <!-- Dica de Segundo Plano Seguro -->
+              <div style="margin-top: 0.75rem; padding: 0.5rem 0.75rem; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: var(--radius-sm); font-size: 0.72rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 0.95rem;">💻</span>
+                <span><strong>Segundo Plano Ativo:</strong> A IA e o WhatsApp rodam no Windows. Pode fechar o site ou a aba a qualquer momento!</span>
               </div>
             </div>
 
@@ -454,10 +517,15 @@
           <div class="queue-card">
             <div class="section-title-wrap">
               <h3>Fila de Leads Pendentes (<span id="queue-pending-count">0</span>)</h3>
-              <div class="form-group" style="margin: 0; min-width: 280px;">
-                <select id="cadence-template-select" class="form-control form-control-sm">
-                  <!-- Injetado via JS -->
-                </select>
+              <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                <button type="button" class="btn btn-outline btn-sm" id="btn-hunt-bad-sites" style="border-color: rgba(255, 0, 85, 0.4); color: #fff; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;" title="Caçar ativamente na internet empresas com sites lentos, fora do ar ou sem WhatsApp">
+                  <span>🎯 Caçar Sites Ruins na Web</span>
+                </button>
+                <div class="form-group" style="margin: 0; min-width: 220px;">
+                  <select id="cadence-template-select" class="form-control form-control-sm">
+                    <!-- Injetado via JS -->
+                  </select>
+                </div>
               </div>
             </div>
 
@@ -539,6 +607,26 @@
               <div class="form-group flex-1">
                 <label class="form-label">Delay Máximo (segundos):</label>
                 <input type="number" id="settings-max-delay" class="form-control" min="20" max="300" value="60">
+              </div>
+            </div>
+
+            <div class="form-row" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+              <div class="form-group flex-1">
+                <label class="form-label">⏰ Início de Disparos para Novos Leads (Hora):</label>
+                <input type="number" id="settings-outbound-start" class="form-control" min="0" max="23" value="10">
+                <small style="color: var(--text-muted); font-size: 0.75rem;">Apenas primeiros contatos / prospecção fria (Padrão: 10h da manhã).</small>
+              </div>
+              <div class="form-group flex-1">
+                <label class="form-label">🛑 Término de Disparos para Novos Leads (Hora):</label>
+                <input type="number" id="settings-outbound-end" class="form-control" min="0" max="23" value="19">
+                <small style="color: var(--text-muted); font-size: 0.75rem;">Limite comercial noturno para novos contatos (Padrão: 19h da noite).</small>
+              </div>
+              <div class="form-group flex-1">
+                <label class="form-label">💬 Atendimento IA a Respostas:</label>
+                <div style="padding: 9px 12px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: var(--radius-sm); color: #34D399; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                  <span>🟢</span> Ativo 24/7 (Sempre responde)
+                </div>
+                <small style="color: var(--text-muted); font-size: 0.75rem;">Responde clientes que mandarem mensagem a qualquer hora do dia ou da noite.</small>
               </div>
             </div>
           </div>
@@ -786,7 +874,10 @@
                   <button type="button" class="snippet-pill stage-pill" data-stage="5" title="Etapa 5: Fechamento (CTA / Call)">5️⃣ Fechamento</button>
                 </div>
                 <div style="display: flex; gap: 0.35rem; align-items: center; flex-wrap: wrap;">
-                  <span class="snippets-label">⚡ Respostas Rápidas:</span>
+                  <button type="button" class="snippet-pill snippet-ai-glow" id="btn-chat-ai-suggest" title="Analisar contexto da conversa com Gemini e sugerir a melhor resposta na voz do Kauê">
+                    <span>✨</span> Sugerir com IA
+                  </button>
+                  <span class="snippets-label">⚡ Rápidas:</span>
                   <button type="button" class="snippet-pill" data-snippet="call">📅 Propor Call 15 min</button>
                   <button type="button" class="snippet-pill" data-snippet="servico">🎯 Como Funciona</button>
                   <button type="button" class="snippet-pill" data-snippet="preco">💰 Quanto Custa?</button>
@@ -851,12 +942,26 @@
       </div>
 
       <!-- Mode Switcher Tabs -->
-      <div class="modal-nav-tabs" style="padding: 0 1.5rem; border-bottom: 1px solid var(--border-color); display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+      <div class="modal-nav-tabs" style="padding: 0 1.5rem; border-bottom: 1px solid var(--border-color); display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap;">
         <button type="button" class="modal-tab-btn active" id="btn-mode-stages" onclick="switchModalMode('stages')">
           <span>📂 Por Etapas (Novo Formato)</span>
         </button>
         <button type="button" class="modal-tab-btn" id="btn-mode-classic" onclick="switchModalMode('classic')">
           <span>📄 Mensagem Completa (Clássico)</span>
+        </button>
+        <button type="button" class="modal-tab-btn tab-gemini-glow" id="btn-mode-gemini" onclick="switchModalMode('gemini')">
+          <span style="display: flex; align-items: center; gap: 6px;">
+            <span>✨</span>
+            <strong style="color: #fff;">Abordagem com IA</strong>
+            <span class="badge-gemini-chip">Gemini 3.8</span>
+          </span>
+        </button>
+        <button type="button" class="modal-tab-btn" id="btn-mode-callscript" onclick="switchModalMode('callscript')">
+          <span style="display: flex; align-items: center; gap: 6px;">
+            <span>📋</span>
+            <strong style="color: #fff;">Roteiro de Call & Design</strong>
+            <span style="font-size: 0.65rem; background: rgba(255,0,85,0.3); color: #FF3366; padding: 2px 6px; border-radius: 4px; font-weight: 800; border: 1px solid rgba(255,0,85,0.5);">15 MIN</span>
+          </span>
         </button>
       </div>
 
@@ -909,6 +1014,79 @@
           <div class="form-group">
             <label for="modal-wa-message-preview" class="form-label">Prévia da Mensagem (Você pode editar antes de enviar):</label>
             <textarea id="modal-wa-message-preview" class="form-control" rows="8"></textarea>
+          </div>
+        </div>
+
+        <!-- ================= MODO 3: INTELIGÊNCIA ARTIFICIAL (GEMINI) ================= -->
+        <div id="modal-mode-gemini-container" style="display: none;">
+          <!-- Card de Diagnóstico do Lead -->
+          <div class="gemini-card-box">
+            <div class="gemini-card-header">
+              <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <span class="gemini-icon-sparkle">🧠</span>
+                <div>
+                  <h4 style="margin: 0; font-size: 0.98rem; color: #fff; font-weight: 700;">Diagnóstico Estratégico do Negócio</h4>
+                  <p style="margin: 0; font-size: 0.78rem; color: var(--text-secondary);">Análise crítica da presença digital gerada pelo Gemini 3.8 Flash</p>
+                </div>
+              </div>
+              <button type="button" class="btn btn-outline btn-xs" id="btn-refresh-gemini-analysis" onclick="refreshGeminiAnalysis()" title="Recalcular diagnóstico com IA">
+                🔄 Atualizar Análise
+              </button>
+            </div>
+
+            <div id="gemini-diagnosis-loading" style="display: none; padding: 2rem; text-align: center;">
+              <div class="spinner" style="width: 26px; height: 26px; border-width: 2px; margin: 0 auto 0.6rem;"></div>
+              <span style="font-size: 0.85rem; color: var(--text-secondary);">Processando perfil, reputação e gargalos com o Gemini...</span>
+            </div>
+
+            <div id="gemini-diagnosis-content" class="gemini-diagnosis-body">
+              <!-- Preenchido via Javascript -->
+            </div>
+          </div>
+
+          <!-- Seção de Geração de Abordagens na voz do Kauê -->
+          <div class="gemini-pitches-wrap" style="margin-top: 1.25rem;">
+            <div class="gemini-pitches-header">
+              <div>
+                <h4 style="margin: 0; font-size: 1rem; color: #fff; display: flex; align-items: center; gap: 0.5rem;">
+                  <span>✨</span> Abordagens Sob Medida (Voz do Kauê)
+                </h4>
+                <p style="margin: 2px 0 0; font-size: 0.8rem; color: var(--text-muted);">
+                  3 roteiros naturais e humanizados prontos para envio no WhatsApp
+                </p>
+              </div>
+              <button type="button" class="btn btn-primary btn-sm btn-gemini-action" id="btn-generate-gemini-pitches" onclick="generateGeminiPitches()">
+                <span>✨ Gerar Novas Opções</span>
+              </button>
+            </div>
+
+            <!-- Input de instrução extra opcional -->
+            <div class="gemini-guidance-bar" style="margin: 0.85rem 0 1rem; display: flex; gap: 0.5rem;">
+              <input type="text" id="gemini-extra-guidance" class="form-control" style="font-size: 0.85rem; background: rgba(255,255,255,0.03);" placeholder="Instrução adicional opcional (ex: 'foca na falta de site', 'mencione que vi a Dra. no Maps')">
+            </div>
+
+            <div id="gemini-pitches-loading" style="display: none; padding: 2.5rem; text-align: center;">
+              <div class="spinner" style="width: 28px; height: 28px; border-width: 3px; margin: 0 auto 0.75rem;"></div>
+              <span style="font-size: 0.9rem; color: var(--text-secondary);">Gerando roteiros persuasivos e humanizados...</span>
+            </div>
+
+            <!-- Grid de Pitches -->
+            <div class="gemini-pitches-grid" id="gemini-pitches-cards-wrapper">
+              <!-- Injetado dinamicamente via Javascript -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= MODO 4: AUDITORIA VISUAL & ROTEIRO DE CALL (15 MIN) ================= -->
+        <div id="modal-mode-callscript-container" style="display: none;">
+          <div id="callscript-view-loading" style="display: none; padding: 2.5rem 1rem; text-align: center;">
+            <div class="spinner" style="width: 32px; height: 32px; border-width: 3px; margin: 0 auto 0.85rem;"></div>
+            <strong style="display: block; font-size: 1rem; color: #fff; margin-bottom: 4px;">Analisando Seção por Seção do Site...</strong>
+            <span style="font-size: 0.85rem; color: var(--text-secondary);">Avaliando Hero, imagens, responsividade mobile, gatilhos de conversão e estruturando o roteiro de call de 15 min...</span>
+          </div>
+
+          <div id="callscript-view-content" class="deep-audit-container">
+            <!-- Injetado dinamicamente via Javascript -->
           </div>
         </div>
 
@@ -980,6 +1158,8 @@
         </div>
       </form>
     </div>
+  </div>
+
   <!-- Modal: Conexão WhatsApp / Leitura de QR Code -->
   <div class="modal-overlay" id="modal-wa-connect" style="display: none;">
     <div class="modal-box modal-box-md">

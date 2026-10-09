@@ -1,7 +1,10 @@
 {
+  "autoStartAutopilot": true,
   "dailyLimit": 32,
-  "sentToday": 2,
-  "lastResetDate": "2026-10-08",
+  "outboundStartHour": 10,
+  "outboundEndHour": 19,
+  "sentToday": 7,
+  "lastResetDate": "2026-10-09",
   "minDelaySeconds": 30,
   "maxDelaySeconds": 60,
   "excludedChains": [
@@ -37,11 +40,23 @@
     "leroy merlin",
     "pink luxo estética",
     "pink luxo",
+    "pink luxo estética & beleza",
+    "pink luxo estetica & beleza",
     "bem zanza",
+    "bem zânza",
+    "bem zanza | moda feminina",
+    "bem zânza | moda feminina",
     "chay b",
     "chayb",
     "happy play dogs",
-    "petiva"
+    "petiva",
+    "centro veterinário petiva",
+    "centro veterinario petiva",
+    "centro veterinário petiva | clínica veterinária em vila buarque | veterinários em sp",
+    "brás",
+    "bras",
+    "faculdade",
+    "governo"
   ],
   "excludedKeywords": [
     "estética",
@@ -60,11 +75,24 @@
     "estética facial",
     "pink luxo estética",
     "pink luxo",
+    "pink luxo estética & beleza",
+    "pink luxo estetica & beleza",
     "bem zanza",
+    "bem zânza",
+    "bem zanza | moda feminina",
+    "bem zânza | moda feminina",
     "chay b",
     "chayb",
     "happy play dogs",
-    "petiva"
+    "petiva",
+    "centro veterinário petiva",
+    "centro veterinario petiva",
+    "centro veterinário petiva | clínica veterinária em vila buarque | veterinários em sp",
+    "brás",
+    "bras",
+    "faculdade",
+    "topografia",
+    "governo"
   ],
   "defaultNiches": [
     {
@@ -78,23 +106,18 @@
       "templateId": "veterinaria"
     },
     {
-      "name": "Pet Shops com Veterinário",
-      "query": "pet shop veterinario",
-      "templateId": "veterinaria"
+      "name": "Escritórios de Advocacia",
+      "query": "escritorio de advocacia",
+      "templateId": "advogado"
     },
     {
-      "name": "Lojas de Roupas no Brás",
-      "query": "loja de roupas bras",
-      "templateId": "roupas-moda"
+      "name": "Advogados Especialistas",
+      "query": "advogado",
+      "templateId": "advogado"
     },
     {
-      "name": "Moda Feminina Bom Retiro",
-      "query": "moda feminina bom retiro",
-      "templateId": "roupas-moda"
-    },
-    {
-      "name": "Confecções e Roupas no Atacado",
-      "query": "confeccao roupas atacado",
+      "name": "Lojas de Roupas (Geral)",
+      "query": "loja de roupas femininas",
       "templateId": "roupas-moda"
     }
   ]

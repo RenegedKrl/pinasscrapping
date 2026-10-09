@@ -58,3 +58,8 @@ criação de sites e campanhas de tráfego pago (Meta Ads e Google Ads).
 - **Relatório de tráfego:** Usar `/relatorio-ads` lendo os exports de campanhas e gerando diagnósticos rápidos.
 - **Conteúdo e carrosséis:** Usar `/carrossel` aproveitando o gerador nativo `generate_image` para posts da Pinas ou clientes.
 - **Prospecção:** Prioridade número 1 — apoiar o Kauê com roteiros de abordagem e propostas para aumentar a base e viabilizar a saída do CLT.
+- **Blacklist Estrita de Prospecção (NUNCA pesquisar ou abordar):**
+  - Clientes Atuais: **Petiva**, **Pink Luxo**, **Chay B**, **Bem Zanza** (e todas as suas variações de nome).
+  - Região / Nicho proibido: **Brás** e lojas em geral do Brás.
+- **Nichos Prioritários:** 1º Clínicas Veterinárias | 2º Escritórios de Advocacia | 3º Lojas de Roupa (fora do Brás, prioridade menor) | Outros serviços qualificados.
+

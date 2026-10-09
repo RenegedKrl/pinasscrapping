@@ -1,5 +1,227 @@
 [
   {
+    "name": "kaue",
+    "niche": "designer grafico",
+    "phone": "11941713647",
+    "cleanPhone": "5511941713647",
+    "hasPhone": true,
+    "hasMobile": true,
+    "website": "",
+    "hasWebsite": false,
+    "neighborhood": "Embu Guaçu",
+    "notes": "",
+    "id": "lead-1791517165805",
+    "createdAt": "2026-10-09T03:39:25.805Z",
+    "status": "contatado",
+    "opportunity": {
+      "score": 4,
+      "type": "site",
+      "label": "🌐 Oportunidade: Criação de Site",
+      "attackAngle": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads."
+    },
+    "score": 4,
+    "aiAnalysis": {
+      "summary": "O Kauê, designer gráfico em Embu Guaçu, ainda não tem site nem avaliações no Maps. Isso significa que ele tá deixando muito cliente na mesa, sem ser encontrado.",
+      "opportunityScore": 9,
+      "strengths": [
+        "Nicho de serviço onde o visual e um bom portfólio são cruciais, e um site seria perfeito pra isso.",
+        "Atuação local em Embu Guaçu, que a gente consegue explorar bem com tráfego pago direcionado."
+      ],
+      "weaknesses": [
+        "Não tem site, então ele não tem uma vitrine online pra mostrar o trabalho e nem um jeito fácil dos clientes entrarem em contato.",
+        "Zero avaliações no Google Maps, o que dificulta muito a confiança de quem pesquisa por designer na região.",
+        "Deve estar perdendo muitos clientes que procuram online e não o encontram ou não veem credibilidade."
+      ],
+      "bestAngle": "Focar na urgência de ter um site profissional, que mostre o portfólio dele de um jeito moderno e fácil de converter. E falar como isso resolve o problema de ser encontrado e de passar confiança, mesmo sem avaliações ainda.",
+      "recommendedPitchIdea": "Propor a criação de uma landing page super moderna e rápida, com o portfólio dele e um botão de WhatsApp direto, pensando nos clientes de Embu Guaçu. E já dar a ideia de, depois, a gente trazer esses clientes via tráfego pago e ajudar ele a coletar as primeiras avaliações."
+    },
+    "aiAnalyzedAt": "2026-10-09T03:39:49.350Z",
+    "lastContact": "2026-10-09T03:40:54.057Z",
+    "stage": 1,
+    "stageHistory": []
+  },
+  {
+    "name": "Clínica Veterinária Tatuapé",
+    "niche": "clinica veterinaria",
+    "phone": "(11) 93380-9012",
+    "cleanPhone": "5511933809012",
+    "hasPhone": true,
+    "hasMobile": true,
+    "website": "https://clinicaveterinariatatuape.com.br",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Clinica+Veterinaria+Tatuape+Rua+Dom+Andres+Lamas+287",
+    "rating": "4.8",
+    "reviews": 35,
+    "address": "Rua Dom Andrés Lamas, 287",
+    "neighborhood": "Tatuapé",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 5,
+      "type": "site",
+      "label": "🌐 Oportunidade: Otimização de Conversão & Tráfego",
+      "attackAngle": "Botão de Agendar Horário joga pra formulário de e-mail no rodapé em vez de WhatsApp direto. Sem H1 de agendamento rápido."
+    },
+    "score": 5,
+    "notes": "Auditado via Google. 21 anos de tradição (Dr. Rodrigo e Dra. Tatiana). Gargalo de conversão: botão de agendamento leva a formulário estático de e-mail em vez de WhatsApp direto.",
+    "status": "contatado",
+    "stage": 1,
+    "id": "lead-1791504801537",
+    "createdAt": "2026-10-09T00:13:21.537Z",
+    "lastContact": "2026-10-09T04:59:22.449Z",
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "https://clinicaveterinariatatuape.com.br",
+      "isOnline": true,
+      "loadTimeMs": 39,
+      "title": "Clínica Veterinária Tatuapé",
+      "hasWhatsApp": true,
+      "hasMetaPixel": false,
+      "hasGoogleAdsOrTag": false,
+      "hasAnalytics": false,
+      "doesPaidTraffic": false,
+      "isMobileResponsive": true,
+      "isSlow": false,
+      "diagnosisTags": [
+        "✅ Tem WhatsApp",
+        "🔍 Sem Tráfego Pago Ativo"
+      ],
+      "strengths": [
+        "Carregamento ágil (0.0s)",
+        "Possui botão de WhatsApp no site"
+      ],
+      "weaknesses": [
+        "Não possui Pixel do Facebook ou Google Ads ativo (não faz tráfego qualificado)"
+      ],
+      "opportunityScore": 8,
+      "attackAngle": "A empresa tem site funcional mas não usa tráfego pago para atrair os clientes da região.",
+      "summary": "Site ativo (0.0s). Possui botão de WhatsApp. SEM tags de tráfego pago."
+    },
+    "mapsAudit": {
+      "rating": 4.8,
+      "reviews": 35,
+      "neighborhood": "Tatuapé",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 4.8 (35 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (35 avaliações com nota 4.8)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Tatuapé. Avaliações: 35 (nota 4.8). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "Reconhecimento das 35 avaliações positivas (4.8) e do site com WhatsApp, apontando a oportunidade inexplorada de anúncios geolocalizados no Tatuapé para atrair novos tutores.",
+      "bestAngle": "Elogio à reputação local + ausência de tráfego pago no bairro (sem tags ativas)"
+    },
+    "initialPitch": "Opa, tudo bem? Kauê por aqui, da Pinas.\n\nEstava pesquisando clínicas aqui no Tatuapé e vi a ótima nota de vocês no Google (4.8 estrelas, parabéns!). Dei uma olhada no site de vocês pelo celular e vi que ele é bem direto com botão de WhatsApp, mas notei que vocês ainda não rodam anúncios locais no Google e nas redes aqui pelo bairro pra quem busca atendimento veterinário por perto.\n\nA gente cuida exatamente dessa atração de tutores da região pra caírem direto no Whats da clínica. Vocês já têm alguém cuidando dessa parte de divulgação local por aí hoje?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-09T04:59:22.449Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo bem? Kauê por aqui, da Pinas.\n\nEstava pesquisando clínicas aqui no Tatuapé e vi a ótima nota de vocês no Google (4.8 estrelas, parabéns!). Dei uma olhada no site de vocês pelo celular e vi que ele é bem direto com botão de WhatsApp, mas notei que vocês ainda não rodam anúncios locais no Google e nas redes aqui pelo bairro pra quem busca atendimento veterinário por perto.\n\nA gente cuida exatamente dessa atração de tutores da região pra caírem direto no Whats da clínica. Vocês já têm alguém cuidando dessa parte de divulgação local por aí hoje?"
+      }
+    ],
+    "deepVisualAudit": {
+      "overallRating": "4/10",
+      "firstImpression": "O site parece parado no tempo. Para uma clínica veterinária, falta o calor humano, fotos reais dos pets e da equipe, passando uma sensação fria que não gera conexão imediata com o tutor.",
+      "sections": [
+        {
+          "name": "Hero Section (Topo)",
+          "status": "Crítico",
+          "critique": "O título é extremamente genérico e não possui marcação H1 estruturada para o Google. Um tutor que entra em um momento de urgência ou buscando um profissional de confiança não encontra uma promessa clara de cuidado ou facilidade de contato imediato.",
+          "improvement": "Criar um título forte focado na região e na confiança, por exemplo: 'Cuidado veterinário de confiança para o seu melhor amigo no Tatuapé'. Inserir um botão de agendamento rápido via WhatsApp em destaque logo na primeira dobra."
+        },
+        {
+          "name": "Imagens & Identidade Visual",
+          "status": "Crítico",
+          "critique": "O site não apresenta imagens reais da clínica, dos veterinários ou dos pacientes. A falta de fotos do espaço físico ou de rostos humanos gera desconfiança, algo péssimo para quem lida com a saúde de membros da família (os pets).",
+          "improvement": "Implementar uma identidade visual acolhedora e moderna, utilizando fotos reais e bem iluminadas do consultório, da equipe de atendimento e de animais felizes sendo cuidados, todas otimizadas para carregamento rápido."
+        },
+        {
+          "name": "Experiência Mobile & Velocidade",
+          "status": "Regular",
+          "critique": "O site carrega rápido apenas porque é vazio e sem conteúdo robusto. No celular, a experiência é sem graça, com textos pequenos e elementos de contato que não acompanham a rolagem da tela para facilitar o clique com o polegar.",
+          "improvement": "Desenvolver um design mobile-first focado na usabilidade de quem está segurando o celular e, muitas vezes, com o pet no colo. Botão de WhatsApp fixo e flutuante no rodapé para contato com um único toque."
+        },
+        {
+          "name": "Conversão & Prova Social",
+          "status": "Regular",
+          "critique": "Embora possua um botão de WhatsApp, a clínica tem uma nota excelente de 4.8★ com 35 avaliações no Google Maps que está sendo totalmente desperdiçada, pois esses depoimentos valiosos dos moradores do Tatuapé não aparecem no site.",
+          "improvement": "Integrar os depoimentos reais do Google diretamente em uma seção de prova social no site, além de mapear os serviços mais procurados (consultas, exames, vacinas) com chamadas diretas para agendamento em cada um deles."
+        }
+      ],
+      "pinasRedesignPitch": "1. Conexão imediata mostrando o carinho e a estrutura real da clínica com fotos profissionais. 2. Destaque total para as 35 avaliações de 4.8 estrelas do Google Maps logo no topo da página, provando que o Tatuapé confia em vocês. 3. Botões de conversão e agendamento extremamente rápidos no celular para facilitar o contato de tutores em momentos de rotina ou urgência."
+    },
+    "callScript": {
+      "totalTime": "15 minutos",
+      "steps": [
+        {
+          "time": "00:00 - 03:00",
+          "title": "Abertura & Conexão Local",
+          "objective": "Quebrar o gelo e validar a autoridade dele na região",
+          "script": "Fala, pessoal, tudo bem? Prazer, sou o Kauê da Pinas. Obrigado por esse tempo de vocês. Estava olhando aqui que vocês estão no Tatuapé, né? Região excelente, sou de SP e conheço bem a movimentação daí. E cara, antes de qualquer coisa, parabéns pela nota de vocês no Google Maps. 4.8 com 35 avaliações não é para qualquer um, dá para ver que os tutores da região realmente amam e confiam no trabalho de vocês.",
+          "tip": "Fale com tom descontraído, com sorriso na voz e de forma bem natural, sem parecer que está lendo um roteiro de vendas."
+        },
+        {
+          "time": "03:00 - 07:00",
+          "title": "Perguntas de Diagnóstico",
+          "objective": "Fazer o cliente falar sobre a captação atual e volume de atendimentos",
+          "questions": [
+            {
+              "question": "Hoje, a maior parte das pessoas que chegam até a clínica vem por indicação, por passar na porta, ou vocês já sentem um reflexo forte de pessoas pesquisando no Google e caindo no site?",
+              "why": "Para identificar se eles dependem unicamente do ponto físico e do boca a boca, abrindo espaço para a necessidade de captação digital ativa."
+            },
+            {
+              "question": "Quando alguém chama vocês no WhatsApp vindo do site atual, o pessoal geralmente já chega pronto para agendar ou vocês sentem que entra muita gente curiosa só perguntando preço de consulta?",
+              "why": "Para mostrar que um site mal estruturado atrai leads desqualificados, enquanto uma página de alta conversão prepara o cliente para o agendamento."
+            },
+            {
+              "question": "Vocês têm algum serviço específico na clínica que traz mais retorno financeiro — tipo cirurgias, exames de imagem ou especialidades — que vocês gostariam de ter mais demanda na agenda hoje?",
+              "why": "Para entender qual é o serviço de maior margem e focar o discurso de retorno sobre o investimento (ROI) nele."
+            }
+          ]
+        },
+        {
+          "time": "07:00 - 11:00",
+          "title": "Apresentação Visual na Tela",
+          "objective": "Compartilhar a tela, mostrar os pontos cegos e encantar com a solução",
+          "whatToShow": [
+            "O site atual no celular, apontando para a ausência de fotos reais da equipe e dos pets, o que torna a página impessoal.",
+            "A falta das avaliações de 4.8★ do Google Maps dentro do site atual, mostrando que eles estão escondendo o maior trunfo de vendas deles.",
+            "A ausência de tags de SEO básicas (H1 e meta description), explicando que isso deixa a clínica 'invisível' para pesquisas locais no Google."
+          ],
+          "presentationScript": "Vou compartilhar minha tela rapidinho com vocês. Olha só, o site de vocês funciona e abre rápido, mas ele está muito institucional, meio frio. Quem tem um pet e precisa de veterinário busca acolhimento e confiança. Hoje não temos fotos de vocês aqui, nem do espaço físico. Outro ponto: vocês têm aquela reputação incrível de 4.8 estrelas no Google, mas quem entra no site não vê isso. O cliente que não conhece vocês pessoalmente acaba saindo sem chamar. A nossa proposta é transformar essa página em uma Landing Page de alta conversão: super moderna, que traga as fotos reais de vocês, as avaliações dos vizinhos do Tatuapé estampadas no topo, e botões bem fáceis para o tutor agendar a consulta pelo WhatsApp em um clique."
+        },
+        {
+          "time": "11:00 - 14:00",
+          "title": "Quebra de Objeções",
+          "objective": "Desarmar as principais dúvidas com naturalidade",
+          "objections": [
+            {
+              "objection": "Quanto custa o projeto de vocês?",
+              "answer": "Olha, nós não temos um valor fixo de prateleira porque fazemos algo sob medida para a realidade do seu bairro e dos seus serviços. Mas eu te garanto que o investimento se paga se a gente trouxer de duas a três novas consultas ou exames de maior valor por mês através do novo site. Eu vou estruturar uma proposta comercial hoje mesmo com duas opções de formatos para vocês avaliarem o que cabe no bolso agora."
+            },
+            {
+              "objection": "Já temos um site e não vejo muito resultado vindo da internet.",
+              "answer": "Super entendo seu receio. O mercado está cheio de agências que entregam um site bonito, mas que não foi desenhado para vender. O site atual de vocês é quase um cartão de visitas estático. A diferença da Pinas é que a gente não entrega só design; a gente cria uma ferramenta comercial focada no comportamento do tutor do Tatuapé que precisa de atendimento agora. Se o site anterior não dava resultado, é porque faltava essa estratégia de conversão de cliques em clientes."
+            }
+          ]
+        },
+        {
+          "time": "14:00 - 15:00",
+          "title": "Fechamento & Próximo Passo",
+          "objective": "Concretizar o fechamento com proposta formal",
+          "closingScript": "Show de bola. O próximo passo prático é o seguinte: eu vou montar um PDF bem simples, direto ao ponto, com o escopo desse redesign e as duas opções de investimento. O nosso prazo de entrega é bem rápido, de 5 a 7 dias úteis a gente já consegue colocar a página nova no ar rodando 100%. Te mando esse documento no WhatsApp ainda hoje. Se fizer sentido para vocês, a gente fecha e já começa a produzir na semana que vem para colocar a clínica com a presença digital que ela merece aqui no Tatuapé. Fechado?",
+          "callToAction": "Enviar a proposta personalizada em PDF no WhatsApp do cliente em até 2 horas após a reunião."
+        }
+      ]
+    },
+    "deepAuditGeneratedAt": "2026-10-09T05:25:08.342Z"
+  },
+  {
     "id": "lead-1791431253608-e1jt5k",
     "name": "Marin Arquitetura e Engenharia",
     "niche": "arquiteto",
@@ -416,11 +638,18 @@
     "score": 3,
     "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
     "status": "respondeu",
-    "lastContact": "2026-10-08T18:11:17.570Z",
+    "lastContact": "2026-10-08T22:48:28.421Z",
     "createdAt": "2026-10-08T03:47:33.608Z",
-    "stage": 1,
-    "stageHistory": [],
-    "repliedAt": "2026-10-08T22:48:01.746Z"
+    "stage": 2,
+    "stageHistory": [
+      {
+        "stage": 2,
+        "sentAt": "2026-10-08T22:48:28.421Z",
+        "auto": true,
+        "text": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de Embu das Artes, SP.\n\nTava dando uma olhada rápida na BL Ambiental Jardinagem & Paisagismo aqui no Google e vi uma coisa que me chamou atenção."
+      }
+    ],
+    "repliedAt": "2026-10-08T22:48:01.723Z"
   },
   {
     "id": "lead-1791431253608-dj1j5u",
@@ -784,9 +1013,54 @@
     },
     "score": 4,
     "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.607Z"
+    "status": "contatado",
+    "lastContact": "2026-10-09T05:07:04.720Z",
+    "createdAt": "2026-10-08T03:47:33.607Z",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "https://projetocomplementar.com.br/",
+      "isOnline": false,
+      "error": "unable to get local issuer certificate",
+      "loadTimeMs": 40,
+      "summary": "Site cadastrado está instável ou fora do ar (unable to get local issuer certificate).",
+      "details": "O link que consta no Google não abre para os clientes, gerando perda imediata de confiança.",
+      "opportunityScore": 9,
+      "attackAngle": "Site fora do ar ou inacessível. Oportunidade de alertar com cuidado e oferecer reconstrução moderna.",
+      "diagnosisTags": [
+        "❌ Site Fora do Ar",
+        "⚠️ Link Inacessível no Maps",
+        "🎯 Oportunidade Urgente"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 81,
+      "neighborhood": "Embu das Artes, SP",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (81 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (81 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Embu das Artes, SP. Avaliações: 81 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "Identificado que o site cadastrado da Coliseu Projeto Complementar em Embu das Artes está inacessível. A abordagem foca em alertar o responsável com gentileza, valorizando a ótima reputação deles no Maps e gerando gancho para propor um site rápido focado em conversão.",
+      "bestAngle": "Alerta amigável sobre o site oficial que está fora do ar/com erro de segurança no Google Maps, elogiando as excelentes avaliações locais antes para quebrar o gelo."
+    },
+    "initialPitch": "Opa, tudo bem? Kauê aqui da Pinas.\n\nEstava dando uma olhada no Google Maps aqui em Embu das Artes e vi o perfil de vocês — sensacional as mais de 80 avaliações com nota máxima!\n\nMas ó, fui tentar clicar no link do site de vocês pelo celular e ele não abriu, tá dando erro de segurança e fica fora do ar.\n\nVocês já tinham reparado nisso por aí?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-09T05:07:04.720Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo bem? Kauê aqui da Pinas.\n\nEstava dando uma olhada no Google Maps aqui em Embu das Artes e vi o perfil de vocês — sensacional as mais de 80 avaliações com nota máxima!\n\nMas ó, fui tentar clicar no link do site de vocês pelo celular e ele não abriu, tá dando erro de segurança e fica fora do ar.\n\nVocês já tinham reparado nisso por aí?"
+      }
+    ]
   },
   {
     "id": "lead-1791431253607-b9s36l",
@@ -896,9 +1170,51 @@
     },
     "score": 4,
     "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.607Z"
+    "status": "contatado",
+    "lastContact": "2026-10-09T05:08:26.964Z",
+    "createdAt": "2026-10-08T03:47:33.607Z",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 0,
+      "reviews": 0,
+      "neighborhood": "Embu das Artes, SP",
+      "localReputation": "fraca",
+      "diagnosisTags": [
+        "⚠️ Sem Avaliações no Maps"
+      ],
+      "strengths": [],
+      "weaknesses": [
+        "Ficha no Maps sem avaliações registradas"
+      ],
+      "summary": "Localização: Embu das Artes, SP. Avaliações: 0 (nota N/A). Reputação local: fraca."
+    },
+    "aiAnalysis": {
+      "summary": "Negócio localizado em Embu das Artes sem site cadastrado no Google Maps; abordagem leve focada na oportunidade de ter uma página rápida de portfólio com botão de WhatsApp, finalizando sem pedir call.",
+      "bestAngle": "Ausência de site próprio no perfil do Google Maps para captação local de arquitetura"
+    },
+    "initialPitch": "Opa, tudo bem? Kauê por aqui, da Pinas.\n\nAchei o perfil de vocês pesquisando por arquitetura no Google aqui em Embu das Artes e fui dar uma olhada nos projetos de vocês pelo celular.\n\nReparei que vocês ainda não têm um site próprio cadastrado ali pra mostrar o portfólio e puxar o cliente direto pro WhatsApp. A gente ajuda profissionais da região justamente nisso, estruturando páginas bem rápidas e elegantes pra transformar essa galera que busca no Google em orçamento na hora.\n\nTô falando com o Cleber ou com o responsável por aí?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-09T05:08:26.964Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo bem? Kauê por aqui, da Pinas.\n\nAchei o perfil de vocês pesquisando por arquitetura no Google aqui em Embu das Artes e fui dar uma olhada nos projetos de vocês pelo celular.\n\nReparei que vocês ainda não têm um site próprio cadastrado ali pra mostrar o portfólio e puxar o cliente direto pro WhatsApp. A gente ajuda profissionais da região justamente nisso, estruturando páginas bem rápidas e elegantes pra transformar essa galera que busca no Google em orçamento na hora.\n\nTô falando com o Cleber ou com o responsável por aí?"
+      }
+    ]
   },
   {
     "id": "lead-1791431253607-igmgun",
@@ -924,9 +1240,51 @@
     },
     "score": 4,
     "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.607Z"
+    "status": "contatado",
+    "lastContact": "2026-10-09T05:09:50.744Z",
+    "createdAt": "2026-10-08T03:47:33.607Z",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 2,
+      "neighborhood": "Embu das Artes, SP",
+      "localReputation": "fraca",
+      "diagnosisTags": [
+        "⚠️ Apenas 2 avaliações"
+      ],
+      "strengths": [],
+      "weaknesses": [
+        "Poucas avaliações registradas (2 reviews)"
+      ],
+      "summary": "Localização: Embu das Artes, SP. Avaliações: 2 (nota 5.0). Reputação local: fraca."
+    },
+    "aiAnalysis": {
+      "summary": "Abordagem que valoriza a boa reputação local da Vanessa no Maps e pontua a oportunidade perdida de não ter um site próprio focado em conversão para receber o tráfego que já busca por arquitetura na região.",
+      "bestAngle": "Falta de site próprio no perfil do Google Maps, mesmo com ótimas avaliações locais (nota 5.0) em Embu das Artes."
+    },
+    "initialPitch": "Opa Vanessa, tudo bem? Kauê aqui da Pinas.\n\nEstava pesquisando serviços aqui em Embu das Artes e vi o seu perfil de arquitetura no Google Maps com avaliações nota 5, bem legal! Só notei que você ainda não tem um site próprio cadastrado por lá para o pessoal clicar.\n\nA gente ajuda profissionais da região exatamente nisso: criando páginas rápidas que mostram seus projetos e têm botão direto de WhatsApp para facilitar para quem quer fazer orçamento.\n\nVocê já tem alguém cuidando dessa parte digital por aí hoje?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-09T05:09:50.744Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa Vanessa, tudo bem? Kauê aqui da Pinas.\n\nEstava pesquisando serviços aqui em Embu das Artes e vi o seu perfil de arquitetura no Google Maps com avaliações nota 5, bem legal! Só notei que você ainda não tem um site próprio cadastrado por lá para o pessoal clicar.\n\nA gente ajuda profissionais da região exatamente nisso: criando páginas rápidas que mostram seus projetos e têm botão direto de WhatsApp para facilitar para quem quer fazer orçamento.\n\nVocê já tem alguém cuidando dessa parte digital por aí hoje?"
+      }
+    ]
   },
   {
     "id": "lead-1791431253607-36byk7",
@@ -952,9 +1310,51 @@
     },
     "score": 4,
     "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:33.607Z"
+    "status": "contatado",
+    "lastContact": "2026-10-09T05:12:24.998Z",
+    "createdAt": "2026-10-08T03:47:33.607Z",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 0,
+      "reviews": 0,
+      "neighborhood": "Embu das Artes, SP",
+      "localReputation": "fraca",
+      "diagnosisTags": [
+        "⚠️ Sem Avaliações no Maps"
+      ],
+      "strengths": [],
+      "weaknesses": [
+        "Ficha no Maps sem avaliações registradas"
+      ],
+      "summary": "Localização: Embu das Artes, SP. Avaliações: 0 (nota N/A). Reputação local: fraca."
+    },
+    "aiAnalysis": {
+      "summary": "Identificado que a BM Projetos de Engenharia e Arquitetura tem cadastro no Google Maps local mas não possui site próprio linkado. A abordagem propõe a criação de uma landing page rápida de alta conversão com botão de WhatsApp.",
+      "bestAngle": "Falta de site próprio no cadastro do Google Maps em Embu das Artes, focando na perda de clientes locais que querem ver projetos e chamar direto no WhatsApp."
+    },
+    "initialPitch": "Opa, tudo certo? Kauê por aqui, da Pinas.\n\nTava pesquisando por arquitetos aqui na região de Embu das Artes no Google e encontrei vocês. \n\nNotei que vocês ainda não têm um site próprio cadastrado ali. A gente ajuda o pessoal da região justamente a criar aquelas páginas rápidas que mostram os projetos e já têm um botão direto pro seu WhatsApp.\n\nConsigo falar com o dono ou responsável por aí?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-09T05:12:24.998Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo certo? Kauê por aqui, da Pinas.\n\nTava pesquisando por arquitetos aqui na região de Embu das Artes no Google e encontrei vocês. \n\nNotei que vocês ainda não têm um site próprio cadastrado ali. A gente ajuda o pessoal da região justamente a criar aquelas páginas rápidas que mostram os projetos e já têm um botão direto pro seu WhatsApp.\n\nConsigo falar com o dono ou responsável por aí?"
+      }
+    ]
   },
   {
     "id": "lead-1791431253607-btev3z",
@@ -1036,9 +1436,51 @@
     },
     "score": 4,
     "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:15.535Z"
+    "status": "contatado",
+    "lastContact": "2026-10-09T05:14:11.436Z",
+    "createdAt": "2026-10-08T03:47:15.535Z",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 1,
+      "neighborhood": "São Caetano do Sul, SP",
+      "localReputation": "fraca",
+      "diagnosisTags": [
+        "⚠️ Apenas 1 avaliações"
+      ],
+      "strengths": [],
+      "weaknesses": [
+        "Poucas avaliações registradas (1 reviews)"
+      ],
+      "summary": "Localização: São Caetano do Sul, SP. Avaliações: 1 (nota 5.0). Reputação local: fraca."
+    },
+    "aiAnalysis": {
+      "summary": "Identificado que o escritório de arquitetura tem ótima avaliação (nota 5.0) no Google Maps em São Caetano do Sul, mas não possui site próprio cadastrado para converter as buscas locais em contatos de WhatsApp.",
+      "bestAngle": "Ausência de site próprio com foco em captação local via Google Maps em São Caetano do Sul."
+    },
+    "initialPitch": "Opa, tudo bem? Kauê aqui da Pinas.\n\nEstava pesquisando serviços de arquitetura em São Caetano e vi o perfil de vocês no Google. Achei bem legal a nota 5 de vocês, mas notei que ainda não têm um site próprio cadastrado para o pessoal clicar e ver os projetos pelo celular.\n\nA gente ajuda profissionais da região justamente a criar páginas rápidas com um botão direto de WhatsApp, que facilita muito para o cliente que está buscando fechar na hora. Quem cuida dessa parte de novos projetos e internet por aí hoje?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-09T05:14:11.436Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo bem? Kauê aqui da Pinas.\n\nEstava pesquisando serviços de arquitetura em São Caetano e vi o perfil de vocês no Google. Achei bem legal a nota 5 de vocês, mas notei que ainda não têm um site próprio cadastrado para o pessoal clicar e ver os projetos pelo celular.\n\nA gente ajuda profissionais da região justamente a criar páginas rápidas com um botão direto de WhatsApp, que facilita muito para o cliente que está buscando fechar na hora. Quem cuida dessa parte de novos projetos e internet por aí hoje?"
+      }
+    ]
   },
   {
     "id": "lead-1791431235534-a1yfx4",

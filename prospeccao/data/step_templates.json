@@ -1,9 +1,10 @@
 {
   "settings": {
     "autoResponderEnabled": true,
-    "responseDelaySeconds": 18,
+    "useGeminiConversationalAi": true,
+    "responseDelaySeconds": 20,
     "combineStages2and3": false,
-    "maxAutoStage": 2,
+    "maxAutoStage": 4,
     "notifyOnReply": true
   },
   "stages": [

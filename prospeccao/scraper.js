@@ -32,21 +32,32 @@ function parseBrazilianPhone(rawText) {
   return { formatted, clean, isMobile };
 }
 
-// Verificar se o negócio é uma grande rede ou do ramo de estética proibido
-function isExcluded(name, text, config) {
-  const fullText = `${name} ${text}`.toLowerCase();
+// Normalização sem acentos para comparação à prova de falhas
+function stripAccents(str) {
+  return (str || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim();
+}
 
-  // 1. Verificar redes gigantes
+// Verificar se o negócio é cliente atual, grande rede, Brás ou do ramo proibido
+function isExcluded(name, text, config) {
+  const fullText = stripAccents(`${name} ${text}`);
+
+  // 1. Verificar redes gigantes e clientes atuais protegidos
   for (const chain of config.excludedChains || []) {
-    if (fullText.includes(chain.toLowerCase())) {
-      return { excluded: true, reason: `Grande rede excluída (${chain})` };
+    const chainNorm = stripAccents(chain);
+    if (chainNorm && fullText.includes(chainNorm)) {
+      return { excluded: true, reason: `Exclusão protegida / Cliente atual (${chain})` };
     }
   }
 
-  // 2. Verificar termos de estética (regra explícita do Kauê)
+  // 2. Verificar termos e regiões excluídas (Brás, estética, etc.)
   for (const kw of config.excludedKeywords || []) {
-    if (fullText.includes(kw.toLowerCase())) {
-      return { excluded: true, reason: `Ramo de estética excluído (${kw})` };
+    const kwNorm = stripAccents(kw);
+    if (kwNorm && fullText.includes(kwNorm)) {
+      return { excluded: true, reason: `Palavra/Região excluída (${kw})` };
     }
   }
 
@@ -118,10 +129,15 @@ async function scrapeGoogleMaps({ niche, location, maxResults = 20, onlyMobile =
   const leads = [];
 
   try {
-    browser = await chromium.launch({
-      channel: 'msedge',
-      headless: true
-    });
+    try {
+      browser = await chromium.launch({ channel: 'chrome', headless: true });
+    } catch (e1) {
+      try {
+        browser = await chromium.launch({ channel: 'msedge', headless: true });
+      } catch (e2) {
+        browser = await chromium.launch({ headless: true });
+      }
+    }
 
     const context = await browser.newContext({
       locale: 'pt-BR',
@@ -309,8 +325,115 @@ async function scrapeGoogleMaps({ niche, location, maxResults = 20, onlyMobile =
   return leads;
 }
 
+/**
+ * Caça ativa e autônoma de sites ruins / presença digital precária na Web
+ * Prioridades da Pinas: 1º Clínicas Veterinárias | 2º Escritórios de Advocacia | 3º Clínicas Médicas
+ */
+const PRIORITY_NICHES = [
+  'Clínica Veterinária',
+  'Escritório de Advocacia',
+  'Clínica Odontológica',
+  'Clínica Médica'
+];
+
+const TARGET_NEIGHBORHOODS = [
+  'Tatuapé',
+  'Mooca',
+  'Pinheiros',
+  'Santana',
+  'Vila Mariana',
+  'Perdizes',
+  'Santo Amaro',
+  'Bela Vista',
+  'Ipiranga',
+  'Vila Madalena'
+];
+
+async function huntBadWebsites({ niche = null, location = null, maxResults = 8, onProgress } = {}) {
+  const chosenNiche = niche || PRIORITY_NICHES[Math.floor(Math.random() * PRIORITY_NICHES.length)];
+  const chosenLocation = location || TARGET_NEIGHBORHOODS[Math.floor(Math.random() * TARGET_NEIGHBORHOODS.length)];
+
+  if (onProgress) onProgress({ message: `🎯 Caçando sites com problemas para "${chosenNiche}" em ${chosenLocation}...`, percent: 15 });
+
+  // 1. Roda o scraper de Maps
+  const scrapedLeads = await scrapeGoogleMaps({
+    niche: chosenNiche,
+    location: chosenLocation,
+    maxResults: Math.max(12, maxResults * 2),
+    onlyMobile: false,
+    filterDuplicates: true,
+    onProgress
+  });
+
+  const auditor = require('./auditor');
+  const badSiteLeads = [];
+
+  if (onProgress) onProgress({ message: `Auditando canais digitais dos ${scrapedLeads.length} estabelecimentos encontrados...`, percent: 70 });
+
+  for (const lead of scrapedLeads) {
+    if (!lead.cleanPhone || lead.cleanPhone.length < 10) continue;
+
+    try {
+      const audit = await auditor.auditLeadFull(lead);
+      lead.siteAudit = audit.site;
+      lead.mapsAudit = audit.maps;
+
+      const isBad = (
+        !audit.site.hasWebsite ||
+        !audit.site.isOnline ||
+        audit.site.loadTimeMs > 2500 ||
+        !audit.site.hasWhatsApp ||
+        !audit.site.doesPaidTraffic
+      );
+
+      if (isBad) {
+        lead.isBadSite = true;
+        lead.badSiteReasons = audit.site.weaknesses || [];
+        if (!audit.site.hasWebsite) lead.badSiteReasons.push('Sem site próprio');
+        if (!audit.site.isOnline) lead.badSiteReasons.push('Site fora do ar');
+        badSiteLeads.push(lead);
+      }
+    } catch (e) {
+      if (!lead.hasWebsite) {
+        lead.isBadSite = true;
+        lead.badSiteReasons = ['Sem site próprio'];
+        badSiteLeads.push(lead);
+      }
+    }
+
+    if (badSiteLeads.length >= maxResults) break;
+  }
+
+  // 2. Salvar leads na base oficial
+  const leadsPath = path.join(__dirname, 'data', 'leads.json');
+  let currentLeads = [];
+  try {
+    if (fs.existsSync(leadsPath)) {
+      currentLeads = JSON.parse(fs.readFileSync(leadsPath, 'utf8'));
+    }
+  } catch (e) {}
+
+  const finalAdded = [];
+  for (const lead of badSiteLeads) {
+    const exists = currentLeads.some(l => l.cleanPhone === lead.cleanPhone || l.name.toLowerCase() === lead.name.toLowerCase());
+    if (!exists) {
+      currentLeads.unshift(lead);
+      finalAdded.push(lead);
+    }
+  }
+
+  try {
+    fs.writeFileSync(leadsPath, JSON.stringify(currentLeads, null, 2), 'utf8');
+  } catch (e) {}
+
+  if (onProgress) onProgress({ message: `✅ Caça concluída! ${finalAdded.length} empresas com sites ruins ou sem site capturadas na esteira.`, percent: 100 });
+
+  return finalAdded;
+}
+
 module.exports = {
   scrapeGoogleMaps,
+  huntBadWebsites,
   parseBrazilianPhone,
   isExcluded,
   calculateOpportunity

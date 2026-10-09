@@ -2,6 +2,13 @@
 node_modules/
 **/node_modules/
 
+# Arquivos de Ambiente e Chaves de API (NUNCA subir para o GitHub)
+.env
+*.env
+**/.env
+.env.local
+.env.*.local
+
 # Sessões e credenciais confidenciais do WhatsApp (NUNCA subir para o GitHub)
 whatsapp_session/
 **/whatsapp_session/
@@ -19,6 +26,7 @@ prospeccao/data/media/
 *.tmp
 .DS_Store
 Thumbs.db
+**/data/gemini_usage.json
 
 # Configurações de IDE / Editores
 .vscode/
