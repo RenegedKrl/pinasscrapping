@@ -53,7 +53,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initLocationSelector();
   initNicheAutocomplete();
   initWhatsAppManager();
-  fetchWhatsAppStatus();
+  fetchWhatsAppStatus().then(data => {
+    if (data && !data.connected) {
+      startWaPolling();
+    }
+  });
   initInbox();
   initModals();
   initAutopilot();
@@ -963,9 +967,10 @@ function startWaPolling() {
   if (waPollingTimer) return;
   waPollingTimer = setInterval(async () => {
     const data = await fetchWhatsAppStatus();
-    if (data.connected) {
-      // Quando conecta com sucesso, pode diminuir a frequência
-      stopWaPolling();
+    if (data && data.connected) {
+      playSuccessChime();
+      showToastNotification('WhatsApp conectado com sucesso! O sistema está pronto.');
+      closeWhatsAppConnectModal();
     }
   }, 2500);
 }
@@ -983,6 +988,12 @@ async function fetchWhatsAppStatus() {
     const data = await res.json();
     currentWaStatus = data;
     updateWhatsAppUI(data);
+
+    // Se estiver desconectado e sem QR Code pronto, solicita imediatamente geração de QR Code
+    if (!data.connected && data.status === 'disconnected') {
+      requestWhatsAppConnect();
+    }
+
     return data;
   } catch (err) {
     console.warn('Erro ao obter status do WhatsApp:', err);

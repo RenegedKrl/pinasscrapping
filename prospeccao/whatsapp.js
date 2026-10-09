@@ -337,6 +337,15 @@ async function initWhatsApp(force = false) {
   lastError = null;
   connectionStatus = 'connecting';
 
+  // Fechar e limpar socket prévio antes de instanciar outro para evitar concorrência
+  if (sock) {
+    try {
+      sock.ev.removeAllListeners();
+      sock.end();
+    } catch (e) {}
+    sock = null;
+  }
+
   try {
     if (!fs.existsSync(SESSION_DIR)) {
       fs.mkdirSync(SESSION_DIR, { recursive: true });
@@ -401,7 +410,16 @@ async function initWhatsApp(force = false) {
 
         console.log(`[WhatsApp] Conexão encerrada. Status: ${statusCode}, Reconectar: ${shouldReconnect}`);
 
-        if (statusCode === DisconnectReason.loggedOut || isExplicitLogout) {
+        if (statusCode === 440) {
+          // Conexão substituída por outra aba/sessão ativa
+          connectionStatus = 'disconnected';
+          console.warn('[WhatsApp] Conexão substituída (440). Pausando tentativa imediata (20s) para não conflitar...');
+          clearTimeout(reconnectTimer);
+          reconnectTimer = setTimeout(() => {
+            console.log('[WhatsApp] Verificando retomada de conexão...');
+            initWhatsApp(false).catch(console.error);
+          }, 20000);
+        } else if (statusCode === DisconnectReason.loggedOut || isExplicitLogout) {
           connectionStatus = 'disconnected';
           connectedUser = null;
           qrCodeDataUrl = null;
@@ -410,6 +428,16 @@ async function initWhatsApp(force = false) {
           try {
             fs.rmSync(SESSION_DIR, { recursive: true, force: true });
           } catch (e) {}
+
+          // Se não foi um logout voluntário pelo botão "Desconectar" do painel,
+          // inicializa imediatamente para já gerar um novo QR Code pronto para reconexão!
+          if (!isExplicitLogout) {
+            console.log('[WhatsApp] Sessão encerrada no aparelho. Gerando novo QR Code para pareamento...');
+            clearTimeout(reconnectTimer);
+            reconnectTimer = setTimeout(() => {
+              initWhatsApp(true).catch(console.error);
+            }, 2500);
+          }
         } else {
           connectionStatus = 'disconnected';
           clearTimeout(reconnectTimer);

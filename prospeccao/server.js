@@ -397,7 +397,17 @@ app.get('/api/whatsapp/status', (req, res) => {
 // Iniciar conexão do WhatsApp / gerar QR Code
 app.post('/api/whatsapp/connect', async (req, res) => {
   try {
-    const status = await whatsapp.initWhatsApp(true);
+    const current = whatsapp.getStatus();
+    // Se já estiver conectado, apenas retorna o status sem reiniciar o socket
+    if (current.connected) {
+      return res.json(current);
+    }
+    // Se já estiver conectando ou com QR pronto e não foi pedido force, não recria socket
+    if ((current.status === 'connecting' || current.status === 'qr_ready') && !req.body?.force) {
+      return res.json(current);
+    }
+
+    const status = await whatsapp.initWhatsApp(!!req.body?.force);
     res.json(status);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -1482,16 +1492,17 @@ const server = app.listen(PORT, () => {
     });
   }
 
-  // Tentar restaurar sessão salva do WhatsApp se existir credenciais
-  const initialStatus = whatsapp.getStatus();
-  if (initialStatus.hasSavedSession) {
-    console.log('[WhatsApp] Sessão salva encontrada. Restaurando conexão...');
-    whatsapp.initWhatsApp().then(() => {
+  // Inicialização 100% autônoma do WhatsApp no boot:
+  // Se houver sessão salva, restaura silenciosamente em 2 segundos.
+  // Se não houver, já inicia o socket e gera na hora o QR Code pronto para pareamento!
+  console.log('[WhatsApp] Inicializando serviço do WhatsApp...');
+  whatsapp.initWhatsApp().then(() => {
+    if (whatsapp.getStatus().connected) {
       autopilot.handleWhatsAppConnected();
-    }).catch(err => {
-      console.warn('[WhatsApp] Erro na reconexão automática:', err.message);
-    });
-  }
+    }
+  }).catch(err => {
+    console.warn('[WhatsApp] Erro na inicialização automática:', err.message);
+  });
 });
 
 server.on('error', (err) => {
