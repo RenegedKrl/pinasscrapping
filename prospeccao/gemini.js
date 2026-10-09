@@ -41,11 +41,11 @@ function getApiKey() {
   return '';
 }
 
-// Modelos oficiais suportados
-const PRIMARY_MODEL = 'gemini-3.8-flash';
-const FALLBACK_MODEL = 'gemini-3.5-flash';
-const SECONDARY_FALLBACK = 'gemini-3.1-flash-lite';
-const TERTIARY_FALLBACK = 'gemini-flash-lite-latest';
+// Modelos oficiais suportados (priorizando os com cota e resposta ativa 200 OK)
+const PRIMARY_MODEL = 'gemini-3.5-flash-lite';
+const FALLBACK_MODEL = 'gemini-flash-lite-latest';
+const SECONDARY_FALLBACK = 'gemini-3-flash-preview';
+const TERTIARY_FALLBACK = 'gemini-3.5-flash';
 
 /**
  * Chamada genérica para a API do Gemini com fallback automático
@@ -741,13 +741,179 @@ Retorne EXCLUSIVAMENTE um objeto JSON válido no formato:
 }
 `;
 
-  const jsonStr = await callGemini({
-    prompt,
-    systemInstruction: PINAS_SYSTEM_PROMPT,
-    jsonMode: true
-  });
+  // Dispara a chamada ao Gemini com timeout de segurança (6 segundos)
+  // Se a IA responder rápido, usa a resposta da IA. Se der timeout ou erro de quota/rede, ativa o gerador de contingência instantâneo da Pinas.
+  try {
+    const aiPromise = callGemini({
+      prompt,
+      systemInstruction: PINAS_SYSTEM_PROMPT,
+      jsonMode: true
+    });
 
-  return safeJsonParse(jsonStr);
+    const timeoutPromise = new Promise((_, reject) => 
+      setTimeout(() => reject(new Error('AI_TIMEOUT_FALLBACK')), 6000)
+    );
+
+    const jsonStr = await Promise.race([aiPromise, timeoutPromise]);
+    const parsed = safeJsonParse(jsonStr);
+    if (parsed && parsed.conversationSummary && parsed.callScript) {
+      return parsed;
+    }
+  } catch (err) {
+    console.warn(`[Conversation Script] ⚡ Ativando fallback instantâneo Pinas (Motivo: ${err.message})`);
+  }
+
+  // Fallback Inteligente Instantâneo da Pinas (@pinas.studio) — Zero Espera
+  return buildInstantWhatsAppConversationScript({ lead, messages: validMsgs, hasCustomerReplied });
+}
+
+/**
+ * Gerador de Contingência Instantâneo de Roteiro de WhatsApp da Pinas (@pinas.studio)
+ * Garante entrega imediata (0ms) mesmo em quedas de quota, instabilidade de rede ou timeouts.
+ */
+function buildInstantWhatsAppConversationScript({ lead, messages = [], hasCustomerReplied = false }) {
+  const customerMsgs = (messages || []).filter(m => !m.fromMe);
+  const myMsgs = (messages || []).filter(m => m.fromMe);
+  const niche = (lead.niche || '').toLowerCase();
+  const name = lead.name || 'Empresa';
+  const bairro = lead.neighborhood || lead.city || 'São Paulo';
+
+  let lastCustomerText = customerMsgs.length > 0 ? (customerMsgs[customerMsgs.length - 1].text || '') : '';
+  let interlocutorName = customerMsgs.length > 0 && customerMsgs[0].senderName ? customerMsgs[0].senderName : 'Responsável / Decisor';
+
+  // Resumo executivo do diálogo
+  let summary = '';
+  if (customerMsgs.length > 0) {
+    summary = `O contato foi iniciado pelo WhatsApp apresentando os diferenciais da Pinas Studio para a região de ${bairro}. O cliente respondeu à abordagem (${lastCustomerText ? `última mensagem: "${lastCustomerText}"` : 'demonstrou receptividade'}), abrindo uma oportunidade direta de avançar para uma conversa diagnóstica de 15 minutos.`;
+  } else if (myMsgs.length > 0) {
+    summary = `A abordagem inicial da Pinas Studio foi enviada destacando a reputação de ${lead.rating || '4.5+'}★ no Google e a oportunidade de captação de clientes qualificados em ${bairro}. O lead ainda não respondeu (aguardando retorno), configurando oportunidade de abertura consultiva.`;
+  } else {
+    summary = `Lead qualificado pronto para abordagem inicial. Identificado potencial imediato de captação local em ${bairro} através da assessoria de tráfego pago e posicionamento digital da Pinas Studio.`;
+  }
+
+  // Dores e Objeções por nicho
+  let pains = [];
+  let objections = [];
+  let closingQuestion = '';
+
+  if (niche.includes('vet') || niche.includes('pet')) {
+    pains = [
+      `Falta de previsibilidade de novos tutores no raio de 3km a 5km de ${bairro}`,
+      'Dependência excessiva de indicação boca a boca ou de buscas passivas no Google Maps',
+      'Atendimentos ou procedimentos de maior valor que acabam indo parar em clínicas concorrentes da região'
+    ];
+    objections = [
+      {
+        objection: 'Já fazemos postagens no Instagram todos os dias.',
+        howToCounter: 'Post orgânico fala com quem já é cliente. O que a Pinas faz com o tráfego é colocar a clínica na frente do tutor que precisa de atendimento urgente agora no seu bairro.'
+      },
+      {
+        objection: 'Não sei se temos orçamento para marketing agora.',
+        howToCounter: 'O projeto se paga trazendo 2 a 3 novos atendimentos ou cirurgias no mês. Se a conta não fechar com lucro no seu bolso, a gente nem começa.'
+      }
+    ];
+    closingQuestion = `Faz sentido a gente começar a captar esses tutores que estão buscando atendimento agora em ${bairro} e que hoje estão indo para a clínica concorrente?`;
+  } else if (niche.includes('roup') || niche.includes('moda') || niche.includes('boutique')) {
+    pains = [
+      'Tráfego do Instagram gerando curiosos que não convertem em compras reais no WhatsApp',
+      'Concorrência pesada de preços e falta de catálogo de alta conversão estruturado',
+      'Dificuldade de reter clientes para compras recorrentes nas novas coleções'
+    ];
+    objections = [
+      {
+        objection: 'Já tenho alguém que cuida do tráfego ou dos posts.',
+        howToCounter: 'Nosso foco não é métrica de vaidade (curtida ou seguidor), é cliente chamando no WhatsApp com intenção de compra. Vamos comparar os resultados.'
+      },
+      {
+        objection: 'Quanto custa para começar?',
+        howToCounter: 'Trabalhamos com investimento acessível e focado no retorno da sua coleção. A estrutura se paga nas primeiras semanas de campanha.'
+      }
+    ];
+    closingQuestion = `Podemos estruturar esse fluxo para transformar os cliques do seu Instagram em pedidos faturados no WhatsApp a partir da semana que vem?`;
+  } else {
+    pains = [
+      `Gargalo na conversão de cliques locais em mensagens diretas no WhatsApp em ${bairro}`,
+      'Perda de clientes qualificados para concorrentes com maior presença no Google e redes sociais',
+      'Falta de acompanhamento comercial para fechar propostas que esfriam'
+    ];
+    objections = [
+      {
+        objection: 'Já tentei anúncios antes e não tive resultado.',
+        howToCounter: 'Muitos sobem anúncios sem estruturar a página e o funil de atendimento. Na Pinas, cuidamos desde o clique até a conversão final no WhatsApp.'
+      },
+      {
+        objection: 'Preciso falar com meu sócio antes de decidir.',
+        howToCounter: 'Perfeito. Montamos um resumo executivo com os dados da concorrência no seu bairro para você apresentar para ele com total clareza.'
+      }
+    ];
+    closingQuestion = `Faz sentido a gente implementar essa estrutura de captação para blindar o seu negócio e dominar as buscas em ${bairro}?`;
+  }
+
+  const openingHook = hasCustomerReplied
+    ? `Fala, tudo bem? Vi a sua resposta no WhatsApp sobre a demanda de ${bairro} e queria alinhar rapidamente como podemos destravar esses atendimentos pra você.`
+    : `Opa, tudo bem? Vi que você recebeu a nossa análise sobre a presença digital da ${name} em ${bairro} e queria bater um papo rápido de 15 minutos sem enrolação.`;
+
+  return {
+    hasCustomerReplied,
+    conversationSummary: summary,
+    interlocutor: {
+      name: interlocutorName,
+      role: customerMsgs.length > 0 ? 'Decisor / Proprietário' : 'Não identificado',
+      tone: customerMsgs.length > 0 ? 'Receptivo e direto' : 'Neutro / Aguardando',
+      decisionPower: 'Alto (Decisor Final)'
+    },
+    painsAndNeeds: pains,
+    objectionsAndAnswers: objections,
+    agreedNextSteps: customerMsgs.length > 0 
+      ? 'Avançar para diagnóstico de 15 minutos pelo Google Meet' 
+      : 'Aguardando retorno da mensagem de abordagem no WhatsApp',
+    callScript: {
+      title: 'Roteiro da Call de Fechamento Baseado no WhatsApp',
+      openingHook,
+      steps: [
+        {
+          time: '00:00 - 03:00',
+          title: 'Abertura & Conexão pelo WhatsApp',
+          objective: 'Reconectar de forma humana e direta citando a conversa do chat',
+          script: `Fala, tudo bem? Poxa, obrigado pelo tempo. Vi aqui o perfil da ${name} e achei muito forte a nota no Google. Queria entender rapidamente como está a entrada de novos clientes vindo pela internet hoje aí em ${bairro}.`,
+          tip: 'Mantenha tom calmo, profissional e escuta ativa. Nada de afobação.'
+        },
+        {
+          time: '03:00 - 07:00',
+          title: 'Diagnóstico & Aprofundamento nas Dores',
+          objective: 'Fazer o cliente verbalizar o gargalo atual de faturamento',
+          questions: [
+            {
+              question: 'Hoje, a maior parte dos clientes novos chega por indicação ou por busca ativa no Google e redes?',
+              why: 'Mapear a dependência de canais orgânicos passivos.'
+            },
+            {
+              question: 'Quando um cliente chega no seu WhatsApp, você sente que a conversão em fechamento é rápida ou muitos somem?',
+              why: 'Identificar gargalo comercial no atendimento.'
+            }
+          ]
+        },
+        {
+          time: '07:00 - 11:00',
+          title: 'Apresentação da Solução Pinas Sob Medida',
+          objective: 'Mostrar na tela compartilhada como resolver o gargalo',
+          keyPoints: [
+            `Anúncios hiperlocais no raio de ${bairro} para captar quem tem intenção de compra agora`,
+            'Landing page ultra-rápida direcionando cliques direto para o seu WhatsApp',
+            'Script de atendimento comercial para não deixar leads esfriarem'
+          ]
+        },
+        {
+          time: '11:00 - 15:00',
+          title: 'Proposta & Fechamento Comercial',
+          objective: 'Combinar os próximos passos práticos de início',
+          script: `O que eu proponho é a gente começar um piloto estruturado de 30 dias. A gente coloca as campanhas no ar e valida o fluxo de novos clientes entrando no seu WhatsApp.`,
+          callToAction: 'Podemos dar o pontapé inicial na segunda-feira?'
+        }
+      ],
+      goldenClosingPhrase: closingQuestion
+    }
+  };
 }
 
 module.exports = {

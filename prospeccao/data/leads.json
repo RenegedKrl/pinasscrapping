@@ -322,7 +322,80 @@
     "lastContact": "2026-10-08T17:53:30.470Z",
     "createdAt": "2026-10-08T03:47:33.608Z",
     "stage": 1,
-    "stageHistory": []
+    "stageHistory": [],
+    "conversationScript": {
+      "hasCustomerReplied": false,
+      "conversationSummary": "O Kauê iniciou o contato via WhatsApp com a Marin Arquitetura e Engenharia em Embu das Artes, mas o lead ainda não respondeu à primeira mensagem. Trata-se de um lead virgem, onde o foco atual é garantir o primeiro engajamento no chat.\n\nComo o escritório possui nota 5.0 no Google Maps mas usa uma página do Facebook como site oficial, existe uma oportunidade clara e evidente para a Pinas atuar: estruturar uma presença digital profissional com uma landing page moderna focada em captação de clientes locais.",
+      "interlocutor": {
+        "name": "Não identificado",
+        "role": "Dono / Sócia",
+        "tone": "Aguardando primeiro contato",
+        "decisionPower": "Alto (Decisor Final)"
+      },
+      "painsAndNeeds": [
+        "Uso de página de rede social (Facebook) no lugar de um site profissional de alta conversão",
+        "Captação de clientes da região de Embu das Artes e arredores ainda dependendo apenas do boca a boca",
+        "Falta de um fluxo estruturado no WhatsApp para transformar visitantes do Google em projetos fechados"
+      ],
+      "objectionsAndAnswers": [
+        {
+          "objection": "Já tenho Instagram e Facebook, para que preciso de site?",
+          "howToCounter": "Rede social é vitrine dos outros, o cliente entra e se distrai com concorrente. Um site nosso coloca o seu projeto em destaque no Google quando alguém busca arquiteto em Embu, com botão direto para o seu WhatsApp."
+        },
+        {
+          "objection": "Agora estou sem tempo / com muito projeto na obra",
+          "howToCounter": "Te entendo perfeitamente, obra demanda muito. Justamente por isso a Pinas resolve tudo para você sem tirar seu foco do canteiro. A gente monta a estrutura para o negócio rodar no automático."
+        }
+      ],
+      "agreedNextSteps": "Aguardando a resposta da primeira mensagem enviada no WhatsApp para agendar uma conversa rápida de 15 minutos.",
+      "callScript": {
+        "title": "Roteiro da Call de Fechamento Baseado no WhatsApp",
+        "openingHook": "Oi, tudo bem? Vi que vocês fazem um trabalho excelente em Embu das Artes, com nota máxima no Google, e queria te mostrar como destravar mais clientes qualificados direto pelo WhatsApp.",
+        "steps": [
+          {
+            "time": "00:00 - 03:00",
+            "title": "Abertura & Conexão pelo WhatsApp",
+            "objective": "Quebrar o gelo e mostrar que pesquisou sobre o escritório dela",
+            "script": "Passei uma olhada no trabalho de vocês e vi que a reputação no Google é impecável, nota 5.0. Mas notei que hoje vocês usam o Facebook como principal ponto na internet. Minha ideia hoje é te mostrar como dar uma cara mais profissional para atrair quem busca projeto na região.",
+            "tip": "Sorria, seja natural e fale com calma, como quem toma um café."
+          },
+          {
+            "time": "03:00 - 07:00",
+            "title": "Aprofundamento nas Dores Admitidas",
+            "objective": "Entender de onde vêm os clientes hoje e qual o gargalo",
+            "questions": [
+              {
+                "question": "Hoje em dia, a maioria dos clientes que te procura chega por indicação ou pelo Google/Instagram?",
+                "why": "Mapear a dependência do boca a boca"
+              },
+              {
+                "question": "Quando alguém te acha na internet hoje, para onde essa pessoa vai?",
+                "why": "Evidenciar a limitação de usar o Facebook como site"
+              }
+            ]
+          },
+          {
+            "time": "07:00 - 11:00",
+            "title": "Apresentação da Solução Pinas Sob Medida",
+            "objective": "Mostrar o valor de uma landing page moderna e tráfego local",
+            "keyPoints": [
+              "Criação de uma página leve, moderna e focada em apresentar seus projetos com elegância.",
+              "Botão de WhatsApp estrategicamente posicionado para o cliente falar direto com você.",
+              "Anúncios locais no Google e Meta para aparecer para quem quer construir ou reformar em Embu e arredores."
+            ]
+          },
+          {
+            "time": "11:00 - 15:00",
+            "title": "Proposta & Fechamento Comercial",
+            "objective": "Apresentar o investimento e fechar o projeto",
+            "script": "Para a gente colocar isso no ar rápido e começar a rodar, o investimento é X. A gente cuida de tudo do zero para você não ter dor de cabeça. O que acha de começarmos essa semana?",
+            "callToAction": "Enviar o link de Pix ou contrato para fechar na hora."
+          }
+        ],
+        "goldenClosingPhrase": "Vamos dar esse passo para o escritório aparecer com a força que merece na região?"
+      }
+    },
+    "conversationScriptGeneratedAt": "2026-10-09T16:00:34.230Z"
   },
   {
     "id": "lead-1791431253608-3gpnio",

@@ -1434,9 +1434,18 @@ function switchModalMode(mode) {
     if (containerCallScript) containerCallScript.style.display = 'block';
     if (btnConfirmWa) btnConfirmWa.style.display = 'none';
     if (btnCopyWa) btnCopyWa.style.display = 'none';
+
+    // Esconde o spinner de loading do site para não ficar carregamento infinito
+    const siteLoadingEl = document.getElementById('callscript-view-loading');
+    if (siteLoadingEl) siteLoadingEl.style.display = 'none';
+
     if (currentActiveLead) {
       loadWhatsAppConversationScript(currentActiveLead);
-      loadDeepVisualAuditAndCallScriptView(currentActiveLead);
+      if (currentActiveLead.deepVisualAudit && currentActiveLead.callScript) {
+        renderDeepVisualAuditAndCallScriptHtml(currentActiveLead, currentActiveLead.deepVisualAudit, currentActiveLead.callScript);
+      } else {
+        renderAuditPlaceholderCard(currentActiveLead);
+      }
     }
   }
 }
@@ -1997,12 +2006,17 @@ async function loadWhatsAppConversationScript(lead, forceRefresh = false) {
     </div>
   `;
 
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 7500);
+
   try {
     const res = await fetch(`/api/leads/${lead.id}/conversation-script`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ forceRefresh })
+      body: JSON.stringify({ forceRefresh }),
+      signal: controller.signal
     });
+    clearTimeout(timeoutId);
 
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Erro ao gerar roteiro baseado no WhatsApp');
@@ -2018,12 +2032,13 @@ async function loadWhatsAppConversationScript(lead, forceRefresh = false) {
 
     renderWhatsAppConversationScriptHtml(lead, data.conversationScript);
   } catch (err) {
+    clearTimeout(timeoutId);
     console.error('Erro ao carregar roteiro do WhatsApp:', err);
     container.innerHTML = `
       <div class="wa-script-box" style="padding: 1.75rem; text-align: center; border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.05);">
         <span style="font-size: 1.8rem;">⚠️</span>
-        <strong style="display: block; font-size: 0.95rem; color: #fff; margin: 6px 0;">Falha ao analisar a conversa do WhatsApp</strong>
-        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;">${escapeHtml(err.message)}</p>
+        <strong style="display: block; font-size: 0.95rem; color: #fff; margin: 6px 0;">Falha ao carregar o roteiro</strong>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;">${err.name === 'AbortError' ? 'A resposta demorou mais que o esperado.' : escapeHtml(err.message)}</p>
         <button type="button" class="btn btn-outline btn-sm" onclick="loadWhatsAppConversationScript(currentActiveLead, true)">
           🔄 Tentar Novamente
         </button>
@@ -2272,6 +2287,26 @@ function copyWhatsAppConversationScriptText() {
   }).catch(() => {
     prompt('Copie o roteiro abaixo:', text);
   });
+}
+
+function renderAuditPlaceholderCard(lead) {
+  const container = document.getElementById('callscript-view-content');
+  if (!container) return;
+  container.innerHTML = `
+    <div style="margin-top: 1.5rem; padding: 1.25rem 1.5rem; background: rgba(255, 255, 255, 0.02); border: 1px dashed rgba(255, 255, 255, 0.12); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+      <div>
+        <strong style="color: #fff; font-size: 0.92rem; display: flex; align-items: center; gap: 6px;">
+          <span>🌐</span> Auditoria Visual de Design & Mobile (Opcional)
+        </strong>
+        <p style="margin: 3px 0 0; font-size: 0.8rem; color: var(--text-secondary);">
+          Gere o diagnóstico seção por seção do site para compartilhar na reunião de 15 min.
+        </p>
+      </div>
+      <button type="button" class="btn btn-outline btn-sm" onclick="loadDeepVisualAuditAndCallScriptView(currentActiveLead, true)" style="border-color: rgba(255,0,85,0.4); color: #FF3366; font-weight: 700;">
+        🔍 Auditar Site Agora
+      </button>
+    </div>
+  `;
 }
 
 // ==================== AUDITORIA VISUAL DE DESIGN & ROTEIRO DE CALL (15 MIN) ====================
