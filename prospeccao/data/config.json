@@ -3,7 +3,7 @@
   "dailyLimit": 32,
   "outboundStartHour": 10,
   "outboundEndHour": 19,
-  "sentToday": 7,
+  "sentToday": 13,
   "lastResetDate": "2026-10-09",
   "minDelaySeconds": 30,
   "maxDelaySeconds": 60,
