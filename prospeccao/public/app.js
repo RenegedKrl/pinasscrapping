@@ -503,9 +503,21 @@ let autopilotRunning = false;
 let autopilotInterval = null;
 let autopilotCountdownSeconds = 0;
 
-function renderCadenceQueue() {
+async function renderCadenceQueue() {
   if (!queueList) return;
-  const pendingLeads = allLeads.filter(l => l.status === 'novo');
+  let pendingLeads = [];
+  try {
+    const res = await fetch('/api/leads?status=novo');
+    if (res.ok) {
+      const data = await res.json();
+      pendingLeads = data.leads || [];
+    } else {
+      pendingLeads = (allLeads || []).filter(l => l.status === 'novo');
+    }
+  } catch (e) {
+    pendingLeads = (allLeads || []).filter(l => l.status === 'novo');
+  }
+
   const countBadge = document.getElementById('queue-pending-count');
   if (countBadge) countBadge.textContent = pendingLeads.length;
 
@@ -514,18 +526,18 @@ function renderCadenceQueue() {
     return;
   }
 
-  queueList.innerHTML = pendingLeads.map(l => {
+  queueList.innerHTML = pendingLeads.slice(0, 80).map(l => {
     const recId = getRecommendedTemplateId(l);
-    const recTemplate = templates.find(t => t.id === recId);
+    const recTemplate = (templates || []).find(t => t.id === recId);
     const recLabel = recTemplate ? recTemplate.name.split('/')[1] || recTemplate.name.split(':')[1] || recTemplate.name : 'Pinas AI';
 
     return `
       <div class="queue-item" id="queue-item-${l.id}">
         <div class="queue-item-info">
-          <h4>${l.name}</h4>
-          <p>${l.phone} • ${l.neighborhood || 'SP'} • ${l.hasWebsite ? 'Com Site' : '⚠️ Sem Site (Oportunidade)'}</p>
+          <h4>${escapeHtml(l.name)}</h4>
+          <p>${escapeHtml(l.phone || '')} • ${escapeHtml(l.neighborhood || 'SP')} • ${l.hasWebsite ? 'Com Site' : '⚠️ Sem Site (Oportunidade)'}</p>
           <div style="margin-top: 0.25rem;">
-            <span class="badge badge-hassite" style="font-size: 0.7rem;">⚡ ${recLabel}</span>
+            <span class="badge badge-hassite" style="font-size: 0.7rem;">⚡ ${escapeHtml(recLabel)}</span>
           </div>
         </div>
         <button class="btn btn-whatsapp btn-sm" onclick="openWhatsAppModal('${l.id}')">

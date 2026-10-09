@@ -821,7 +821,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
-  max-height: 480px;
+  max-height: clamp(520px, calc(100vh - 300px), 880px);
   overflow-y: auto;
   padding-right: 0.5rem;
 }

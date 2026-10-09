@@ -234,6 +234,17 @@ class AutoPilotEngine {
 
     this.isProcessing = true;
     this.currentLead = null;
+    let currentProcessingLead = null;
+
+    // Watchdog de segurança estrito: NUNCA permite que o piloto fique travado em processamento por mais de 25s
+    const watchdogTimer = setTimeout(() => {
+      if (this.isProcessing) {
+        this.addLog('warn', '⚠️ Watchdog: Tempo limite de 25s atingido no ciclo atual. Liberando esteira para o próximo lead...');
+        this.isProcessing = false;
+        this.currentLead = null;
+        this.scheduleNext(15000);
+      }
+    }, 25000);
 
     try {
       // 1. Validar WhatsApp Conectado
@@ -285,6 +296,7 @@ class AutoPilotEngine {
         if (l.status !== 'novo') return false;
         if (!l.cleanPhone || l.cleanPhone.length < 10) return false;
         if (isBlacklisted(l)) return false;
+        if (l.autopilotSkipUntil && Date.now() < l.autopilotSkipUntil) return false;
 
         // REGRA DE OURO ANTI-SPAM DA PINAS:
         // Se o lead já possui histórico de mensagens ou aguarda resposta, NUNCA enviar outra mensagem!
@@ -313,7 +325,7 @@ class AutoPilotEngine {
             // Filtrar apenas caçados que realmente nunca foram abordados
             const eligibleHunted = hunted.filter(h => {
               const hCheck = conversationGuard.canSendMessageToLead(h, this.whatsapp?.store);
-              return hCheck.allowed && !isBlacklisted(h);
+              return hCheck.allowed && !isBlacklisted(h) && (!h.autopilotSkipUntil || Date.now() >= h.autopilotSkipUntil);
             });
 
             if (eligibleHunted.length > 0) {
@@ -332,6 +344,7 @@ class AutoPilotEngine {
         }
       }
 
+      currentProcessingLead = lead;
       this.currentLead = { id: lead.id, name: lead.name, phone: lead.phone, neighborhood: lead.neighborhood };
       this.addLog('audit', `🔍 [1/3] Auditando site e Google Maps de "${lead.name}" (${lead.neighborhood || 'São Paulo'})...`);
 
@@ -424,9 +437,24 @@ class AutoPilotEngine {
 
     } catch (err) {
       this.addLog('error', `❌ Erro no ciclo do piloto automático: ${err.message}`);
-      // Em caso de erro, aguarda 30 segundos antes de tentar o próximo
-      this.scheduleNext(30000);
+      // Se um lead específico falhou, adia para não travar a esteira em loop
+      if (currentProcessingLead) {
+        try {
+          const leads = readJson(LEADS_FILE, []);
+          const idx = leads.findIndex(l => l.id === currentProcessingLead.id);
+          if (idx !== -1) {
+            leads[idx].autopilotAttempts = (leads[idx].autopilotAttempts || 0) + 1;
+            if (leads[idx].autopilotAttempts >= 2) {
+              leads[idx].autopilotSkipUntil = Date.now() + 1800000; // adia 30 min
+            }
+            writeJson(LEADS_FILE, leads);
+          }
+        } catch (e) {}
+      }
+      // Em caso de erro, aguarda 25 segundos antes de tentar o próximo
+      this.scheduleNext(25000);
     } finally {
+      clearTimeout(watchdogTimer);
       this.isProcessing = false;
       this.currentLead = null;
     }

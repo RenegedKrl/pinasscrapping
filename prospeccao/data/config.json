@@ -1,5 +1,5 @@
 {
-  "autoStartAutopilot": true,
+  "autoStartAutopilot": false,
   "dailyLimit": 32,
   "outboundStartHour": 10,
   "outboundEndHour": 19,

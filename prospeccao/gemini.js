@@ -460,13 +460,49 @@ Retorne EXCLUSIVAMENTE um objeto JSON no formato:
 }
 `;
 
-  const jsonStr = await callGemini({
-    prompt,
-    systemInstruction: PINAS_SYSTEM_PROMPT,
-    jsonMode: true
-  });
+  function getFallbackPitch() {
+    const neighborhood = maps.neighborhood || lead.neighborhood || 'São Paulo';
+    const name = lead.name;
+    let pitchText = '';
+    let angleUsed = '';
 
-  return safeJsonParse(jsonStr);
+    if (!site.hasWebsite) {
+      angleUsed = 'Sem site próprio';
+      pitchText = `Opa, tudo bem? Aqui é o Kauê da Pinas.\n\nVi o perfil da ${name} no Google aqui em ${neighborhood} e dei uma olhada nos canais de vocês pelo celular.\n\nNotei que vocês têm presença bacana no Maps, mas ainda não têm um site próprio com botão direto de WhatsApp pra receber quem busca no Google. A gente ajuda empresas da região estruturando páginas rápidas que convertem direto pro WhatsApp.\n\nVocês já têm alguém cuidando dessa parte do digital por aí hoje?`;
+    } else if (!site.isOnline) {
+      angleUsed = 'Site fora do ar';
+      pitchText = `Opa, tudo bem? Kauê por aqui, da Pinas.\n\nEncontrei a ${name} no Google aqui em ${neighborhood} e fui tentar abrir o site de vocês pelo celular, mas notei que o link tá fora do ar ou com erro. Muita gente que pesquisa no Google acaba desistindo na hora quando a página não abre.\n\nA gente reconstrói e moderniza sites para empresas locais aqui de SP. Vocês já tinham reparado nisso por aí?`;
+    } else if (!site.hasWhatsApp) {
+      angleUsed = 'Site sem botão de WhatsApp direto';
+      pitchText = `Opa, tudo bem? Aqui é o Kauê da Pinas.\n\nVi o perfil da ${name} no Google em ${neighborhood} e achei muito bacana o trabalho de vocês. Dei uma olhada no site pelo celular e vi que tem as informações, mas não tem um botão direto de WhatsApp pra quem tá no smartphone chamar com um toque.\n\nA gente faz essas melhorias rápidas pra dobrar os contatos que chegam. Tô falando com o responsável por aí?`;
+    } else {
+      angleUsed = 'Otimização de presença e conversão local';
+      pitchText = `Opa, tudo certo? Kauê da Pinas por aqui.\n\nEncontrei a ${name} no Google aqui em ${neighborhood} e achei muito forte a presença de vocês. Dei uma olhada no site e na estrutura de vocês pelo celular.\n\nA gente ajuda empresas da região a acelerar a atração de clientes qualificados pelo Google e WhatsApp. Tô falando com o dono ou responsável por aí?`;
+    }
+
+    return {
+      pitchText,
+      angleUsed,
+      auditSummary: audit?.primaryAngle || angleUsed
+    };
+  }
+
+  try {
+    const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(null), 6500));
+    const geminiPromise = callGemini({
+      prompt,
+      systemInstruction: PINAS_SYSTEM_PROMPT,
+      jsonMode: true
+    }).then(jsonStr => safeJsonParse(jsonStr)).catch(() => null);
+
+    const result = await Promise.race([geminiPromise, timeoutPromise]);
+    if (result && result.pitchText && result.pitchText.trim()) {
+      return result;
+    }
+    return getFallbackPitch();
+  } catch (err) {
+    return getFallbackPitch();
+  }
 }
 
 /**

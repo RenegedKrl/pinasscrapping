@@ -15,20 +15,38 @@ const { URL } = require('url');
 /**
  * Realiza fetch HTTP nativo leve e rápido com timeout estrito
  */
-function fetchUrlText(targetUrl, timeoutMs = 7000) {
-  return new Promise((resolve, reject) => {
+function fetchUrlText(targetUrl, timeoutMs = 5000) {
+  return new Promise((resolve) => {
+    let isSettled = false;
+    let req = null;
+
+    const safeSettle = (result) => {
+      if (isSettled) return;
+      isSettled = true;
+      if (hardTimeoutTimer) clearTimeout(hardTimeoutTimer);
+      if (req) {
+        try { req.destroy(); } catch (e) {}
+      }
+      resolve(result);
+    };
+
+    // Hard timeout timer absoluto (garante que NUNCA trava a promise)
+    const hardTimeoutTimer = setTimeout(() => {
+      safeSettle({ success: false, error: 'Tempo limite esgotado (site não respondeu em 5s)', loadTimeMs: timeoutMs });
+    }, timeoutMs);
+
     try {
       let parsedUrl;
       try {
         parsedUrl = new URL(targetUrl.startsWith('http') ? targetUrl : `https://${targetUrl}`);
       } catch (e) {
-        return resolve({ success: false, error: 'URL inválida', loadTimeMs: 0 });
+        return safeSettle({ success: false, error: 'URL inválida', loadTimeMs: 0 });
       }
 
       const client = parsedUrl.protocol === 'https:' ? https : http;
       const startTime = Date.now();
 
-      const req = client.get(
+      req = client.get(
         parsedUrl.toString(),
         {
           headers: {
@@ -40,7 +58,7 @@ function fetchUrlText(targetUrl, timeoutMs = 7000) {
         },
         (res) => {
           const loadTimeMs = Date.now() - startTime;
-          const statusCode = res.statusCode;
+          const statusCode = res.statusCode || 200;
 
           // Redirecionamento (seguir até 1 nível)
           if (statusCode >= 300 && statusCode < 400 && res.headers.location) {
@@ -48,10 +66,13 @@ function fetchUrlText(targetUrl, timeoutMs = 7000) {
             if (redirectUrl.startsWith('/')) {
               redirectUrl = `${parsedUrl.origin}${redirectUrl}`;
             }
-            req.destroy();
-            return fetchUrlText(redirectUrl, timeoutMs - loadTimeMs)
-              .then(resolve)
-              .catch(reject);
+            try { res.destroy(); } catch (e) {}
+            try { req.destroy(); } catch (e) {}
+            clearTimeout(hardTimeoutTimer);
+            const remainingTime = Math.max(2500, timeoutMs - loadTimeMs);
+            return fetchUrlText(redirectUrl, remainingTime)
+              .then(redirectRes => safeSettle(redirectRes))
+              .catch(err => safeSettle({ success: false, error: err.message, loadTimeMs: Date.now() - startTime }));
           }
 
           let data = '';
@@ -59,14 +80,22 @@ function fetchUrlText(targetUrl, timeoutMs = 7000) {
 
           res.on('data', (chunk) => {
             data += chunk;
-            // Limitar a 500KB para economizar memória e agilizar
-            if (data.length > 500000) {
-              res.destroy();
+            // Se passar de 300KB, já coletamos o essencial (<head>, <body>, scripts, pixel).
+            // Concluir imediatamente sem esperar o restante do download!
+            if (data.length > 300000) {
+              try { res.destroy(); } catch (e) {}
+              safeSettle({
+                success: statusCode >= 200 && statusCode < 400,
+                statusCode,
+                loadTimeMs: Date.now() - startTime,
+                html: data,
+                finalUrl: parsedUrl.toString()
+              });
             }
           });
 
           res.on('end', () => {
-            resolve({
+            safeSettle({
               success: statusCode >= 200 && statusCode < 400,
               statusCode,
               loadTimeMs,
@@ -74,19 +103,33 @@ function fetchUrlText(targetUrl, timeoutMs = 7000) {
               finalUrl: parsedUrl.toString()
             });
           });
+
+          res.on('close', () => {
+            // Em caso de stream fechado antes de 'end'
+            safeSettle({
+              success: statusCode >= 200 && statusCode < 400,
+              statusCode,
+              loadTimeMs: Date.now() - startTime,
+              html: data,
+              finalUrl: parsedUrl.toString()
+            });
+          });
+
+          res.on('error', (err) => {
+            safeSettle({ success: false, error: err.message, loadTimeMs: Date.now() - startTime });
+          });
         }
       );
 
       req.on('timeout', () => {
-        req.destroy();
-        resolve({ success: false, error: 'Tempo limite esgotado (site muito lento)', loadTimeMs: timeoutMs });
+        safeSettle({ success: false, error: 'Tempo limite esgotado (site muito lento)', loadTimeMs: timeoutMs });
       });
 
       req.on('error', (err) => {
-        resolve({ success: false, error: err.message, loadTimeMs: Date.now() - startTime });
+        safeSettle({ success: false, error: err.message, loadTimeMs: Date.now() - startTime });
       });
     } catch (err) {
-      resolve({ success: false, error: err.message, loadTimeMs: 0 });
+      safeSettle({ success: false, error: err.message, loadTimeMs: 0 });
     }
   });
 }
@@ -336,34 +379,90 @@ function auditGoogleMaps(lead) {
  * Auditoria Completa Integrada (Site + Google Maps)
  */
 async function auditLeadFull(lead) {
-  const [siteAudit, mapsAudit] = await Promise.all([
-    auditWebsite(lead.website),
-    auditGoogleMaps(lead)
-  ]);
+  // Garantir que a auditoria nunca ultrapasse 6 segundos no total
+  const timeoutPromise = new Promise((resolve) => {
+    setTimeout(() => {
+      const mapsFallback = auditGoogleMaps(lead);
+      resolve({
+        leadId: lead.id,
+        leadName: lead.name,
+        auditedAt: new Date().toISOString(),
+        site: {
+          hasWebsite: !!lead.website,
+          url: lead.website,
+          isOnline: false,
+          error: 'Tempo limite na inspeção do site',
+          loadTimeMs: 6000,
+          summary: 'Site muito lento ou não respondeu a tempo.',
+          details: 'Página demorou mais de 6 segundos para responder.',
+          opportunityScore: 8,
+          attackAngle: 'Site lento ou instável no celular. Oportunidade de landing page moderna.',
+          diagnosisTags: ['⚠️ Site Lento / Instável', '🎯 Oportunidade de Modernização']
+        },
+        maps: mapsFallback,
+        primaryAngle: `A empresa possui presença em ${mapsFallback.neighborhood || 'São Paulo'}, mas a estrutura online atual apresenta lentidão ou pontos de melhoria para converter visitantes no WhatsApp.`,
+        allTags: ['⚠️ Site Lento / Instável', ...(mapsFallback.diagnosisTags || [])]
+      });
+    }, 6000);
+  });
 
-  // Síntese Estratégica para o Gemini
-  let primaryAngle = '';
-  if (!siteAudit.hasWebsite) {
-    primaryAngle = `A empresa tem presença local em ${mapsAudit.neighborhood} (${mapsAudit.reviews} avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.`;
-  } else if (!siteAudit.isOnline) {
-    primaryAngle = `O site cadastrado no Maps (${siteAudit.url}) está FORA DO AR ou inacessível. Oportunidade urgente de alertar o responsável com gentileza e oferecer um site novo no ar rapidamente.`;
-  } else if (!siteAudit.hasWhatsApp) {
-    primaryAngle = `A empresa tem site no ar, mas NÃO TEM botão direto de WhatsApp. O cliente precisa procurar o telefone ou preencher formulário, perdendo conversões imediatas.`;
-  } else if (!siteAudit.doesPaidTraffic) {
-    primaryAngle = `A empresa tem site e boa reputação em ${mapsAudit.neighborhood}, mas NÃO FAZ tráfego pago no Google/Meta (sem tags de anúncio). Foco em atrair mais clientes locais com campanhas no bairro.`;
-  } else {
-    primaryAngle = `A empresa já investe em digital. Foco em posicionamento comercial, aceleração de resultados e melhoria da taxa de conversão no WhatsApp.`;
-  }
+  const executionPromise = (async () => {
+    try {
+      const [siteAudit, mapsAudit] = await Promise.all([
+        auditWebsite(lead.website).catch(err => ({
+          hasWebsite: !!lead.website,
+          isOnline: false,
+          error: err.message,
+          loadTimeMs: 0,
+          summary: 'Falha ao acessar site',
+          diagnosisTags: ['⚠️ Falha ao acessar site']
+        })),
+        Promise.resolve(auditGoogleMaps(lead))
+      ]);
 
-  return {
-    leadId: lead.id,
-    leadName: lead.name,
-    auditedAt: new Date().toISOString(),
-    site: siteAudit,
-    maps: mapsAudit,
-    primaryAngle,
-    allTags: [...(siteAudit.diagnosisTags || []), ...(mapsAudit.diagnosisTags || [])]
-  };
+      let primaryAngle = '';
+      if (!siteAudit.hasWebsite) {
+        primaryAngle = `A empresa tem presença local em ${mapsAudit.neighborhood} (${mapsAudit.reviews} avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.`;
+      } else if (!siteAudit.isOnline) {
+        primaryAngle = `O site cadastrado no Maps (${siteAudit.url}) está FORA DO AR ou inacessível. Oportunidade urgente de alertar o responsável com gentileza e oferecer um site novo no ar rapidamente.`;
+      } else if (!siteAudit.hasWhatsApp) {
+        primaryAngle = `A empresa tem site no ar, mas NÃO TEM botão direto de WhatsApp. O cliente precisa procurar o telefone ou preencher formulário, perdendo conversões imediatas.`;
+      } else if (!siteAudit.doesPaidTraffic) {
+        primaryAngle = `A empresa tem site e boa reputação em ${mapsAudit.neighborhood}, mas NÃO FAZ tráfego pago no Google/Meta (sem tags de anúncio). Foco em atrair mais clientes locais com campanhas no bairro.`;
+      } else {
+        primaryAngle = `A empresa já investe em digital. Foco em posicionamento comercial, aceleração de resultados e melhoria da taxa de conversão no WhatsApp.`;
+      }
+
+      return {
+        leadId: lead.id,
+        leadName: lead.name,
+        auditedAt: new Date().toISOString(),
+        site: siteAudit,
+        maps: mapsAudit,
+        primaryAngle,
+        allTags: [...(siteAudit.diagnosisTags || []), ...(mapsAudit.diagnosisTags || [])]
+      };
+    } catch (err) {
+      const mapsFallback = auditGoogleMaps(lead);
+      return {
+        leadId: lead.id,
+        leadName: lead.name,
+        auditedAt: new Date().toISOString(),
+        site: {
+          hasWebsite: !!lead.website,
+          isOnline: false,
+          error: err.message,
+          summary: 'Falha durante auditoria',
+          diagnosisTags: ['⚠️ Auditoria Inconclusiva']
+        },
+        maps: mapsFallback,
+        primaryAngle: `A empresa está em ${mapsFallback.neighborhood || 'SP'} e tem oportunidade de acelerar captação de clientes no digital.`,
+        allTags: mapsFallback.diagnosisTags || []
+      };
+    }
+  })();
+
+  return Promise.race([executionPromise, timeoutPromise]);
 }
 
 module.exports = {
