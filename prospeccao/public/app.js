@@ -1205,6 +1205,11 @@ function initModals() {
         return;
       }
 
+      if (currentActiveLead.status === 'contatado') {
+        alert('🛡️ Bloqueado pela Regra Anti-Spam da Pinas:\n\nEste lead já recebeu a 1ª mensagem de abordagem e ainda NÃO respondeu.\n\nNunca enviamos mais de uma mensagem sem retorno. O sistema responderá automaticamente com IA assim que o lead responder no WhatsApp!');
+        return;
+      }
+
       // Validar se o WhatsApp está conectado
       if (!currentWaStatus.connected) {
         alert('⚠️ O seu WhatsApp ainda não está conectado no Prospector.\n\nEscaneie o QR Code para conectar e disparar diretamente pelo sistema!');
@@ -1456,8 +1461,30 @@ function renderStagesCards(lead) {
 
   const currentStage = lead.stage || 1;
   const withSite = currentLeadHasWebsitePreview;
+  const isWaitingReply = (lead.status === 'contatado');
 
-  wrapper.innerHTML = stepTemplatesData.stages.map(st => {
+  let bannerHtml = '';
+  if (isWaitingReply) {
+    bannerHtml = `
+      <div class="alert-conversation-guard" style="background: rgba(234, 179, 8, 0.12); border: 1px solid rgba(234, 179, 8, 0.4); border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; font-size: 0.82rem; color: #FDE047; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 1.2rem;">⏳</span>
+        <div>
+          <strong>Aguardando Resposta do Lead:</strong> A mensagem inicial já foi entregue. Pela regra de ouro da Pinas, <em>nunca enviamos mais de uma mensagem sem retorno</em>. O sistema responderá automaticamente com IA assim que o cliente responder no WhatsApp!
+        </div>
+      </div>
+    `;
+  } else if (lead.status === 'respondeu') {
+    bannerHtml = `
+      <div class="alert-conversation-guard" style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; font-size: 0.82rem; color: #6EE7B7; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 1.2rem;">💬</span>
+        <div>
+          <strong>Lead Respondeu:</strong> O cliente interagiu por último no WhatsApp. Você pode enviar a próxima etapa abaixo ou deixar o Auto-Responder responder autonomamente!
+        </div>
+      </div>
+    `;
+  }
+
+  const cardsHtml = stepTemplatesData.stages.map(st => {
     const isCurrent = st.number === currentStage;
     const isSent = lead.stageHistory && lead.stageHistory.some(h => h.stage === st.number);
     const formattedText = formatStageText(lead, st.number, withSite);
@@ -1468,6 +1495,10 @@ function renderStagesCards(lead) {
     } else if (isCurrent) {
       statusBadge = '<span class="stage-badge-status badge-pending">👉 Próxima etapa</span>';
     }
+
+    const disableSendBtn = isWaitingReply || isSent;
+    const btnSendLabel = isWaitingReply ? '⏳ Aguardando Resposta' : (isSent ? '✅ Já Enviada' : '💬 Enviar Etapa');
+    const btnSendTitle = isWaitingReply ? 'Bloqueado: Aguardando o cliente responder antes de enviar nova mensagem' : 'Disparar esta etapa no WhatsApp';
 
     return `
       <div class="stage-card ${isCurrent ? 'stage-current' : ''} ${isSent ? 'stage-sent' : ''}" id="stage-card-${st.number}">
@@ -1482,8 +1513,8 @@ function renderStagesCards(lead) {
             <button type="button" class="btn-stage-tool" onclick="copyStageText(${st.number})" title="Copiar texto desta etapa">
               📋 Copiar
             </button>
-            <button type="button" class="btn-stage-tool btn-send-wa" onclick="sendLeadStage(${st.number})" title="Disparar esta etapa no WhatsApp">
-              💬 Enviar Etapa
+            <button type="button" class="btn-stage-tool btn-send-wa" onclick="sendLeadStage(${st.number})" ${disableSendBtn ? 'disabled style="opacity: 0.45; cursor: not-allowed;"' : ''} title="${btnSendTitle}">
+              ${btnSendLabel}
             </button>
           </div>
         </div>
@@ -1492,22 +1523,39 @@ function renderStagesCards(lead) {
     `;
   }).join('');
 
+  wrapper.innerHTML = bannerHtml + cardsHtml;
+
   // Atualizar badge no header do modal
   const badgeEl = document.getElementById('modal-wa-lead-stage-badge');
   if (badgeEl) {
     const stageNames = ['', 'Abertura', 'Apresentação', 'Diagnóstico', 'Proposta de Valor', 'Fechamento'];
-    badgeEl.textContent = `Etapa Atual: ${currentStage}. ${stageNames[currentStage] || 'Concluído'}`;
+    badgeEl.textContent = `Etapa Atual: ${currentStage}. ${stageNames[currentStage] || 'Concluído'}${isWaitingReply ? ' • ⏳ Aguardando Lead' : ''}`;
   }
 
   // Atualizar texto do botão do topo
   const btnTopSend = document.getElementById('btn-send-current-stage');
   if (btnTopSend) {
-    btnTopSend.innerHTML = `<span>💬 Enviar Etapa ${currentStage} no WhatsApp</span>`;
+    if (isWaitingReply) {
+      btnTopSend.disabled = true;
+      btnTopSend.style.opacity = '0.5';
+      btnTopSend.style.cursor = 'not-allowed';
+      btnTopSend.innerHTML = `<span>⏳ Aguardando Resposta do Lead (Anti-Spam Ativo)</span>`;
+    } else {
+      btnTopSend.disabled = false;
+      btnTopSend.style.opacity = '1';
+      btnTopSend.style.cursor = 'pointer';
+      btnTopSend.innerHTML = `<span>💬 Enviar Etapa ${currentStage} no WhatsApp</span>`;
+    }
   }
 }
 
 async function sendLeadStage(stageNum) {
   if (!currentActiveLead) return;
+
+  if (currentActiveLead.status === 'contatado') {
+    alert('🛡️ Bloqueado pela Regra Anti-Spam da Pinas:\n\nEste lead já recebeu a mensagem de abordagem e ainda NÃO respondeu.\n\nNunca enviamos mais de uma mensagem sem retorno do cliente. O sistema responderá automaticamente assim que ele mandar uma mensagem!');
+    return;
+  }
 
   const textarea = document.getElementById(`stage-textarea-${stageNum}`);
   const text = textarea ? textarea.value : formatStageText(currentActiveLead, stageNum, currentLeadHasWebsitePreview);
@@ -1863,6 +1911,11 @@ async function sendGeminiPitchDirect(idx) {
 
   if (!cleanPhone || cleanPhone.length < 10) {
     alert('Telefone do lead inválido ou incompleto.');
+    return;
+  }
+
+  if (currentActiveLead.status === 'contatado') {
+    alert('🛡️ Bloqueado pela Regra Anti-Spam da Pinas:\n\nEste lead já recebeu a 1ª mensagem de abordagem e ainda NÃO respondeu.\n\nA Pinas nunca envia mais de uma mensagem sem retorno. O sistema responderá automaticamente com IA assim que o cliente responder no WhatsApp!');
     return;
   }
 

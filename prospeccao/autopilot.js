@@ -14,6 +14,7 @@ const path = require('path');
 const auditor = require('./auditor');
 const gemini = require('./gemini');
 const geminiGuard = require('./gemini_guard');
+const conversationGuard = require('./conversation_guard');
 
 const LEADS_FILE = path.join(__dirname, 'data', 'leads.json');
 const CONFIG_FILE = path.join(__dirname, 'data', 'config.json');
@@ -284,6 +285,14 @@ class AutoPilotEngine {
         if (l.status !== 'novo') return false;
         if (!l.cleanPhone || l.cleanPhone.length < 10) return false;
         if (isBlacklisted(l)) return false;
+
+        // REGRA DE OURO ANTI-SPAM DA PINAS:
+        // Se o lead já possui histórico de mensagens ou aguarda resposta, NUNCA enviar outra mensagem!
+        const safetyCheck = conversationGuard.canSendMessageToLead(l, this.whatsapp?.store);
+        if (!safetyCheck.allowed) {
+          return false;
+        }
+
         return true;
       });
 
@@ -301,8 +310,16 @@ class AutoPilotEngine {
           const scraper = require('./scraper');
           const hunted = await scraper.huntBadWebsites({ maxResults: 6 });
           if (hunted && hunted.length > 0) {
-            this.addLog('success', `🎯 Encontradas ${hunted.length} novas empresas com sites ruins/sem site! Continuando prospecção...`);
-            lead = hunted[0];
+            // Filtrar apenas caçados que realmente nunca foram abordados
+            const eligibleHunted = hunted.filter(h => {
+              const hCheck = conversationGuard.canSendMessageToLead(h, this.whatsapp?.store);
+              return hCheck.allowed && !isBlacklisted(h);
+            });
+
+            if (eligibleHunted.length > 0) {
+              this.addLog('success', `🎯 Encontradas ${eligibleHunted.length} novas empresas com sites ruins/sem site! Continuando prospecção...`);
+              lead = eligibleHunted[0];
+            }
           }
         } catch (huntErr) {
           this.addLog('warn', `Aviso ao caçar novos sites na web: ${huntErr.message}`);
@@ -344,6 +361,14 @@ class AutoPilotEngine {
 
       // 7. Simular Digitação e Disparar pelo WhatsApp
       this.addLog('send', `🚀 [3/3] Disparando mensagem direta pelo WhatsApp para ${lead.name} (${lead.cleanPhone})...`);
+
+      // VALIDAÇÃO CRÍTICA FINAL: Garantir que o lead não foi contatado nesse meio tempo ou aguarda resposta
+      const finalCheck = conversationGuard.canSendMessageToLead(lead, this.whatsapp?.store);
+      if (!finalCheck.allowed) {
+        this.addLog('warn', `🛡️ [Trava Anti-Spam Ativa] Disparo cancelado para "${lead.name}": ${finalCheck.reason}`);
+        this.scheduleNext(15000);
+        return;
+      }
 
       try {
         await this.whatsapp.sendTyping(lead.cleanPhone);

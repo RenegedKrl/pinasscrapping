@@ -62,4 +62,5 @@ criação de sites e campanhas de tráfego pago (Meta Ads e Google Ads).
   - Clientes Atuais: **Petiva**, **Pink Luxo**, **Chay B**, **Bem Zanza** (e todas as suas variações de nome).
   - Região / Nicho proibido: **Brás** e lojas em geral do Brás.
 - **Nichos Prioritários:** 1º Clínicas Veterinárias | 2º Escritórios de Advocacia | 3º Lojas de Roupa (fora do Brás, prioridade menor) | Outros serviços qualificados.
+- **Regra de Ouro Anti-Spam (Inviolável):** NUNCA mandar mais de uma mensagem para um lead se ele não responder. O sistema identifica automaticamente threads aguardando resposta e bloqueia novos envios/etapas. SÓ responder quando o lead responder.
 

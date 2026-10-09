@@ -30,6 +30,7 @@ const gemini = require('./gemini');
 const auditor = require('./auditor');
 const autopilot = require('./autopilot');
 const geminiGuard = require('./gemini_guard');
+const conversationGuard = require('./conversation_guard');
 
 autopilot.setWhatsAppInstance(whatsapp);
 
@@ -423,7 +424,21 @@ app.post('/api/whatsapp/send', async (req, res) => {
 
   // Verifica se é um lead novo (prospecção fria) ou conversa em andamento
   const leads = readJson(LEADS_FILE, []);
-  const lead = leadId ? leads.find(l => l.id === leadId) : null;
+  const lead = leadId ? leads.find(l => l.id === leadId) : findLeadByPhone(leads, String(phone).replace(/\D/g, ''));
+
+  // REGRA DE OURO ANTI-SPAM DA PINAS:
+  // Se o lead já recebeu mensagem nossa e não respondeu, NUNCA enviar outra mensagem sem resposta do cliente!
+  if (lead && !req.body.force) {
+    const safetyCheck = conversationGuard.canSendMessageToLead(lead, whatsapp.store);
+    if (!safetyCheck.allowed) {
+      return res.status(400).json({
+        error: safetyCheck.reason,
+        code: safetyCheck.code,
+        waitingForCustomerReply: safetyCheck.waitingForCustomerReply
+      });
+    }
+  }
+
   const isColdOutbound = lead ? (lead.status === 'novo' || (!lead.lastContact && lead.status !== 'respondeu')) : false;
 
   const config = checkAndResetDailyLimit(readJson(CONFIG_FILE, {}));
@@ -714,6 +729,19 @@ app.post('/api/leads/:id/stage', async (req, res) => {
       });
     }
 
+    // REGRA DE OURO ANTI-SPAM DA PINAS:
+    // Nunca enviar uma etapa ou mensagem para o lead se ele ainda não respondeu à anterior!
+    if (!req.body.force) {
+      const safetyCheck = conversationGuard.canSendMessageToLead(lead, whatsapp.store);
+      if (!safetyCheck.allowed) {
+        return res.status(400).json({
+          error: safetyCheck.reason,
+          code: safetyCheck.code,
+          waitingForCustomerReply: safetyCheck.waitingForCustomerReply
+        });
+      }
+    }
+
     const isColdOutbound = (stage === 1 && lead.status === 'novo');
     if (isColdOutbound) {
       const config = checkAndResetDailyLimit(readJson(CONFIG_FILE, {}));
@@ -756,6 +784,33 @@ app.post('/api/leads/:id/stage', async (req, res) => {
 
   writeJson(LEADS_FILE, leads);
   res.json({ success: true, lead });
+});
+
+// Obter estado detalhado da conversa e se pode enviar mensagem
+app.get('/api/leads/:id/conversation-state', (req, res) => {
+  const { id } = req.params;
+  const leads = readJson(LEADS_FILE, []);
+  const lead = leads.find(l => l.id === id);
+  if (!lead) return res.status(404).json({ error: 'Lead não encontrado' });
+
+  const state = conversationGuard.getConversationState(lead, whatsapp.store);
+  const safety = conversationGuard.canSendMessageToLead(lead, whatsapp.store);
+
+  res.json({
+    leadId: lead.id,
+    leadName: lead.name,
+    leadStatus: lead.status,
+    ...state,
+    canSend: safety.allowed,
+    reason: safety.reason,
+    code: safety.code
+  });
+});
+
+// Reconciliar base de leads contra o histórico real do WhatsApp
+app.post('/api/leads/reconcile', (req, res) => {
+  const result = conversationGuard.reconcileLeadsDatabase(whatsapp.store);
+  res.json({ success: true, ...result });
 });
 
 // ==================== AUTO-RESPONDER INTELIGENTE DE ETAPAS ====================
@@ -1412,6 +1467,13 @@ const server = app.listen(PORT, () => {
 
   // Iniciar ouvinte do Auto-Responder
   initAutoResponder();
+
+  // Executar reconciliação inicial de consistência de leads
+  try {
+    conversationGuard.reconcileLeadsDatabase(whatsapp.store);
+  } catch (recErr) {
+    console.warn('[Startup] Aviso na reconciliação de leads:', recErr.message);
+  }
 
   // Ouvinte de conexão do WhatsApp para Auto-Start do Piloto Automático em segundo plano
   if (whatsapp.events) {

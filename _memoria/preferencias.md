@@ -35,9 +35,11 @@
 3. **Lojas de Roupas / Moda** (Prioridade mais baixa, e sempre FORA do Brás)
 4. **Outros comércios/serviços de alto ticket** (Aberto a oportunidades: energia solar, contabilidade, clínicas odontológicas, etc.)
 
-### Regra de Abordagem Conversacional (Prospecção em 2 Tempos com IA):
-- **1ª Mensagem (Abertura Limpa):** NUNCA jogar o textão com a dor logo de cara. Começar com uma saudação despretensiosa, curta e educada confirmando o responsável (*"Opa, tudo bem? Falo com o responsável pela {nome}?"*).
-- **2ª Mensagem em diante (Inteligência Conversacional Adaptativa):** Ler a resposta real enviada pelo lead via WhatsApp, identificar o contexto (se é o dono, secretária/recepção, se perguntou preço ou do que se trata), contornar dúvidas e objeções com naturalidade e conduzir a conversa até agendar um papo rápido de 15 minutos no Google Meet.
+### Regra de Ouro Anti-Spam & Abordagem Conversacional (Inviolável):
+- **LIMITE ESTRITO DE 1 MENSAGEM SEM RESPOSTA:** NUNCA enviar mais de uma mensagem para um lead se ele não responder. Se o primeiro contato foi enviado e o lead não respondeu, o sistema identifica esse estado e **NUNCA envia outra mensagem** (sem follow-ups forçados, sem etapas automáticas subsequentes).
+- **SÓ RESPONDE QUANDO O LEAD RESPONDER:** O sistema e a IA só voltam a interagir quando o lead enviar uma resposta real no WhatsApp.
+- **1ª Mensagem (Abertura Limpa):** NUNCA jogar textão de cara. Começar com uma saudação despretensiosa, curta e educada confirmando o responsável (*"Opa, tudo bem? Falo com o responsável pela {nome}?"*).
+- **2ª Mensagem em diante (Inteligência Conversacional Adaptativa):** Ler a resposta real enviada pelo lead via WhatsApp, identificar o contexto (se é o dono, secretária/recepção, se perguntou preço ou do que se trata), contornar dúvidas e conduzir a conversa até agendar um papo rápido de 15 minutos no Google Meet.
 
 ## Estilo Geral
 
