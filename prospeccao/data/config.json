@@ -1,9 +1,9 @@
 {
-  "autoStartAutopilot": false,
+  "autoStartAutopilot": true,
   "dailyLimit": 32,
   "outboundStartHour": 10,
   "outboundEndHour": 19,
-  "sentToday": 13,
+  "sentToday": 14,
   "lastResetDate": "2026-10-09",
   "minDelaySeconds": 30,
   "maxDelaySeconds": 60,

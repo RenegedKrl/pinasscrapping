@@ -69,19 +69,15 @@ for /f "tokens=5" %%p in ('netstat -aon ^| findstr /r /c:":3333 " ^| findstr LIS
     taskkill /F /T /PID %%p >nul 2>&1
 )
 
-:: 5. Gerar identificador unico de cache buster para o navegador
-set /a CACHE_ID=%RANDOM% * 100 + %RANDOM% %% 100
-
-:: 6. Abrir navegador automaticamente apos 2 segundos em segundo plano
-start "" cmd /c "timeout /t 2 /nobreak >nul & start http://localhost:3333/?v=8.1_%CACHE_ID%"
-
 echo [STATUS] Iniciando servidor do Pinas Prospector (v8.1)...
-echo [ACESSO] Abrindo http://localhost:3333/?v=8.1 no seu navegador...
+echo [INFO] Servidor rodando em: http://localhost:3333
+echo [SEGUNDO PLANO] O piloto roda 100%% em segundo plano sem abrir o navegador.
+echo [DICA] Se quiser abrir o painel visual a qualquer momento, acesse http://localhost:3333.
 echo.
 echo --------------------------------------------------------------
 echo  * O sistema ja esta rodando com o novo funil de prospeccao!
-echo  * Mantenha esta janela aberta enquanto utiliza o Prospector.
-echo  * Para encerrar o sistema, basta fechar esta janela.
+echo  * Mantenha esta janela aberta se quiser acompanhar os logs no terminal.
+echo  * Para rodar 100%% invisivel, utilize o INICIAR_SILENCIOSO.vbs.
 echo --------------------------------------------------------------
 echo.
 

@@ -6360,8 +6360,8 @@
     },
     "score": 4,
     "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas.",
-    "status": "novo",
-    "lastContact": null,
+    "status": "respondeu",
+    "lastContact": "2026-10-09T17:58:45.543Z",
     "createdAt": "2026-10-08T03:47:15.534Z",
     "conversationScript": {
       "hasCustomerReplied": false,
@@ -6435,7 +6435,81 @@
         "goldenClosingPhrase": "Faz sentido a gente implementar essa estrutura de captação para blindar o seu negócio e dominar as buscas em São Caetano do Sul, SP?"
       }
     },
-    "conversationScriptGeneratedAt": "2026-10-09T16:05:59.504Z"
+    "conversationScriptGeneratedAt": "2026-10-09T16:05:59.504Z",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "https://zulinoengenharia.com.br/",
+      "isOnline": true,
+      "loadTimeMs": 1325,
+      "title": "",
+      "hasWhatsApp": true,
+      "hasMetaPixel": false,
+      "hasGoogleAdsOrTag": false,
+      "hasAnalytics": false,
+      "doesPaidTraffic": false,
+      "isMobileResponsive": false,
+      "isSlow": false,
+      "diagnosisTags": [
+        "✅ Tem WhatsApp",
+        "🔍 Sem Tráfego Pago Ativo",
+        "📱 Não Otimizado pra Mobile"
+      ],
+      "strengths": [
+        "Carregamento ágil (1.3s)",
+        "Possui botão de WhatsApp no site"
+      ],
+      "weaknesses": [
+        "Não possui Pixel do Facebook ou Google Ads ativo (não faz tráfego qualificado)",
+        "Pode ter problemas de visualização em celulares (sem tag viewport)"
+      ],
+      "opportunityScore": 8,
+      "attackAngle": "A empresa tem site funcional mas não usa tráfego pago para atrair os clientes da região.",
+      "domDetails": {
+        "metaDescription": "",
+        "h1List": [],
+        "h2List": [],
+        "h3List": [],
+        "imgCount": 2,
+        "imgsWithoutAlt": 1,
+        "buttonCtaList": [
+          "&times;",
+          "\"+b.label+\""
+        ],
+        "detectedCms": "Bootstrap",
+        "sectionsFound": "Hero/Banner, Galeria de Fotos, Formulário/Contato"
+      },
+      "summary": "Site ativo (1.3s). Possui botão de WhatsApp. SEM tags de tráfego pago."
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 19,
+      "neighborhood": "São Caetano do Sul, SP",
+      "localReputation": "média",
+      "diagnosisTags": [
+        "⭐ 19 avaliações"
+      ],
+      "strengths": [
+        "Boa presença com 19 avaliações (nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Caetano do Sul, SP. Avaliações: 19 (nota 5.0). Reputação local: média."
+    },
+    "aiAnalysis": {
+      "summary": "Site funcional em São Caetano do Sul mas sem estrutura de anúncios no Google e Meta.",
+      "bestAngle": "Elogio ao carregamento do site mas menção direta à falta de rastreamento (Pixel/Tags) para tráfego pago local."
+    },
+    "initialPitch": "Opa, tudo bem? Aqui é o Kauê, da Pinas.\n\nEncontrei o perfil de vocês aqui em São Caetano do Sul e dei uma olhada no site pelo celular. Notei que a página até carrega rápido, mas não vi as tags de anúncio configuradas pra rodar campanhas eficientes por aqui.\n\nTô falando com o responsável pela parte de engenharia e novos clientes por aí?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-09T17:58:45.543Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo bem? Aqui é o Kauê, da Pinas.\n\nEncontrei o perfil de vocês aqui em São Caetano do Sul e dei uma olhada no site pelo celular. Notei que a página até carrega rápido, mas não vi as tags de anúncio configuradas pra rodar campanhas eficientes por aqui.\n\nTô falando com o responsável pela parte de engenharia e novos clientes por aí?"
+      }
+    ],
+    "repliedAt": "2026-10-09T17:58:56.399Z"
   },
   {
     "id": "lead-1791431235534-t32cnt",
