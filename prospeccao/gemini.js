@@ -620,6 +620,136 @@ Retorne EXCLUSIVAMENTE um objeto JSON no formato:
   return safeJsonParse(jsonStr);
 }
 
+/**
+ * 7. Roteiro Estratégico Baseado no Resumo da Conversa do WhatsApp (@pinas.studio)
+ * Analisa a conversa real trocada com o lead no WhatsApp, extrai o perfil de quem falou,
+ * as dores admitidas, as objeções levantadas e cria o roteiro da call de fechamento sob medida.
+ */
+async function generateWhatsAppConversationScript({ lead, messages = [] }) {
+  const validMsgs = (messages || []).filter(m => m && (m.text || m.type === 'image' || m.type === 'audio'));
+
+  const hasCustomerReplied = validMsgs.some(m => !m.fromMe);
+
+  let chatTranscript = 'Nenhuma mensagem trocada ainda.';
+  if (validMsgs.length > 0) {
+    chatTranscript = validMsgs.map(m => {
+      const timeStr = m.timestamp ? new Date(m.timestamp).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : '';
+      const sender = m.fromMe ? 'Kauê (Pinas Studio)' : (m.senderName || lead.name || 'Cliente');
+      const textContent = m.text || (m.type === 'audio' ? '[Áudio enviado]' : '[Imagem enviada]');
+      return `[${timeStr}] ${sender}: ${textContent}`;
+    }).join('\n');
+  }
+
+  const prompt = `
+Você é o estrategista comercial sênior da Pinas (@pinas.studio), trabalhando lado a lado com o Kauê.
+O Kauê precisa de um RESUMO EXECUTIVO DA CONVERSA DO WHATSAPP e um ROTEIRO DE CALL sob medida para fechar contrato com este lead.
+
+DADOS DO LEAD:
+- Empresa: ${lead.name}
+- Nicho: ${lead.niche || 'Comércio/Serviço Local'}
+- Bairro / Região: ${lead.neighborhood || lead.city || 'São Paulo - SP'}
+- Telefone / WhatsApp: ${lead.phone || lead.cleanPhone}
+- Status Atual: ${lead.status || 'contatado'}
+- Tem Site Próprio: ${lead.hasWebsite ? 'Sim' : 'Não'}
+- Site: ${lead.website || 'Sem site'}
+- Avaliação Google Maps: ${lead.rating || 'N/A'}★ (${lead.reviews || 0} avaliações)
+
+TRANSCRIÇÃO COMPLETA DA CONVERSA NO WHATSAPP:
+"""
+${chatTranscript}
+"""
+
+STATUS DE RESPOSTA DO CLIENTE:
+${hasCustomerReplied ? 'O cliente RESPONDEU no WhatsApp. Analise o que ele disse com máxima atenção.' : 'O cliente AINDA NÃO respondeu no WhatsApp (apenas mensagem inicial enviada ou lead virgem).'}
+
+SUA MISSÃO:
+1. Analise cada fala do cliente (ou da recepção/secretária/dono) na conversa.
+2. Crie um resumo executivo claro, direto e focado em negócios para o Kauê ler em 30 segundos antes de entrar na call ou mandar mensagem.
+3. Identifique quem é a pessoa que respondeu (nome, se é o dono, sócio ou recepção), o tom de voz e o poder de decisão.
+4. Liste as dores reais que a empresa confessou ou os gargalos que ficaram evidentes no chat.
+5. Liste as objeções levantadas no WhatsApp e a resposta exata na voz do Kauê para contorná-las.
+6. Estruture um Roteiro de Call de 15 minutos no Google Meet, começando com um gancho direto que conecta com o que foi falado no WhatsApp.
+
+Retorne EXCLUSIVAMENTE um objeto JSON válido no formato:
+{
+  "hasCustomerReplied": ${hasCustomerReplied},
+  "conversationSummary": "Resumo de 2 a 3 parágrafos diretos da conversa: como começou, o que o lead disse, se demonstrou interesse, se fez perguntas de preço e qual o estágio atual da negociação.",
+  "interlocutor": {
+    "name": "Nome da pessoa que falou no WhatsApp (ou 'Não identificado')",
+    "role": "Dono / Sócia / Recepção / Gerente / Não identificado",
+    "tone": "Tom de comunicação (ex: Ocupado e direto, Simpático e receptivo, Desconfiado)",
+    "decisionPower": "Alto (Decisor Final) | Médio (Influenciador/Sócio) | Baixo (Recepção/Triagem)"
+  },
+  "painsAndNeeds": [
+    "Dor 1 identificada na conversa ou no perfil",
+    "Dor 2...",
+    "Dor 3..."
+  ],
+  "objectionsAndAnswers": [
+    {
+      "objection": "Objeção levantada ou esperada",
+      "howToCounter": "Como o Kauê deve responder com segurança e naturalidade"
+    }
+  ],
+  "agreedNextSteps": "O que já ficou combinado no WhatsApp (ex: enviar prévia, marcar reunião, aguardando retorno)",
+  "callScript": {
+    "title": "Roteiro da Call de Fechamento Baseado no WhatsApp",
+    "openingHook": "Frase exata do Kauê para abrir a conversa conectando com o papo do WhatsApp",
+    "steps": [
+      {
+        "time": "00:00 - 03:00",
+        "title": "Abertura & Conexão pelo WhatsApp",
+        "objective": "Reconectar pelo que foi conversado no chat",
+        "script": "Texto do que o Kauê fala na abertura...",
+        "tip": "Dica de tom e postura"
+      },
+      {
+        "time": "03:00 - 07:00",
+        "title": "Aprofundamento nas Dores Admitidas",
+        "objective": "Fazer o lead elaborar sobre o problema que citou no WhatsApp",
+        "questions": [
+          {
+            "question": "Pergunta estratégica 1...",
+            "why": "Motivo da pergunta"
+          },
+          {
+            "question": "Pergunta estratégica 2...",
+            "why": "Motivo da pergunta"
+          }
+        ]
+      },
+      {
+        "time": "07:00 - 11:00",
+        "title": "Apresentação da Solução Pinas Sob Medida",
+        "objective": "Mostrar a solução na tela compartilhada",
+        "keyPoints": [
+          "Ponto forte 1 personalizado...",
+          "Ponto forte 2...",
+          "Ponto forte 3..."
+        ]
+      },
+      {
+        "time": "11:00 - 15:00",
+        "title": "Proposta & Fechamento Comercial",
+        "objective": "Apresentar condições e combinar início do projeto",
+        "script": "Texto de fechamento comercial...",
+        "callToAction": "Próximo passo imediato"
+      }
+    ],
+    "goldenClosingPhrase": "Frase de ouro persuasiva para fechar o contrato"
+  }
+}
+`;
+
+  const jsonStr = await callGemini({
+    prompt,
+    systemInstruction: PINAS_SYSTEM_PROMPT,
+    jsonMode: true
+  });
+
+  return safeJsonParse(jsonStr);
+}
+
 module.exports = {
   getApiKey,
   isConfigured: () => !!getApiKey(),
@@ -630,5 +760,6 @@ module.exports = {
   generateAutoPilotReply,
   generateAutonomousPitch,
   generateDeepVisualAuditAndCallScript,
+  generateWhatsAppConversationScript,
   getFreeTierStatus: geminiGuard.getFreeTierStatus
 };

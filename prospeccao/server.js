@@ -1,6 +1,6 @@
 // Prevenir que desconexões de socket ou erros assíncronos derrubem o servidor
 process.on('uncaughtException', (err) => {
-  console.error('[Servidor Aviso] Erro não capturado (mantendo servidor ativo):', err.message || err);
+  console.error('[Servidor Aviso] Erro não capturado (mantendo servidor ativo):', err.stack || err.message || err);
 });
 process.on('unhandledRejection', (reason) => {
   console.error('[Servidor Aviso] Rejeição de Promise não capturada:', reason);
@@ -1466,6 +1466,69 @@ app.post('/api/leads/:id/deep-audit', async (req, res) => {
 // Status detalhado do Gemini Free Tier (Zero Custo Garantido)
 app.get('/api/gemini/free-tier', (req, res) => {
   res.json(geminiGuard.getFreeTierStatus());
+});
+
+// Obter roteiro da conversa salvo
+app.get('/api/leads/:id/conversation-script', (req, res) => {
+  const { id } = req.params;
+  const leads = readJson(LEADS_FILE, []);
+  const lead = leads.find(l => l.id === id);
+  if (!lead) return res.status(404).json({ error: 'Lead não encontrado' });
+
+  res.json({
+    leadId: lead.id,
+    leadName: lead.name,
+    conversationScript: lead.conversationScript || null,
+    generatedAt: lead.conversationScriptGeneratedAt || null
+  });
+});
+
+// Gerar ou atualizar Roteiro Estratégico baseado no resumo da conversa do WhatsApp
+app.post('/api/leads/:id/conversation-script', async (req, res) => {
+  const { id } = req.params;
+  const { forceRefresh = false } = req.body;
+  const leads = readJson(LEADS_FILE, []);
+  const lead = leads.find(l => l.id === id);
+
+  if (!lead) return res.status(404).json({ error: 'Lead não encontrado' });
+
+  // Se já existir e não foi forçado atualização
+  if (lead.conversationScript && !forceRefresh) {
+    return res.json({
+      success: true,
+      lead,
+      conversationScript: lead.conversationScript,
+      cached: true
+    });
+  }
+
+  try {
+    // 1. Obter histórico real de mensagens do WhatsApp
+    const messages = conversationGuard.findMessagesForLead(lead, whatsapp.store);
+
+    console.log(`[Conversation Script] 🧠 Analisando ${messages.length} mensagens do WhatsApp para "${lead.name}"...`);
+
+    // 2. Chamar o Gemini para analisar o chat e gerar resumo + roteiro
+    const scriptResult = await gemini.generateWhatsAppConversationScript({
+      lead,
+      messages
+    });
+
+    lead.conversationScript = scriptResult;
+    lead.conversationScriptGeneratedAt = new Date().toISOString();
+    writeJson(LEADS_FILE, leads);
+
+    console.log(`[Conversation Script] ✅ Roteiro baseado na conversa gerado com sucesso para "${lead.name}"!`);
+    res.json({
+      success: true,
+      lead,
+      conversationScript: lead.conversationScript,
+      messageCount: messages.length
+    });
+  } catch (err) {
+    console.error('[Conversation Script Error]:', err.message);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // Iniciar servidor

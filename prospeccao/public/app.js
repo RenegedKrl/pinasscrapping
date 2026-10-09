@@ -1435,6 +1435,7 @@ function switchModalMode(mode) {
     if (btnConfirmWa) btnConfirmWa.style.display = 'none';
     if (btnCopyWa) btnCopyWa.style.display = 'none';
     if (currentActiveLead) {
+      loadWhatsAppConversationScript(currentActiveLead);
       loadDeepVisualAuditAndCallScriptView(currentActiveLead);
     }
   }
@@ -1969,6 +1970,308 @@ async function sendGeminiPitchDirect(idx) {
   } catch (err) {
     alert(`Erro ao enviar: ${err.message}`);
   }
+}
+
+// ==================== ROTEIRO DA CONVERSA DO WHATSAPP (RESUMO DO CHAT + FECHAMENTO) ====================
+
+async function loadWhatsAppConversationScript(lead, forceRefresh = false) {
+  if (!lead) return;
+  const container = document.getElementById('wa-conversation-script-container');
+  if (!container) return;
+
+  // Se já tiver em cache e não pediu recálculo forçado
+  if (lead.conversationScript && !forceRefresh) {
+    renderWhatsAppConversationScriptHtml(lead, lead.conversationScript);
+    return;
+  }
+
+  container.innerHTML = `
+    <div class="wa-script-box" style="text-align: center; padding: 2.2rem 1.5rem; background: rgba(255, 0, 85, 0.04); border: 1px dashed rgba(255, 0, 85, 0.35);">
+      <div class="spinner" style="width: 32px; height: 32px; border-width: 3px; margin: 0 auto 0.85rem; border-top-color: #FF0055;"></div>
+      <strong style="display: block; font-size: 1.05rem; color: #fff; margin-bottom: 5px;">
+        🧠 Analisando Conversa do WhatsApp com IA Pinas...
+      </strong>
+      <span style="font-size: 0.85rem; color: var(--text-secondary); max-width: 520px; display: inline-block;">
+        Lendo o histórico real trocado com "${escapeHtml(lead.name)}", mapeando perfil do decisor, dores confessadas e estruturando gancho de call de 15 min...
+      </span>
+    </div>
+  `;
+
+  try {
+    const res = await fetch(`/api/leads/${lead.id}/conversation-script`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ forceRefresh })
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Erro ao gerar roteiro baseado no WhatsApp');
+
+    lead.conversationScript = data.conversationScript;
+    lead.conversationScriptGeneratedAt = new Date().toISOString();
+
+    // Sincroniza allLeads
+    const idx = allLeads.findIndex(l => l.id === lead.id);
+    if (idx !== -1) {
+      allLeads[idx] = { ...allLeads[idx], ...lead };
+    }
+
+    renderWhatsAppConversationScriptHtml(lead, data.conversationScript);
+  } catch (err) {
+    console.error('Erro ao carregar roteiro do WhatsApp:', err);
+    container.innerHTML = `
+      <div class="wa-script-box" style="padding: 1.75rem; text-align: center; border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.05);">
+        <span style="font-size: 1.8rem;">⚠️</span>
+        <strong style="display: block; font-size: 0.95rem; color: #fff; margin: 6px 0;">Falha ao analisar a conversa do WhatsApp</strong>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;">${escapeHtml(err.message)}</p>
+        <button type="button" class="btn btn-outline btn-sm" onclick="loadWhatsAppConversationScript(currentActiveLead, true)">
+          🔄 Tentar Novamente
+        </button>
+      </div>
+    `;
+  }
+}
+
+function renderWhatsAppConversationScriptHtml(lead, scriptData) {
+  const container = document.getElementById('wa-conversation-script-container');
+  if (!container || !scriptData) return;
+
+  const interlocutor = scriptData.interlocutor || {};
+  const pains = Array.isArray(scriptData.painsAndNeeds) ? scriptData.painsAndNeeds : [];
+  const objections = Array.isArray(scriptData.objectionsAndAnswers) ? scriptData.objectionsAndAnswers : [];
+  const callScript = scriptData.callScript || {};
+  const steps = Array.isArray(callScript.steps) ? callScript.steps : [];
+
+  const painsHtml = pains.length > 0
+    ? `<ul class="wa-script-pains-list">${pains.map(p => `<li>${escapeHtml(p)}</li>`).join('')}</ul>`
+    : `<p style="font-size: 0.82rem; color: var(--text-muted); margin: 0;">Nenhuma dor explícita informada ainda.</p>`;
+
+  const objectionsHtml = objections.length > 0
+    ? objections.map(o => `
+        <div class="objection-item">
+          <div class="obj-q">❓ Objeção: "${escapeHtml(o.objection)}"</div>
+          <div class="obj-a">💡 <strong>Kauê:</strong> ${escapeHtml(o.howToCounter)}</div>
+        </div>
+      `).join('')
+    : `<p style="font-size: 0.82rem; color: var(--text-muted); margin: 0;">Sem objeções críticas registradas até o momento.</p>`;
+
+  const stepsHtml = steps.map((s, idx) => {
+    let extraContent = '';
+    if (Array.isArray(s.questions) && s.questions.length > 0) {
+      extraContent += `
+        <div class="wa-step-questions">
+          <strong>Perguntas Estratégicas para o Decisor:</strong>
+          ${s.questions.map(q => `<span>• ${escapeHtml(q.question || q)} ${q.why ? `<small>(${escapeHtml(q.why)})</small>` : ''}</span>`).join('')}
+        </div>
+      `;
+    }
+    if (Array.isArray(s.keyPoints) && s.keyPoints.length > 0) {
+      extraContent += `
+        <ul class="wa-step-keypoints">
+          ${s.keyPoints.map(kp => `<li>${escapeHtml(kp)}</li>`).join('')}
+        </ul>
+      `;
+    }
+
+    return `
+      <div class="wa-step-card">
+        <div class="wa-step-header">
+          <span class="wa-step-time">${escapeHtml(s.time || `0${idx*3}:00`)}</span>
+          <strong class="wa-step-title">${idx + 1}. ${escapeHtml(s.title || 'Etapa')}</strong>
+          ${s.objective ? `<span class="wa-step-goal">🎯 ${escapeHtml(s.objective)}</span>` : ''}
+        </div>
+        ${s.script ? `<div class="wa-step-speech">"${escapeHtml(s.script)}"</div>` : ''}
+        ${extraContent}
+        ${s.tip ? `<div class="wa-step-tip">💡 <strong>Postura:</strong> ${escapeHtml(s.tip)}</div>` : ''}
+        ${s.callToAction ? `<div style="font-size: 0.8rem; color: #34D399; margin-top: 4px;">🚀 <strong>Próxima Ação:</strong> ${escapeHtml(s.callToAction)}</div>` : ''}
+      </div>
+    `;
+  }).join('');
+
+  container.innerHTML = `
+    <div class="wa-script-box">
+      <!-- Topo do Card de Roteiro WhatsApp -->
+      <div class="wa-script-header">
+        <div class="wa-script-title-wrap">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 1.3rem;">💬</span>
+            <h4 style="margin: 0; font-size: 1.05rem; color: #fff; font-weight: 800;">
+              Roteiro de Fechamento Baseado no WhatsApp
+            </h4>
+            <span class="badge-reply ${scriptData.hasCustomerReplied ? 'has-reply' : 'waiting-reply'}">
+              ${scriptData.hasCustomerReplied ? '🟢 Cliente Já Respondeu' : '⏳ Aguardando Resposta'}
+            </span>
+          </div>
+          <p style="margin: 3px 0 0; font-size: 0.8rem; color: var(--text-secondary);">
+            Resumo do diálogo no chat, perfil do interlocutor, dores admitidas e roteiro de reunião sob medida.
+          </p>
+        </div>
+        <div class="wa-script-actions">
+          <button type="button" class="btn btn-primary btn-xs" onclick="copyWhatsAppConversationScriptText()" style="font-weight: 700;">
+            📋 Copiar Roteiro WhatsApp
+          </button>
+          <button type="button" class="btn btn-outline btn-xs" onclick="loadWhatsAppConversationScript(currentActiveLead, true)" title="Reanalisar mensagens com a IA">
+            🔄 Atualizar com Novas Mensagens
+          </button>
+        </div>
+      </div>
+
+      <!-- Alerta se cliente ainda não respondeu -->
+      ${!scriptData.hasCustomerReplied ? `
+        <div style="background: rgba(234, 179, 8, 0.1); border: 1px solid rgba(234, 179, 8, 0.35); border-radius: var(--radius-sm); padding: 8px 12px; margin-bottom: 12px; font-size: 0.8rem; color: #FDE047; display: flex; align-items: center; gap: 8px;">
+          <span>⏳</span>
+          <span>O cliente ainda não respondeu no WhatsApp. O roteiro foi calibrado estrategicamente para reengajamento e abertura de conversa assim que ele responder.</span>
+        </div>
+      ` : ''}
+
+      <!-- Resumo Executivo da Conversa -->
+      <div class="wa-script-summary-card">
+        <div class="summary-label">
+          <span>📝</span> Resumo Executivo da Conversa no WhatsApp
+        </div>
+        <div class="summary-body">
+          ${escapeHtml(scriptData.conversationSummary || 'Nenhuma mensagem relevante trocada ainda.')}
+        </div>
+      </div>
+
+      <!-- Perfil do Interlocutor / Decisor -->
+      <div class="wa-script-tags-row">
+        <div class="wa-tag-pill">
+          <span class="tag-label">Interlocutor:</span>
+          <span class="tag-val">${escapeHtml(interlocutor.name || 'Não identificado')}</span>
+        </div>
+        <div class="wa-tag-pill">
+          <span class="tag-label">Cargo / Papel:</span>
+          <span class="tag-val">${escapeHtml(interlocutor.role || 'Não especificado')}</span>
+        </div>
+        <div class="wa-tag-pill">
+          <span class="tag-label">Poder de Decisão:</span>
+          <span class="tag-val">${escapeHtml(interlocutor.decisionPower || 'Médio')}</span>
+        </div>
+        <div class="wa-tag-pill">
+          <span class="tag-label">Tom do Lead:</span>
+          <span class="tag-val">${escapeHtml(interlocutor.tone || 'Neutro')}</span>
+        </div>
+      </div>
+
+      <!-- Dores Admitidas & Objeções -->
+      <div class="wa-script-insights-grid">
+        <div class="insight-col">
+          <div class="insight-col-header">
+            <span>⚡</span> Dores e Necessidades Identificadas no Chat
+          </div>
+          ${painsHtml}
+        </div>
+        <div class="insight-col">
+          <div class="insight-col-header">
+            <span>🛡️</span> Objeções do WhatsApp & Resposta do Kauê
+          </div>
+          ${objectionsHtml}
+        </div>
+      </div>
+
+      <!-- Próximos passos combinados -->
+      ${scriptData.agreedNextSteps ? `
+        <div class="wa-script-agreed-box">
+          <strong>📌 Próximos Passos Combinados no Chat:</strong> ${escapeHtml(scriptData.agreedNextSteps)}
+        </div>
+      ` : ''}
+
+      <!-- Roteiro de Call de 15 Minutos Conectado com o Chat -->
+      <div class="wa-call-steps-wrapper">
+        ${callScript.openingHook ? `
+          <div class="wa-opening-hook">
+            <span class="hook-label">🎯 Gancho de Abertura (Conectando Diretamente com o WhatsApp):</span>
+            <p>"${escapeHtml(callScript.openingHook)}"</p>
+          </div>
+        ` : ''}
+
+        <div style="font-size: 0.85rem; font-weight: 700; color: #fff; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 6px;">
+          <span>⏱️</span> Passo a Passo da Call Personalizada pelo Diálogo
+        </div>
+
+        <div class="wa-steps-timeline">
+          ${stepsHtml}
+        </div>
+
+        ${callScript.goldenClosingPhrase ? `
+          <div class="wa-golden-closing">
+            <strong>🌟 Frase de Fechamento da Pinas:</strong> "${escapeHtml(callScript.goldenClosingPhrase)}"
+          </div>
+        ` : ''}
+      </div>
+    </div>
+  `;
+}
+
+function copyWhatsAppConversationScriptText() {
+  if (!currentActiveLead || !currentActiveLead.conversationScript) {
+    showToastNotification('Gere o roteiro do WhatsApp antes de copiar.');
+    return;
+  }
+  const lead = currentActiveLead;
+  const data = lead.conversationScript;
+  const interlocutor = data.interlocutor || {};
+  const cs = data.callScript || {};
+
+  let text = `========================================\n`;
+  text += `ROTEIRO DE CALL BASEADO NO WHATSAPP — PINAS STUDIO (@pinas.studio)\n`;
+  text += `Lead: ${lead.name} | Nicho: ${lead.niche || 'Geral'}\n`;
+  text += `Contato: ${interlocutor.name || 'Cliente'} (${interlocutor.role || 'Responsável'})\n`;
+  text += `Poder de Decisão: ${interlocutor.decisionPower || 'Médio'} | Tom: ${interlocutor.tone || 'Neutro'}\n`;
+  text += `========================================\n\n`;
+
+  text += `[RESUMO DA CONVERSA NO WHATSAPP]\n`;
+  text += `${data.conversationSummary || 'Sem resumo registrado'}\n\n`;
+
+  if (Array.isArray(data.painsAndNeeds) && data.painsAndNeeds.length) {
+    text += `[DORES ADMITIDAS NO CHAT]\n`;
+    data.painsAndNeeds.forEach(p => text += `• ${p}\n`);
+    text += `\n`;
+  }
+
+  if (Array.isArray(data.objectionsAndAnswers) && data.objectionsAndAnswers.length) {
+    text += `[OBJEÇÕES & RESPOSTAS DO KAUÊ]\n`;
+    data.objectionsAndAnswers.forEach(o => {
+      text += `• Objeção: "${o.objection}"\n  Resposta: "${o.howToCounter}"\n`;
+    });
+    text += `\n`;
+  }
+
+  if (data.agreedNextSteps) {
+    text += `[PRÓXIMOS PASSOS COMBINADOS]: ${data.agreedNextSteps}\n\n`;
+  }
+
+  if (cs.openingHook) {
+    text += `[GANCHO DE ABERTURA DA CALL]:\n"${cs.openingHook}"\n\n`;
+  }
+
+  if (Array.isArray(cs.steps) && cs.steps.length) {
+    text += `[PASSOS DA REUNIÃO]:\n`;
+    cs.steps.forEach((st, idx) => {
+      text += `----------------------------------------\n`;
+      text += `${st.time || ''} — ${idx + 1}. ${(st.title || '').toUpperCase()}\n`;
+      if (st.objective) text += `Objetivo: ${st.objective}\n`;
+      if (st.script) text += `Fala do Kauê: "${st.script}"\n`;
+      if (st.tip) text += `Dica de Postura: ${st.tip}\n`;
+      if (Array.isArray(st.questions) && st.questions.length) {
+        text += `Perguntas: \n`;
+        st.questions.forEach(q => text += `  • ${q.question || q}\n`);
+      }
+      if (st.callToAction) text += `Próxima Ação: ${st.callToAction}\n`;
+      text += `\n`;
+    });
+  }
+
+  if (cs.goldenClosingPhrase) {
+    text += `[FRASE DE FECHAMENTO]: "${cs.goldenClosingPhrase}"\n`;
+  }
+
+  navigator.clipboard.writeText(text).then(() => {
+    showToastNotification('📋 Roteiro baseado na conversa copiado com sucesso!');
+  }).catch(() => {
+    prompt('Copie o roteiro abaixo:', text);
+  });
 }
 
 // ==================== AUDITORIA VISUAL DE DESIGN & ROTEIRO DE CALL (15 MIN) ====================
@@ -3252,6 +3555,20 @@ function initInbox() {
     });
   }
 
+  const btnChatOpenScript = document.getElementById('btn-chat-open-script');
+  if (btnChatOpenScript) {
+    btnChatOpenScript.addEventListener('click', () => {
+      if (!activeChatJid) return;
+      const digits = cleanPhoneDigits(activeChatJid);
+      const lead = allLeads.find(l => cleanPhoneDigits(l.phone || '').includes(digits) || digits.includes(cleanPhoneDigits(l.phone || '')));
+      if (lead) {
+        openWhatsAppModal(lead.id, 'callscript');
+      } else {
+        alert('Este contato não está cadastrado na base de leads.');
+      }
+    });
+  }
+
   const btnChatOpenStages = document.getElementById('btn-chat-open-stages-modal');
   if (btnChatOpenStages) {
     btnChatOpenStages.addEventListener('click', () => {
@@ -3577,6 +3894,8 @@ async function openInboxChat(jid) {
     if (statusDropdown) statusDropdown.style.display = 'none';
     if (btnSlides) btnSlides.style.display = 'none';
     if (snippetsBar) snippetsBar.style.display = 'none';
+    const btnChatScript = document.getElementById('btn-chat-open-script');
+    if (btnChatScript) btnChatScript.style.display = 'none';
   } else {
     if (groupBadgeEl) groupBadgeEl.style.display = 'none';
     if (snippetsBar) snippetsBar.style.display = 'flex';
@@ -3600,6 +3919,10 @@ async function openInboxChat(jid) {
       if (btnStagesModal) {
         btnStagesModal.style.display = 'inline-flex';
       }
+      const btnChatScript = document.getElementById('btn-chat-open-script');
+      if (btnChatScript) {
+        btnChatScript.style.display = 'inline-flex';
+      }
     } else {
       if (leadBadgeEl) leadBadgeEl.style.display = 'none';
       if (statusDropdown) statusDropdown.style.display = 'none';
@@ -3607,6 +3930,10 @@ async function openInboxChat(jid) {
       const btnStagesModal = document.getElementById('btn-chat-open-stages-modal');
       if (btnStagesModal) {
         btnStagesModal.style.display = 'none';
+      }
+      const btnChatScript = document.getElementById('btn-chat-open-script');
+      if (btnChatScript) {
+        btnChatScript.style.display = 'none';
       }
     }
   }

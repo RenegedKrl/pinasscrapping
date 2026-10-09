@@ -821,6 +821,9 @@
                 </div>
 
                 <div class="chat-lead-actions" style="display: flex; gap: 0.5rem; align-items: center;">
+                  <button type="button" id="btn-chat-open-script" class="btn btn-outline btn-sm" style="display: none; border-color: rgba(255, 0, 85, 0.6); color: #FF3366; font-weight: 700;" title="Abrir Resumo da Conversa do WhatsApp e Roteiro de Call">
+                    📋 Roteiro da Conversa
+                  </button>
                   <button type="button" id="btn-chat-open-stages-modal" class="btn btn-outline btn-sm" style="display: none; border-color: var(--color-blue); color: var(--color-blue); font-weight: 700;">
                     📂 Funil 5 Etapas
                   </button>
@@ -959,8 +962,8 @@
         <button type="button" class="modal-tab-btn" id="btn-mode-callscript" onclick="switchModalMode('callscript')">
           <span style="display: flex; align-items: center; gap: 6px;">
             <span>📋</span>
-            <strong style="color: #fff;">Roteiro de Call & Design</strong>
-            <span style="font-size: 0.65rem; background: rgba(255,0,85,0.3); color: #FF3366; padding: 2px 6px; border-radius: 4px; font-weight: 800; border: 1px solid rgba(255,0,85,0.5);">15 MIN</span>
+            <strong style="color: #fff;">Roteiro WhatsApp & Call</strong>
+            <span style="font-size: 0.65rem; background: rgba(255,0,85,0.3); color: #FF3366; padding: 2px 6px; border-radius: 4px; font-weight: 800; border: 1px solid rgba(255,0,85,0.5);">RESUMO CHAT</span>
           </span>
         </button>
       </div>
@@ -1077,8 +1080,13 @@
           </div>
         </div>
 
-        <!-- ================= MODO 4: AUDITORIA VISUAL & ROTEIRO DE CALL (15 MIN) ================= -->
+        <!-- ================= MODO 4: ROTEIRO DA CONVERSA DO WHATSAPP & AUDITORIA VISUAL ================= -->
         <div id="modal-mode-callscript-container" style="display: none;">
+          <!-- Bloco do Roteiro Baseado no Resumo do WhatsApp -->
+          <div id="wa-conversation-script-container" style="margin-bottom: 1.5rem;">
+            <!-- Injetado dinamicamente via loadWhatsAppConversationScript -->
+          </div>
+
           <div id="callscript-view-loading" style="display: none; padding: 2.5rem 1rem; text-align: center;">
             <div class="spinner" style="width: 32px; height: 32px; border-width: 3px; margin: 0 auto 0.85rem;"></div>
             <strong style="display: block; font-size: 1rem; color: #fff; margin-bottom: 4px;">Analisando Seção por Seção do Site...</strong>
@@ -1276,6 +1284,6 @@
   <!-- Container de Notificações Toast Modernas (Substitui alerts do navegador) -->
   <div id="toast-container" class="toast-container"></div>
 
-  <script src="app.js?v=8.4"></script>
+  <script src="app.js?v=8.5"></script>
 </body>
 </html>

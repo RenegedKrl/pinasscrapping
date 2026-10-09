@@ -3775,3 +3775,286 @@ body {
   align-items: center;
   gap: 4px;
 }
+
+/* ==================== ROTEIRO BASEADO NA CONVERSA DO WHATSAPP ==================== */
+.wa-script-box {
+  background: rgba(18, 18, 24, 0.85);
+  border: 1px solid rgba(255, 0, 85, 0.3);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.wa-script-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.wa-script-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.wa-script-badge-icon {
+  font-size: 1.4rem;
+  background: rgba(255, 0, 85, 0.15);
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 0, 85, 0.3);
+}
+
+.wa-script-title-wrap h4 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #fff;
+  font-weight: 800;
+}
+
+.wa-script-title-wrap p {
+  margin: 2px 0 0;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.wa-script-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.wa-script-summary-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.wa-script-subtitle {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #FF3366;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.wa-script-summary-text {
+  font-size: 0.88rem;
+  color: #E2E8F0;
+  line-height: 1.55;
+  margin: 0 0 0.85rem;
+  white-space: pre-line;
+}
+
+.wa-script-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.wa-tag {
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: #CBD5E1;
+}
+
+.wa-tag strong {
+  color: #fff;
+}
+
+.wa-script-insights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .wa-script-insights-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wa-insight-col {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+}
+
+.wa-insight-col ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  font-size: 0.82rem;
+  color: #CBD5E1;
+  line-height: 1.45;
+}
+
+.wa-insight-col li {
+  margin-bottom: 0.35rem;
+}
+
+.objection-item {
+  background: rgba(0, 0, 0, 0.25);
+  border-left: 3px solid #EAB308;
+  padding: 0.5rem 0.65rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0 4px 4px 0;
+  font-size: 0.8rem;
+}
+
+.obj-q {
+  font-weight: 700;
+  color: #FDE047;
+  margin-bottom: 3px;
+}
+
+.obj-a {
+  color: #E2E8F0;
+  line-height: 1.4;
+}
+
+.wa-script-agreed-box {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  font-size: 0.84rem;
+  color: #34D399;
+  margin-bottom: 1rem;
+}
+
+.wa-call-steps-wrapper {
+  margin-top: 1rem;
+}
+
+.wa-opening-hook {
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.hook-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #93C5FD;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.wa-opening-hook p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #fff;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.wa-steps-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.wa-step-card {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.wa-step-card:hover {
+  border-color: rgba(255, 0, 85, 0.35);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.wa-step-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.wa-step-time {
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: rgba(255, 0, 85, 0.2);
+  color: #FF3366;
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 0, 85, 0.4);
+}
+
+.wa-step-title {
+  font-size: 0.88rem;
+  color: #fff;
+}
+
+.wa-step-goal {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-left: auto;
+}
+
+.wa-step-speech {
+  font-size: 0.84rem;
+  color: #F1F5F9;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.55rem 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 0.45rem;
+  line-height: 1.45;
+}
+
+.wa-step-questions {
+  font-size: 0.8rem;
+  color: #10B981;
+  padding-left: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 0.45rem;
+}
+
+.wa-step-questions small {
+  color: var(--text-muted);
+}
+
+.wa-step-keypoints {
+  margin: 0 0 0.45rem;
+  padding-left: 1.15rem;
+  font-size: 0.8rem;
+  color: #93C5FD;
+}
+
+.wa-step-tip {
+  font-size: 0.76rem;
+  color: #FDE047;
+}
+
+.wa-golden-closing {
+  margin-top: 1rem;
+  background: rgba(234, 179, 8, 0.1);
+  border: 1px solid rgba(234, 179, 8, 0.35);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+  font-size: 0.86rem;
+  color: #FEF08A;
+}

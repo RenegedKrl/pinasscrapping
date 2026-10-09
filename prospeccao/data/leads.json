@@ -219,7 +219,80 @@
         }
       ]
     },
-    "deepAuditGeneratedAt": "2026-10-09T05:25:08.342Z"
+    "deepAuditGeneratedAt": "2026-10-09T05:25:08.342Z",
+    "conversationScript": {
+      "hasCustomerReplied": false,
+      "conversationSummary": "O contato foi estabelecido via abordagem proativa pelo WhatsApp. O Kauê enviou uma mensagem personalizada destacando a boa reputação da clínica no Google Maps e apontando a falta de tráfego pago estratégico para a região do Tatuapé. Como o lead ainda não respondeu, o status atual é de prospecção fria aguardando interação inicial.",
+      "interlocutor": {
+        "name": "Não identificado",
+        "role": "Não identificado",
+        "tone": "Não identificado",
+        "decisionPower": "Não identificado"
+      },
+      "painsAndNeeds": [
+        "Dependência total de busca orgânica ou indicação passiva",
+        "Falta de fluxo previsível de novos tutores vindo do tráfego pago",
+        "Necessidade de converter a boa reputação (4.8 estrelas) em mais agendamentos via WhatsApp"
+      ],
+      "objectionsAndAnswers": [
+        {
+          "objection": "Já temos uma agência ou fazemos o marketing por conta própria.",
+          "howToCounter": "Entendo perfeitamente. O ponto aqui não é substituir o que funciona, mas ver se a sua estratégia atual está trazendo o tutor que mora a 2km daqui. Muita gente faz o básico, mas não foca na conversão local que a gente domina."
+        },
+        {
+          "objection": "Não tenho verba para investir agora.",
+          "howToCounter": "Eu entendo a preocupação. A ideia do nosso trabalho é justamente o contrário: o investimento se paga com os novos atendimentos que chegam. Vamos analisar o seu caso sem compromisso, se não fizer sentido financeiro para você, a gente nem começa."
+        }
+      ],
+      "agreedNextSteps": "Aguardando retorno do lead para agendamento de primeira reunião de diagnóstico.",
+      "callScript": {
+        "title": "Roteiro da Call de Fechamento Baseado no WhatsApp",
+        "openingHook": "Fala, tudo bem? Vi que você recebeu minha mensagem sobre o trabalho que a gente faz aqui no Tatuapé e queria ver se faz sentido a gente bater um papo rápido sobre como trazer mais tutores pra sua clínica.",
+        "steps": [
+          {
+            "time": "00:00 - 03:00",
+            "title": "Abertura & Conexão pelo WhatsApp",
+            "objective": "Reconectar pelo que foi conversado no chat",
+            "script": "Como vai? Poxa, vi que vocês têm uma nota excelente no Google, isso ajuda muito na conversão. Queria entender como está o movimento de novos clientes vindo pela internet hoje por aí.",
+            "tip": "Mantenha o tom de consultor, não de vendedor. Ouça mais do que fale."
+          },
+          {
+            "time": "03:00 - 07:00",
+            "title": "Aprofundamento nas Dores Admitidas",
+            "objective": "Fazer o lead elaborar sobre o problema que citou no WhatsApp",
+            "questions": [
+              {
+                "question": "Hoje, de onde vem a maior parte dos seus novos clientes: indicação ou busca no Google?",
+                "why": "Identificar a maturidade digital da clínica."
+              },
+              {
+                "question": "Se a gente dobrasse o número de mensagens de orçamento no seu WhatsApp hoje, a equipe daria conta de atender?",
+                "why": "Validar capacidade operacional e dor de crescimento."
+              }
+            ]
+          },
+          {
+            "time": "07:00 - 11:00",
+            "title": "Apresentação da Solução Pinas Sob Medida",
+            "objective": "Mostrar a solução na tela compartilhada",
+            "keyPoints": [
+              "Foco total em busca local (Google Maps/Ads no raio do Tatuapé).",
+              "Landing page otimizada para clique no WhatsApp, sem perda de tempo.",
+              "Estruturação comercial para não deixar tutor esfriar no Whats."
+            ]
+          },
+          {
+            "time": "11:00 - 15:00",
+            "title": "Proposta & Fechamento Comercial",
+            "objective": "Apresentar condições e combinar início do projeto",
+            "script": "O que eu proponho é um teste de 30 dias com foco em resultado local. Se o plano faz sentido pra você, a gente já desenha o cronograma de início pra semana que vem.",
+            "callToAction": "Podemos avançar com esse teste para ver o movimento aumentar?"
+          }
+        ],
+        "goldenClosingPhrase": "Faz sentido a gente começar a captar esses tutores que estão buscando agora no Tatuapé e que hoje, infelizmente, estão indo parar na clínica do vizinho?"
+      }
+    },
+    "conversationScriptGeneratedAt": "2026-10-09T15:44:10.854Z"
   },
   {
     "id": "lead-1791431253608-e1jt5k",
