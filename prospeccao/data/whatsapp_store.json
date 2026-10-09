@@ -2296,15 +2296,15 @@
       "isGroup": false,
       "isGroupSubject": false,
       "participantCount": 0,
-      "unreadCount": 0,
+      "unreadCount": 1,
       "lastMessage": {
-        "text": "Vem pra ca",
-        "timestamp": 1790352780000,
-        "fromMe": true,
+        "text": "Ve se tem pasta de dente fechada ai",
+        "timestamp": 1791561722000,
+        "fromMe": false,
         "type": "text",
-        "senderName": "Kauê"
+        "senderName": "Kauanny~"
       },
-      "updatedAt": 1790352780000
+      "updatedAt": 1791561722000
     },
     "5511937577552@s.whatsapp.net": {
       "id": "5511937577552@s.whatsapp.net",
@@ -67723,19 +67723,6 @@
     ],
     "5511941786195@s.whatsapp.net": [
       {
-        "id": "ACBF4D1240AE1424E8DB59DFC47EAAFF",
-        "fromMe": false,
-        "senderName": "Kauanny~",
-        "participant": null,
-        "isGroup": false,
-        "text": "Cozinha",
-        "timestamp": 1787673024000,
-        "type": "text",
-        "mediaUrl": null,
-        "fileName": null,
-        "status": "delivered"
-      },
-      {
         "id": "AC5D123A5D972EA1F58EE5AD833E746A",
         "fromMe": true,
         "senderName": "Kauê",
@@ -70317,6 +70304,19 @@
         "isGroup": false,
         "text": "Ouvi o barulho de algo caindo",
         "timestamp": 1791350242000,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "status": "delivered"
+      },
+      {
+        "id": "ACA3EB4EAA896997E29CA0CD8D858424",
+        "fromMe": false,
+        "senderName": "Kauanny~",
+        "participant": null,
+        "isGroup": false,
+        "text": "Ve se tem pasta de dente fechada ai",
+        "timestamp": 1791561722000,
         "type": "text",
         "mediaUrl": null,
         "fileName": null,
@@ -102489,6 +102489,10 @@
     "5511976543210": "Clínica Veterinária Morumbi Pet",
     "5511976543210@s.whatsapp.net": "Clínica Veterinária Morumbi Pet",
     "5511991239876": "Atacado & Varejo Donna Bonita",
-    "5511991239876@s.whatsapp.net": "Atacado & Varejo Donna Bonita"
+    "5511991239876@s.whatsapp.net": "Atacado & Varejo Donna Bonita",
+    "5252912824516@lid": "Kauanny~",
+    "5252912824516": "Kauanny~",
+    "5511941786195@s.whatsapp.net": "Kauanny~",
+    "5511941786195": "Kauanny~"
   }
 }

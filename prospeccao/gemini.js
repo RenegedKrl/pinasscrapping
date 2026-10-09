@@ -927,5 +927,6 @@ module.exports = {
   generateAutonomousPitch,
   generateDeepVisualAuditAndCallScript,
   generateWhatsAppConversationScript,
+  buildInstantWhatsAppConversationScript,
   getFreeTierStatus: geminiGuard.getFreeTierStatus
 };
