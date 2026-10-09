@@ -4207,6 +4207,10 @@ function showToast(message, type = 'info', title = null, duration = 4000) {
   container.appendChild(toast);
 }
 
+function showToastNotification(message, type = 'info', title = null, duration = 4000) {
+  return showToast(message, type, title, duration);
+}
+
 function initToastSystem() {
   ensureToastContainer();
 
@@ -4541,6 +4545,7 @@ function initLightbox() {
 window.escapeHtml = escapeHtml;
 window.formatMessageText = formatMessageText;
 window.showToast = showToast;
+window.showToastNotification = showToastNotification;
 window.showSuccessModal = showSuccessModal;
 window.initToastSystem = initToastSystem;
 window.openChatLightbox = openChatLightbox;
