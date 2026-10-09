@@ -887,19 +887,41 @@ function formatStepMessage(lead, rawTemplate, withSite = false) {
 }
 
 const autoResponderQueue = new Map();
+const processedIncomingMsgIds = new Set();
+const leadLastRepliedAt = new Map();
 
 function initAutoResponder() {
   if (!whatsapp.events) return;
 
-  whatsapp.events.on('message.received', async ({ jid, phone, text }) => {
+  whatsapp.events.on('message.received', async ({ jid, phone, text, msgId, timestamp }) => {
     if (!phone || !text) return;
 
-    // SEGURANÇA MÁXIMA 1: NUNCA processar grupos do WhatsApp
+    // SEGURANÇA MÁXIMA 0: Deduplicação de msgId (evita disparar 2 vezes a mesma mensagem)
+    if (msgId) {
+      if (processedIncomingMsgIds.has(msgId)) {
+        return;
+      }
+      processedIncomingMsgIds.add(msgId);
+      if (processedIncomingMsgIds.size > 2000) {
+        const firstKey = processedIncomingMsgIds.keys().next().value;
+        processedIncomingMsgIds.delete(firstKey);
+      }
+    }
+
+    // SEGURANÇA MÁXIMA 1: NUNCA responder mensagens com mais de 2 minutos de idade (histórico ou sincronização)
+    if (timestamp) {
+      const ageSeconds = (Date.now() - timestamp) / 1000;
+      if (ageSeconds > 120) {
+        return;
+      }
+    }
+
+    // SEGURANÇA MÁXIMA 2: NUNCA processar grupos do WhatsApp
     if (jid && (jid.endsWith('@g.us') || jid.includes('-'))) return;
 
     const cleanDigits = String(phone).replace(/\D/g, '');
 
-    // SEGURANÇA MÁXIMA 2: NUNCA responder contatos pessoais, amigos, família ou números desconhecidos
+    // SEGURANÇA MÁXIMA 3: NUNCA responder contatos pessoais, amigos, família ou números desconhecidos
     // O sistema SÓ processa contatos que existirem explicitamente cadastrados como leads minerados na base
     const leads = readJson(LEADS_FILE, []);
     const lead = findLeadByPhone(leads, cleanDigits);
@@ -909,9 +931,33 @@ function initAutoResponder() {
       return;
     }
 
-    // SEGURANÇA MÁXIMA 3: NUNCA responder clientes ativos da Pinas ou região do Brás
+    // SEGURANÇA MÁXIMA 4: NUNCA responder clientes ativos da Pinas ou região do Brás
     if (isProtectedBlacklist(lead)) {
       console.log(`[Auto-Responder] Lead protegido "${lead.name}" ignorado por blacklist de segurança.`);
+      return;
+    }
+
+    // SEGURANÇA MÁXIMA 5: NUNCA responder leads já arquivados ou marcados como perdidos
+    if (lead.status === 'perdido' || lead.status === 'arquivado') {
+      return;
+    }
+
+    // SEGURANÇA MÁXIMA 6: Se o ÚLTIMO remetente na conversa já foi o Kauê (nós), NUNCA responder novamente!
+    const targetJid = jid || (cleanDigits + '@s.whatsapp.net');
+    const chatHistory = whatsapp.store.getMessages(targetJid) || [];
+    if (chatHistory.length > 0) {
+      const textMsgs = chatHistory.filter(m => m.text && !m.text.startsWith('[Sistema]'));
+      if (textMsgs.length > 0) {
+        const lastMsg = textMsgs[textMsgs.length - 1];
+        if (lastMsg.fromMe) {
+          return;
+        }
+      }
+    }
+
+    // SEGURANÇA MÁXIMA 7: Cooldown por lead (evita mensagens duplicadas num intervalo menor que 60 segundos)
+    const now = Date.now();
+    if (leadLastRepliedAt.has(lead.id) && (now - leadLastRepliedAt.get(lead.id) < 60000)) {
       return;
     }
 
@@ -1011,8 +1057,8 @@ function initAutoResponder() {
           }
         }
 
-        // 2. Fallback para templates manuais caso a IA não retorne texto
-        if (!replyMessage) {
+        // 2. Fallback para templates manuais APENAS se não foi recusa e a IA não retornou texto
+        if (!replyMessage && targetAction !== 'mark_lost') {
           const stageObj = (stepData.stages || []).find(s => s.number === targetStage);
           if (stageObj) {
             const hasSite = lead.hasWebsite === true;
@@ -1031,6 +1077,9 @@ function initAutoResponder() {
         }
 
         if (!replyMessage) return;
+
+        // Registrar timestamp de envio para cooldown
+        leadLastRepliedAt.set(lead.id, Date.now());
 
         // Simular status "digitando..." por 3 a 4 segundos antes do envio para comportamento 100% humanizado
         try {

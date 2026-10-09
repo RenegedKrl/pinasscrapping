@@ -41,10 +41,11 @@ function getApiKey() {
   return '';
 }
 
-// Modelos oficiais suportados (Recomendação oficial do Google: gemini-3.8-flash)
+// Modelos oficiais suportados
 const PRIMARY_MODEL = 'gemini-3.8-flash';
 const FALLBACK_MODEL = 'gemini-3.5-flash';
 const SECONDARY_FALLBACK = 'gemini-3.1-flash-lite';
+const TERTIARY_FALLBACK = 'gemini-flash-lite-latest';
 
 /**
  * Chamada genérica para a API do Gemini com fallback automático
@@ -116,7 +117,12 @@ async function callGemini({ prompt, systemInstruction = '', jsonMode = false, mo
         return await executeRequest(FALLBACK_MODEL);
       } catch (secondErr) {
         console.warn(`[Gemini] Falha com ${FALLBACK_MODEL}, tentando ${SECONDARY_FALLBACK}...`);
-        return await executeRequest(SECONDARY_FALLBACK);
+        try {
+          return await executeRequest(SECONDARY_FALLBACK);
+        } catch (thirdErr) {
+          console.warn(`[Gemini] Falha com ${SECONDARY_FALLBACK}, tentando ${TERTIARY_FALLBACK}...`);
+          return await executeRequest(TERTIARY_FALLBACK);
+        }
       }
     }
     throw err;

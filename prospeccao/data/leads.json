@@ -306,18 +306,25 @@
     "score": 3,
     "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
     "status": "perdido",
-    "lastContact": "2026-10-08T17:56:08.152Z",
+    "lastContact": "2026-10-09T14:17:40.436Z",
     "createdAt": "2026-10-08T03:47:33.608Z",
-    "stage": 2,
+    "stage": 3,
     "stageHistory": [
       {
         "stage": 2,
         "sentAt": "2026-10-08T17:56:08.152Z",
         "auto": true,
         "text": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de Embu das Artes, SP.\n\nTava dando uma olhada rápida na CONPAVIM CONTRUTORA E PAVIMENTADORA aqui no Google e vi uma coisa que me chamou atenção."
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-09T14:17:40.436Z",
+        "auto": true,
+        "ai": true,
+        "text": "Entendido perfeitamente. Como a empresa está em pausa, faz total sentido manter o foco nas outras que já estão rodando bem.\n\nDesejo muito sucesso aí com os negócios e que as outras unidades continuem trazendo ótimos resultados. Um abraço e boa semana!"
       }
     ],
-    "repliedAt": "2026-10-08T18:03:21.831Z"
+    "repliedAt": "2026-10-09T14:17:09.379Z"
   },
   {
     "id": "lead-1791431253608-m3i2ax",
@@ -374,18 +381,32 @@
     "score": 3,
     "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
     "status": "respondeu",
-    "lastContact": "2026-10-08T18:00:00.155Z",
+    "lastContact": "2026-10-09T14:18:35.734Z",
     "createdAt": "2026-10-08T03:47:33.608Z",
-    "stage": 2,
+    "stage": 4,
     "stageHistory": [
       {
         "stage": 2,
         "sentAt": "2026-10-08T18:00:00.155Z",
         "auto": true,
         "text": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de Embu das Artes, SP.\n\nTava dando uma olhada rápida na D.Lima Construtech e Engenharia aqui no Google e vi uma coisa que me chamou atenção."
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-09T14:03:39.296Z",
+        "auto": true,
+        "ai": true,
+        "text": "Entendi, desculpa a confusão, é que caí na sua automação de atendimento! 😅\n\nO ponto que notei é que a D.Lima não tem nenhuma avaliação no Google Maps ainda. Aqui em Embu, isso faz muita diferença para o pessoal que busca arquiteto ou construtora na região.\n\nSou do @pinas.studio, a gente ajuda empresas locais a serem encontradas e, principalmente, a converter quem chega no site. Podemos trocar uma ideia rápida sobre como deixar isso mais atrativo pra quem mora aqui perto?"
+      },
+      {
+        "stage": 4,
+        "sentAt": "2026-10-09T14:18:35.734Z",
+        "auto": true,
+        "ai": true,
+        "text": "Putz, entendi! É que como vi a D.Lima no Google, achei que estivesse falando com alguém da equipe comercial diretamente.\n\nMas não tem problema. Como trabalho aqui pela região, vi que vocês têm um trabalho bacana, mas o site e a presença no Google ainda não mostram o tamanho real da empresa para quem busca por aqui.\n\nSe preferir, pode me passar o contato de quem cuida dessa parte de marketing ou do dono? Queria só mostrar uma análise rápida do que dá pra melhorar pra atrair mais gente de Embu mesmo."
       }
     ],
-    "repliedAt": "2026-10-08T17:59:36.727Z"
+    "repliedAt": "2026-10-09T14:17:09.415Z"
   },
   {
     "id": "lead-1791431253608-lagzta",
@@ -442,18 +463,39 @@
     "score": 3,
     "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
     "status": "respondeu",
-    "lastContact": "2026-10-08T18:11:34.169Z",
+    "lastContact": "2026-10-09T14:17:54.952Z",
     "createdAt": "2026-10-08T03:47:33.608Z",
-    "stage": 2,
+    "stage": 5,
     "stageHistory": [
       {
         "stage": 2,
         "sentAt": "2026-10-08T18:11:34.169Z",
         "auto": true,
         "text": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de Embu das Artes, SP.\n\nTava dando uma olhada rápida na Arquitetura e Engenharia RipaMaxx aqui no Google e vi uma coisa que me chamou atenção."
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-09T14:02:15.953Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa! Na verdade eu não sou cliente querendo projeto de arquitetura, deixa eu me explicar melhor rs.\n\nEu sou aqui de Embu também e estava olhando o perfil de vocês no Google. Cara, parabéns pelas avaliações 5 estrelas, o trabalho de vocês deve ser muito bom.\n\nO que me chamou a atenção é que o site de vocês hoje demora um pouquinho pra carregar no celular e o botão do WhatsApp não fica tão fácil de achar. Como a maioria das pessoas pesquisa arquiteto pelo celular, vocês podem estar perdendo alguns clientes da nossa região por bobeira.\n\nVocês já chegaram a mexer no site recentemente ou ele está do mesmo jeito faz tempo?"
+      },
+      {
+        "stage": 4,
+        "sentAt": "2026-10-09T14:04:15.005Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, acho que caiu na mensagem automática de vocês aí rs.\n\nQuando o responsável tiver um minutinho, consegue me dar um alô por aqui?\n\nQueria só trocar uma ideia rápida sobre o site de vocês que comentei ali em cima. Valeu!"
+      },
+      {
+        "stage": 5,
+        "sentAt": "2026-10-09T14:17:54.952Z",
+        "auto": true,
+        "ai": true,
+        "text": "Entendi, sem problemas! A automação acabou pegando a gente aqui rs.\n\nComo vocês têm um trabalho muito bem avaliado aqui em Embu, queria só trocar uma ideia com quem cuida do marketing ou com o dono, pra mostrar como ajustar uns detalhes técnicos no site que ajudam a converter mais gente que busca no Google em cliente real.\n\nConsegue me passar um contato direto ou me avisar quando o responsável estiver por aqui?"
       }
     ],
-    "repliedAt": "2026-10-08T18:11:10.486Z"
+    "repliedAt": "2026-10-09T14:17:09.295Z"
   },
   {
     "id": "lead-1791431253608-2ltmsr",
@@ -509,19 +551,26 @@
     },
     "score": 4,
     "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas. | Recusou: \"Kaue boa tarde tudo bem ? \nAgradeço o contato mas já temos site. \nAssim como temos quem cuida das nossas redes. Obrigada pelo contato mas não temos interesse! ☺️\"",
-    "status": "perdido",
-    "lastContact": "2026-10-08T18:08:29.096Z",
+    "status": "respondeu",
+    "lastContact": "2026-10-09T14:17:37.064Z",
     "createdAt": "2026-10-08T03:47:33.608Z",
-    "stage": 2,
+    "stage": 3,
     "stageHistory": [
       {
         "stage": 2,
         "sentAt": "2026-10-08T18:08:29.096Z",
         "auto": true,
         "text": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de Embu das Artes, SP.\n\nTava dando uma olhada rápida na Kauffman Arquitetura aqui no Google e vi uma coisa que me chamou atenção."
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-09T14:17:37.064Z",
+        "auto": true,
+        "ai": true,
+        "text": "Tudo ótimo por aqui! Super entendo e respeito, que bom que já têm essa estrutura rodando.\n\nO meu ponto era só porque o trabalho de rede social é ótimo para branding, mas quem busca arquiteto no Google aqui na região quer falar no WhatsApp na hora. E como o site atual de vocês demora um pouquinho pra carregar no celular, vocês acabam perdendo esse cliente imediato.\n\nDe qualquer forma, parabéns pelo bom gosto nos projetos! Se um dia precisarem de um toque técnico nessa parte de velocidade e conversão, tô por aqui. Um abraço!"
       }
     ],
-    "repliedAt": "2026-10-08T18:10:26.764Z"
+    "repliedAt": "2026-10-09T14:17:00.947Z"
   },
   {
     "id": "lead-1791431253608-dk9ljg",
@@ -638,18 +687,32 @@
     "score": 3,
     "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
     "status": "respondeu",
-    "lastContact": "2026-10-08T22:48:28.421Z",
+    "lastContact": "2026-10-09T14:17:23.888Z",
     "createdAt": "2026-10-08T03:47:33.608Z",
-    "stage": 2,
+    "stage": 4,
     "stageHistory": [
       {
         "stage": 2,
         "sentAt": "2026-10-08T22:48:28.421Z",
         "auto": true,
         "text": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de Embu das Artes, SP.\n\nTava dando uma olhada rápida na BL Ambiental Jardinagem & Paisagismo aqui no Google e vi uma coisa que me chamou atenção."
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-09T14:02:22.714Z",
+        "auto": true,
+        "ai": true,
+        "text": "Prazer, tudo bem por aqui também! Então, vi que vocês têm um trabalho bacana, mas o site atual tá meio escondido e não passa aquela confiança imediata pra quem busca no celular.\n\nComo eu trabalho aqui na região, gosto de trocar ideia com quem tá fazendo um bom serviço pra ver se a gente consegue colocar a BL Ambiental no topo das pesquisas de quem mora aqui em Embu.\n\nTopa uma conversa de 10 minutinhos pra eu te mostrar o que dá pra fazer pra atrair mais pedidos de orçamento direto pelo seu WhatsApp?"
+      },
+      {
+        "stage": 4,
+        "sentAt": "2026-10-09T14:17:23.888Z",
+        "auto": true,
+        "ai": true,
+        "text": "Prazer, tudo bem por aqui também! Então, vi que vocês têm um trabalho bacana, mas o site atual tá meio escondido e não passa aquela confiança imediata pra quem busca no celular.\n\nComo eu trabalho aqui na região, gosto de trocar ideia com quem tá fazendo um bom serviço pra ver se a gente consegue colocar a BL Ambiental no topo das pesquisas de quem mora aqui em Embu.\n\nTopa uma conversa de 10 minutinhos pra eu te mostrar o que dá pra fazer pra atrair mais pedidos de orçamento direto pelo seu WhatsApp?"
       }
     ],
-    "repliedAt": "2026-10-08T22:48:01.723Z"
+    "repliedAt": "2026-10-09T14:16:54.603Z"
   },
   {
     "id": "lead-1791431253608-dj1j5u",
@@ -736,18 +799,25 @@
     "score": 3,
     "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
     "status": "respondeu",
-    "lastContact": "2026-10-08T22:48:26.250Z",
+    "lastContact": "2026-10-09T14:17:30.446Z",
     "createdAt": "2026-10-08T03:47:33.608Z",
-    "stage": 2,
+    "stage": 3,
     "stageHistory": [
       {
         "stage": 2,
         "sentAt": "2026-10-08T22:48:26.250Z",
         "auto": true,
         "text": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de Embu das Artes, SP.\n\nTava dando uma olhada rápida na JBraz Arquitetura & Interiores aqui no Google e vi uma coisa que me chamou atenção."
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-09T14:17:30.446Z",
+        "auto": true,
+        "ai": true,
+        "text": "Maravilha! Então, eu estava pesquisando por arquitetos aqui em Embu das Artes e achei o perfil de vocês no Google.\n\nReparei que o link do site de vocês vai direto pro Instagram e que o perfil ainda não tem avaliações por lá.\n\nComo o pessoal da região busca muito por arquitetura e reforma direto no Google, vocês acabam perdendo clientes locais para quem já está mais posicionado. Já pensaram em ter uma página rápida pro cliente clicar e já chamar vocês direto no WhatsApp?"
       }
     ],
-    "repliedAt": "2026-10-08T22:48:02.285Z"
+    "repliedAt": "2026-10-09T14:16:54.634Z"
   },
   {
     "id": "lead-1791431253608-lzu5r1",
@@ -774,18 +844,32 @@
     "score": 3,
     "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
     "status": "respondeu",
-    "lastContact": "2026-10-08T18:15:08.435Z",
+    "lastContact": "2026-10-09T14:18:03.609Z",
     "createdAt": "2026-10-08T03:47:33.608Z",
-    "stage": 2,
+    "stage": 4,
     "stageHistory": [
       {
         "stage": 2,
         "sentAt": "2026-10-08T18:15:08.435Z",
         "auto": true,
         "text": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de Embu das Artes, SP.\n\nTava dando uma olhada rápida na Decorace Arte & Design em Ferro aqui no Google e vi uma coisa que me chamou atenção."
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-09T14:03:35.228Z",
+        "auto": true,
+        "ai": true,
+        "text": "Poxa, desculpa a confusão, essa resposta automática é útil pra filtrar cliente, né? Imagino a correria aí.\n\nSou o Kauê, da Pinas. Eu moro aqui perto e gosto de olhar empresas de Embu que entregam um trabalho de qualidade, como o de vocês, mas que às vezes não aparecem tanto pra quem busca no Google celular.\n\nVi que o site de vocês é bacana, mas senti que ele poderia converter mais gente aqui da região se fosse mais direto. Topa uma call de 10 minutinhos só pra eu te mostrar uma ideia simples de como atrair mais pedidos direto pelo WhatsApp?"
+      },
+      {
+        "stage": 4,
+        "sentAt": "2026-10-09T14:18:03.609Z",
+        "auto": true,
+        "ai": true,
+        "text": "Putz, desculpa, acabei caindo na mensagem automática de novo! 😂\n\nEu sou o Kauê, da Pinas. Falo com o dono ou gerente da Decorace? Queria trocar uma ideia rápida sobre como a gente ajuda empresas aqui de Embu a receber mais pedidos direto pelo Google no celular, sem tomar o seu tempo com promessas vazias."
       }
     ],
-    "repliedAt": "2026-10-08T18:14:45.081Z"
+    "repliedAt": "2026-10-09T14:17:09.271Z"
   },
   {
     "id": "lead-1791431253608-h3qf3e",
@@ -812,18 +896,25 @@
     "score": 4,
     "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas.",
     "status": "respondeu",
-    "lastContact": "2026-10-08T18:16:22.927Z",
+    "lastContact": "2026-10-09T14:17:43.076Z",
     "createdAt": "2026-10-08T03:47:33.608Z",
-    "stage": 2,
+    "stage": 3,
     "stageHistory": [
       {
         "stage": 2,
         "sentAt": "2026-10-08T18:16:22.927Z",
         "auto": true,
         "text": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de Embu das Artes, SP.\n\nTava dando uma olhada rápida na WF PAISAGISMO aqui no Google e vi uma coisa que me chamou atenção."
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-09T14:17:43.076Z",
+        "auto": true,
+        "ai": true,
+        "text": "Pois é, me chamo Kauê, sou aqui da Pinas. Trabalho ajudando empresas de Embu a transformarem cliques de quem pesquisa no Google em clientes reais, direto pelo WhatsApp.\n\nComo vocês já têm uma nota ótima no Maps, meu foco seria só ajustar o site pra ele carregar instantâneo no celular e facilitar esse contato do cliente. O que acha de uma conversa de 10 minutinhos pra eu te mostrar na prática?"
       }
     ],
-    "repliedAt": "2026-10-08T18:16:00.560Z"
+    "repliedAt": "2026-10-09T14:17:09.249Z"
   },
   {
     "id": "lead-1791431253607-lqx34w",
@@ -850,9 +941,9 @@
     "score": 3,
     "notes": "Comércio ativo na região com potencial de captação digital.",
     "status": "respondeu",
-    "lastContact": "2026-10-08T18:18:20.000Z",
+    "lastContact": "2026-10-09T14:17:36.694Z",
     "createdAt": "2026-10-08T03:47:33.607Z",
-    "stage": 2,
+    "stage": 4,
     "stageHistory": [
       {
         "stage": 1,
@@ -865,9 +956,23 @@
         "sentAt": "2026-10-08T18:18:20.000Z",
         "auto": true,
         "text": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de Embu das Artes, SP.\n\nTava dando uma olhada rápida na Pamela Vasconcelos Arquitetura e Interiores aqui no Google e vi uma coisa que me chamou atenção."
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-09T14:02:20.718Z",
+        "auto": true,
+        "ai": true,
+        "text": "Legal! Vi que vocês têm uma nota 5.0 no Google, o que é excelente para o nível do seu trabalho aqui em Embu.\n\nNotei que, por enquanto, você usa o Instagram como vitrine. A gente aqui na Pinas cria sites que funcionam como uma recepção 24h: quem pesquisa no Google entra, vê um projeto bonito e já clica no botão de WhatsApp para pedir orçamento na hora.\n\nTopa uma conversa rápida de uns 10 minutinhos no Meet para eu te mostrar como isso pode trazer mais clientes qualificados para o seu escritório? Prefere amanhã de manhã ou à tarde?"
+      },
+      {
+        "stage": 4,
+        "sentAt": "2026-10-09T14:17:36.694Z",
+        "auto": true,
+        "ai": true,
+        "text": "Prazer, Pamela! Como comentei, vi que o serviço de vocês é muito bem avaliado aqui na região e isso é um baita diferencial.\n\nA ideia é simples: muita gente busca arquiteto no Google e, se o seu site for rápido e direto no WhatsApp, você acaba pegando o cliente que às vezes nem te segue no Instagram ainda.\n\nTopa uma conversa rápida de uns 10 minutinhos no Meet para eu te mostrar como isso funciona na prática? Prefere amanhã de manhã ou à tarde?"
       }
     ],
-    "repliedAt": "2026-10-08T18:17:19.375Z"
+    "repliedAt": "2026-10-09T14:17:09.206Z"
   },
   {
     "id": "lead-1791431253607-nn29g7",
@@ -925,11 +1030,26 @@
     "score": 3,
     "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
     "status": "respondeu",
-    "lastContact": "2026-10-08T18:16:53.573Z",
+    "lastContact": "2026-10-09T14:17:39.786Z",
     "createdAt": "2026-10-08T03:47:33.607Z",
-    "stage": 1,
-    "stageHistory": [],
-    "repliedAt": "2026-10-08T18:17:03.069Z"
+    "stage": 3,
+    "stageHistory": [
+      {
+        "stage": 2,
+        "sentAt": "2026-10-09T14:02:18.953Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, entendi! Na verdade, eu sou o Kauê, da Pinas. Não busco crédito não, trabalho com marketing digital aqui em SP.\n\nVi o site da Akriuz e achei o trabalho de arquitetura bacana, mas notei que a página não está convertendo bem quem busca pelo Google no celular. Queria trocar uma ideia rápida com o dono sobre como melhorar isso pra trazer mais clientes aqui de Embu das Artes.\n\nVocê consegue passar o contato do responsável ou prefere que eu fale com ele por aqui?"
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-09T14:17:39.786Z",
+        "auto": true,
+        "ai": true,
+        "text": "Eita, acho que caiu na mensagem automática de vocês de novo rs. \n\nEu sou o Kauê, da Pinas. Não preciso de crédito não, queria falar com o responsável pela parte de arquitetura da Akriuz Decorado.\n\nConsegue me passar o contato dele ou me indicar por onde falo?"
+      }
+    ],
+    "repliedAt": "2026-10-09T14:17:09.220Z"
   },
   {
     "id": "lead-1791431253607-514iso",
@@ -1562,9 +1682,51 @@
     },
     "score": 4,
     "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:15.534Z"
+    "status": "contatado",
+    "lastContact": "2026-10-09T14:03:33.081Z",
+    "createdAt": "2026-10-08T03:47:15.534Z",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 4.2,
+      "reviews": 5,
+      "neighborhood": "São Caetano do Sul, SP",
+      "localReputation": "média",
+      "diagnosisTags": [
+        "⭐ 5 avaliações"
+      ],
+      "strengths": [
+        "Boa presença com 5 avaliações (nota 4.2)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Caetano do Sul, SP. Avaliações: 5 (nota 4.2). Reputação local: média."
+    },
+    "aiAnalysis": {
+      "summary": "O lead não possui site próprio, dependendo apenas do Google Maps. O foco da mensagem é oferecer uma landing page de alta conversão com botão de WhatsApp direto para facilitar o contato do cliente local.",
+      "bestAngle": "Abordagem focada na oportunidade perdida de converter quem busca no Google Maps, valorizando as avaliações existentes."
+    },
+    "initialPitch": "Opa Aline, tudo bem? Aqui é o Kauê, da Pinas. Estava dando uma olhada no Google aqui em São Caetano e vi o perfil do seu escritório, parabéns pelas avaliações!\n\nNotei que vocês ainda não possuem um site próprio para direcionar quem pesquisa por arquitetura na região. Hoje muita gente quer ver fotos e chamar no WhatsApp direto, sem ter que ficar salvando contato.\n\nVocês já têm alguém cuidando dessa parte de estrutura digital por aí hoje?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-09T14:03:33.081Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa Aline, tudo bem? Aqui é o Kauê, da Pinas. Estava dando uma olhada no Google aqui em São Caetano e vi o perfil do seu escritório, parabéns pelas avaliações!\n\nNotei que vocês ainda não possuem um site próprio para direcionar quem pesquisa por arquitetura na região. Hoje muita gente quer ver fotos e chamar no WhatsApp direto, sem ter que ficar salvando contato.\n\nVocês já têm alguém cuidando dessa parte de estrutura digital por aí hoje?"
+      }
+    ]
   },
   {
     "id": "lead-1791431235534-q5k5rh",
@@ -1646,9 +1808,59 @@
     },
     "score": 4,
     "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:15.534Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-09T14:07:45.240Z",
+    "createdAt": "2026-10-08T03:47:15.534Z",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 1,
+      "neighborhood": "São Caetano do Sul, SP",
+      "localReputation": "fraca",
+      "diagnosisTags": [
+        "⚠️ Apenas 1 avaliações"
+      ],
+      "strengths": [],
+      "weaknesses": [
+        "Poucas avaliações registradas (1 reviews)"
+      ],
+      "summary": "Localização: São Caetano do Sul, SP. Avaliações: 1 (nota 5.0). Reputação local: fraca."
+    },
+    "aiAnalysis": {
+      "summary": "Negócio local em São Caetano do Sul com boa reputação no Maps, mas sem site para conversão. Foco total em captar o tráfego de intenção (quem busca por arquitetura no Google) e direcionar direto para o WhatsApp.",
+      "bestAngle": "Abordagem consultiva baseada na ausência de site próprio e na perda de oportunidades de contato direto via WhatsApp para clientes locais."
+    },
+    "initialPitch": "Opa, Cláudia, tudo bem? Aqui é o Kauê da Pinas.\n\nEstava dando uma olhada no Google Maps aqui em São Caetano e vi o perfil do seu escritório. Vi as avaliações por lá, mas notei que vocês ainda não têm um site próprio para receber quem pesquisa pelo seu trabalho.\n\nComo muita gente hoje decide o profissional pelo celular, ter uma página rápida com o botão de WhatsApp direto faz toda a diferença pra não perder cliente. Vocês já têm alguém cuidando dessa parte de presença digital por aí?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-09T14:07:01.595Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, Cláudia, tudo bem? Aqui é o Kauê da Pinas.\n\nEstava dando uma olhada no Google Maps aqui em São Caetano e vi o perfil do seu escritório. Vi as avaliações por lá, mas notei que vocês ainda não têm um site próprio para receber quem pesquisa pelo seu trabalho.\n\nComo muita gente hoje decide o profissional pelo celular, ter uma página rápida com o botão de WhatsApp direto faz toda a diferença pra não perder cliente. Vocês já têm alguém cuidando dessa parte de presença digital por aí?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-09T14:07:45.240Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, Cláudia, tudo bem?\n\nEu ajudo escritórios aqui do ABC a terem uma página rápida e visual para apresentar o portfólio, focada em quem pesquisa arquitetura no Google pelo celular e quer chamar direto no WhatsApp.\n\nConsigo te mostrar uma ideia prática em 10 minutinhos pelo Google Meet, sem compromisso nenhum. Fica melhor para você amanhã de manhã ou à tarde?"
+      }
+    ],
+    "repliedAt": "2026-10-09T14:07:04.830Z"
   },
   {
     "id": "lead-1791431235534-c8sfzm",
@@ -1730,9 +1942,51 @@
     },
     "score": 4,
     "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:15.534Z"
+    "status": "contatado",
+    "lastContact": "2026-10-09T14:10:07.885Z",
+    "createdAt": "2026-10-08T03:47:15.534Z",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 4,
+      "neighborhood": "São Caetano do Sul, SP",
+      "localReputation": "fraca",
+      "diagnosisTags": [
+        "⚠️ Apenas 4 avaliações"
+      ],
+      "strengths": [],
+      "weaknesses": [
+        "Poucas avaliações registradas (4 reviews)"
+      ],
+      "summary": "Localização: São Caetano do Sul, SP. Avaliações: 4 (nota 5.0). Reputação local: fraca."
+    },
+    "aiAnalysis": {
+      "summary": "A Vibe Arquitetura possui excelente nota no Google Maps (5.0), mas não tem site cadastrado. A abordagem propõe a criação de uma landing page rápida com botão de WhatsApp direto para converter as buscas locais em contatos imediatos.",
+      "bestAngle": "Ausência de site próprio no Google Maps, destacando as avaliações positivas em São Caetano do Sul e a oportunidade perdida de captar clientes que buscam no Google."
+    },
+    "initialPitch": "Opa, tudo bem? Kauê aqui da Pinas. Estava dando uma olhada no perfil de vocês no Google aqui em São Caetano e vi que vocês têm ótimas avaliações por lá.\n\nMas notei que vocês ainda não têm um site próprio cadastrado pro pessoal clicar e já cair direto no WhatsApp de vocês. A gente ajuda escritórios da região exatamente a criar essas páginas rápidas pra não perder esse cliente que já busca por arquiteto no Google.\n\nTô falando com o responsável pela Vibe por aí?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-09T14:10:07.885Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo bem? Kauê aqui da Pinas. Estava dando uma olhada no perfil de vocês no Google aqui em São Caetano e vi que vocês têm ótimas avaliações por lá.\n\nMas notei que vocês ainda não têm um site próprio cadastrado pro pessoal clicar e já cair direto no WhatsApp de vocês. A gente ajuda escritórios da região exatamente a criar essas páginas rápidas pra não perder esse cliente que já busca por arquiteto no Google.\n\nTô falando com o responsável pela Vibe por aí?"
+      }
+    ]
   },
   {
     "id": "lead-1791431235534-2d2fp4",
@@ -1814,9 +2068,51 @@
     },
     "score": 4,
     "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:15.534Z"
+    "status": "contatado",
+    "lastContact": "2026-10-09T14:10:49.889Z",
+    "createdAt": "2026-10-08T03:47:15.534Z",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 1,
+      "neighborhood": "São Caetano do Sul, SP",
+      "localReputation": "fraca",
+      "diagnosisTags": [
+        "⚠️ Apenas 1 avaliações"
+      ],
+      "strengths": [],
+      "weaknesses": [
+        "Poucas avaliações registradas (1 reviews)"
+      ],
+      "summary": "Localização: São Caetano do Sul, SP. Avaliações: 1 (nota 5.0). Reputação local: fraca."
+    },
+    "aiAnalysis": {
+      "summary": "O lead possui ótima reputação local no Maps, mas perde clientes por não ter um site próprio que direcione o público interessado para o WhatsApp de forma rápida e profissional.",
+      "bestAngle": "Abordagem focada na ausência de site próprio no cadastro do Google Maps em São Caetano do Sul, contrapondo a excelente avaliação de 5 estrelas com a falta de um canal direto de conversão (WhatsApp)."
+    },
+    "initialPitch": "Opa, tudo bem? Kauê aqui da Pinas. Estava dando uma olhada no perfil de vocês no Google aqui em São Caetano e vi que têm uma avaliação ótima por lá!\n\nMas reparei que vocês ainda não têm um site próprio cadastrado pro pessoal que pesquisa já clicar e cair direto no WhatsApp de vocês.\n\nA gente ajuda o pessoal aqui da região exatamente com essas páginas rápidas pra facilitar o contato do cliente. Tô falando com o responsável por aí?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-09T14:10:49.889Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo bem? Kauê aqui da Pinas. Estava dando uma olhada no perfil de vocês no Google aqui em São Caetano e vi que têm uma avaliação ótima por lá!\n\nMas reparei que vocês ainda não têm um site próprio cadastrado pro pessoal que pesquisa já clicar e cair direto no WhatsApp de vocês.\n\nA gente ajuda o pessoal aqui da região exatamente com essas páginas rápidas pra facilitar o contato do cliente. Tô falando com o responsável por aí?"
+      }
+    ]
   },
   {
     "id": "lead-1791431235534-4u9ynp",
@@ -1926,9 +2222,51 @@
     },
     "score": 4,
     "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:15.534Z"
+    "status": "contatado",
+    "lastContact": "2026-10-09T14:12:18.250Z",
+    "createdAt": "2026-10-08T03:47:15.534Z",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 1,
+      "neighborhood": "São Caetano do Sul, SP",
+      "localReputation": "fraca",
+      "diagnosisTags": [
+        "⚠️ Apenas 1 avaliações"
+      ],
+      "strengths": [],
+      "weaknesses": [
+        "Poucas avaliações registradas (1 reviews)"
+      ],
+      "summary": "Localização: São Caetano do Sul, SP. Avaliações: 1 (nota 5.0). Reputação local: fraca."
+    },
+    "aiAnalysis": {
+      "summary": "Parabenizei pelas avaliações 5 estrelas no Google Maps e apontei de forma amigável a ausência de um site próprio para converter as buscas locais em contatos diretos no WhatsApp.",
+      "bestAngle": "Falta de site próprio no Google Maps em São Caetano do Sul"
+    },
+    "initialPitch": "Opa, tudo bem? Kauê aqui da Pinas. Estava dando uma olhada no Google em arquitetos aqui em São Caetano do Sul e acabei encontrando vocês.\n\nVi que vocês têm avaliação nota máxima lá, muito legal! Mas notei que ainda não têm um site próprio cadastrado para o pessoal clicar, ver os projetos e já chamar vocês.\n\nA gente ajuda escritórios da região justamente com páginas rápidas, feitas para quem está no celular já clicar e cair direto no seu WhatsApp para orçar. Vocês já têm alguém cuidando dessa parte de site por aí hoje?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-09T14:12:18.250Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo bem? Kauê aqui da Pinas. Estava dando uma olhada no Google em arquitetos aqui em São Caetano do Sul e acabei encontrando vocês.\n\nVi que vocês têm avaliação nota máxima lá, muito legal! Mas notei que ainda não têm um site próprio cadastrado para o pessoal clicar, ver os projetos e já chamar vocês.\n\nA gente ajuda escritórios da região justamente com páginas rápidas, feitas para quem está no celular já clicar e cair direto no seu WhatsApp para orçar. Vocês já têm alguém cuidando dessa parte de site por aí hoje?"
+      }
+    ]
   },
   {
     "id": "lead-1791431235534-y8r026",
@@ -1982,9 +2320,51 @@
     },
     "score": 4,
     "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-08T03:47:15.534Z"
+    "status": "contatado",
+    "lastContact": "2026-10-09T14:13:54.274Z",
+    "createdAt": "2026-10-08T03:47:15.534Z",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 2,
+      "neighborhood": "São Caetano do Sul, SP",
+      "localReputation": "fraca",
+      "diagnosisTags": [
+        "⚠️ Apenas 2 avaliações"
+      ],
+      "strengths": [],
+      "weaknesses": [
+        "Poucas avaliações registradas (2 reviews)"
+      ],
+      "summary": "Localização: São Caetano do Sul, SP. Avaliações: 2 (nota 5.0). Reputação local: fraca."
+    },
+    "aiAnalysis": {
+      "summary": "O lead tem presença local com nota máxima no Google Maps, mas perde clientes qualificados por não ter um site próprio que direcione o usuário para o WhatsApp. A abordagem propõe sanar essa lacuna de forma leve e direta.",
+      "bestAngle": "Ausência de site próprio para um escritório de arquitetura bem avaliado no Google Maps em São Caetano do Sul."
+    },
+    "initialPitch": "Opa, tudo bem? Kauê aqui da Pinas. Encontrei o perfil da RD Studio no Google Maps pesquisando por arquitetura aqui em São Caetano e entrei para dar uma olhada.\n\nVi que vocês têm uma avaliação excelente por lá, mas notei que ainda não têm um site próprio para o cliente clicar e já chamar vocês direto no WhatsApp. A gente ajuda escritórios daqui da região exatamente a estruturar essas páginas rápidas para não perder quem já está buscando por arquiteto na internet.\n\nTô falando com o responsável por aí?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-09T14:13:54.274Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo bem? Kauê aqui da Pinas. Encontrei o perfil da RD Studio no Google Maps pesquisando por arquitetura aqui em São Caetano e entrei para dar uma olhada.\n\nVi que vocês têm uma avaliação excelente por lá, mas notei que ainda não têm um site próprio para o cliente clicar e já chamar vocês direto no WhatsApp. A gente ajuda escritórios daqui da região exatamente a estruturar essas páginas rápidas para não perder quem já está buscando por arquiteto na internet.\n\nTô falando com o responsável por aí?"
+      }
+    ]
   },
   {
     "id": "lead-1791431235534-yje6eq",
@@ -2095,18 +2475,32 @@
     "score": 4,
     "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas.",
     "status": "respondeu",
-    "lastContact": "2026-10-08T17:57:50.406Z",
+    "lastContact": "2026-10-09T14:17:55.349Z",
     "createdAt": "2026-10-08T03:47:15.534Z",
-    "stage": 2,
+    "stage": 4,
     "stageHistory": [
       {
         "stage": 2,
         "sentAt": "2026-10-08T17:57:50.406Z",
         "auto": true,
         "text": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de São Caetano do Sul, SP.\n\nTava dando uma olhada rápida na Tear Interiores | Designer de Interiores em São Caetano do Sul aqui no Google e vi uma coisa que me chamou atenção."
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-09T14:02:22.143Z",
+        "auto": true,
+        "ai": true,
+        "text": "Maravilha, fico no aguardo então!\n\nSó para adiantar quando o pessoal assumir: eu vi que vocês têm um trabalho lindo e nota excelente no Google (4.9), mas reparei num detalhe no site de vocês pelo celular que pode estar fazendo vocês perderem alguns orçamentos aqui de São Caetano.\n\nQuando alguém puder falar, me dá um toque por aqui!"
+      },
+      {
+        "stage": 4,
+        "sentAt": "2026-10-09T14:17:55.349Z",
+        "auto": true,
+        "ai": true,
+        "text": "Entendido! Obrigado por avisar.\n\nNa verdade, eu moro aqui na região e sempre que preciso de alguma indicação, dou uma pesquisada no Maps. Foi assim que achei o perfil da Tear.\n\nQuando alguém da equipe estiver por aqui, me dá um alô. Queria apenas mostrar um detalhe técnico no carregamento do site pelo celular que pode estar travando alguns interessados no projeto de vocês."
       }
     ],
-    "repliedAt": "2026-10-08T17:58:03.868Z"
+    "repliedAt": "2026-10-09T14:17:09.454Z"
   },
   {
     "id": "lead-1791431235534-wdwry7",
@@ -6108,9 +6502,10 @@
     },
     "score": 3,
     "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
-    "status": "contatado",
+    "status": "respondeu",
     "lastContact": "2026-10-06T18:21:05.110Z",
-    "createdAt": "2026-10-05T18:10:21.150Z"
+    "createdAt": "2026-10-05T18:10:21.150Z",
+    "repliedAt": "2026-10-09T14:01:45.393Z"
   },
   {
     "id": "lead-1791223821150-q4r812",
@@ -6136,9 +6531,10 @@
     },
     "score": 4,
     "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
-    "status": "contatado",
+    "status": "respondeu",
     "lastContact": "2026-10-06T18:21:57.395Z",
-    "createdAt": "2026-10-05T18:10:21.150Z"
+    "createdAt": "2026-10-05T18:10:21.150Z",
+    "repliedAt": "2026-10-09T14:01:45.381Z"
   },
   {
     "id": "lead-1791223804056-n2edoh",
@@ -6164,9 +6560,10 @@
     },
     "score": 4,
     "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas.",
-    "status": "contatado",
+    "status": "respondeu",
     "lastContact": "2026-10-06T18:25:56.124Z",
-    "createdAt": "2026-10-05T18:10:04.056Z"
+    "createdAt": "2026-10-05T18:10:04.056Z",
+    "repliedAt": "2026-10-09T14:01:45.366Z"
   },
   {
     "id": "lead-1791223804056-dt2bgm",
@@ -10837,34 +11234,6 @@
     "notes": "Sem site cadastrado no Maps (Oportunidade alta para site + Google Ads).",
     "status": "contatado",
     "lastContact": "2026-10-01T20:26:50.692Z",
-    "createdAt": "2026-10-01T02:12:06.941Z",
-    "opportunity": {
-      "score": 4,
-      "type": "site",
-      "label": "🌐 Oportunidade: Criação de Site",
-      "attackAngle": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads."
-    },
-    "score": 4
-  },
-  {
-    "id": "lead-1790820726941-xyj4vt",
-    "name": "Mel Pitanga Moda Feminina",
-    "niche": "loja de roupas femininas",
-    "phone": "(11) 98455-1507",
-    "cleanPhone": "5511984551507",
-    "hasPhone": true,
-    "hasMobile": true,
-    "website": "",
-    "hasWebsite": false,
-    "mapsUrl": "https://www.google.com/maps/place/Mel+Pitanga+Moda+Feminina/data=!4m7!3m6!1s0x94ce5100399362e9:0xb2dd93e0fc4a509c!8m2!3d-23.6527046!4d-46.7037271!16s%2Fg%2F11xd3cklg1!19sChIJ6WKTOQBRzpQRnFBK_OCT3bI?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkyOC4wIJJjKgBIAVAD&rclk=1",
-    "rating": "5.0",
-    "reviews": 0,
-    "address": "Loja de Roupa · R. Promotor Gabriel Nettuzzi Perez, 194",
-    "neighborhood": "Santo Amaro SP",
-    "city": "São Paulo",
-    "notes": "Sem site cadastrado no Maps (Oportunidade alta para site + Google Ads).",
-    "status": "proposta",
-    "lastContact": null,
     "createdAt": "2026-10-01T02:12:06.941Z",
     "opportunity": {
       "score": 4,

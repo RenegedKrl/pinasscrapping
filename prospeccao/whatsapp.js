@@ -136,7 +136,7 @@ async function syncAllGroupsMetadata() {
 }
 
 // Processar mensagem recebida ou enviada para salvar no Store local
-async function processIncomingMessage(m) {
+async function processIncomingMessage(m, isLive = false) {
   if (!m || !m.key || !m.key.remoteJid) return;
   const rawJid = m.key.remoteJid;
   if (rawJid.includes('status@broadcast')) return;
@@ -288,8 +288,11 @@ async function processIncomingMessage(m) {
     status: 'delivered'
   });
 
-  // Notificar ouvintes (auto-responder de etapas) se for mensagem direta de lead externo
-  if (!fromMe && !isGroup && text) {
+  // Notificar ouvintes (auto-responder de etapas) APENAS se for mensagem NOVA em tempo real (não de histórico)
+  const ageMs = Date.now() - timestamp;
+  const isRecent = ageMs >= -5000 && ageMs < (120 * 1000); // recebida nos últimos 2 minutos
+
+  if (isLive && isRecent && !fromMe && !isGroup && text) {
     try {
       const extractedPhone = store.extractPhone(jid) || phone;
       waEvents.emit('message.received', {
@@ -441,7 +444,7 @@ async function initWhatsApp(force = false) {
       if (messages) {
         for (const m of messages) {
           try {
-            await processIncomingMessage(m);
+            await processIncomingMessage(m, false); // NUNCA emitir evento de auto-resposta em sincronização de histórico
           } catch (e) {}
         }
       }
@@ -449,9 +452,12 @@ async function initWhatsApp(force = false) {
 
     // Mensagens em tempo real
     sock.ev.on('messages.upsert', async ({ messages, type }) => {
+      // type === 'notify' significa nova mensagem real chegando ao vivo
+      // type === 'append' significa histórico/backup sendo sincronizado
+      const isLiveIncoming = (type === 'notify');
       for (const m of messages) {
         try {
-          await processIncomingMessage(m);
+          await processIncomingMessage(m, isLiveIncoming);
         } catch (err) {
           console.error('[WhatsApp] Erro ao processar mensagem:', err.message);
         }
