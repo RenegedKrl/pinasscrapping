@@ -15,19 +15,19 @@
       "goal": "Quebre o gelo com naturalidade e confirme o dono/responsável",
       "dotColor": "#F59E0B",
       "templates": {
-        "comSite": "Opa, tudo bem? Falo com o responsável pela {nome}?",
-        "semSite": "Opa, tudo bem? Falo com o responsável pela {nome}?"
+        "comSite": "Olá, tudo bem? É da {nome}?",
+        "semSite": "Olá, tudo bem? É da {nome}?"
       }
     },
     {
       "number": 2,
       "id": "apresentacao",
-      "name": "2. Apresentação & Curiosidade",
-      "goal": "Quem é você e o gancho que desperta curiosidade imediata",
+      "name": "2. Apresentação & Questão de Venda",
+      "goal": "Apresente a Pinas e a proposta de valor quando o cliente confirmar o local",
       "dotColor": "#3B82F6",
       "templates": {
-        "comSite": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de {regiao}.\n\nTava dando uma olhada rápida na {nome} aqui no Google e vi uma coisa que me chamou atenção.",
-        "semSite": "Aqui é o Kauê, tudo bem? Trabalho criando sites profissionais e cuidando da presença digital de empresas aqui de {regiao}.\n\nTava dando uma olhada rápida na {nome} aqui no Google e vi uma coisa que me chamou atenção."
+        "comSite": "Show! Prazer, aqui é o Kauê da Pinas (@pinas.studio).\n\nEncontrei o perfil de vocês no Google aqui em {regiao} e vi que têm ótimas avaliações. Dei uma olhada rápida no site de vocês pelo celular e notei um detalhe importante na estrutura de atendimento.\n\nA gente ajuda empresas da região com páginas rápidas focadas em receber contatos no WhatsApp. Vocês já têm alguém cuidando dessa parte do digital por aí hoje?",
+        "semSite": "Show! Prazer, aqui é o Kauê da Pinas (@pinas.studio).\n\nEncontrei o perfil de vocês no Google aqui em {regiao} e vi que têm ótimas avaliações, mas reparei que ainda não têm um site próprio com botão direto de WhatsApp pra receber quem busca no Google.\n\nA gente ajuda empresas da região criando páginas rápidas que abrem em 1s no celular e direcionam direto pro WhatsApp pra fechar clientes. Vocês já têm alguém cuidando dessa parte por aí hoje?"
       }
     },
     {

@@ -36,10 +36,13 @@
 4. **Outros comércios/serviços de alto ticket** (Aberto a oportunidades: energia solar, contabilidade, clínicas odontológicas, etc.)
 
 ### Regra de Ouro Anti-Spam & Abordagem Conversacional (Inviolável):
+- **CRONOGRAMA DE DISPARO PARA NOVOS CLIENTES:** O disparo de 1º contato (outbound/frio) ocorre exclusivamente de **Segunda, Terça, Quinta e Sexta**, entre as **10h e 19h** (Horário de Brasília).
+- **DIAS PAUSADOS PARA NOVOS LEADS:** **Quarta-feira**, **Sábado** e **Domingo** o sistema fica em Standby para prospecção fria.
+- **ATENDIMENTO A RESPOSTAS 24/7 (Sempre Ativo):** Leads que já responderam ou mandarem mensagem continuam sendo respondidos de imediato pela IA do Gemini de forma contínua, **em qualquer dia da semana (inclusive quartas e finais de semana) e 24h por dia**.
 - **LIMITE ESTRITO DE 1 MENSAGEM SEM RESPOSTA:** NUNCA enviar mais de uma mensagem para um lead se ele não responder. Se o primeiro contato foi enviado e o lead não respondeu, o sistema identifica esse estado e **NUNCA envia outra mensagem** (sem follow-ups forçados, sem etapas automáticas subsequentes).
 - **SÓ RESPONDE QUANDO O LEAD RESPONDER:** O sistema e a IA só voltam a interagir quando o lead enviar uma resposta real no WhatsApp.
-- **1ª Mensagem (Abertura Limpa):** NUNCA jogar textão de cara. Começar com uma saudação despretensiosa, curta e educada confirmando o responsável (*"Opa, tudo bem? Falo com o responsável pela {nome}?"*).
-- **2ª Mensagem em diante (Inteligência Conversacional Adaptativa):** Ler a resposta real enviada pelo lead via WhatsApp, identificar o contexto (se é o dono, secretária/recepção, se perguntou preço ou do que se trata), contornar dúvidas e conduzir a conversa até agendar um papo rápido de 15 minutos no Google Meet.
+- **1ª Mensagem (Abertura 100% Despretensiosa - ZERO Cara de Venda):** NUNCA vender na primeira mensagem, nunca falar de site, tráfego ou da Pinas de cara. Enviar estritamente uma confirmação curta em 1 linha: *"Olá, tudo bem? É da clínica {nome}?"* (ou *"Olá, tudo bem? É do escritório {nome}?"*, *"Olá, tudo bem? É da loja {nome}?"*, *"Olá, tudo bem? É da {nome}?"*).
+- **2ª Mensagem em diante (Quando o cliente responder "Ah, sou sim", etc.):** Somente após a confirmação do cliente a IA entra apresentando o Kauê e a Pinas (@pinas.studio), explicando que encontrou o perfil deles no Google com ótima reputação, trazendo a questão de venda do negócio (o diagnóstico de site de alta conversão para não perder clientes da região pro concorrente) e conduzindo a conversa até a call de 15 minutos no Google Meet.
 
 ## Estilo Geral
 

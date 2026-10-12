@@ -200,75 +200,81 @@ async function processIncomingMessage(m, isLive = false) {
     text = msgContent.templateButtonReplyMessage.selectedDisplayText || '';
     type = 'text';
   }
-  // 4. Imagem
+  // 4. Imagem (apenas se não for grupo e < 5MB)
   else if (msgContent.imageMessage) {
     type = 'image';
     text = msgContent.imageMessage.caption || '';
-    try {
-      const buffer = await downloadMediaMessage(m, 'buffer', {}, { logger: pino({ level: 'silent' }) });
-      const filename = `img_${msgId}_${Date.now()}.jpg`;
-      const filePath = path.join(store.MEDIA_DIR, filename);
-      fs.writeFileSync(filePath, buffer);
-      mediaUrl = `/media/${filename}`;
-    } catch (e) {
-      console.warn('[WhatsApp] Falha ao baixar imagem recebida:', e.message);
+    if (!isGroup) {
+      try {
+        const buffer = await downloadMediaMessage(m, 'buffer', {}, { logger: pino({ level: 'silent' }) });
+        if (buffer && buffer.length <= 5 * 1024 * 1024) {
+          const filename = `img_${msgId}_${Date.now()}.jpg`;
+          const filePath = path.join(store.MEDIA_DIR, filename);
+          fs.writeFileSync(filePath, buffer);
+          mediaUrl = `/media/${filename}`;
+        }
+      } catch (e) {
+        console.warn('[WhatsApp] Falha ao baixar imagem recebida:', e.message);
+      }
     }
   }
-  // 5. Figurinha / Sticker
+  // 5. Figurinha / Sticker (ignora grupos)
   else if (msgContent.stickerMessage) {
     type = 'image';
     text = '';
-    try {
-      const buffer = await downloadMediaMessage(m, 'buffer', {}, { logger: pino({ level: 'silent' }) });
-      const filename = `sticker_${msgId}_${Date.now()}.webp`;
-      const filePath = path.join(store.MEDIA_DIR, filename);
-      fs.writeFileSync(filePath, buffer);
-      mediaUrl = `/media/${filename}`;
-    } catch (e) {
-      console.warn('[WhatsApp] Falha ao baixar figurinha recebida:', e.message);
+    if (!isGroup) {
+      try {
+        const buffer = await downloadMediaMessage(m, 'buffer', {}, { logger: pino({ level: 'silent' }) });
+        const filename = `sticker_${msgId}_${Date.now()}.webp`;
+        const filePath = path.join(store.MEDIA_DIR, filename);
+        fs.writeFileSync(filePath, buffer);
+        mediaUrl = `/media/${filename}`;
+      } catch (e) {
+        console.warn('[WhatsApp] Falha ao baixar figurinha recebida:', e.message);
+      }
     }
   }
-  // 6. Vídeo
+  // 6. Vídeo (TRAVA ANTI-PESO: NUNCA baixa vídeos brutos para poupar dezenas de GB de disco)
   else if (msgContent.videoMessage) {
     type = 'video';
-    text = msgContent.videoMessage.caption || '';
-    try {
-      const buffer = await downloadMediaMessage(m, 'buffer', {}, { logger: pino({ level: 'silent' }) });
-      const filename = `video_${msgId}_${Date.now()}.mp4`;
-      const filePath = path.join(store.MEDIA_DIR, filename);
-      fs.writeFileSync(filePath, buffer);
-      mediaUrl = `/media/${filename}`;
-    } catch (e) {
-      console.warn('[WhatsApp] Falha ao baixar vídeo recebido:', e.message);
-    }
+    text = msgContent.videoMessage.caption ? `[Vídeo]: ${msgContent.videoMessage.caption}` : '[Vídeo]';
   }
-  // 7. Áudio (PTT de voz ou arquivo de áudio)
+  // 7. Áudio (PTT de voz de clientes diretos, apenas se não for grupo e < 10MB)
   else if (msgContent.audioMessage) {
     type = 'audio';
-    try {
-      const buffer = await downloadMediaMessage(m, 'buffer', {}, { logger: pino({ level: 'silent' }) });
-      const filename = `audio_${msgId}_${Date.now()}.mp4`;
-      const filePath = path.join(store.MEDIA_DIR, filename);
-      fs.writeFileSync(filePath, buffer);
-      mediaUrl = `/media/${filename}`;
-    } catch (e) {
-      console.warn('[WhatsApp] Falha ao baixar áudio recebido:', e.message);
+    text = '[Áudio de voz]';
+    if (!isGroup) {
+      try {
+        const buffer = await downloadMediaMessage(m, 'buffer', {}, { logger: pino({ level: 'silent' }) });
+        if (buffer && buffer.length <= 10 * 1024 * 1024) {
+          const filename = `audio_${msgId}_${Date.now()}.mp4`;
+          const filePath = path.join(store.MEDIA_DIR, filename);
+          fs.writeFileSync(filePath, buffer);
+          mediaUrl = `/media/${filename}`;
+        }
+      } catch (e) {
+        console.warn('[WhatsApp] Falha ao baixar áudio recebido:', e.message);
+      }
     }
   }
-  // 8. Documento / PDF
+  // 8. Documento / PDF (apenas de conversas diretas e < 5MB)
   else if (msgContent.documentMessage) {
     type = 'document';
     fileName = msgContent.documentMessage.fileName || 'arquivo.pdf';
     text = msgContent.documentMessage.caption || fileName;
-    try {
-      const buffer = await downloadMediaMessage(m, 'buffer', {}, { logger: pino({ level: 'silent' }) });
-      const ext = path.extname(fileName) || '.bin';
-      const filename = `doc_${msgId}_${Date.now()}${ext}`;
-      const filePath = path.join(store.MEDIA_DIR, filename);
-      fs.writeFileSync(filePath, buffer);
-      mediaUrl = `/media/${filename}`;
-    } catch (e) {
-      console.warn('[WhatsApp] Falha ao baixar documento recebido:', e.message);
+    if (!isGroup) {
+      try {
+        const buffer = await downloadMediaMessage(m, 'buffer', {}, { logger: pino({ level: 'silent' }) });
+        if (buffer && buffer.length <= 5 * 1024 * 1024) {
+          const ext = path.extname(fileName) || '.bin';
+          const filename = `doc_${msgId}_${Date.now()}${ext}`;
+          const filePath = path.join(store.MEDIA_DIR, filename);
+          fs.writeFileSync(filePath, buffer);
+          mediaUrl = `/media/${filename}`;
+        }
+      } catch (e) {
+        console.warn('[WhatsApp] Falha ao baixar documento recebido:', e.message);
+      }
     }
   }
 
@@ -288,11 +294,11 @@ async function processIncomingMessage(m, isLive = false) {
     status: 'delivered'
   });
 
-  // Notificar ouvintes (auto-responder de etapas) APENAS se for mensagem NOVA em tempo real (não de histórico)
+  // Notificar ouvintes (auto-responder de etapas) para mensagens recebidas recentemente (até 48h para cobrir offline)
   const ageMs = Date.now() - timestamp;
-  const isRecent = ageMs >= -5000 && ageMs < (120 * 1000); // recebida nos últimos 2 minutos
+  const isRecent = ageMs >= -5000 && ageMs < (48 * 3600 * 1000); // até 48 horas para cobrir respostas recebidas enquanto offline
 
-  if (isLive && isRecent && !fromMe && !isGroup && text) {
+  if (isRecent && !fromMe && !isGroup && text) {
     try {
       const extractedPhone = store.extractPhone(jid) || phone;
       waEvents.emit('message.received', {

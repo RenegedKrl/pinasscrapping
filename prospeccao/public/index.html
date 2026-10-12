@@ -47,6 +47,9 @@
         <span class="status-indicator-dot dot-disconnected" id="header-wa-dot"></span>
         <span id="header-wa-text">Conectar WhatsApp</span>
       </button>
+      <button class="header-action-btn" id="btn-header-shutdown" title="Desligar Servidor do Prospector" style="background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); color: #FCA5A5; padding: 6px 12px; border-radius: var(--radius-sm); font-size: 0.78rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+        <span>🛑 Desligar</span>
+      </button>
     </div>
   </header>
 
@@ -415,12 +418,13 @@
               </div>
 
               <div class="form-group" style="margin-top: 0.75rem;">
-                <label class="form-label">Intervalo de Segurança:</label>
+                <label class="form-label">Intervalo entre Novos Leads (Anti-Ban):</label>
                 <select id="autopilot-delay-select" class="form-control form-control-sm">
-                  <option value="35">35 segundos (Rápido & Seguro)</option>
-                  <option value="50">50 segundos (Recomendado)</option>
-                  <option value="75" selected>75 segundos (Ultra Conservador & Seguro)</option>
-                  <option value="120">2 minutos (Anti-Bloqueio Máximo)</option>
+                  <option value="300" selected>⏱️ 5 minutos (Padrão Solicitado pelo Kauê ★ Anti-Ban)</option>
+                  <option value="180">⏱️ 3 minutos (Seguro & Moderado)</option>
+                  <option value="420">⏱️ 7 minutos (Espaçado)</option>
+                  <option value="600">⏱️ 10 minutos (Ultra Lento & Seguro)</option>
+                  <option value="90">⏱️ 1m 30s (Mais Rápido)</option>
                 </select>
               </div>
 
@@ -446,18 +450,18 @@
                 </p>
               </div>
 
-              <!-- Janela Comercial de Disparos Novos Leads (10h às 19h) -->
+              <!-- Janela Comercial e Dias de Disparos Novos Leads (Seg, Ter, Qui, Sex | 10h às 19h) -->
               <div class="cadence-window-box" style="margin-top: 0.65rem; padding: 0.65rem 0.85rem; background: rgba(59, 130, 246, 0.06); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: var(--radius-sm);">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                   <span style="font-weight: 700; font-size: 0.82rem; color: #60A5FA; display: flex; align-items: center; gap: 6px;">
-                    <span>⏰</span> Janela de Novos Leads:
+                    <span>⏰</span> Cronograma Novos Leads:
                   </span>
                   <span class="badge-status-pill" id="autopilot-window-status-pill" style="font-size: 0.72rem; padding: 2px 8px; border-radius: 999px; background: rgba(59, 130, 246, 0.2); color: #93C5FD; border: 1px solid rgba(59, 130, 246, 0.4);">
-                    10h às 19h (SP)
+                    Seg, Ter, Qui e Sex (10h às 19h)
                   </span>
                 </div>
                 <p style="font-size: 0.74rem; color: var(--text-secondary); margin: 0.35rem 0 0 0; line-height: 1.3;">
-                  Novos contatos são disparados apenas entre <strong>10:00 e 19:00</strong>. Respostas de leads que já falaram continuam <strong>24/7</strong>.
+                  Novos contatos são disparados em <strong>Segunda, Terça, Quinta e Sexta (10h às 19h)</strong>. Quarta e Fins de Semana sem novos envios. Respostas de clientes continuam <strong>24/7</strong>!
                 </p>
               </div>
 
@@ -498,6 +502,9 @@
                 </button>
                 <button class="btn btn-outline full-width" id="btn-pause-autopilot" style="display: none;">
                   <span>⏸️ PAUSAR PILOTO AUTOMÁTICO</span>
+                </button>
+                <button class="btn btn-outline full-width" id="btn-shutdown-autopilot" style="margin-top: 0.45rem; border-color: rgba(239, 68, 68, 0.4); color: #FCA5A5; font-size: 0.8rem; padding: 6px 12px;">
+                  <span>🛑 Desligar Servidor Completo</span>
                 </button>
               </div>
 
@@ -601,13 +608,45 @@
                 <input type="number" id="settings-daily-limit" class="form-control" min="5" max="100" value="30">
               </div>
               <div class="form-group flex-1">
-                <label class="form-label">Delay Mínimo (segundos):</label>
-                <input type="number" id="settings-min-delay" class="form-control" min="10" max="120" value="30">
+                <label class="form-label">Delay Mínimo Novos Leads (segundos):</label>
+                <input type="number" id="settings-min-delay" class="form-control" min="30" max="900" value="300">
+                <small style="color: var(--text-muted); font-size: 0.72rem;">300s = 5 minutos entre novos leads.</small>
               </div>
               <div class="form-group flex-1">
                 <label class="form-label">Delay Máximo (segundos):</label>
-                <input type="number" id="settings-max-delay" class="form-control" min="20" max="300" value="60">
+                <input type="number" id="settings-max-delay" class="form-control" min="60" max="1200" value="330">
+                <small style="color: var(--text-muted); font-size: 0.72rem;">Variação orgânica anti-bloqueio.</small>
               </div>
+            </div>
+
+            <div class="form-row" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color); flex-direction: column; gap: 0.6rem;">
+              <label class="form-label" style="margin-bottom: 0;">🗓️ Dias da Semana para Disparo de Novos Leads:</label>
+              <div class="days-selector-bar" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <label class="day-checkbox-label" style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; background: rgba(255,255,255,0.03); padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); cursor: pointer;">
+                  <input type="checkbox" id="settings-day-1" value="1" checked> Segunda
+                </label>
+                <label class="day-checkbox-label" style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; background: rgba(255,255,255,0.03); padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); cursor: pointer;">
+                  <input type="checkbox" id="settings-day-2" value="2" checked> Terça
+                </label>
+                <label class="day-checkbox-label" style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; background: rgba(255,255,255,0.03); padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); cursor: pointer; color: var(--text-muted);">
+                  <input type="checkbox" id="settings-day-3" value="3"> Quarta
+                </label>
+                <label class="day-checkbox-label" style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; background: rgba(255,255,255,0.03); padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); cursor: pointer;">
+                  <input type="checkbox" id="settings-day-4" value="4" checked> Quinta
+                </label>
+                <label class="day-checkbox-label" style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; background: rgba(255,255,255,0.03); padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); cursor: pointer;">
+                  <input type="checkbox" id="settings-day-5" value="5" checked> Sexta
+                </label>
+                <label class="day-checkbox-label" style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; background: rgba(255,255,255,0.03); padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); cursor: pointer; color: var(--text-muted);">
+                  <input type="checkbox" id="settings-day-6" value="6"> Sábado
+                </label>
+                <label class="day-checkbox-label" style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; background: rgba(255,255,255,0.03); padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); cursor: pointer; color: var(--text-muted);">
+                  <input type="checkbox" id="settings-day-0" value="0"> Domingo
+                </label>
+              </div>
+              <small style="color: var(--text-muted); font-size: 0.74rem;">
+                Configuração ativa: <strong>Segunda, Terça, Quinta e Sexta</strong>. Quarta-feira e Fins de Semana desativados para novos leads.
+              </small>
             </div>
 
             <div class="form-row" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">

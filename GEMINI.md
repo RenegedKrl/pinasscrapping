@@ -63,4 +63,6 @@ criação de sites e campanhas de tráfego pago (Meta Ads e Google Ads).
   - Região / Nicho proibido: **Brás** e lojas em geral do Brás.
 - **Nichos Prioritários:** 1º Clínicas Veterinárias | 2º Escritórios de Advocacia | 3º Lojas de Roupa (fora do Brás, prioridade menor) | Outros serviços qualificados.
 - **Regra de Ouro Anti-Spam (Inviolável):** NUNCA mandar mais de uma mensagem para um lead se ele não responder. O sistema identifica automaticamente threads aguardando resposta e bloqueia novos envios/etapas. SÓ responder quando o lead responder.
+- **Cronograma de Prospecção para Novos Clientes:** Disparos de 1º contato (outbound/frio) rodam exclusivamente de **Segunda, Terça, Quinta e Sexta (10h às 19h)**. Quarta-feira, Sábado e Domingo pausados para novos leads. **Atendimento a respostas de clientes continua 100% ativo 24/7**.
+- **Formato da 1ª Mensagem (Anti-Venda Obrigatório):** A 1ª mensagem enviada para novos leads deve ser 100% despretensiosa em 1 linha (*"Olá, tudo bem? É da clínica {nome}?"* / *"Olá, tudo bem? É da {nome}?"*). ZERO menção de venda, Pinas ou site. Somente após a resposta de confirmação do cliente (*"Ah, sou sim"*), a IA apresenta a Pinas, a auditoria e a proposta de valor do negócio.
 

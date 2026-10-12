@@ -1,13 +1,27 @@
 @echo off
-title Encerrar Pinas Prospector
+title Encerrar Pinas Prospector (@pinas.studio)
+color 0C
+cls
 echo ==============================================================
-echo   ENCERRANDO PINAS PROSPECTOR (SEGUNDO PLANO)
+echo   ENCERRANDO PINAS PROSPECTOR (TODAS AS INSTANCIAS)
+echo ==============================================================
+echo   Responsavel: Kaue - Pinas Studio
+echo   Finalizando servidores em segundo plano e liberando porta 3333...
 echo ==============================================================
 echo.
-for /f "tokens=5" %%a in ('netstat -aon ^| findstr :3333 ^| findstr LISTENING') do (
-    echo Finalizando processo na porta 3333 (PID %%a)...
-    taskkill /F /PID %%a >nul 2>&1
-)
+
+powershell -NoProfile -ExecutionPolicy Bypass -Command ^
+  "$killed = 0; " ^
+  "Get-NetTCPConnection -LocalPort 3333 -ErrorAction SilentlyContinue | Where-Object { $_.OwningProcess -gt 0 } | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue; $killed++ }; " ^
+  "Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'node.exe' -and $_.CommandLine -like '*server.js*' } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue; $killed++ }; " ^
+  "if ($killed -gt 0) { Write-Host \"[OK] Processos do servidor foram encerrados com sucesso!\" -ForegroundColor Green } else { Write-Host \"[INFO] Nenhum processo ativo do servidor foi encontrado.\" -ForegroundColor Yellow }; " ^
+  "Start-Sleep -Milliseconds 400; " ^
+  "$check = Get-NetTCPConnection -LocalPort 3333 -ErrorAction SilentlyContinue; " ^
+  "if (-not $check) { Write-Host \"[CONFIRMADO] Porta 3333 liberada. Servidor 100%% DESLIGADO!\" -ForegroundColor Green } else { Write-Host \"[AVISO] Verificando porta...\" -ForegroundColor Yellow }"
+
 echo.
-echo [OK] Servidor encerrado com sucesso!
-timeout /t 3
+echo ==============================================================
+echo   SERVIDOR 100%% PARADO COM SUCESSO!
+echo ==============================================================
+echo.
+powershell -NoProfile -Command "Start-Sleep -Seconds 2"

@@ -22,9 +22,10 @@ Kauê atualmente divide o tempo entre trabalho CLT e a operação da Pinas. O ob
 - **Solução do gargalo da Pink Luxo:** Criar roteiros simples e fáceis para as clientes gravarem vídeos sem atrito + criar mini-playbook de atendimento no WhatsApp para aumentar a conversão de leads em agendamentos pagos.
 - **Relatórios de tráfego semanais:** Analisar exports de Meta/Google Ads via `/relatorio-ads` gerando relatórios executivos rápidos em minutos.
 - **SDR IA Autônomo de Prospecção (Pronto para Executar):**
-  - **Estratégia Conversacional Definida:** Não mandar a dor do site logo na primeira mensagem. Começar com abertura despretensiosa ("Opa, tudo bem? Falo com o responsável pela {nome}?"), ler a resposta da pessoa em tempo real com IA, interpretar se é dono/secretária e conduzir a conversa de forma inteligente até agendar a call de 15 min no Google Meet.
+  - **Estratégia Conversacional Definida:** Não falar de venda ou site na primeira mensagem. Começar com abertura 100% despretensiosa em 1 linha ("Olá, tudo bem? É da clínica {nome}?"). Quando a pessoa responder ("Ah, sou sim", "Sim, é daqui"), aí sim apresentar a Pinas, a auditoria e a questão de venda do negócio, conduzindo com paciência até agendar a call de 15 min no Google Meet.
   - **Lead Piloto Já Auditado e Salvo no Painel:** Clínica Veterinária Tatuapé (`lead-1791504801537`, WhatsApp: `(11) 93380-9012`, Dr. Rodrigo / Dra. Tatiana).
   - **Modos de Operação:** Co-piloto (assistido no chat) ou SDR IA 24/7 (plugado no `server.js` via API gratuita do Google Gemini para rodar enquanto o Kauê está no CLT).
+  - **Cronograma de Disparo para Novos Leads:** Disparos de novos clientes em Segunda, Terça, Quinta e Sexta (10h às 19h). Quarta-feira e Fins de Semana sem novos envios. Atendimento a respostas recebidas sempre ativo 24/7.
 
 
 ## O que Pode Esperar

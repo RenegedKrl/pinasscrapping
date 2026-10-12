@@ -1,12 +1,18 @@
 {
   "autoStartAutopilot": true,
-  "dailyLimit": 32,
+  "dailyLimit": 30,
   "outboundStartHour": 10,
   "outboundEndHour": 19,
-  "sentToday": 14,
-  "lastResetDate": "2026-10-09",
-  "minDelaySeconds": 30,
-  "maxDelaySeconds": 60,
+  "outboundDays": [
+    1,
+    2,
+    4,
+    5
+  ],
+  "sentToday": 30,
+  "lastResetDate": "2026-10-12",
+  "minDelaySeconds": 300,
+  "maxDelaySeconds": 330,
   "excludedChains": [
     "petz",
     "cobasi",

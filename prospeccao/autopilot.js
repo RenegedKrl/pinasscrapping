@@ -68,7 +68,11 @@ function checkAndResetDailyLimit(config) {
   return config;
 }
 
-// Obter horário atual de Brasília (SP) de forma precisa e independente de timezone do host
+// Nomes dos dias da semana em português
+const DAY_NAMES = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+const DAY_NAMES_SHORT = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+
+// Obter horário e dia atual de Brasília (SP) de forma precisa e independente de timezone do host
 function getBrazilTime() {
   const now = new Date();
   const formatter = new Intl.DateTimeFormat('pt-BR', {
@@ -82,39 +86,92 @@ function getBrazilTime() {
   const hour = parseInt(parts.find(p => p.type === 'hour')?.value || '0', 10);
   const minute = parseInt(parts.find(p => p.type === 'minute')?.value || '0', 10);
   const second = parseInt(parts.find(p => p.type === 'second')?.value || '0', 10);
-  return { hour, minute, second, now };
+
+  const dayShort = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Sao_Paulo',
+    weekday: 'short'
+  }).format(now);
+  const dayOfWeekMap = { 'Sun': 0, 'Mon': 1, 'Tue': 2, 'Wed': 3, 'Thu': 4, 'Fri': 5, 'Sat': 6 };
+  const dayOfWeek = dayOfWeekMap[dayShort] !== undefined ? dayOfWeekMap[dayShort] : now.getDay();
+
+  return { hour, minute, second, dayOfWeek, now };
 }
 
-// Janela comercial permitida para NOVOS LEADS (Prospecção Fria Outbound)
-// Solicitado pelo Kauê: 10h da manhã até as 19h da noite
+// Janela comercial e cronograma de dias permitidos para NOVOS LEADS (Prospecção Fria Outbound)
+// Solicitado pelo Kauê:
+// - Disparos para novos clientes: Segunda, Terça, Quinta e Sexta (Quarta-feira, Sábado e Domingo pausados)
+// - Horário comercial: 10h da manhã até as 19h da noite (Horário de Brasília)
+// - Respostas de leads recebidas: Atendimento contínuo da IA 24/7 sem qualquer restrição de dia ou horário!
 function checkCommercialHours(config = {}) {
   const startHour = config.outboundStartHour !== undefined ? config.outboundStartHour : 10;
   const endHour = config.outboundEndHour !== undefined ? config.outboundEndHour : 19;
-  const { hour, minute, second } = getBrazilTime();
+  const outboundDays = Array.isArray(config.outboundDays) && config.outboundDays.length > 0
+    ? config.outboundDays
+    : [1, 2, 4, 5]; // Padrão: Seg, Ter, Qui, Sex (Quarta, Sábado e Domingo pausados)
 
-  // Permitido estritamente a partir de startHour (10:00:00) até endHour (18:59:59)
-  const isAllowed = hour >= startHour && hour < endHour;
+  const { hour, minute, second, dayOfWeek } = getBrazilTime();
+  const dayName = DAY_NAMES[dayOfWeek];
+  const isAllowedDay = outboundDays.includes(dayOfWeek);
+  const isAllowedHour = hour >= startHour && hour < endHour;
+  const isAllowed = isAllowedDay && isAllowedHour;
 
   let msUntilNextStart = 0;
+  let nextAllowedDay = dayOfWeek;
+  let reason = '';
+
   if (!isAllowed) {
     let secondsAhead = 0;
-    if (hour < startHour) {
-      // Hoje mesmo às startHour (ex: 10:00)
+    // Se hoje é dia permitido mas ainda é antes do horário comercial (ex: 8h da manhã antes das 10h)
+    if (isAllowedDay && hour < startHour) {
       secondsAhead = (startHour - hour) * 3600 - (minute * 60 + second);
+      nextAllowedDay = dayOfWeek;
+      reason = `Antes do horário comercial (Inicia às ${startHour}h).`;
     } else {
-      // Amanhã às startHour
-      secondsAhead = ((24 - hour) + startHour) * 3600 - (minute * 60 + second);
+      // Procurar próximo dia ativo permitido (a partir de amanhã até daqui a 7 dias)
+      let foundOffset = 1;
+      for (let offset = 1; offset <= 7; offset++) {
+        const candidateDay = (dayOfWeek + offset) % 7;
+        if (outboundDays.includes(candidateDay)) {
+          foundOffset = offset;
+          nextAllowedDay = candidateDay;
+          break;
+        }
+      }
+
+      const secondsLeftToday = (24 - hour) * 3600 - (minute * 60 + second);
+      const secondsIntermediateDays = (foundOffset - 1) * 86400;
+      const secondsNextDay = startHour * 3600;
+      secondsAhead = secondsLeftToday + secondsIntermediateDays + secondsNextDay;
+
+      if (!isAllowedDay) {
+        reason = `Hoje (${dayName}) não é dia de envio para novos leads.`;
+      } else {
+        reason = `Após o término do horário comercial (${endHour}h).`;
+      }
     }
+
     msUntilNextStart = Math.max(60000, secondsAhead * 1000);
   }
 
+  const nextDayName = DAY_NAMES[nextAllowedDay];
+  const allowedDaysText = 'Seg, Ter, Qui e Sex';
+
   return {
     isAllowed,
+    isAllowedDay,
+    isAllowedHour,
     currentHour: hour,
     currentMinute: minute,
+    dayOfWeek,
+    dayName,
     startHour,
     endHour,
-    msUntilNextStart
+    outboundDays,
+    nextAllowedDay,
+    nextDayName,
+    msUntilNextStart,
+    reason,
+    allowedDaysText
   };
 }
 
@@ -138,6 +195,10 @@ class AutoPilotEngine {
 
   setWhatsAppInstance(waInstance) {
     this.whatsapp = waInstance;
+  }
+
+  setPendingRepliesChecker(fn) {
+    this.checkPendingRepliesHandler = fn;
   }
 
   handleWhatsAppConnected() {
@@ -168,7 +229,7 @@ class AutoPilotEngine {
     let config = readJson(CONFIG_FILE, {});
     config = checkAndResetDailyLimit(config);
     const sentToday = config.sentToday || 0;
-    const dailyLimit = config.dailyLimit || 32;
+    const dailyLimit = config.dailyLimit || 30;
     const isSleepingNight = this.isActive && (sentToday >= dailyLimit);
     const commercial = checkCommercialHours(config);
 
@@ -181,7 +242,17 @@ class AutoPilotEngine {
         start: commercial.startHour,
         end: commercial.endHour,
         currentHour: commercial.currentHour,
-        currentMinute: commercial.currentMinute
+        currentMinute: commercial.currentMinute,
+        dayOfWeek: commercial.dayOfWeek,
+        dayName: commercial.dayName,
+        isAllowedDay: commercial.isAllowedDay,
+        isAllowedHour: commercial.isAllowedHour,
+        outboundDays: commercial.outboundDays,
+        nextAllowedDay: commercial.nextAllowedDay,
+        nextDayName: commercial.nextDayName,
+        allowedDaysText: commercial.allowedDaysText,
+        reason: commercial.reason,
+        msUntilNextStart: commercial.msUntilNextStart
       },
       isProcessing: this.isProcessing,
       currentLead: this.currentLead,
@@ -259,7 +330,7 @@ class AutoPilotEngine {
       let config = readJson(CONFIG_FILE, {});
       config = checkAndResetDailyLimit(config);
       const sentToday = config.sentToday || 0;
-      const dailyLimit = config.dailyLimit || 32;
+      const dailyLimit = config.dailyLimit || 30;
 
       if (sentToday >= dailyLimit) {
         const now = new Date();
@@ -271,14 +342,18 @@ class AutoPilotEngine {
         return;
       }
 
-      // 3. Validar Janela de Horário Comercial para NOVOS LEADS (10:00 às 19:00 - Horário de Brasília)
+      // 3. Validar Cronograma de Dias e Janela Comercial para NOVOS LEADS (Seg, Ter, Qui, Sex - 10h às 19h)
       const commercial = checkCommercialHours(config);
       if (!commercial.isAllowed) {
         const minLeft = Math.round(commercial.msUntilNextStart / 60000);
         const hoursLeft = (minLeft / 60).toFixed(1);
         const curTimeStr = `${String(commercial.currentHour).padStart(2, '0')}:${String(commercial.currentMinute).padStart(2, '0')}`;
-        this.addLog('info', `🌙 Fora da janela para novos leads (${commercial.startHour}h às ${commercial.endHour}h). Hora em SP: ${curTimeStr}. Standby até às ${commercial.startHour}h (~${hoursLeft}h). Atendimento IA a respostas continua ativo 24/7!`);
-        this.scheduleNext(Math.min(commercial.msUntilNextStart, 300000)); // Checa a cada 5 min ou quando der 10h
+        if (!commercial.isAllowedDay) {
+          this.addLog('info', `🗓️ Standby: Hoje (${commercial.dayName}) não há disparos para novos leads. Dias ativos: ${commercial.allowedDaysText} (10h às 19h). Próximo disparo: ${commercial.nextDayName} às ${commercial.startHour}h (~${hoursLeft}h). Atendimento IA a respostas continua ativo 24/7!`);
+        } else {
+          this.addLog('info', `🌙 Fora da janela de novos leads (${commercial.startHour}h às ${commercial.endHour}h). Hora em SP: ${curTimeStr}. Standby até às ${commercial.startHour}h (~${hoursLeft}h). Atendimento IA a respostas continua ativo 24/7!`);
+        }
+        this.scheduleNext(Math.min(commercial.msUntilNextStart, 300000)); // Checa a cada 5 min ou quando abrir
         return;
       }
 
@@ -290,7 +365,20 @@ class AutoPilotEngine {
         return;
       }
 
-      // 4. Selecionar Próximo Lead Elegível na Base (Priorizando Sites Ruins / Sem Site)
+      // 4.1. PRIORIDADE MÁXIMA: Atender Leads Quentes com Respostas Pendentes
+      // Se algum lead respondeu (ex: enquanto o PC estava desligado ou durante a noite),
+      // o sistema DEVE responder esse lead com a IA ANTES de caçar e disparar para novos leads frios!
+      if (typeof this.checkPendingRepliesHandler === 'function') {
+        const handledWarm = await this.checkPendingRepliesHandler();
+        if (handledWarm) {
+          this.stats.repliesHandledToday = (this.stats.repliesHandledToday || 0) + 1;
+          this.addLog('success', '🔥 Resposta de lead quente enviada com prioridade máxima pela IA! Aguardando próximo ciclo...');
+          this.scheduleNext(15000);
+          return;
+        }
+      }
+
+      // 5. Selecionar Próximo Lead Elegível na Base (Priorizando Sites Ruins / Sem Site)
       const leads = readJson(LEADS_FILE, []);
       const eligibleLeads = leads.filter(l => {
         if (l.status !== 'novo') return false;
@@ -424,14 +512,15 @@ class AutoPilotEngine {
       this.stats.dispatchedToday += 1;
       this.addLog('success', `✅ Mensagem enviada com sucesso para "${lead.name}"! Lead avançado para Etapa 1.`);
 
-      // 9. Agendar Próximo Disparo com Intervalo Humano Seguro (Anti-Bloqueio)
-      const minDelay = Math.max(60, config.minDelaySeconds || 90);
-      const maxDelay = Math.max(minDelay + 30, config.maxDelaySeconds || 210);
+      // 9. Agendar Próximo Disparo com Intervalo Humano Seguro de 5 Minutos (Anti-Bloqueio / Solicitado pelo Kauê)
+      const minDelay = Math.max(60, config.minDelaySeconds !== undefined ? config.minDelaySeconds : 300);
+      const maxDelay = Math.max(minDelay + 10, config.maxDelaySeconds !== undefined ? config.maxDelaySeconds : (minDelay + 30));
       const randomIntervalSec = Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay;
       const randomIntervalMs = randomIntervalSec * 1000;
 
+      const minFormatado = (randomIntervalSec / 60).toFixed(1);
       const proximoHorario = new Date(Date.now() + randomIntervalMs).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-      this.addLog('info', `⏳ Próximo disparo programado para ${proximoHorario} (${randomIntervalSec}s de intervalo para proteção do chip).`);
+      this.addLog('info', `⏳ Próximo disparo para novo lead programado para ${proximoHorario} (~${minFormatado} min / ${randomIntervalSec}s de intervalo para proteção do chip).`);
 
       this.scheduleNext(randomIntervalMs);
 

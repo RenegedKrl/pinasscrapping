@@ -127,10 +127,23 @@ async function loadConfig() {
       kwTextarea.value = appConfig.excludedKeywords.join('\n');
     }
     if (dailyLimitInput) dailyLimitInput.value = appConfig.dailyLimit || 30;
-    if (minDelayInput) minDelayInput.value = appConfig.minDelaySeconds || 30;
-    if (maxDelayInput) maxDelayInput.value = appConfig.maxDelaySeconds || 60;
+    if (minDelayInput) minDelayInput.value = appConfig.minDelaySeconds || 300;
+    if (maxDelayInput) maxDelayInput.value = appConfig.maxDelaySeconds || 330;
     if (startHourInput) startHourInput.value = appConfig.outboundStartHour !== undefined ? appConfig.outboundStartHour : 10;
     if (endHourInput) endHourInput.value = appConfig.outboundEndHour !== undefined ? appConfig.outboundEndHour : 19;
+
+    const activeDays = Array.isArray(appConfig.outboundDays) && appConfig.outboundDays.length > 0
+      ? appConfig.outboundDays
+      : [1, 2, 4, 5];
+    [0, 1, 2, 3, 4, 5, 6].forEach(d => {
+      const chk = document.getElementById(`settings-day-${d}`);
+      if (chk) chk.checked = activeDays.includes(d);
+    });
+
+    const delaySelect = document.getElementById('autopilot-delay-select');
+    if (delaySelect && appConfig.minDelaySeconds) {
+      delaySelect.value = String(appConfig.minDelaySeconds);
+    }
   } catch (err) {
     console.error('Erro ao carregar config:', err);
   }
@@ -595,6 +608,12 @@ function initAutopilot() {
     btnPause.addEventListener('click', () => pauseAutopilot('Piloto Automático pausado pelo operador.'));
   }
 
+  // Botões de Desligamento Completo do Servidor
+  const btnHeaderShutdown = document.getElementById('btn-header-shutdown');
+  const btnShutdownAutopilot = document.getElementById('btn-shutdown-autopilot');
+  if (btnHeaderShutdown) btnHeaderShutdown.addEventListener('click', shutdownServer);
+  if (btnShutdownAutopilot) btnShutdownAutopilot.addEventListener('click', shutdownServer);
+
   // Toggle do Modo 24/7 Autônomo Permanente
   if (autostartToggle) {
     autostartToggle.addEventListener('change', async () => {
@@ -605,6 +624,32 @@ function initAutopilot() {
           body: JSON.stringify({ autoStartAutopilot: autostartToggle.checked })
         });
         showToastNotification(`Modo 24/7 Autônomo ${autostartToggle.checked ? 'ativado (Inicia sozinho)' : 'desativado'}.`);
+        pollAutopilotStatus();
+      } catch (e) {}
+    });
+  }
+
+  // Listener para Seletor de Intervalo entre Novos Leads (5 min padrão)
+  const delaySelect = document.getElementById('autopilot-delay-select');
+  if (delaySelect) {
+    if (appConfig.minDelaySeconds) {
+      delaySelect.value = String(appConfig.minDelaySeconds);
+    }
+    delaySelect.addEventListener('change', async () => {
+      const selectedDelay = parseInt(delaySelect.value, 10) || 300;
+      const maxDelay = selectedDelay + 30;
+      appConfig.minDelaySeconds = selectedDelay;
+      appConfig.maxDelaySeconds = maxDelay;
+      try {
+        await fetch('/api/config', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            minDelaySeconds: selectedDelay,
+            maxDelaySeconds: maxDelay
+          })
+        });
+        showToastNotification(`⏱️ Intervalo entre novos leads configurado para ${(selectedDelay / 60).toFixed(1)} min.`);
         pollAutopilotStatus();
       } catch (e) {}
     });
@@ -758,11 +803,18 @@ function renderAutopilotStatus(status) {
   if (windowStatusPill && status.commercialWindow) {
     const startH = status.commercialWindow.start !== undefined ? status.commercialWindow.start : 10;
     const endH = status.commercialWindow.end !== undefined ? status.commercialWindow.end : 19;
+    const dayName = status.commercialWindow.dayName || '';
+    const nextDay = status.commercialWindow.nextDayName || '';
     if (status.isWithinCommercialHours) {
-      windowStatusPill.innerHTML = `🟢 Aberta: ${startH}h às ${endH}h (SP)`;
+      windowStatusPill.innerHTML = `🟢 Aberta: Seg, Ter, Qui, Sex (${startH}h às ${endH}h)`;
       windowStatusPill.style.background = 'rgba(16, 185, 129, 0.2)';
       windowStatusPill.style.color = '#34D399';
       windowStatusPill.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+    } else if (status.commercialWindow.isAllowedDay === false) {
+      windowStatusPill.innerHTML = `🗓️ Standby: ${dayName} (Próx: ${nextDay} ${startH}h)`;
+      windowStatusPill.style.background = 'rgba(59, 130, 246, 0.2)';
+      windowStatusPill.style.color = '#93C5FD';
+      windowStatusPill.style.borderColor = 'rgba(59, 130, 246, 0.4)';
     } else {
       windowStatusPill.innerHTML = `🌙 Standby: ${startH}h às ${endH}h (SP)`;
       windowStatusPill.style.background = 'rgba(251, 191, 36, 0.2)';
@@ -785,6 +837,8 @@ function renderAutopilotStatus(status) {
     if (statusLabel) {
       if (status.isSleepingNight) {
         statusLabel.innerHTML = 'Piloto Automático: <strong style="color: #60a5fa;">🌙 Standby Noturno (Meta Batida) • IA 24/7 Ativa</strong>';
+      } else if (status.commercialWindow && status.commercialWindow.isAllowedDay === false) {
+        statusLabel.innerHTML = `Piloto Automático: <strong style="color: #93C5FD;">🗓️ Standby: ${status.commercialWindow.dayName} sem novos disparos • Próx: ${status.commercialWindow.nextDayName} ${status.commercialWindow.start}h • IA 24/7 Ativa</strong>`;
       } else if (!status.isWithinCommercialHours && status.commercialWindow) {
         statusLabel.innerHTML = `Piloto Automático: <strong style="color: #FBBF24;">🌙 Standby (Fora da Janela ${status.commercialWindow.start}h-${status.commercialWindow.end}h) • IA 24/7 Ativa</strong>`;
       } else if (status.isProcessing) {
@@ -796,18 +850,29 @@ function renderAutopilotStatus(status) {
 
     if (boxCountdown) boxCountdown.style.display = 'block';
     if (secondsLeftEl && status.nextRunSeconds !== null && status.nextRunSeconds !== undefined) {
-      secondsLeftEl.textContent = `${status.nextRunSeconds}s`;
+      if (status.nextRunSeconds >= 60) {
+        const m = Math.floor(status.nextRunSeconds / 60);
+        const s = status.nextRunSeconds % 60;
+        secondsLeftEl.textContent = `${m}m ${String(s).padStart(2, '0')}s`;
+      } else {
+        secondsLeftEl.textContent = `${status.nextRunSeconds}s`;
+      }
     }
 
     if (targetLeadEl) {
       if (status.isSleepingNight) {
         targetLeadEl.innerHTML = `🌙 <strong>Standby Noturno:</strong> Meta de disparos frios batida. Respostas no WhatsApp ativas 24/7. Novos disparos retornam à meia-noite.`;
+      } else if (status.commercialWindow && status.commercialWindow.isAllowedDay === false) {
+        targetLeadEl.innerHTML = `🗓️ <strong>Standby (${status.commercialWindow.dayName}):</strong> Novos contatos disparam apenas em Seg, Ter, Qui e Sex. Próximo envio em ${status.commercialWindow.nextDayName} às ${status.commercialWindow.start}h. Atendimento IA a respostas continua 100% ativo 24/7!`;
       } else if (!status.isWithinCommercialHours && status.commercialWindow) {
         targetLeadEl.innerHTML = `🌙 <strong>Fora da Janela Comercial:</strong> Novos leads são disparados entre ${status.commercialWindow.start}h e ${status.commercialWindow.end}h. Atendimento IA a respostas continua ativo 24/7!`;
       } else if (status.currentLead) {
         targetLeadEl.innerHTML = `🎯 <strong>Processando agora:</strong> ${status.currentLead.name} (${status.currentLead.neighborhood || 'SP'})`;
       } else if (status.nextRunSeconds > 0) {
-        targetLeadEl.innerHTML = `⏳ Aguardando intervalo de segurança anti-bloqueio (${status.nextRunSeconds}s restantes)...`;
+        const m = Math.floor(status.nextRunSeconds / 60);
+        const s = status.nextRunSeconds % 60;
+        const timeFormatted = m > 0 ? `${m}m ${String(s).padStart(2, '0')}s` : `${s}s`;
+        targetLeadEl.innerHTML = `⏳ Aguardando intervalo de 5 min anti-bloqueio (${timeFormatted} restantes)...`;
       } else {
         targetLeadEl.innerHTML = `🚀 Selecionando próximo lead novo ou caçando na web...`;
       }
@@ -917,6 +982,31 @@ async function pauseAutopilot(reason = '') {
   if (reason && reason !== 'Piloto Automático pausado pelo operador.') {
     alert(reason);
   }
+}
+
+async function shutdownServer() {
+  const confirmed = confirm('Deseja realmente DESLIGAR o servidor do Pinas Prospector?\\n\\nIsso encerra o servidor na porta 3333 e para o Piloto Automático imediatamente.');
+  if (!confirmed) return;
+
+  try {
+    showToastNotification('🛑 Desligando servidor...');
+    await fetch('/api/server/shutdown', { method: 'POST' });
+  } catch (e) {}
+
+  document.body.innerHTML = `
+    <div style="min-height: 100vh; background: #090B10; color: #F3F4F6; display: flex; align-items: center; justify-content: center; font-family: Inter, sans-serif; text-align: center; padding: 2rem;">
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(239,68,68,0.25); padding: 3rem 2.5rem; border-radius: 16px; max-width: 520px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+        <div style="font-size: 3.5rem; margin-bottom: 1rem;">🛑</div>
+        <h2 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem; color: #EF4444;">Servidor Desligado com Sucesso!</h2>
+        <p style="color: #9CA3AF; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem;">
+          Todos os processos em segundo plano foram encerrados e o envio automático está 100% parado.
+        </p>
+        <div style="background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); padding: 0.85rem; border-radius: 8px; color: #93C5FD; font-size: 0.85rem;">
+          💡 Para ligar novamente quando quiser, basta clicar no atalho <strong>INICIAR Pinas Prospector</strong> na sua Área de Trabalho.
+        </div>
+      </div>
+    </div>
+  `;
 }
 
 // ==================== WHATSAPP DIRECT MANAGER ====================
@@ -2794,10 +2884,16 @@ function renderScriptsEditor() {
       const chains = document.getElementById('settings-excluded-chains').value.split('\n').map(s => s.trim()).filter(Boolean);
       const keywords = document.getElementById('settings-excluded-keywords').value.split('\n').map(s => s.trim()).filter(Boolean);
       const limit = parseInt(document.getElementById('settings-daily-limit').value, 10) || 30;
-      const minDelay = parseInt(document.getElementById('settings-min-delay')?.value, 10) || 30;
-      const maxDelay = parseInt(document.getElementById('settings-max-delay')?.value, 10) || 60;
+      const minDelay = parseInt(document.getElementById('settings-min-delay')?.value, 10) || 300;
+      const maxDelay = parseInt(document.getElementById('settings-max-delay')?.value, 10) || 330;
       const startHour = parseInt(document.getElementById('settings-outbound-start')?.value, 10);
       const endHour = parseInt(document.getElementById('settings-outbound-end')?.value, 10);
+
+      const selectedDays = [];
+      [0, 1, 2, 3, 4, 5, 6].forEach(d => {
+        const chk = document.getElementById(`settings-day-${d}`);
+        if (chk && chk.checked) selectedDays.push(d);
+      });
 
       await fetch('/api/config', {
         method: 'POST',
@@ -2809,7 +2905,8 @@ function renderScriptsEditor() {
           minDelaySeconds: minDelay,
           maxDelaySeconds: maxDelay,
           outboundStartHour: isNaN(startHour) ? 10 : startHour,
-          outboundEndHour: isNaN(endHour) ? 19 : endHour
+          outboundEndHour: isNaN(endHour) ? 19 : endHour,
+          outboundDays: selectedDays.length > 0 ? selectedDays : [1, 2, 4, 5]
         })
       });
       showSuccessModal({

@@ -328,11 +328,72 @@ Retorne EXCLUSIVAMENTE um objeto JSON no formato:
  * 4. Piloto Automático Conversacional: Gera a próxima mensagem autônoma
  * Responde dúvidas, quebra objeções com fatos reais, gera confiança e só pede a call no momento certo!
  */
+/**
+ * Formata a primeira mensagem de abertura para novos leads (@pinas.studio)
+ * Regra do Kauê: 100% despretensiosa, confirmando o local, sem cara de venda!
+ * Ex: "Olá, tudo bem? É da clínica [Nome]?" ou "Olá, tudo bem? É do escritório [Nome]?"
+ */
+function formatOpeningMessage(lead) {
+  let rawName = (lead?.name || '').trim();
+  let cleanName = rawName.replace(/\s+(LTDA|ME|EPP|S\/A|S\.A\.|EIRELI)\b/gi, '').trim();
+
+  // Limpar pipes e hifens longos de SEO no Maps
+  if (cleanName.includes(' | ')) {
+    const parts = cleanName.split(' | ');
+    if (parts[0].trim().length >= 3) cleanName = parts[0].trim();
+  }
+  if (cleanName.includes(' - ')) {
+    const parts = cleanName.split(' - ');
+    if (parts[0].trim().length >= 3) cleanName = parts[0].trim();
+  }
+
+  const nicheLower = (lead?.niche || '').toLowerCase();
+  const nameLower = cleanName.toLowerCase();
+
+  // Se o próprio nome já contém termos como clínica, consultório, escritório, etc.
+  if (nameLower.includes('clínica') || nameLower.includes('clinica')) {
+    return `Olá, tudo bem? É da ${cleanName}?`;
+  }
+  if (nameLower.includes('consultório') || nameLower.includes('consultorio') || nameLower.includes('escritório') || nameLower.includes('escritorio') || nameLower.includes('hospital')) {
+    return `Olá, tudo bem? É do ${cleanName}?`;
+  }
+
+  if (nicheLower.includes('vet') || nicheLower.includes('clínica') || nicheLower.includes('clinica') || nicheLower.includes('odont') || nicheLower.includes('saúde') || nicheLower.includes('saude') || nicheLower.includes('médic') || nicheLower.includes('medic')) {
+    return `Olá, tudo bem? É da clínica ${cleanName}?`;
+  }
+  if (nicheLower.includes('advoc') || nicheLower.includes('jurídic') || nicheLower.includes('juridic')) {
+    return `Olá, tudo bem? É do escritório ${cleanName}?`;
+  }
+  if (nicheLower.includes('roup') || nicheLower.includes('moda') || nicheLower.includes('loja')) {
+    if (nameLower.startsWith('loja')) {
+      return `Olá, tudo bem? É da ${cleanName}?`;
+    }
+    return `Olá, tudo bem? É da loja ${cleanName}?`;
+  }
+  return `Olá, tudo bem? É da ${cleanName}?`;
+}
+
+/**
+ * 4. Atendimento Contínuo da IA Conversacional (@pinas.studio)
+ * Quando o cliente responde à nossa abertura ("Olá, tudo bem? É da clínica X?"),
+ * aqui a IA entra apresentando o Kauê, o trabalho da Pinas, a auditoria e falando do negócio!
+ */
 async function generateAutoPilotReply({ lead, messages = [], lastIncomingMessage = '' }) {
   const conversationFormatted = messages.map(m => {
     const sender = m.fromMe ? 'Kauê (Pinas)' : (lead?.name || 'Cliente');
     return `${sender}: ${m.text || '[mídia/anexo]'}`;
   }).slice(-12).join('\n');
+
+  const siteAudit = lead?.siteAudit || {};
+  const mapsAudit = lead?.mapsAudit || {};
+  const neighborhood = lead?.neighborhood || lead?.city || 'São Paulo';
+  
+  let auditStatusStr = '';
+  if (lead?.hasWebsite === false || !lead?.website) {
+    auditStatusStr = `SEM SITE PRÓPRIO. O negócio tem boa nota no Google Maps (${lead?.reviews || 0} avaliações, nota ${lead?.rating || 'N/A'}), mas NÃO tem site próprio com botão direto de WhatsApp. Está deixando clientes que pesquisam no Google escaparem para concorrentes do bairro.`;
+  } else {
+    auditStatusStr = `POSSUI SITE (${lead.website}): ${siteAudit.isOnline === false ? 'Site fora do ar ou com erro.' : (siteAudit.hasWhatsApp === false ? 'Site no ar mas sem botão direto de WhatsApp visível para celular.' : (siteAudit.loadTimeMs > 4000 ? 'Site pesado/lento no celular.' : 'Site no ar, com oportunidade de melhoria de conversão local.'))}`;
+  }
 
   const prompt = `
 Você é o Kauê, fundador da Pinas (@pinas.studio). Você está conversando pessoalmente pelo WhatsApp com o dono ou responsável por este negócio local em São Paulo.
@@ -340,42 +401,55 @@ Você é o Kauê, fundador da Pinas (@pinas.studio). Você está conversando pes
 DADOS REAIS DO NEGÓCIO:
 - Nome: ${lead?.name || 'Empresa'}
 - Nicho: ${lead?.niche || 'Comércio Local'}
-- Bairro/Região: ${lead?.neighborhood || lead?.city || 'São Paulo'}
-- Tem site: ${lead?.hasWebsite ? 'Sim (' + (lead.website || '') + ')' : 'Não tem site próprio'}
+- Bairro/Região: ${neighborhood}
+- Presença Digital & Auditoria: ${auditStatusStr}
 - Avaliação Maps: ${lead?.rating || 'N/A'} estrelas (${lead?.reviews || 0} reviews no Google Maps)
 
-HISTÓRICO DA CONVERSA:
+HISTÓRICO DA CONVERSA NO WHATSAPP:
 ${conversationFormatted || 'Cliente: ' + lastIncomingMessage}
 
 ÚLTIMA MENSAGEM DO CLIENTE:
 "${lastIncomingMessage || (messages.filter(m => !m.fromMe).pop()?.text) || ''}"
 
-DIRETRIZES DA CONVERSA DO KAUÊ (GERAÇÃO DE CONFIANÇA & CONDUÇÃO PARA CALL):
-1. SEJA 100% HUMANO E NATURAL:
-   - Fale como o Kauê: profissional de verdade conversando com outro empreendedor. Responda em 1 a 3 parágrafos curtinhos (estilo WhatsApp real, de 2 a 5 linhas no total).
-   - NUNCA use linguagem robótica de telemarketing ou corporativês vazio.
+DIRETRIZES DA CONVERSA DO KAUÊ (ESTRATÉGIA COMERCIAL DA PINAS):
 
-2. SE O CLIENTE FOR RECEPTIVO OU PERGUNTAR QUEM É / O QUE FAZEM / COMO FUNCIONA:
-   - Explique de forma simples: que na Pinas estruturamos landing pages limpas e rápidas (carregam em 1s) pensadas pra quem pesquisa no Google da região abrir no celular e já chamar no Whats para fechar.
-   - Pergunte se podem fazer uma call rápida de 10 a 15 minutinhos no Google Meet para você mostrar a prévia sem compromisso ("Prefere amanhã de manhã ou à tarde?").
+1. SE ESTA FOR A 1ª RESPOSTA DO CLIENTE (O CLIENTE CONFIRMOU O LOCAL / RESPONDEU À NOSSA ABERTURA):
+   Contexto: Nossa 1ª mensagem foi apenas uma confirmação despretensiosa em 1 linha ("Olá, tudo bem? É da clínica X?"), SEM NADA DE VENDA.
+   Exemplos de resposta do cliente: "Ah, sou sim", "Sim, é daqui", "Sim, sou eu", "Sim, quem fala?", "Olá, sim, pois não?", "Sim, em que posso ajudar?", "Sou eu, o Dr. Roberto".
 
-3. SE O CLIENTE NÃO ACEITAR DE COMEÇO E COMEÇAR A FAZER VÁRIAS PERGUNTAS OU HESITAR:
-   - REGRA DE OURO: NÃO force a call de novo imediatamente! Responda cada dúvida com paciência, clareza e transparência para ele acreditar em você e ganhar confiança.
+   👉 AGORA É A HORA DE APRESENTAR O NEGÓCIO DA PINAS E FALAR DO QUE SE TRATA (COM TOTAL NATURALIDADE E ELEGÂNCIA):
+   - Passo 1 (Apresentação humana e simpática):
+     "Show! Prazer, aqui é o Kauê da Pinas (@pinas.studio)." ou "Tudo ótimo por aqui! Prazer, Kauê por aqui da Pinas."
+   - Passo 2 (Como encontrou):
+     Diga que encontrou o perfil deles no Google aqui em ${neighborhood}, viu que eles têm ótimas avaliações e foi dar uma olhada na estrutura deles pelo celular.
+   - Passo 3 (A questão de venda e valor da Pinas):
+     * Se NÃO tem site próprio: comente que viu as ótimas avaliações deles no Google Maps, mas notou que ainda não têm um site próprio com botão direto de WhatsApp. Explique que a Pinas ajuda empresas/clínicas da região estruturando páginas rápidas (abrem em 1s) pensadas pra quem pesquisa no Google no bairro já chamar no WhatsApp na hora e virar cliente.
+     * Se TEM site próprio: aponte com gentileza o ponto que viu (ex: falta de botão visível de WhatsApp no celular ou velocidade), explicando que a Pinas melhora páginas para dobrar os contatos de clientes locais no WhatsApp.
+   - Passo 4 (Pergunta leve de diálogo):
+     Termine com uma pergunta simples e aberta para iniciar a conversa:
+     "Vocês já têm alguém cuidando dessa parte do site/digital por aí hoje?" ou "Tô falando direto com o dono ou responsável por aí?"
+
+2. SE O CLIENTE JÁ SOUBER QUEM É E ESTIVER EM FASE DE DÚVIDAS, OBJEÇÕES OU PERGUNTAS (Turno 2 em diante):
+   - NUNCA force a call de forma afobada. Responda com paciência, clareza e transparência para ganhar a confiança do cliente.
    - Se perguntar preço: seja sincero. Diga que depende do escopo (ajustar o site atual ou fazer página nova com tráfego), mas que é um investimento acessível para comércio local e que se paga rápido com poucos clientes do bairro.
    - Se perguntar como achou o contato: explique com honestidade que pesquisa empresas com boa reputação no Google Maps no bairro e gosta de olhar a presença digital para ver se acompanha a qualidade do serviço físico.
-   - Se disser que já tem site ou agência: respeite, elogie e aponte apenas o fato técnico (ex: velocidade no celular ou botão de WhatsApp), comentando que muitas agências cuidam só de redes sociais e esquecem a conversão de quem busca no Google.
-   - Se for secretária / recepção: trate com total respeito e pergunte o melhor momento ou WhatsApp do dono/gerente para trocar uma ideia rápida.
-   - Vá respondendo às perguntas dele até ele se sentir confortável. Só quando o papo fluir e a confiança for estabelecida, sugira a call rápida.
+   - Se disser que já tem agência ou site: respeite, elogie e aponte apenas o diferencial de conversão no WhatsApp de quem pesquisa no Google.
+   - Se for secretária / recepção: trate com respeito e pergunte o melhor momento ou WhatsApp do dono/gerente para trocar uma ideia rápida.
+   - Se o cliente for receptivo ou quiser ver como fica: sugira um papo rápido de 10 a 15 min no Google Meet ("Prefere amanhã de manhã ou à tarde?").
 
-4. SE O CLIENTE CONCORDAR COM A CALL:
-   - Confirme o dia e horário e peça o email dele para enviar o convite do Google Meet (marque action = "mark_meeting").
+3. SE O CLIENTE CONCORDAR COM A CALL:
+   - Confirme dia/horário e peça o email dele para o convite do Google Meet (marque action = "mark_meeting").
 
-5. SE FOR RECUSA DEFINITIVA E CATEGÓRICA ("não tenho interesse", "favor não mandar mais mensagem"):
-   - Agradeça educadamente pelo tempo dele e encerre com classe sem insistir (marque action = "mark_lost").
+4. SE FOR RECUSA CATEGÓRICA ("não tenho interesse", "não mande mais mensagem"):
+   - Agradeça educadamente e encerre com classe sem insistir (marque action = "mark_lost").
+
+REGRAS DE TOM E FORMATAÇÃO:
+- Responda em 1 a 3 parágrafos curtos (estilo WhatsApp brasileiro, 2 a 5 linhas no total).
+- Humano, direto, educado, sem corporativês vazio e sem parecer robô.
 
 Retorne EXCLUSIVAMENTE um objeto JSON no formato:
 {
-  "detectedIntent": "interested | asking_questions | asking_price | gatekeeper | objection | confirmed | refused",
+  "detectedIntent": "confirm_identity | interested | asking_questions | asking_price | gatekeeper | objection | confirmed | refused",
   "action": "reply | mark_meeting | mark_lost",
   "replyText": "texto exato da mensagem pronta para enviar no WhatsApp",
   "reasoning": "estratégia adotada para responder e gerar confiança"
@@ -392,117 +466,19 @@ Retorne EXCLUSIVAMENTE um objeto JSON no formato:
 }
 
 /**
- * 5. Abordagem Inicial 100% Natural, Original e sob Medida (@pinas.studio)
- * Se apresenta, cita o problema encontrado no site/Google, menciona que temos solução
- * e ESPERA o cliente responder (SEM forçar call na primeira mensagem!).
+ * 5. Abordagem Inicial 100% Despretensiosa (@pinas.studio)
+ * Regra do Kauê: A primeira mensagem que for enviada NUNCA pode parecer venda!
+ * Ex: "Olá, tudo bem? É da clínica [Nome]?"
+ * A questão comercial da Pinas e o diagnóstico só entram quando o lead responder ("Ah, sou sim").
  */
 async function generateAutonomousPitch({ lead, audit }) {
-  const site = audit?.site || {};
-  const maps = audit?.maps || {};
+  const openingText = formatOpeningMessage(lead);
 
-  const siteInfo = site.hasWebsite
-    ? (site.isOnline
-      ? `Site ativo: ${site.url}. Tempo de carregamento: ${(site.loadTimeMs/1000).toFixed(1)}s. ${site.hasWhatsApp ? 'Possui botão de WhatsApp.' : 'NÃO tem botão de WhatsApp.'} ${site.doesPaidTraffic ? 'Tem pixel de anúncio.' : 'Não tem pixel de anúncio.'}`
-      : `Site FORA DO AR / erro: ${site.url} (${site.error || 'Erro ' + site.statusCode}).`)
-    : 'NÃO possui site próprio cadastrado (depende apenas do Google Maps e redes sociais).';
-
-  const mapsInfo = `Bairro: ${maps.neighborhood || lead.neighborhood || 'São Paulo'}. Avaliações: ${maps.reviews || 0} avaliações no Google Maps (nota ${maps.rating ? Number(maps.rating).toFixed(1) : 'sem nota'}).`;
-
-  const weaknessesList = site.weaknesses && site.weaknesses.length > 0
-    ? site.weaknesses.join('; ')
-    : (site.hasWebsite ? 'Falta de otimização de conversão' : 'Sem site próprio');
-
-  const prompt = `
-Você é o Kauê, fundador da Pinas (@pinas.studio), especialista em presença digital e sites de alta conversão para negócios locais em São Paulo.
-Crie a PRIMEIRA MENSAGEM de WhatsApp para entrar em contato com este lead.
-
-DADOS REAIS DO NEGÓCIO:
-- Nome: ${lead.name}
-- Nicho: ${lead.niche || 'Comércio Local'}
-- Google Maps: ${mapsInfo}
-- Site Real Auditado: ${siteInfo}
-- Problemas Identificados: ${weaknessesList}
-- Principal Gargalo: ${audit?.primaryAngle || 'Presença digital com pontos fracos'}
-
-ESTRUTURA DA PRIMEIRA MENSAGEM (LEVE, DESCONTRAÍDA E TOTALMENTE NATURAL):
-1. SE APRESENTE:
-   - Diga oi de forma leve e natural ("Opa, tudo bem? Aqui é o Kauê da Pinas", "Opa, tudo certo? Kauê por aqui da Pinas").
-   - Diga que encontrou o perfil deles no Google aqui em ${maps.neighborhood || 'São Paulo'} e foi dar uma olhada no site/canais deles pelo celular.
-
-2. CITE O PROBLEMA REAL ENCONTRADO:
-   - Cite com naturalidade e cuidado um ponto específico do site/Google deles:
-     * Se o site é lento: comente que quando foi abrir no celular demorou um bocado pra carregar, e hoje muita gente desiste e volta pro Google.
-     * Se não tem botão de WhatsApp: aponte que o site até tem as informações, mas não viu um botão direto de WhatsApp pra quem tá no celular chamar na hora.
-     * Se o site está fora do ar ou com erro: avise com gentileza que tentou entrar pelo link do Google e a página tá dando erro ou fora do ar.
-     * Se não tem site próprio: comente que viu as ótimas avaliações deles no Google Maps no bairro, mas viu que ainda não têm um site próprio com botão de WhatsApp pra receber quem busca no Google.
-
-3. MENCIONE QUE TEMOS UMA SOLUÇÃO:
-   - Diga que a Pinas ajuda negócios da região exatamente nisso, estruturando páginas rápidas que abrem em 1s no celular e já jogam direto pro WhatsApp pra fechar clientes.
-
-4. REGRA DE OURO DO KAUÊ (NÃO PEÇA CALL AINDA!):
-   - NÃO pergunte se pode fazer call agora na primeira mensagem!
-   - Termine apenas com uma pergunta simples e aberta para iniciar o diálogo e esperar ele responder:
-     Exemplos:
-     * "Tô falando com o dono ou responsável por aí?"
-     * "Já tinham reparado nisso por aí?"
-     * "Vocês já têm alguém cuidando dessa parte do site por aí hoje?"
-
-REGRAS DE FORMATAÇÃO E TOM:
-- Mensagem curta: no máximo 2 a 3 parágrafos breves (total de 4 a 6 linhas).
-- Linguagem de WhatsApp brasileiro: humana, autêntica, sem jargões corporativos e sem parecer texto automático copiado.
-- Crie uma variação original e única para este cliente.
-
-Retorne EXCLUSIVAMENTE um objeto JSON no formato:
-{
-  "pitchText": "texto exato da mensagem pronta para enviar no WhatsApp",
-  "angleUsed": "resumo do gancho utilizado",
-  "auditSummary": "resumo do problema citado e abordagem"
-}
-`;
-
-  function getFallbackPitch() {
-    const neighborhood = maps.neighborhood || lead.neighborhood || 'São Paulo';
-    const name = lead.name;
-    let pitchText = '';
-    let angleUsed = '';
-
-    if (!site.hasWebsite) {
-      angleUsed = 'Sem site próprio';
-      pitchText = `Opa, tudo bem? Aqui é o Kauê da Pinas.\n\nVi o perfil da ${name} no Google aqui em ${neighborhood} e dei uma olhada nos canais de vocês pelo celular.\n\nNotei que vocês têm presença bacana no Maps, mas ainda não têm um site próprio com botão direto de WhatsApp pra receber quem busca no Google. A gente ajuda empresas da região estruturando páginas rápidas que convertem direto pro WhatsApp.\n\nVocês já têm alguém cuidando dessa parte do digital por aí hoje?`;
-    } else if (!site.isOnline) {
-      angleUsed = 'Site fora do ar';
-      pitchText = `Opa, tudo bem? Kauê por aqui, da Pinas.\n\nEncontrei a ${name} no Google aqui em ${neighborhood} e fui tentar abrir o site de vocês pelo celular, mas notei que o link tá fora do ar ou com erro. Muita gente que pesquisa no Google acaba desistindo na hora quando a página não abre.\n\nA gente reconstrói e moderniza sites para empresas locais aqui de SP. Vocês já tinham reparado nisso por aí?`;
-    } else if (!site.hasWhatsApp) {
-      angleUsed = 'Site sem botão de WhatsApp direto';
-      pitchText = `Opa, tudo bem? Aqui é o Kauê da Pinas.\n\nVi o perfil da ${name} no Google em ${neighborhood} e achei muito bacana o trabalho de vocês. Dei uma olhada no site pelo celular e vi que tem as informações, mas não tem um botão direto de WhatsApp pra quem tá no smartphone chamar com um toque.\n\nA gente faz essas melhorias rápidas pra dobrar os contatos que chegam. Tô falando com o responsável por aí?`;
-    } else {
-      angleUsed = 'Otimização de presença e conversão local';
-      pitchText = `Opa, tudo certo? Kauê da Pinas por aqui.\n\nEncontrei a ${name} no Google aqui em ${neighborhood} e achei muito forte a presença de vocês. Dei uma olhada no site e na estrutura de vocês pelo celular.\n\nA gente ajuda empresas da região a acelerar a atração de clientes qualificados pelo Google e WhatsApp. Tô falando com o dono ou responsável por aí?`;
-    }
-
-    return {
-      pitchText,
-      angleUsed,
-      auditSummary: audit?.primaryAngle || angleUsed
-    };
-  }
-
-  try {
-    const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(null), 6500));
-    const geminiPromise = callGemini({
-      prompt,
-      systemInstruction: PINAS_SYSTEM_PROMPT,
-      jsonMode: true
-    }).then(jsonStr => safeJsonParse(jsonStr)).catch(() => null);
-
-    const result = await Promise.race([geminiPromise, timeoutPromise]);
-    if (result && result.pitchText && result.pitchText.trim()) {
-      return result;
-    }
-    return getFallbackPitch();
-  } catch (err) {
-    return getFallbackPitch();
-  }
+  return {
+    pitchText: openingText,
+    angleUsed: 'Abertura despretensiosa (confirmação do local sem cara de venda)',
+    auditSummary: audit?.primaryAngle || (audit?.site?.hasWebsite ? 'Site auditado' : 'Sem site próprio')
+  };
 }
 
 /**

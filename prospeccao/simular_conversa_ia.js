@@ -27,11 +27,11 @@ async function simularConversa() {
   console.log(`📍 Região: ${leadSimulado.neighborhood} - SP | Avaliação: ★ ${leadSimulado.rating} (${leadSimulado.reviews} reviews)`);
   console.log(`🌐 Presença: Sem site próprio\n`);
 
-  // Mensagem inicial de abertura enviada pelo Kauê
+  // Mensagem inicial de abertura enviada pelo Kauê (100% despretensiosa, sem cara de venda)
   const mensagensChat = [
     {
       fromMe: true,
-      text: 'Opa, tudo bem? Falo com o Dr. Roberto ou responsável pelo Centro Veterinário Vila Mariana?'
+      text: 'Olá, tudo bem? É da clínica Centro Veterinário Vila Mariana?'
     }
   ];
 
