@@ -1203,7 +1203,26 @@ async function executeLeadResponse(lead, text, targetJid = null, source = 'realt
       }
     }
 
-    // 2. Fallback humanizado e contextual (NUNCA robótico ou agressivo)
+    // 2. BLINDAGEM ANTI-INSISTÊNCIA (REGRA DO KAUÊ):
+    // Se o cliente disse que já tem quem cuide, já tem agência ou expressou falta de interesse:
+    // NUNCA insistir, NUNCA tentar contornar a resposta. Agradecer com elegância e encerrar.
+    const cleanIn = String(text || '').trim().toLowerCase();
+    const disinterestPatterns = [
+      /\b(j[aá]\s+(tem(os)?|possu[ií]mos|cuidamos|tem\s+sim))\b/i,
+      /\b(n[aã]o\s+tenho\s+interesse|n[aã]o\s+temos\s+interesse|sem\s+interesse)\b/i,
+      /\b(no\s+momento\s+n[aã]o|por\s+enquanto\s+n[aã]o|agora\s+n[aã]o)\b/i,
+      /\b(obrigad[oa]\s+mas\s+n[aã]o|n[aã]o\s+precis(o|amos))\b/i,
+      /\b(n[aã]o\s+quero|n[aã]o\s+estamos\s+interessados)\b/i
+    ];
+    const isExplicitlyDisinterested = disinterestPatterns.some(p => p.test(cleanIn));
+
+    if (isExplicitlyDisinterested || targetAction === 'mark_lost') {
+      targetAction = 'mark_lost';
+      replyMessage = `Ah, tá bom! Muito obrigado pelo retorno, viu? Se tiver interesse ou precisar de algo futuramente, é só entrar em contato. Um abraço e muito sucesso por aí!`;
+      console.log(`[Auto-Responder AI] 🛡️ Blindagem Anti-Insistência ativada para "${currentLead.name}". Lead disse "${text}". Despedida educada enviada e lead finalizado.`);
+    }
+
+    // 3. Fallback humanizado e contextual (NUNCA robótico ou agressivo)
     if (!replyMessage && targetAction !== 'mark_lost') {
       const neighborhood = currentLead.neighborhood || currentLead.city || 'São Paulo';
       if (targetStage <= 2) {

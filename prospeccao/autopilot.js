@@ -525,15 +525,29 @@ class AutoPilotEngine {
       this.stats.dispatchedToday += 1;
       this.addLog('success', `✅ Mensagem enviada com sucesso para "${lead.name}"! Lead avançado para Etapa 1.`);
 
-      // 9. Agendar Próximo Disparo com Intervalo Humano Seguro de 5 Minutos (Anti-Bloqueio / Solicitado pelo Kauê)
-      const minDelay = Math.max(60, config.minDelaySeconds !== undefined ? config.minDelaySeconds : 300);
-      const maxDelay = Math.max(minDelay + 10, config.maxDelaySeconds !== undefined ? config.maxDelaySeconds : (minDelay + 30));
-      const randomIntervalSec = Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay;
+      // 9. Agendar Próximo Disparo: Distribuição inteligente ao longo do dia comercial (10h às 19h)
+      let randomIntervalSec;
+      if (config.distributeOverDay) {
+        const { hour, minute } = getBrazilTime();
+        const endHour = config.outboundEndHour !== undefined ? config.outboundEndHour : 19;
+        const remainingMinutes = Math.max(15, (endHour - hour) * 60 - minute);
+        const dailyLimit = config.dailyLimit || 10;
+        const sentToday = config.sentToday || 0;
+        const remainingLeads = Math.max(1, dailyLimit - sentToday);
+        const targetSec = Math.round((remainingMinutes * 60) / remainingLeads);
+        // Variação humana natural de +/- 15%
+        const jitter = Math.floor(targetSec * (0.85 + Math.random() * 0.3));
+        randomIntervalSec = Math.max(300, Math.min(3600, jitter)); // Mínimo 5 min, máximo 60 min
+      } else {
+        const minDelay = Math.max(60, config.minDelaySeconds !== undefined ? config.minDelaySeconds : 300);
+        const maxDelay = Math.max(minDelay + 10, config.maxDelaySeconds !== undefined ? config.maxDelaySeconds : (minDelay + 30));
+        randomIntervalSec = Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay;
+      }
       const randomIntervalMs = randomIntervalSec * 1000;
 
       const minFormatado = (randomIntervalSec / 60).toFixed(1);
       const proximoHorario = new Date(Date.now() + randomIntervalMs).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-      this.addLog('info', `⏳ Próximo disparo para novo lead programado para ${proximoHorario} (~${minFormatado} min / ${randomIntervalSec}s de intervalo para proteção do chip).`);
+      this.addLog('info', `⏳ Próximo disparo para novo lead programado para ${proximoHorario} (~${minFormatado} min de intervalo para distribuição humanizada ao longo do dia).`);
 
       this.scheduleNext(randomIntervalMs);
 

@@ -2,12 +2,14 @@
   "autoStartAutopilot": true,
   "onlyRespondReplies": true,
   "disableNewLeadOutbound": true,
-  "dailyLimit": 17,
+  "dailyLimit": 10,
+  "distributeOverDay": true,
   "outboundStartHour": 10,
   "outboundEndHour": 19,
   "outboundDays": [
     1,
     2,
+    3,
     4,
     5
   ],
