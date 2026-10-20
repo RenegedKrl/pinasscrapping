@@ -47,6 +47,9 @@
         <span class="status-indicator-dot dot-disconnected" id="header-wa-dot"></span>
         <span id="header-wa-text">Conectar WhatsApp</span>
       </button>
+      <button class="header-action-btn" id="btn-header-toggle-new-leads" title="Pausar ou Retomar Envio para Novos Leads" style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); color: #38BDF8; padding: 6px 12px; border-radius: var(--radius-sm); font-size: 0.78rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+        <span id="btn-header-toggle-new-leads-text">🛑 Pausar Novos Leads</span>
+      </button>
       <button class="header-action-btn" id="btn-header-shutdown" title="Desligar Servidor do Prospector" style="background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); color: #FCA5A5; padding: 6px 12px; border-radius: var(--radius-sm); font-size: 0.78rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 5px;">
         <span>🛑 Desligar</span>
       </button>
@@ -506,6 +509,10 @@
                 </button>
                 <button class="btn btn-outline full-width" id="btn-pause-autopilot" style="display: none;">
                   <span>⏸️ PAUSAR PILOTO AUTOMÁTICO</span>
+                </button>
+                <button class="btn btn-outline full-width" id="btn-toggle-new-leads" style="margin-top: 0.45rem; border-color: rgba(56, 189, 248, 0.4); color: #38BDF8; font-size: 0.82rem; padding: 8px 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; transition: all 0.2s ease;">
+                  <span id="btn-toggle-new-leads-icon">🛑</span>
+                  <span id="btn-toggle-new-leads-text">Parar Apenas Novos Envios (Manter Respostas)</span>
                 </button>
                 <button class="btn btn-outline full-width" id="btn-shutdown-autopilot" style="margin-top: 0.45rem; border-color: rgba(239, 68, 68, 0.4); color: #FCA5A5; font-size: 0.8rem; padding: 6px 12px;">
                   <span>🛑 Desligar Servidor Completo</span>

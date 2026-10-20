@@ -99,9 +99,66 @@
     "tier": "diamante",
     "score": 5,
     "notes": "Comércio / Serviço Local | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (55 avaliações ★4.8)",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-20T02:50:26.123Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-20T19:13:18.155Z",
+    "createdAt": "2026-10-20T02:50:26.123Z",
+    "stage": 3,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 4.8,
+      "reviews": 55,
+      "neighborhood": "Vila Mariana, São Paulo - SP",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 4.8 (55 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (55 avaliações com nota 4.8)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Vila Mariana, São Paulo - SP. Avaliações: 55 (nota 4.8). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Vila Mariana, São Paulo - SP (55 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Oi! É da clínica Dra. Alessandra Di Matteo?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-20T18:30:27.916Z",
+        "auto": true,
+        "ai": true,
+        "text": "Oi! É da clínica Dra. Alessandra Di Matteo?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-20T19:09:07.578Z",
+        "auto": true,
+        "ai": true,
+        "text": "Show, prazer falar contigo! Sou o Kauê, da Pinas.\n\nA gente cuida do tráfego e captação de clínicas de estética em SP. Dei uma olhada na ficha de vocês no Google Maps na Vila Mariana e notei que vocês têm ótimas avaliações, mas quem pesquisa pelo celular não acha um site próprio com botão direto de WhatsApp, acabando por chamar o concorrente da região que já anuncia.\n\nVocês já têm alguém cuidando dessa parte de site e novos contatos pelo Google por aí hoje?"
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-20T19:13:18.155Z",
+        "auto": true,
+        "ai": true,
+        "text": "Que bacana!\n\nMe diz uma coisa: vocês estão totalmente satisfeitos com o volume e a qualidade dos contatos que chegam pelo Google hoje ou sentem que daria para captar mais?"
+      }
+    ],
+    "repliedAt": "2026-10-20T19:12:56.894Z"
   },
   {
     "id": "lead-1792464749157-1kr4cj",
@@ -130,9 +187,59 @@
     "tier": "diamante",
     "score": 5,
     "notes": "Comércio / Serviço Local | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (32 avaliações ★5)",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-20T02:52:29.157Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-20T18:57:06.203Z",
+    "createdAt": "2026-10-20T02:52:29.157Z",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 32,
+      "neighborhood": "Morumbi, São Paulo - SP",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (32 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (32 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Morumbi, São Paulo - SP. Avaliações: 32 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Morumbi, São Paulo - SP (32 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Oi, tudo bem? Falo da clínica LifeClinic Drª Tuane Ramos?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-20T18:35:52.426Z",
+        "auto": true,
+        "ai": true,
+        "text": "Oi, tudo bem? Falo da clínica LifeClinic Drª Tuane Ramos?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-20T18:57:06.203Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa Jaqueline, tudo ótimo por aqui! Prazer.\n\nSou o Kauê, da Pinas. Nós ajudamos centros de estética aqui em SP a captarem pacientes e clientes qualificados no Google.\n\nDei uma olhada na ficha de vocês no Maps e vi que está com nota 5.0, mas notei que vocês não têm um site próprio cadastrado. Quem pesquisa pelo celular não acha uma página rápida com botão direto de WhatsApp e acaba indo para o concorrente que já anuncia.\n\nVocês já têm alguém cuidando dessa parte de captação de novos clientes pelo Google hoje ou a maioria ainda chega por indicação?"
+      }
+    ],
+    "repliedAt": "2026-10-20T18:56:51.146Z"
   },
   {
     "id": "lead-1792464584998-elt0az",
@@ -161,9 +268,66 @@
     "tier": "diamante",
     "score": 5,
     "notes": "Comércio / Serviço Local | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (12 avaliações)",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-20T02:49:44.998Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-20T20:42:59.754Z",
+    "createdAt": "2026-10-20T02:49:44.998Z",
+    "stage": 3,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 12,
+      "neighborhood": "Granja Viana, Cotia - SP",
+      "localReputation": "média",
+      "diagnosisTags": [
+        "⭐ 12 avaliações"
+      ],
+      "strengths": [
+        "Boa presença com 12 avaliações (nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Granja Viana, Cotia - SP. Avaliações: 12 (nota 5.0). Reputação local: média."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Granja Viana, Cotia - SP (12 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Oi, tudo bem? Falo com da clínica Dra. Luiza Guerra Biomédica Esteta de Granja Viana, Cotia - SP?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-20T18:41:19.225Z",
+        "auto": true,
+        "ai": true,
+        "text": "Oi, tudo bem? Falo com da clínica Dra. Luiza Guerra Biomédica Esteta de Granja Viana, Cotia - SP?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-20T18:54:08.773Z",
+        "auto": true,
+        "ai": true,
+        "text": "Tudo ótimo por aqui também, obrigado por perguntar!\n\nSou o Kauê, da Pinas. A gente cuida da gestão de tráfego e captação de clínicas de estética aqui em SP.\n\nDei uma olhada no perfil de vocês no Google Maps na Granja Viana e vi que o trabalho é super bem avaliado, mas notei que vocês ainda não têm um site próprio cadastrado. Quem pesquisa no celular acaba achando os concorrentes que aparecem no topo.\n\nVocês já têm alguém cuidando dessa parte de anúncios e novos pacientes no Google por aí hoje?"
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-20T20:42:59.754Z",
+        "auto": true,
+        "ai": true,
+        "text": "Show! Como vocês ainda não têm site, é exatamente por isso que eu quis mandar esse toque.\n\nA Pinas cuida de toda essa parte: a gente cria uma página super rápida que abre em 1s no celular e faz a gestão dos anúncios no Google para colocar pacientes novos no WhatsApp de vocês todo mês.\n\nConsegue 10 minutinhos no Google Meet essa semana para eu te mostrar na prática como funciona? Fica melhor para você amanhã ou quinta?"
+      }
+    ],
+    "repliedAt": "2026-10-20T20:42:53.372Z"
   },
   {
     "id": "lead-1792464584999-cb35kc",
@@ -192,9 +356,87 @@
     "tier": "diamante",
     "score": 5,
     "notes": "Comércio / Serviço Local | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (84 avaliações ★5)",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-20T02:49:44.999Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-20T19:07:45.239Z",
+    "createdAt": "2026-10-20T02:49:44.999Z",
+    "stage": 6,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 84,
+      "neighborhood": "Granja Viana, Cotia - SP",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (84 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (84 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Granja Viana, Cotia - SP. Avaliações: 84 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Granja Viana, Cotia - SP (84 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Oi, tudo certo? É da clínica Emaná Spa?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-20T18:46:47.098Z",
+        "auto": true,
+        "ai": true,
+        "text": "Oi, tudo certo? É da clínica Emaná Spa?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-20T18:49:35.375Z",
+        "auto": true,
+        "ai": true,
+        "text": "Show, prazer falar contigo! Sou o Kauê, da Pinas.\n\nA gente cuida do tráfego e captação de clínicas de estética em SP. Dei uma olhada no perfil de vocês no Google Maps lá na Granja Viana e vi que são super bem avaliados com nota 5.0, mas notei que quem pesquisa pelo celular não acha um site próprio com botão direto de WhatsApp, acabando por chamar o concorrente que já anuncia.\n\nVocês já têm alguém cuidando dessa parte de site e novos contatos pelo Google por aí hoje?"
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-20T18:54:18.639Z",
+        "auto": true,
+        "ai": true,
+        "text": "Entendi! Que ótimo que já estão providenciando.\n\nSó para eu entender: essa nova página já vai ser otimizada focada em abrir instantaneamente no celular e colocar o botão de WhatsApp direto para agendamento dos procedimentos?\n\nPergunto porque às vezes o site fica pronto bonito no computador, mas no celular acaba pecando na velocidade e o cliente da região acaba indo no concorrente."
+      },
+      {
+        "stage": 4,
+        "sentAt": "2026-10-20T18:56:19.654Z",
+        "auto": true,
+        "ai": true,
+        "text": "Show! O mais importante é isso mesmo, deixar tudo pronto para receber o pessoal com qualidade.\n\nDepois que essa nova página estiver rodando, vocês já planejam colocar um anúncio para aparecer no topo do Google quando as pessoas buscarem por estética aqui na Granja Viana?\n\nPergunto porque às vezes o site fica ótimo, mas sem um empurrãozinho de anúncio pago, o concorrente acaba saindo na frente."
+      },
+      {
+        "stage": 5,
+        "sentAt": "2026-10-20T19:04:37.337Z",
+        "auto": true,
+        "ai": true,
+        "text": "Sensacional! É exatamente esse o caminho. O tráfego no Instagram e Facebook é ótimo para gerar desejo, e o Google entra matando a cobra e mostrando o pau para quem já está buscando o procedimento na região.\n\nQuando esse site novo ficar pronto e vocês forem ligar os motores no Google, me dá um toque aqui que posso te mostrar como a gente faz essa ponte rápida para o WhatsApp de vocês lotar a agenda!\n\nFico à disposição, e muito sucesso por aí com o Emaná Spa!"
+      },
+      {
+        "stage": 6,
+        "sentAt": "2026-10-20T19:07:45.239Z",
+        "auto": true,
+        "ai": true,
+        "text": "Combinado então, Emaná Spa! Quando o site novo estiver no ar e vocês forem ligar os motores no Google, é só dar um toque aqui.\n\nMuito sucesso por aí e um ótimo restinho de semana!"
+      }
+    ],
+    "repliedAt": "2026-10-20T19:07:35.446Z"
   },
   {
     "id": "lead-1792464584998-ha3igo",
@@ -223,9 +465,59 @@
     "tier": "diamante",
     "score": 5,
     "notes": "Comércio / Serviço Local | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (11 avaliações)",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-20T02:49:44.998Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-20T18:53:29.725Z",
+    "createdAt": "2026-10-20T02:49:44.998Z",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 11,
+      "neighborhood": "Granja Viana, Cotia - SP",
+      "localReputation": "média",
+      "diagnosisTags": [
+        "⭐ 11 avaliações"
+      ],
+      "strengths": [
+        "Boa presença com 11 avaliações (nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Granja Viana, Cotia - SP. Avaliações: 11 (nota 5.0). Reputação local: média."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Granja Viana, Cotia - SP (11 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Olá! É o WhatsApp da clínica Cia da Beleza?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-20T18:51:51.716Z",
+        "auto": true,
+        "ai": true,
+        "text": "Olá! É o WhatsApp da clínica Cia da Beleza?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-20T18:53:29.725Z",
+        "auto": true,
+        "ai": true,
+        "text": "Show, prazer falar contigo! Sou o Kauê, da Pinas.\n\nA gente gerencia o tráfego de clínicas e centros de estética aqui em SP para captação de novos pacientes e procedimentos.\n\nDei uma olhada na ficha de vocês no Google Maps em Granja Viana, Cotia - SP e vi que têm excelentes avaliações 5.0 estrelas, mas notei que quem pesquisa pelo celular não encontra um site próprio com botão direto de WhatsApp, o que faz clientes da região acabarem chamando o concorrente do topo.\n\nVocês já têm alguém cuidando dessa parte de site e captação no Google por aí hoje ou a maioria dos clientes ainda vem por indicação?"
+      }
+    ],
+    "repliedAt": "2026-10-20T18:53:17.572Z"
   },
   {
     "id": "lead-1792464584998-pqql28",
@@ -254,9 +546,59 @@
     "tier": "diamante",
     "score": 5,
     "notes": "Comércio / Serviço Local | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (19 avaliações)",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-20T02:49:44.998Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-20T18:58:09.963Z",
+    "createdAt": "2026-10-20T02:49:44.998Z",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 19,
+      "neighborhood": "Granja Viana, Cotia - SP",
+      "localReputation": "média",
+      "diagnosisTags": [
+        "⭐ 19 avaliações"
+      ],
+      "strengths": [
+        "Boa presença com 19 avaliações (nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Granja Viana, Cotia - SP. Avaliações: 19 (nota 5.0). Reputação local: média."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Granja Viana, Cotia - SP (19 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Olá, tudo certo? Encontrei o contato de vocês em Granja Viana, Cotia - SP, é da clínica Studio La Belle?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-20T18:56:58.497Z",
+        "auto": true,
+        "ai": true,
+        "text": "Olá, tudo certo? Encontrei o contato de vocês em Granja Viana, Cotia - SP, é da clínica Studio La Belle?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-20T18:58:09.963Z",
+        "auto": true,
+        "ai": true,
+        "text": "Show, prazer falar contigo! Sou o Kauê, da Pinas.\n\nA gente gerencia o tráfego de centros de estética aqui em SP e notei pelo Google Maps que vocês têm um perfil super bem avaliado na Granja Viana, mas quem pesquisa pelo celular não encontra um site próprio com botão direto de WhatsApp e acaba indo pro concorrente que já anuncia.\n\nVocês já têm alguém cuidando dessa parte de site e novos contatos pelo Google por aí hoje, ou a maioria dos clientes ainda chega por indicação?"
+      }
+    ],
+    "repliedAt": "2026-10-20T18:58:03.002Z"
   },
   {
     "id": "lead-1792464584997-rwmx2c",
@@ -285,9 +627,59 @@
     "tier": "diamante",
     "score": 5,
     "notes": "Comércio / Serviço Local | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (27 avaliações ★4.7)",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-20T02:49:44.997Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-20T19:03:14.249Z",
+    "createdAt": "2026-10-20T02:49:44.997Z",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 4.7,
+      "reviews": 27,
+      "neighborhood": "Granja Viana, Cotia - SP",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 4.7 (27 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (27 avaliações com nota 4.7)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Granja Viana, Cotia - SP. Avaliações: 27 (nota 4.7). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Granja Viana, Cotia - SP (27 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Olá, tudo bem? É da Clínica da Pele Dra Juliana Silva?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-20T19:02:33.386Z",
+        "auto": true,
+        "ai": true,
+        "text": "Olá, tudo bem? É da Clínica da Pele Dra Juliana Silva?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-20T19:03:14.249Z",
+        "auto": true,
+        "ai": true,
+        "text": "Show, prazer falar contigo! Sou o Kauê, da Pinas.\n\nA gente cuida do tráfego pago e da captação de clínicas de estética aqui em SP. Dei uma olhada no perfil de vocês no Google Maps na Granja Viana e achei nota máxima incrível, com 4.7 estrelas.\n\nMas notei que vocês não têm um site próprio cadastrado lá, o que faz quem pesquisa pelo celular acabar indo pro concorrente que já anuncia. Vocês já têm alguém cuidando dessa parte de site e anúncios no Google por aí hoje?"
+      }
+    ],
+    "repliedAt": "2026-10-20T19:02:58.962Z"
   },
   {
     "id": "lead-1792464562011-0q27l6",
@@ -316,9 +708,59 @@
     "tier": "diamante",
     "score": 5,
     "notes": "Comércio / Serviço Local | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (35 avaliações ★4.5)",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-20T02:49:22.011Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-20T20:43:00.859Z",
+    "createdAt": "2026-10-20T02:49:22.011Z",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 4.5,
+      "reviews": 35,
+      "neighborhood": "Santo Amaro, São Paulo - SP",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ 35 avaliações"
+      ],
+      "strengths": [
+        "Boa presença com 35 avaliações (nota 4.5)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Santo Amaro, São Paulo - SP. Avaliações: 35 (nota 4.5). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Santo Amaro, São Paulo - SP (35 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Opa tudo bem por aí? É da clínica Revitallize?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-20T19:18:08.855Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa tudo bem por aí? É da clínica Revitallize?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-20T20:43:00.859Z",
+        "auto": true,
+        "ai": true,
+        "text": "Tudo ótimo por aqui também, obrigado por perguntar!\n\nSou o Kauê, da Pinas. A gente cuida da captação de clientes para centros de estética e clínicas em São Paulo.\n\nDei uma olhada na ficha de vocês no Google Maps em Santo Amaro e vi que o trabalho é super bem avaliado, mas notei que vocês não têm um site próprio cadastrado por lá. Quem pesquisa pelo celular acaba não encontrando uma página rápida com botão direto de WhatsApp e vai parar no concorrente.\n\nVocês já têm alguém cuidando dessa parte de site e novos pacientes pelo Google por aí hoje?"
+      }
+    ],
+    "repliedAt": "2026-10-20T20:42:51.509Z"
   },
   {
     "id": "lead-1792464562011-z14i48",
@@ -347,9 +789,51 @@
     "tier": "diamante",
     "score": 5,
     "notes": "Comércio / Serviço Local | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (101 avaliações ★5)",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-20T02:49:22.011Z"
+    "status": "contatado",
+    "lastContact": "2026-10-20T19:23:27.430Z",
+    "createdAt": "2026-10-20T02:49:22.011Z",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 101,
+      "neighborhood": "Santo Amaro, São Paulo - SP",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (101 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (101 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Santo Amaro, São Paulo - SP. Avaliações: 101 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Santo Amaro, São Paulo - SP (101 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Oi! É da Clínica Dakini?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-20T19:23:27.430Z",
+        "auto": true,
+        "ai": true,
+        "text": "Oi! É da Clínica Dakini?"
+      }
+    ]
   },
   {
     "id": "lead-1792464562011-ikj4rq",
@@ -378,9 +862,66 @@
     "tier": "diamante",
     "score": 5,
     "notes": "Comércio / Serviço Local | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (13 avaliações)",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-20T02:49:22.011Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-20T19:34:13.639Z",
+    "createdAt": "2026-10-20T02:49:22.011Z",
+    "stage": 3,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 4.4,
+      "reviews": 13,
+      "neighborhood": "Santo Amaro, São Paulo - SP",
+      "localReputation": "média",
+      "diagnosisTags": [
+        "⭐ 13 avaliações"
+      ],
+      "strengths": [
+        "Boa presença com 13 avaliações (nota 4.4)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Santo Amaro, São Paulo - SP. Avaliações: 13 (nota 4.4). Reputação local: média."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Santo Amaro, São Paulo - SP (13 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Opa, tudo bem? É da clínica Sublime Clinic?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-20T19:28:48.319Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo bem? É da clínica Sublime Clinic?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-20T19:30:02.345Z",
+        "auto": true,
+        "ai": true,
+        "text": "Show! Prazer falar contigo.\n\nSou o Kauê, da Pinas. A gente cuida da presença digital e captação de clínicas de estética em São Paulo.\n\nDei uma olhada na ficha de vocês no Google Maps em Santo Amaro e notei que vocês ainda não têm um site próprio cadastrado. Quem pesquisa pelos tratamentos no celular acaba chamando o concorrente da região que aparece no topo com página e botão de WhatsApp.\n\nVocês já têm alguém cuidando dessa parte de captação de novos clientes pelo Google por aí hoje?"
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-20T19:34:13.639Z",
+        "auto": true,
+        "ai": true,
+        "text": "Show! Como vocês ainda não têm o site rodando, quem pesquisa pelos procedimentos de vocês no celular em Santo Amaro acaba chamando o concorrente do lado que já aparece no topo.\n\nA Pinas cuida exatamente disso: a gente cria uma página ultrarrápida que abre em 1s e gerencia os anúncios no Google para colocar pacientes novos no WhatsApp de vocês todo mês com previsibilidade.\n\nO que acha de darmos uma rápida olhada de 10 minutinhos no Google Meet esta semana para eu te mostrar como funciona na prática? Fica melhor para você amanhã ou quinta?"
+      }
+    ],
+    "repliedAt": "2026-10-20T19:33:51.363Z"
   },
   {
     "id": "lead-1792464562010-10vhoq",
@@ -409,9 +950,59 @@
     "tier": "diamante",
     "score": 5,
     "notes": "Comércio / Serviço Local | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (43 avaliações ★5)",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-20T02:49:22.010Z"
+    "status": "respondeu",
+    "lastContact": "2026-10-20T19:40:22.833Z",
+    "createdAt": "2026-10-20T02:49:22.010Z",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 43,
+      "neighborhood": "Santo Amaro, São Paulo - SP",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (43 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (43 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Santo Amaro, São Paulo - SP. Avaliações: 43 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Santo Amaro, São Paulo - SP (43 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Oi, tudo certo? É da clínica Beauty Slim Estética Avançada?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-20T19:39:34.702Z",
+        "auto": true,
+        "ai": true,
+        "text": "Oi, tudo certo? É da clínica Beauty Slim Estética Avançada?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-20T19:40:22.833Z",
+        "auto": true,
+        "ai": true,
+        "text": "Show, prazer falar contigo! Sou o Kauê, da Pinas.\n\nA gente cuida do tráfego e captação de clínicas de estética em SP. Dei uma olhada no perfil de vocês no Google Maps em Santo Amaro e vi que vocês têm excelentes avaliações 5 estrelas, mas notei que vocês ainda não têm um site próprio cadastrado.\n\nQuem pesquisa por procedimentos no celular acaba indo direto para os concorrentes da região que aparecem anunciando no topo. Vocês já têm alguém cuidando dessa parte de site e novos clientes pelo Google por aí hoje?"
+      }
+    ],
+    "repliedAt": "2026-10-20T19:40:04.048Z"
   },
   {
     "id": "lead-1792464678362-4snrqj",
@@ -440,9 +1031,51 @@
     "tier": "diamante",
     "score": 5,
     "notes": "Comércio / Serviço Local | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (18 avaliações)",
-    "status": "novo",
-    "lastContact": null,
-    "createdAt": "2026-10-20T02:51:18.362Z"
+    "status": "contatado",
+    "lastContact": "2026-10-20T19:45:00.334Z",
+    "createdAt": "2026-10-20T02:51:18.362Z",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 18,
+      "neighborhood": "Itaim Bibi, São Paulo - SP",
+      "localReputation": "média",
+      "diagnosisTags": [
+        "⭐ 18 avaliações"
+      ],
+      "strengths": [
+        "Boa presença com 18 avaliações (nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Itaim Bibi, São Paulo - SP. Avaliações: 18 (nota 5.0). Reputação local: média."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Itaim Bibi, São Paulo - SP (18 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Olá, boa tarde! É da clínica Centro de Drenagem Itaim Bibi?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-20T19:45:00.334Z",
+        "auto": true,
+        "ai": true,
+        "text": "Olá, boa tarde! É da clínica Centro de Drenagem Itaim Bibi?"
+      }
+    ]
   },
   {
     "id": "lead-1792464749157-sewzh5",
@@ -13225,7 +13858,7 @@
     "score": 7,
     "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
     "status": "respondeu",
-    "lastContact": "2026-10-19T15:21:33.146Z",
+    "lastContact": "2026-10-20T20:42:28.067Z",
     "createdAt": "2026-10-08T03:46:54.648Z",
     "conversationScript": {
       "hasCustomerReplied": false,
@@ -13301,7 +13934,7 @@
     },
     "conversationScriptGeneratedAt": "2026-10-09T16:05:59.508Z",
     "autopilotAttempts": 1,
-    "stage": 2,
+    "stage": 3,
     "siteAudit": {
       "hasWebsite": false,
       "isOnline": false,
@@ -13348,9 +13981,16 @@
         "auto": true,
         "ai": true,
         "text": "Opa! Pode deixar, eu respondo certinho sobre os projetos por aí. Mas aproveitando, sobre a captação de novos clientes aqui em São Bernardo do Campo, vocês já contam com um site próprio rodando ou dependem mais das indicações hoje?"
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-20T20:42:28.067Z",
+        "auto": true,
+        "ai": true,
+        "text": "Relaxa, eu que agradeço o retorno e a correria com os orçamentos por aí!\n\nSó para recapitular, a Pinas ajuda escritórios aqui em São Bernardo do Campo a aparecerem no topo do Google quando alguém busca por projetos e reformas.\n\nVocês já têm alguém cuidando dessa parte de site e novos contatos no Google hoje ou a maioria dos clientes ainda vem por indicação?"
       }
     ],
-    "repliedAt": "2026-10-19T15:21:10.058Z",
+    "repliedAt": "2026-10-20T20:42:19.348Z",
     "tier": "ouro",
     "priorityScore": 70
   },
@@ -14409,9 +15049,9 @@
     "score": 7,
     "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
     "status": "respondeu",
-    "lastContact": "2026-10-01T20:06:07.869Z",
+    "lastContact": "2026-10-20T20:47:25.770Z",
     "createdAt": "2026-10-01T19:48:57.457Z",
-    "repliedAt": "2026-10-01T20:06:12.000Z",
+    "repliedAt": "2026-10-20T20:47:20.150Z",
     "conversationScript": {
       "hasCustomerReplied": true,
       "conversationSummary": "O contato foi iniciado pelo WhatsApp apresentando os diferenciais da Pinas Studio para a região de Santo Amaro, São Paulo - SP. O cliente respondeu à abordagem (última mensagem: \"‎Uma Bala agradece seu contato.😀 Como podemos ajudar?\"), abrindo uma oportunidade direta de avançar para uma conversa diagnóstica de 15 minutos.",
@@ -14486,7 +15126,38 @@
     },
     "conversationScriptGeneratedAt": "2026-10-09T16:05:59.524Z",
     "tier": "ouro",
-    "priorityScore": 70
+    "priorityScore": 70,
+    "mapsAudit": {
+      "rating": 4.3,
+      "reviews": 0,
+      "neighborhood": "Santo Amaro, São Paulo - SP",
+      "localReputation": "fraca",
+      "diagnosisTags": [
+        "⚠️ Sem Avaliações no Maps"
+      ],
+      "strengths": [],
+      "weaknesses": [
+        "Ficha no Maps sem avaliações registradas"
+      ],
+      "summary": "Localização: Santo Amaro, São Paulo - SP. Avaliações: 0 (nota 4.3). Reputação local: fraca."
+    },
+    "stage": 3,
+    "stageHistory": [
+      {
+        "stage": 2,
+        "sentAt": "2026-10-20T20:42:29.186Z",
+        "auto": true,
+        "ai": true,
+        "text": "Show, imagino que a rotina por aí na loja em Santo Amaro seja corrida!\n\nSou o Kauê, da Pinas. A gente cuida da presença digital e da captação de clientes para marcas e confecções de moda aqui em SP.\n\nDando uma olhada no Google Maps, notei que vocês têm uma nota bacana de 4.3 estrelas, mas quem pesquisa pelo celular não acha um site próprio com botão direto de WhatsApp e acaba indo direto pra concorrente que já anuncia.\n\nVocês já têm alguém cuidando dessa parte de site e captação de novos clientes no Google por aí hoje?"
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-20T20:47:25.770Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, imagino que o movimento por aí em Santo Amaro esteja intenso!\n\nSou o Kauê, da Pinas. A gente ajuda marcas e confecções de moda aqui em SP a atraírem clientes novos no Google todo mês.\n\nVocês já têm alguém cuidando dessa parte de site e captação digital por aí hoje ou a maioria dos clientes ainda chega por indicação?"
+      }
+    ]
   },
   {
     "id": "lead-1790884137457-g20z2v",
@@ -14514,9 +15185,9 @@
     "score": 7,
     "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
     "status": "respondeu",
-    "lastContact": "2026-10-01T20:08:59.827Z",
+    "lastContact": "2026-10-20T20:52:22.286Z",
     "createdAt": "2026-10-01T19:48:57.457Z",
-    "repliedAt": "2026-10-01T20:09:01.000Z",
+    "repliedAt": "2026-10-20T20:52:08.620Z",
     "conversationScript": {
       "hasCustomerReplied": true,
       "conversationSummary": "O contato foi iniciado pelo WhatsApp apresentando os diferenciais da Pinas Studio para a região de Santo Amaro, São Paulo - SP. O cliente respondeu à abordagem (última mensagem: \"Olá, tudo bem? Meu nome é Rafa, sou consultora de vendas da Nova Versão!\nPara realizar seu pedido é só acessar nosso Catálogo online:\n\nhttps://catalogo.novaversaoroupas.com.br/\n\n\nMínimo de 6 peças para compras online, e enviamos para todo Brasil! \nTodas nossas peças são do P ao GG. \n\nVocê consegue finalizar seu pedido direto pelo link do nosso Catálogo 👗🥰🙏🏼\n\nEssa mensagem é automática, caso tenha mais alguma dúvida, responda abaixo e logo entraremos em contato!\"), abrindo uma oportunidade direta de avançar para uma conversa diagnóstica de 15 minutos.",
@@ -14591,7 +15262,31 @@
     },
     "conversationScriptGeneratedAt": "2026-10-09T16:05:59.524Z",
     "tier": "ouro",
-    "priorityScore": 70
+    "priorityScore": 70,
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 0,
+      "neighborhood": "Santo Amaro, São Paulo - SP",
+      "localReputation": "fraca",
+      "diagnosisTags": [
+        "⚠️ Sem Avaliações no Maps"
+      ],
+      "strengths": [],
+      "weaknesses": [
+        "Ficha no Maps sem avaliações registradas"
+      ],
+      "summary": "Localização: Santo Amaro, São Paulo - SP. Avaliações: 0 (nota 5.0). Reputação local: fraca."
+    },
+    "stage": 2,
+    "stageHistory": [
+      {
+        "stage": 2,
+        "sentAt": "2026-10-20T20:52:22.286Z",
+        "auto": true,
+        "ai": true,
+        "text": "Oi Rafa, tudo ótimo por aqui! Prazer em falar contigo.\n\nDei uma olhada no catálogo e no perfil de vocês em Santo Amaro, São Paulo - SP e achei o trabalho super bacana. Como vocês atendem atacado de moda feminina, nós ajudamos marcas da região a aparecerem no topo do Google para lojistas que estão buscando novas peças para revenda.\n\nVocês já têm alguém cuidando dessa parte de anúncios e captação no Google por aí hoje ou a maioria dos clientes vem pelo catálogo orgânico?"
+      }
+    ]
   },
   {
     "id": "lead-1790884137457-1mgysg",
@@ -14747,7 +15442,7 @@
     "city": "São Paulo",
     "notes": "Sem site cadastrado no Maps (Oportunidade alta para site + Google Ads).",
     "status": "respondeu",
-    "lastContact": "2026-10-01T20:20:03.615Z",
+    "lastContact": "2026-10-20T21:02:54.156Z",
     "createdAt": "2026-10-01T02:12:06.941Z",
     "opportunity": {
       "score": 5,
@@ -14757,7 +15452,7 @@
       "attackAngle": "Comércio / Serviço Local | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado"
     },
     "score": 7,
-    "repliedAt": "2026-10-01T20:20:07.000Z",
+    "repliedAt": "2026-10-20T21:02:47.775Z",
     "conversationScript": {
       "hasCustomerReplied": true,
       "conversationSummary": "O contato foi iniciado pelo WhatsApp apresentando os diferenciais da Pinas Studio para a região de Santo Amaro SP. O cliente respondeu à abordagem (última mensagem: \"‎Mais Charlotte agradece seu contato. Como podemos ajudar?\"), abrindo uma oportunidade direta de avançar para uma conversa diagnóstica de 15 minutos.",
@@ -14832,7 +15527,38 @@
     },
     "conversationScriptGeneratedAt": "2026-10-09T16:05:59.524Z",
     "tier": "ouro",
-    "priorityScore": 70
+    "priorityScore": 70,
+    "mapsAudit": {
+      "rating": 4.9,
+      "reviews": 0,
+      "neighborhood": "Santo Amaro SP",
+      "localReputation": "fraca",
+      "diagnosisTags": [
+        "⚠️ Sem Avaliações no Maps"
+      ],
+      "strengths": [],
+      "weaknesses": [
+        "Ficha no Maps sem avaliações registradas"
+      ],
+      "summary": "Localização: Santo Amaro SP. Avaliações: 0 (nota 4.9). Reputação local: fraca."
+    },
+    "stage": 3,
+    "stageHistory": [
+      {
+        "stage": 2,
+        "sentAt": "2026-10-20T20:57:30.023Z",
+        "auto": true,
+        "ai": true,
+        "text": "Imagina, obrigado você por responder!\n\nSou o Kauê, da Pinas. A gente cuida da presença digital e captação de clientes para marcas e confecções de moda aqui em SP.\n\nNotei pelo Maps que vocês têm uma nota excelente, mas quem pesquisa no celular não acha um site próprio com botão direto de WhatsApp e acaba indo pro concorrente.\n\nVocês têm alguém cuidando dessa parte de site e tráfego por aí hoje?"
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-20T21:02:54.156Z",
+        "auto": true,
+        "ai": true,
+        "text": "Imagina, obrigado você por responder!\n\nSou o Kauê, da Pinas. A gente cuida da presença digital e captação de clientes para marcas de moda aqui em SP, e notei pelo Maps que vocês têm uma nota ótima em Santo Amaro.\n\nVocês já têm alguém cuidando dessa parte de site e tráfego por aí hoje?"
+      }
+    ]
   },
   {
     "id": "lead-1790820726941-mfd5j6",

@@ -639,6 +639,12 @@ function initAutopilot() {
     btnPause.addEventListener('click', () => pauseAutopilot('Piloto Automático pausado pelo operador.'));
   }
 
+  // Botões para Parar / Retomar apenas envio de novos leads (Modo Apenas Respostas)
+  const btnToggleNewLeads = document.getElementById('btn-toggle-new-leads');
+  const btnHeaderToggle = document.getElementById('btn-header-toggle-new-leads');
+  if (btnToggleNewLeads) btnToggleNewLeads.addEventListener('click', toggleNewLeadsDispatch);
+  if (btnHeaderToggle) btnHeaderToggle.addEventListener('click', toggleNewLeadsDispatch);
+
   // Botões de Desligamento Completo do Servidor
   const btnHeaderShutdown = document.getElementById('btn-header-shutdown');
   const btnShutdownAutopilot = document.getElementById('btn-shutdown-autopilot');
@@ -922,6 +928,48 @@ function renderAutopilotStatus(status) {
     if (boxCountdown) boxCountdown.style.display = 'none';
   }
 
+  // Atualizar visual do botão de Parar / Retomar apenas envio de novos leads
+  const btnToggleNewLeads = document.getElementById('btn-toggle-new-leads');
+  const btnToggleIcon = document.getElementById('btn-toggle-new-leads-icon');
+  const btnToggleText = document.getElementById('btn-toggle-new-leads-text');
+  const btnHeaderToggle = document.getElementById('btn-header-toggle-new-leads');
+  const btnHeaderText = document.getElementById('btn-header-toggle-new-leads-text');
+  const isOnlyReplies = !!status.onlyRespondReplies;
+
+  if (btnToggleNewLeads) {
+    if (isOnlyReplies) {
+      if (btnToggleIcon) btnToggleIcon.textContent = '▶️';
+      if (btnToggleText) btnToggleText.textContent = 'Retomar Envio para Novos Leads';
+      btnToggleNewLeads.style.borderColor = 'rgba(52, 211, 153, 0.5)';
+      btnToggleNewLeads.style.background = 'rgba(52, 211, 153, 0.12)';
+      btnToggleNewLeads.style.color = '#34D399';
+      btnToggleNewLeads.title = 'Envio para novos leads está PAUSADO. A IA está respondendo 24/7 a quem já te mandou mensagem. Clique para voltar a disparar para novos contatos.';
+    } else {
+      if (btnToggleIcon) btnToggleIcon.textContent = '🛑';
+      if (btnToggleText) btnToggleText.textContent = 'Parar Apenas Novos Envios (Manter Respostas)';
+      btnToggleNewLeads.style.borderColor = 'rgba(56, 189, 248, 0.4)';
+      btnToggleNewLeads.style.background = 'rgba(56, 189, 248, 0.08)';
+      btnToggleNewLeads.style.color = '#38BDF8';
+      btnToggleNewLeads.title = 'Clique para pausar o disparo de mensagens para novos leads. A IA continuará respondendo 24/7 a quem falar com você.';
+    }
+  }
+
+  if (btnHeaderToggle && btnHeaderText) {
+    if (isOnlyReplies) {
+      btnHeaderText.textContent = '▶️ Retomar Novos Leads';
+      btnHeaderToggle.style.background = 'rgba(52, 211, 153, 0.15)';
+      btnHeaderToggle.style.borderColor = 'rgba(52, 211, 153, 0.4)';
+      btnHeaderToggle.style.color = '#34D399';
+      btnHeaderToggle.title = 'Novos envios estão pausados. Clique para retomar disparos.';
+    } else {
+      btnHeaderText.textContent = '🛑 Pausar Novos Leads';
+      btnHeaderToggle.style.background = 'rgba(56, 189, 248, 0.12)';
+      btnHeaderToggle.style.borderColor = 'rgba(56, 189, 248, 0.35)';
+      btnHeaderToggle.style.color = '#38BDF8';
+      btnHeaderToggle.title = 'Clique para pausar apenas o envio de novas mensagens.';
+    }
+  }
+
   // Renderizar a auditoria do último lead processado
   if (status.lastAudit && status.lastPitch && auditBox && auditDetails) {
     auditBox.style.display = 'block';
@@ -1040,6 +1088,27 @@ async function shutdownServer() {
       </div>
     </div>
   `;
+}
+
+// Alternar entre Disparo para Novos Leads Ativo vs Modo Apenas Respostas (24/7)
+async function toggleNewLeadsDispatch() {
+  try {
+    const res = await fetch('/api/autopilot/toggle-new-leads', { method: 'POST' });
+    const data = await res.json();
+    if (data.success) {
+      if (data.onlyRespondReplies) {
+        showToastNotification('🛑 Envio para novos leads pausado! A IA continua respondendo 24/7 a quem te responder.');
+      } else {
+        showToastNotification('🚀 Envio para novos leads retomado com sucesso!');
+      }
+      pollAutopilotStatus();
+    } else {
+      alert(data.message || 'Não foi possível alternar o envio de novos leads.');
+    }
+  } catch (err) {
+    console.error('Erro ao alternar novos leads:', err);
+    alert('Erro ao conectar com o servidor: ' + err.message);
+  }
 }
 
 // ==================== WHATSAPP DIRECT MANAGER ====================

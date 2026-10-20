@@ -1,7 +1,7 @@
 {
   "autoStartAutopilot": true,
-  "onlyRespondReplies": false,
-  "disableNewLeadOutbound": false,
+  "onlyRespondReplies": true,
+  "disableNewLeadOutbound": true,
   "dailyLimit": 17,
   "outboundStartHour": 10,
   "outboundEndHour": 19,
@@ -11,7 +11,7 @@
     4,
     5
   ],
-  "sentToday": 5,
+  "sentToday": 17,
   "lastResetDate": "2026-10-20",
   "minDelaySeconds": 300,
   "maxDelaySeconds": 330,

@@ -36,7 +36,9 @@ echo [LOCAL] Pasta do sistema: %PROJECT_DIR%
 :: 2. Localizar Node.js
 where node >nul 2>nul
 if %errorlevel% neq 0 (
-    if exist "C:\Program Files\nodejs\node.exe" (
+    if exist "G:\Programas\nodejs\node.exe" (
+        set "PATH=G:\Programas\nodejs;%PATH%"
+    ) else if exist "C:\Program Files\nodejs\node.exe" (
         set "PATH=C:\Program Files\nodejs;%PATH%"
     ) else if exist "C:\Program Files (x86)\nodejs\node.exe" (
         set "PATH=C:\Program Files (x86)\nodejs;%PATH%"

@@ -262,7 +262,7 @@ class AutoPilotEngine {
       nextRunSeconds: this.nextRunTimestamp ? Math.max(0, Math.round((this.nextRunTimestamp - Date.now()) / 1000)) : null,
       dispatchedToday: sentToday,
       dailyLimit: dailyLimit,
-      onlyRespondReplies: !!config.onlyRespondReplies,
+      onlyRespondReplies: !!(config.onlyRespondReplies || config.disableNewLeadOutbound),
       freeTier,
       logs: this.logs.slice(0, 35)
     };

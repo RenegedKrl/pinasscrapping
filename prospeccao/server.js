@@ -997,10 +997,16 @@ function classifyLeadResponse(text) {
   return 'neutral';
 }
 
-// Detecta mensagens automáticas de secretária eletrônica do WhatsApp Business (ausência, catálogo, horários)
+// Detecta mensagens automáticas de ausência/fora do horário do WhatsApp Business
 function isAutomatedBusinessGreeting(text) {
   if (!text || typeof text !== 'string') return false;
   const t = text.toLowerCase().trim();
+
+  // Se a mensagem pergunta como pode ajudar ("como podemos te ajudar", "como posso ajudar", "em que posso te ajudar"),
+  // o estabelecimento está dando abertura direta para a apresentação comercial da Pinas! NUNCA ignorar!
+  if (/como\s+podemos?\s+(te\s+)?ajudar|como\s+posso\s+(te\s+)?ajudar|em\s+que\s+posso\s+(te\s+)?ajudar|em\s+que\s+podemos\s+ajudar/i.test(t)) {
+    return false;
+  }
 
   // Se o atendente humano disse que vai encaminhar para o responsável, NÃO é secretária eletrônica!
   const humanForwarding = ['vou encaminhar', 'irei encaminhar', 'vou passar', 'irei passar', 'vou avisar', 'irei avisar', 'vou falar com'];
@@ -1008,18 +1014,12 @@ function isAutomatedBusinessGreeting(text) {
 
   const businessPatterns = [
     'horário de atendimento', 'horario de atendimento',
-    'agradecemos seu contato', 'agradecemos sua mensagem', 'agradece seu contato', 'agradece sua mensagem',
     'mensagem automática', 'mensagem automatica',
     'estamos ausentes', 'estou ausente', 'no momento estamos ausentes', 'fora do nosso horário', 'fora do horario',
     'responderemos assim que possível', 'responderemos assim que possivel', 'retornaremos assim que possível', 'retornaremos assim que possivel',
     'logo mais volto para te responder', 'em breve respondo', 'em breve responderemos',
-    'conhecer meus principais serviços no catálogo', 'conhecer meu catálogo', 'explore meu catálogo', 'explore nosso catálogo',
-    'catálogo 📌', 'catalogo 📌', 'catálogo online', 'catalogo online',
-    'seja muito bem-vinda à', 'seja muito bem-vindo à', 'seja muito bem-vinda ao', 'seja muito bem-vindo ao',
     'atendimento automatizado', 'resposta automatica', 'resposta automática',
     'não estamos disponíveis no momento', 'nao estamos disponiveis no momento',
-    'escolha uma especialidade', 'bem-vindos ao nosso canal de atendimento', 'bem-vindo ao nosso canal de atendimento',
-    'assistente virtual', 'informações para orçamento', 'informacoes para orcamento',
     'não podemos atender sua ligação', 'nao podemos atender sua ligacao',
     'nossa equipe responderá assim que possível', 'retornaremos o mais breve possível'
   ];
@@ -1760,6 +1760,7 @@ app.post('/api/autopilot/config', (req, res) => {
   const config = readJson(CONFIG_FILE, {});
   if (typeof onlyRespondReplies === 'boolean') {
     config.onlyRespondReplies = onlyRespondReplies;
+    config.disableNewLeadOutbound = onlyRespondReplies;
   }
   if (typeof autoStartAutopilot === 'boolean') {
     config.autoStartAutopilot = autoStartAutopilot;
@@ -1789,6 +1790,30 @@ app.post('/api/autopilot/config', (req, res) => {
   }
 
   res.json({ success: true, config });
+});
+
+// Alternar envio exclusivo para novos leads (Modo Apenas Respostas vs Envio Ativo)
+app.post('/api/autopilot/toggle-new-leads', (req, res) => {
+  const config = readJson(CONFIG_FILE, {});
+  const current = !!(config.onlyRespondReplies || config.disableNewLeadOutbound);
+  const nextState = (req.body && typeof req.body.onlyRespondReplies === 'boolean')
+    ? req.body.onlyRespondReplies
+    : !current;
+
+  config.onlyRespondReplies = nextState;
+  config.disableNewLeadOutbound = nextState;
+  writeJson(CONFIG_FILE, config);
+
+  console.log(`[Piloto Automático] 🔄 Envio para novos leads ${nextState ? 'PAUSADO (Modo Apenas Respostas Ativo 24/7)' : 'RETOMADO (Disparos Ativos)'}.`);
+
+  res.json({
+    success: true,
+    onlyRespondReplies: nextState,
+    disableNewLeadOutbound: nextState,
+    message: nextState
+      ? 'Disparo para novos leads pausado! A IA continua respondendo 24/7 a quem responder.'
+      : 'Envio de mensagens para novos leads retomado com sucesso!'
+  });
 });
 
 // Auditoria sob demanda de um lead (Site + Maps)
