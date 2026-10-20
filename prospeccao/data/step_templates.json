@@ -12,7 +12,7 @@
       "number": 1,
       "id": "abertura",
       "name": "1. Abertura",
-      "goal": "Quebre o gelo com naturalidade e confirme o dono/responsável",
+      "goal": "Quebre o gelo com naturalidade e confirme o dono/responsável (100% despretensiosa, zero venda)",
       "dotColor": "#F59E0B",
       "templates": {
         "comSite": "Olá, tudo bem? É da {nome}?",
@@ -22,45 +22,45 @@
     {
       "number": 2,
       "id": "apresentacao",
-      "name": "2. Apresentação & Questão de Venda",
-      "goal": "Apresente a Pinas e a proposta de valor quando o cliente confirmar o local",
+      "name": "2. Apresentação & Diagnóstico Real",
+      "goal": "Apresente o Kauê da Pinas, entregue 2 pontos reais da auditoria e faça a pergunta de qualificação",
       "dotColor": "#3B82F6",
       "templates": {
-        "comSite": "Show! Prazer, aqui é o Kauê da Pinas (@pinas.studio).\n\nEncontrei o perfil de vocês no Google aqui em {regiao} e vi que têm ótimas avaliações. Dei uma olhada rápida no site de vocês pelo celular e notei um detalhe importante na estrutura de atendimento.\n\nA gente ajuda empresas da região com páginas rápidas focadas em receber contatos no WhatsApp. Vocês já têm alguém cuidando dessa parte do digital por aí hoje?",
-        "semSite": "Show! Prazer, aqui é o Kauê da Pinas (@pinas.studio).\n\nEncontrei o perfil de vocês no Google aqui em {regiao} e vi que têm ótimas avaliações, mas reparei que ainda não têm um site próprio com botão direto de WhatsApp pra receber quem busca no Google.\n\nA gente ajuda empresas da região criando páginas rápidas que abrem em 1s no celular e direcionam direto pro WhatsApp pra fechar clientes. Vocês já têm alguém cuidando dessa parte por aí hoje?"
+        "comSite": "Show! Prazer, aqui é o Kauê, da Pinas.\n\nEncontrei o perfil de vocês no Google aqui em {regiao} e vi que têm ótimas avaliações. Dei uma olhada no site de vocês pelo celular e notei 2 detalhes na navegação que dificultam o contato imediato no WhatsApp, fazendo clientes com intenção de compra da região acabarem indo pro concorrente.\n\nVocês já têm alguém cuidando dessa parte de site e novos contatos pelo Google por aí hoje?",
+        "semSite": "Show! Prazer, aqui é o Kauê, da Pinas.\n\nEncontrei o perfil de vocês no Google aqui em {regiao} e vi que têm ótimas avaliações, mas reparei que quem busca pelo celular não encontra um site rápido com botão direto pro WhatsApp e acaba caindo no concorrente anunciado.\n\nA gente cuida de toda essa esteira pra colocar clientes da região direto no WhatsApp de vocês todo mês. Vocês já têm alguém cuidando dessa parte por aí hoje?"
       }
     },
     {
       "number": 3,
       "id": "diagnostico",
-      "name": "3. Diagnóstico (Tocar na Ferida)",
-      "goal": "Mostre na cara dura onde ele está perdendo dinheiro e clientes",
+      "name": "3. Diagnóstico Consultivo",
+      "goal": "Mostre a oportunidade prática de receber mais contatos no WhatsApp sem perder cliques",
       "dotColor": "#EC4899",
       "templates": {
-        "comSite": "Fui entrar no site de vocês pelo celular e notei umas coisas que com certeza tão fazendo vocês perderem clientes todo dia.\n\nA pessoa pesquisa no Google em {bairro}, entra no site de vocês, mas a estrutura tá travando o contato... ela não sente firmeza ou não acha o botão rápido e pula direto pro concorrente da região. É cliente pronto batendo na porta e indo embora.",
-        "semSite": "Vocês têm uma nota excelente e ótimas avaliações no Google em {bairro}, mas vocês não têm um site próprio.\n\nCara, você não tem ideia do tanto de cliente da nossa região que pesquisa por {nicho} no Google todo santo dia com dinheiro na mão, não acha um site de vocês e clica direto no concorrente do lado.\n\nVocês tão praticamente dando cliente pronto de bandeja pra concorrência faturar em cima de vocês."
+        "comSite": "A busca por {nicho} na região de {bairro} é bem alta todo dia. Hoje quando alguém clica no site de vocês pelo celular, acaba não chamando no WhatsApp de imediato e vai pro concorrente. Com uma landing page rápida que abre em 1s e anúncios focados no raio da região, quem busca no Google cai conversando direto com vocês.",
+        "semSite": "A busca por {nicho} na região de {bairro} é bem alta todo dia. Como vocês ainda não têm um site próprio linkado no Google com botão direto de WhatsApp, esses clientes acabam caindo nos concorrentes que já anunciam. A gente resolve isso com uma página rápida de 1s e anúncios no Google do bairro."
       }
     },
     {
       "number": 4,
       "id": "proposta",
       "name": "4. Solução Direta",
-      "goal": "Mostre como estancar essa perda de clientes de forma simples",
+      "goal": "Explique como funciona a assessoria completa da Pinas sem enrolação",
       "dotColor": "#F97316",
       "templates": {
-        "comSite": "Um ajuste certo na estrutura do site e nos botões de conversão faz essa galera que já entra pelo celular virar mensagem no WhatsApp de vocês todo dia, em vez de desistir e ir pro outro.",
-        "semSite": "Um site profissional e direto ao ponto faz o cliente bater o olho pelo celular, ver que vocês são de confiança e já chamar direto no WhatsApp pra fechar. Dá pra resolver isso rápido e parar de perder esse pessoal."
+        "comSite": "A gente cuida de tudo: ajusta a página rápida para celular com botão direto pro WhatsApp e gerencia os anúncios no Google para colocar vocês no topo quando procurarem por {nicho} na região, gerando previsibilidade de novos clientes todo mês sem você ter trabalho.",
+        "semSite": "A gente monta toda a estrutura: cria uma landing page moderna que abre em 1s no celular e gerencia os anúncios no Google para colocar a {nome} em primeiro lugar no bairro, gerando contatos qualificados no WhatsApp todo mês."
       }
     },
     {
       "number": 5,
       "id": "fechamento",
-      "name": "5. Fechamento (Papo de 15 min)",
-      "goal": "Convite leve e direto para uma call rápida de 15 minutos",
+      "name": "5. Fechamento (Papo de 15 min no Meet)",
+      "goal": "Convite leve e direto para uma call rápida de 10 a 15 minutos no Google Meet",
       "dotColor": "#10B981",
       "templates": {
-        "comSite": "Eu separei esses pontos certinho pra te mostrar na prática.\n\nConsegue 15 minutinhos essa semana pra um papo rápido no Meet? Eu compartilho a tela e te mostro exatamente o que mudar, sem compromisso nenhum.",
-        "semSite": "Eu separei esses pontos certinho pra te mostrar na prática.\n\nConsegue 15 minutinhos essa semana pra um papo rápido no Meet? Eu compartilho a tela e te mostro exatamente como ficaria a estrutura ideal, sem compromisso nenhum."
+        "comSite": "Eu separei esses pontos do site e do Google pra te mostrar na prática.\n\nConsegue 10 a 15 minutinhos essa semana pra um papo rápido no Google Meet? Eu compartilho a tela e te mostro exatamente o que ajustar, sem compromisso nenhum. Fica melhor amanhã ou quinta?",
+        "semSite": "Eu separei esses pontos do Google Maps e da região pra te mostrar na prática.\n\nConsegue 10 a 15 minutinhos essa semana pra um papo rápido no Google Meet? Eu compartilho a tela e te mostro exatamente como ficaria a estrutura ideal, sem compromisso nenhum. Fica melhor amanhã ou quinta?"
       }
     }
   ]

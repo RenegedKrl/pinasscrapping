@@ -1,0 +1,2935 @@
+[
+  {
+    "id": "lead-1791923354444-ixypc4",
+    "name": "Máximo Sorriso",
+    "niche": "Clínica Odontológica",
+    "phone": "(11) 4186-4971",
+    "cleanPhone": "551141864971",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "",
+    "hasWebsite": false,
+    "mapsUrl": "https://www.google.com/maps/place/M%C3%A1ximo+Sorriso/data=!4m7!3m6!1s0x94cf0021bf424789:0x8aacfee7cf2dd495!8m2!3d-23.5566624!4d-46.8287136!16s%2Fg%2F11bzwq7k5k!19sChIJiUdCvyEAz5QRldQtz-f-rIo?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.8",
+    "reviews": 86,
+    "address": "4,8(86)",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 100,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Odontologia (Implantes & Particular) | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (86 avaliações ★4.8)"
+    },
+    "score": 10,
+    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:14.444Z",
+    "priorityScore": 100,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1790820665678-oywv3d",
+    "name": "Clínica Veterinária Nações Unidas",
+    "niche": "clinica veterinaria",
+    "phone": "(11) 5524-3634",
+    "cleanPhone": "551155243634",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "",
+    "hasWebsite": false,
+    "mapsUrl": "https://www.google.com/maps/place/Cl%C3%ADnica+Veterin%C3%A1ria+Na%C3%A7%C3%B5es+Unidas/data=!4m7!3m6!1s0x94ce51674b92a00d:0xc776f6f3cf6745d9!8m2!3d-23.6575506!4d-46.7160435!16s%2Fg%2F11hjdd__y1!19sChIJDaCSS2dRzpQR2UVnz_P2dsc?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkyOC4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.6",
+    "reviews": 99,
+    "address": "Veterinário ·  · Av. das Nações Unidas, 19579",
+    "neighborhood": "Santo Amaro SP",
+    "city": "São Paulo",
+    "notes": "Sem site cadastrado no Maps (Oportunidade alta para site + Google Ads).",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-01T02:11:05.678Z",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 100,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (99 avaliações ★4.6)"
+    },
+    "score": 10,
+    "conversationScript": {
+      "hasCustomerReplied": false,
+      "conversationSummary": "Lead qualificado pronto para abordagem inicial. Identificado potencial imediato de captação local em Santo Amaro SP através da assessoria de tráfego pago e posicionamento digital da Pinas Studio.",
+      "interlocutor": {
+        "name": "Responsável / Decisor",
+        "role": "Não identificado",
+        "tone": "Neutro / Aguardando",
+        "decisionPower": "Alto (Decisor Final)"
+      },
+      "painsAndNeeds": [
+        "Falta de previsibilidade de novos tutores no raio de 3km a 5km de Santo Amaro SP",
+        "Dependência excessiva de indicação boca a boca ou de buscas passivas no Google Maps",
+        "Atendimentos ou procedimentos de maior valor que acabam indo parar em clínicas concorrentes da região"
+      ],
+      "objectionsAndAnswers": [
+        {
+          "objection": "Já fazemos postagens no Instagram todos os dias.",
+          "howToCounter": "Post orgânico fala com quem já é cliente. O que a Pinas faz com o tráfego é colocar a clínica na frente do tutor que precisa de atendimento urgente agora no seu bairro."
+        },
+        {
+          "objection": "Não sei se temos orçamento para marketing agora.",
+          "howToCounter": "O projeto se paga trazendo 2 a 3 novos atendimentos ou cirurgias no mês. Se a conta não fechar com lucro no seu bolso, a gente nem começa."
+        }
+      ],
+      "agreedNextSteps": "Aguardando retorno da mensagem de abordagem no WhatsApp",
+      "callScript": {
+        "title": "Roteiro da Call de Fechamento Baseado no WhatsApp",
+        "openingHook": "Opa, tudo bem? Vi que você recebeu a nossa análise sobre a presença digital da Clínica Veterinária Nações Unidas em Santo Amaro SP e queria bater um papo rápido de 15 minutos sem enrolação.",
+        "steps": [
+          {
+            "time": "00:00 - 03:00",
+            "title": "Abertura & Conexão pelo WhatsApp",
+            "objective": "Reconectar de forma humana e direta citando a conversa do chat",
+            "script": "Fala, tudo bem? Poxa, obrigado pelo tempo. Vi aqui o perfil da Clínica Veterinária Nações Unidas e achei muito forte a nota no Google. Queria entender rapidamente como está a entrada de novos clientes vindo pela internet hoje aí em Santo Amaro SP.",
+            "tip": "Mantenha tom calmo, profissional e escuta ativa. Nada de afobação."
+          },
+          {
+            "time": "03:00 - 07:00",
+            "title": "Diagnóstico & Aprofundamento nas Dores",
+            "objective": "Fazer o cliente verbalizar o gargalo atual de faturamento",
+            "questions": [
+              {
+                "question": "Hoje, a maior parte dos clientes novos chega por indicação ou por busca ativa no Google e redes?",
+                "why": "Mapear a dependência de canais orgânicos passivos."
+              },
+              {
+                "question": "Quando um cliente chega no seu WhatsApp, você sente que a conversão em fechamento é rápida ou muitos somem?",
+                "why": "Identificar gargalo comercial no atendimento."
+              }
+            ]
+          },
+          {
+            "time": "07:00 - 11:00",
+            "title": "Apresentação da Solução Pinas Sob Medida",
+            "objective": "Mostrar na tela compartilhada como resolver o gargalo",
+            "keyPoints": [
+              "Anúncios hiperlocais no raio de Santo Amaro SP para captar quem tem intenção de compra agora",
+              "Landing page ultra-rápida direcionando cliques direto para o seu WhatsApp",
+              "Script de atendimento comercial para não deixar leads esfriarem"
+            ]
+          },
+          {
+            "time": "11:00 - 15:00",
+            "title": "Proposta & Fechamento Comercial",
+            "objective": "Combinar os próximos passos práticos de início",
+            "script": "O que eu proponho é a gente começar um piloto estruturado de 30 dias. A gente coloca as campanhas no ar e valida o fluxo de novos clientes entrando no seu WhatsApp.",
+            "callToAction": "Podemos dar o pontapé inicial na segunda-feira?"
+          }
+        ],
+        "goldenClosingPhrase": "Faz sentido a gente começar a captar esses tutores que estão buscando atendimento agora em Santo Amaro SP e que hoje estão indo para a clínica concorrente?"
+      }
+    },
+    "conversationScriptGeneratedAt": "2026-10-09T16:05:59.525Z",
+    "priorityScore": 100,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923354447-06r97b",
+    "name": "SORRISO DO POVO III - ROTATORIA VILA DIRCE",
+    "niche": "Clínica Odontológica",
+    "phone": "(11) 4187-1534",
+    "cleanPhone": "551141871534",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "",
+    "hasWebsite": false,
+    "mapsUrl": "https://www.google.com/maps/place/SORRISO+DO+POVO+III+-+ROTATORIA+VILA+DIRCE/data=!4m7!3m6!1s0x632eb42a7c328611:0xb98cde1ded5b500c!8m2!3d-23.5606252!4d-46.8374788!16s%2Fg%2F11x1sn2xrh!19sChIJEYYyfCq0LmMRDFBb7R3ejLk?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.3",
+    "reviews": 23,
+    "address": "Clínica odontológica · Av. Inocêncio Seráfico, 4613",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 95,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Odontologia (Implantes & Particular) | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (23 avaliações)"
+    },
+    "score": 10,
+    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:14.447Z",
+    "priorityScore": 95,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791922793693-g5lzba",
+    "name": "ICF - Instituto Coaching Financeiro",
+    "niche": "Coach & Mentor (Coach Financeiro)",
+    "phone": "(11) 3181-0610",
+    "cleanPhone": "551131810610",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "",
+    "hasWebsite": false,
+    "mapsUrl": "https://www.google.com/maps/place/ICF+-+Instituto+Coaching+Financeiro/data=!4m7!3m6!1s0x94ce57af00a73d41:0xb6e98e488863f1e7!8m2!3d-23.5802266!4d-46.6820695!16s%2Fg%2F11g0tq5pl_!19sChIJQT2nAK9XzpQR5_FjiEiO6bY?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.5",
+    "reviews": 24,
+    "address": "Escritório da empresa · R. Amauri, 116 - 7º andar sala 72",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 90,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (24 avaliações)"
+    },
+    "score": 10,
+    "notes": "Comércio ativo na região com potencial de captação digital.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:19:53.693Z",
+    "priorityScore": 90,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923354443-nafd1k",
+    "name": "Perfil Clínica Odontológica",
+    "niche": "Clínica Odontológica",
+    "phone": "(11) 4303-3512",
+    "cleanPhone": "551143033512",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "",
+    "hasWebsite": false,
+    "mapsUrl": "https://www.google.com/maps/place/Perfil+Cl%C3%ADnica+Odontol%C3%B3gica/data=!4m7!3m6!1s0x94cf001795d078a5:0x343eebfc794887a6!8m2!3d-23.561912!4d-46.8360689!16s%2Fg%2F11bc7r1pkb!19sChIJpXjQlRcAz5QRpodIefzrPjQ?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "3.6",
+    "reviews": 33,
+    "address": "Clínica odontológica ·  · Av. Inocêncio Seráfico, 4999",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Odontologia (Implantes & Particular) | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado"
+    },
+    "score": 10,
+    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:14.443Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923354443-rank5z",
+    "name": "Centro Odontológico Dr Bento",
+    "niche": "Clínica Odontológica",
+    "phone": "(11) 4186-1228",
+    "cleanPhone": "551141861228",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "",
+    "hasWebsite": false,
+    "mapsUrl": "https://www.google.com/maps/place/Centro+Odontol%C3%B3gico+Dr+Bento/data=!4m7!3m6!1s0x94cf0017d67d082b:0x5754fa03fdfc5d42!8m2!3d-23.5610021!4d-46.8370297!16s%2Fg%2F1ptxfzc2d!19sChIJKwh91hcAz5QRQl38_QP6VFc?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "3.4",
+    "reviews": 27,
+    "address": "Dentista ·  · Av. Inocêncio Seráfico, 4495",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Odontologia (Implantes & Particular) | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado"
+    },
+    "score": 10,
+    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:14.443Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370210-g5f76y",
+    "name": "AMARE - Clínica Veterinária 24 horas",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 3675-8961",
+    "cleanPhone": "551136758961",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://amarehospitalvet.com.br/clinica/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/AMARE+-+Cl%C3%ADnica+Veterin%C3%A1ria+24+horas/data=!4m7!3m6!1s0x94cef991eb19f11d:0xed955ed714a147f2!8m2!3d-23.5272118!4d-46.6932875!16s%2Fg%2F11j1ct6jl2!19sChIJHfEZ65H5zpQR8kehFNdele0?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.6",
+    "reviews": 279,
+    "address": "Veterinário ·  · R. Duílio, 492",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (279 avaliações ★4.6)"
+    },
+    "score": 10,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.210Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370209-gbhfnr",
+    "name": "Vetnasa Brigadeiro 24 horas - Clínica Veterinária 24h",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 2638-8834",
+    "cleanPhone": "551126388834",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://www.vetnasa.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Vetnasa+Brigadeiro+24+horas+-+Cl%C3%ADnica+Veterin%C3%A1ria+24h/data=!4m7!3m6!1s0x94ce593427d14213:0xe89968fe242e1522!8m2!3d-23.5768875!4d-46.6591862!16s%2Fg%2F11h81739yn!19sChIJE0LRJzRZzpQRIhUuJP5omeg?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.5",
+    "reviews": 771,
+    "address": "Veterinário ·  · Av. Brigadeiro Luís Antônio, 3724",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (771 avaliações ★4.5)"
+    },
+    "score": 10,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.209Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370209-bu8ryc",
+    "name": "Vet Domus | Centro Veterinário 24H",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 3034-0373",
+    "cleanPhone": "551130340373",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://vetdomus.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Vet+Domus+%7C+Centro+Veterin%C3%A1rio+24H/data=!4m7!3m6!1s0x94ce574d931ecdb9:0xae54acb4a6a675a4!8m2!3d-23.5535677!4d-46.6858069!16s%2Fg%2F11rfczyltc!19sChIJuc0ek01XzpQRpHWmprSsVK4?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.8",
+    "reviews": 448,
+    "address": "Veterinário ·  · R. Cipriano Juca, 61",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (448 avaliações ★4.8)"
+    },
+    "score": 10,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.209Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370209-mahlw8",
+    "name": "Cães e Gatos",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 4862-3333",
+    "cleanPhone": "551148623333",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://www.caesegatos24h.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/C%C3%A3es+e+Gatos/data=!4m7!3m6!1s0x94ce55b72377eeff:0xf1c4fc0857b0d958!8m2!3d-23.6228389!4d-46.7624308!16s%2Fg%2F11p6htx58f!19sChIJ_-53I7dVzpQRWNmwVwj8xPE?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.5",
+    "reviews": 658,
+    "address": "4,5(658)",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (658 avaliações ★4.5)"
+    },
+    "score": 10,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.209Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370209-tlxl93",
+    "name": "Hospital Veterinário 24h na Mooca SP - Vet Paulistano",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 2601-0006",
+    "cleanPhone": "551126010006",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://paulistanovet.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Hospital+Veterin%C3%A1rio+24h+na+Mooca+SP+-+Vet+Paulistano/data=!4m7!3m6!1s0x94ce5918a8229ee5:0x37f91b6eb6623364!8m2!3d-23.5649886!4d-46.596069!16s%2Fg%2F11s227xdzq!19sChIJ5Z4iqBhZzpQRZDNitm4b-Tc?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.7",
+    "reviews": 1225,
+    "address": "Hospital Veterinário ·  · Av. Paes de Barros, 1172",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (1225 avaliações ★4.7)"
+    },
+    "score": 10,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.209Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370208-0k8pxd",
+    "name": "Pet Care Hospital Veterinário - Unidade Morumbi",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 4673-0060",
+    "cleanPhone": "551146730060",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://www.petcare.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Pet+Care+Hospital+Veterin%C3%A1rio+-+Unidade+Morumbi/data=!4m7!3m6!1s0x94ce56c7950a9925:0x3591200b2709d096!8m2!3d-23.6079852!4d-46.7251913!16s%2Fg%2F1tyt6gpv!19sChIJJZkKlcdWzpQRltAJJwsgkTU?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.5",
+    "reviews": 1287,
+    "address": "Hospital Veterinário ·  · Av. Giovanni Gronchi, 3001",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (1287 avaliações ★4.5)"
+    },
+    "score": 10,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.208Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370208-nqldzi",
+    "name": "Wildvet Clínica Veterinária",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 3045-0045",
+    "cleanPhone": "551130450045",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://www.wildvet.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Wildvet+Cl%C3%ADnica+Veterin%C3%A1ria/data=!4m7!3m6!1s0x94ce5752b2cdbb87:0x3a5c62e8851575af!8m2!3d-23.6018858!4d-46.679477!16s%2Fg%2F11h0nx9xg!19sChIJh7vNslJXzpQRr3UVhehiXDo?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.7",
+    "reviews": 1027,
+    "address": "Veterinário ·  · R. Prof. Vahia de Abreu, 514",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (1027 avaliações ★4.7)"
+    },
+    "score": 10,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.208Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370206-yqqq56",
+    "name": "Vetnasa Granja Viana | Clínica Veterinária 24 horas",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 3164-6935",
+    "cleanPhone": "551131646935",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://vetnasa.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Vetnasa+Granja+Viana+%7C+Cl%C3%ADnica+Veterin%C3%A1ria+24+horas/data=!4m7!3m6!1s0x94cfabef857761a7:0x596c847878eb44fd!8m2!3d-23.5919631!4d-46.8349495!16s%2Fg%2F11fd60glqw!19sChIJp2F3he-rz5QR_UTreHiEbFk?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.5",
+    "reviews": 831,
+    "address": "Veterinário ·  · R. Ushima Kira, 20",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (831 avaliações ★4.5)"
+    },
+    "score": 10,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.206Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370206-bzxuj7",
+    "name": "Hospital Veterinário São Paulo",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 2533-0000",
+    "cleanPhone": "551125330000",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://hovetsp.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Hospital+Veterin%C3%A1rio+S%C3%A3o+Paulo/data=!4m7!3m6!1s0x94ce61604ed2db7d:0xdaa8fef53dcb33df!8m2!3d-23.4981209!4d-46.4407654!16s%2Fg%2F1tknll0_!19sChIJfdvSTmBhzpQR3zPLPfX-qNo?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.5",
+    "reviews": 2543,
+    "address": "Hospital Veterinário ·  · Av. Nordestina, 581",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (2543 avaliações ★4.5)"
+    },
+    "score": 10,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.206Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923362290-qihuig",
+    "name": "M. Mourão Advocacia",
+    "niche": "Escritório de Advocacia",
+    "phone": "(11) 5253-2088",
+    "cleanPhone": "551152532088",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "/aclk?sa=L&ai=DChsSEwjb6uXa6reXAxUNTUgAHaBcHXEYACICCAEQExoCY2U&co=1&ase=2&gclid=EAIaIQobChMI2-rl2uq3lwMVDU1IAB2gXB1xEBAYASAAEgI6NPD_BwE&cid=CAASuwHkaK6EHsEp6PS28RsZ_4hSDriWQ_8DK4gJwAz1MzJSpTdy2v-fwY2WFhcyqRCqd8WWDgl0R651NfTYP0RYlyJiat9xLChlrxk7rg6NBxPOScmaWQecOmgXNq1lDu9zlPcXb1sS_R9XY9M2acYdd-UGqnXW0WesKhopD8J__Zc7ed3ijyrhhHEgemLxkBhvRBaOtG8KVqOMH66yKWCxGf0_9XXBOH2iUYXirpvQkQawxPqPXpMWwfhW-TH1&cce=2&category=acrcp_v1_32&sig=AOD64_2SdGInOtpQ2HMreb4VE-Pq26QdyQ&adurl&q&ctype=99&nis=5",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/M.+Mour%C3%A3o+Advocacia/data=!4m7!3m6!1s0x94ce59a9d9d9d163:0xdfc69cc4e98f761c!8m2!3d-23.560896!4d-46.65624!16s%2Fg%2F11z8svp9g8!19sChIJY9HZ2alZzpQRHHaP6cScxt8?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "5.0",
+    "reviews": 53,
+    "address": "Escritório de advocacia · 1636 Avenida Paulista",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Advocacia (Alto Ticket / Honorários) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (53 avaliações ★5)"
+    },
+    "score": 10,
+    "notes": "Captação ativa de clientes qualificados no Google Search para ações de alto valor",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:22.290Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923362290-blost5",
+    "name": "Salem Advogados",
+    "niche": "Escritório de Advocacia",
+    "phone": "(11) 5194-2974",
+    "cleanPhone": "551151942974",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://salemadvogados.com/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Salem+Advogados/data=!4m7!3m6!1s0x94ce59c7c3806249:0x5aaf6ffac326220d!8m2!3d-23.4979843!4d-46.8462495!16s%2Fg%2F11bx1sf8nx!19sChIJSWKAw8dZzpQRDSImw_pvr1o?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.9",
+    "reviews": 706,
+    "address": "4,9(706)",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Advocacia (Alto Ticket / Honorários) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (706 avaliações ★4.9)"
+    },
+    "score": 10,
+    "notes": "Captação ativa de clientes qualificados no Google Search para ações de alto valor",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:22.290Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923362290-an1gxe",
+    "name": "PSP Advogados Associados - Alphaville - São Paulo",
+    "niche": "Escritório de Advocacia",
+    "phone": "(54) 3215-3469",
+    "cleanPhone": "555432153469",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://pspadvogados.com/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/PSP+Advogados+Associados+-+Alphaville+-+S%C3%A3o+Paulo/data=!4m7!3m6!1s0x94cf03d029ed44e3:0xef87c71ef9699eff!8m2!3d-23.5039548!4d-46.8482056!16s%2Fg%2F11x7rzmk0x!19sChIJ40TtKdADz5QR_55p-R7Hh-8?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.9",
+    "reviews": 111,
+    "address": "Escritório de advocacia ·  · West Point - Al. Rio Negro, 161 - Sl 1701",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Advocacia (Alto Ticket / Honorários) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (111 avaliações ★4.9)"
+    },
+    "score": 10,
+    "notes": "Captação ativa de clientes qualificados no Google Search para ações de alto valor",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:22.290Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923354447-ck8tad",
+    "name": "Boutique Dental Implantes Rebouças",
+    "niche": "Clínica Odontológica",
+    "phone": "(11) 2361-5400",
+    "cleanPhone": "551123615400",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://www.boudi.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Boutique+Dental+Implantes+Rebou%C3%A7as/data=!4m7!3m6!1s0x94ce57753cd02ac7:0x2a36995344ac9d43!8m2!3d-23.5681968!4d-46.6847565!16s%2Fg%2F11qb68b3z5!19sChIJxyrQPHVXzpQRQ52sRFOZNio?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.8",
+    "reviews": 324,
+    "address": "Clínica odontológica ·  · Av. Rebouças, 2603",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Odontologia (Implantes & Particular) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (324 avaliações ★4.8)"
+    },
+    "score": 10,
+    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:14.447Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923354444-c48u0v",
+    "name": "Dra. Vania Bueno Cirurgiã Dentista e ortodontista",
+    "niche": "Clínica Odontológica",
+    "phone": "(11) 4146-3956",
+    "cleanPhone": "551141463956",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://www.instagram.com/odontologiadravania/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Dra.+Vania+Bueno+Cirurgi%C3%A3+Dentista+e+ortodontista/data=!4m7!3m6!1s0x94cf0105f89a58f9:0xb69860c5f0092e07!8m2!3d-23.5610052!4d-46.8374619!16s%2Fg%2F11h3lfxg7c!19sChIJ-Via-AUBz5QRBy4J8MVgmLY?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "5.0",
+    "reviews": 227,
+    "address": "Dentista · Av. Inocêncio Seráfico, 4800",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Odontologia (Implantes & Particular) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (227 avaliações ★5)"
+    },
+    "score": 10,
+    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:14.444Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923354444-zuxn0d",
+    "name": "ImplArt Odontologia",
+    "niche": "Clínica Odontológica",
+    "phone": "(11) 3262-4750",
+    "cleanPhone": "551132624750",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://www.implart.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/ImplArt+Odontologia/data=!4m7!3m6!1s0x94ce59bc94fedbf5:0xa1a01d0c301be2ea!8m2!3d-23.5702156!4d-46.6441984!16s%2Fg%2F1tm1rl5t!19sChIJ9dv-lLxZzpQR6uIbMAwdoKE?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.7",
+    "reviews": 288,
+    "address": "Clínica odontológica ·  · R. Cincinato Braga, 37 - cj 112",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Odontologia (Implantes & Particular) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (288 avaliações ★4.7)"
+    },
+    "score": 10,
+    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:14.444Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923354443-84iu80",
+    "name": "Conquistando Sorrisos",
+    "niche": "Clínica Odontológica",
+    "phone": "(11) 4167-7341",
+    "cleanPhone": "551141677341",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://www.conquistandosorrisos.com/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Conquistando+Sorrisos/data=!4m7!3m6!1s0x94cf003d81f3639b:0x9589fefcf1cd7323!8m2!3d-23.5606463!4d-46.8374604!16s%2Fg%2F11bc7r2yrq!19sChIJm2PzgT0Az5QRI3PN8fz-iZU?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.6",
+    "reviews": 406,
+    "address": "Clínica odontológica ·  · Av. Inocêncio Seráfico, 4365",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Odontologia (Implantes & Particular) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (406 avaliações ★4.6)"
+    },
+    "score": 10,
+    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:14.443Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923354442-cx5xt4",
+    "name": "UAI Henriqueta",
+    "niche": "Clínica Odontológica",
+    "phone": "(11) 4198-4210",
+    "cleanPhone": "551141984210",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "/aclk?sa=L&ai=DChsSEwiE5NHT6reXAxU4SEgAHbrBJgkYACICCAEQAhoCY2U&co=1&ase=2&gclid=EAIaIQobChMIhOTR0-q3lwMVOEhIAB26wSYJEBAYASAAEgIj9fD_BwE&cid=CAASuwHkaMN9sk1YFssiBBSP8U24YTclMkegYbtNecC7HxM9xb5LfsDJamyK-3cgik732Rkp5-CEqRwmLCl2OkQx7E1ne7x1MgPNRc-FzOxhRVxmhQYyYx0H838ORZ0cZd-tB6W_kKsMtJ7C_PikZAp1Z-3J0VPUg7U2-yAcm4VDfPzlyqDtGe0I19LUZyfRohZqZ_mdQMDjG62dDdpLiqME3hljzVU99XPpbSVGYyxzbo4Sb6cKDnxPnqz61OIL&cce=2&category=acrcp_v1_32&sig=AOD64_2P5RctK9P4sISh6ZaJJHeffG3V8w&adurl&q&ctype=99&nis=5",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/UAI+Henriqueta/data=!4m7!3m6!1s0x94cf03da34fcd56b:0xabc71879ee47e8!8m2!3d-23.511028!4d-46.876051!16s%2Fg%2F11f2skfv4t!19sChIJa9X8NNoDz5QR6EfueRjHqwA?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.5",
+    "reviews": 163,
+    "address": "Clínica odontológica · 106 Avenida Henriqueta Mendes Guerra",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Odontologia (Implantes & Particular) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (163 avaliações ★4.5)"
+    },
+    "score": 10,
+    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:14.442Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1790820665678-rdoprt",
+    "name": "Animal Life | Hospital Veterinário no Morumbi - SP | Veterinários 24 Horas",
+    "niche": "clinica veterinaria",
+    "phone": "(11) 3774-0203",
+    "cleanPhone": "551137740203",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://animalife.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Animal+Life+%7C+Hospital+Veterin%C3%A1rio+no+Morumbi+-+SP+%7C+Veterin%C3%A1rios+24+Horas/data=!4m7!3m6!1s0x94ce5143721fdd67:0x7f73bed3de18b559!8m2!3d-23.6367594!4d-46.7363842!16s%2Fg%2F11cjh_7k61!19sChIJZ90fckNRzpQRWbUY3tO-c38?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkyOC4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.8",
+    "reviews": 524,
+    "address": "Hospital Veterinário ·  · R. Clarindo, 27",
+    "neighborhood": "Santo Amaro SP",
+    "city": "São Paulo",
+    "notes": "Já possui site. Oportunidade em Tráfego Pago / Anúncios.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-01T02:11:05.678Z",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (524 avaliações ★4.8)"
+    },
+    "score": 10,
+    "conversationScript": {
+      "hasCustomerReplied": false,
+      "conversationSummary": "Lead qualificado pronto para abordagem inicial. Identificado potencial imediato de captação local em Santo Amaro SP através da assessoria de tráfego pago e posicionamento digital da Pinas Studio.",
+      "interlocutor": {
+        "name": "Responsável / Decisor",
+        "role": "Não identificado",
+        "tone": "Neutro / Aguardando",
+        "decisionPower": "Alto (Decisor Final)"
+      },
+      "painsAndNeeds": [
+        "Falta de previsibilidade de novos tutores no raio de 3km a 5km de Santo Amaro SP",
+        "Dependência excessiva de indicação boca a boca ou de buscas passivas no Google Maps",
+        "Atendimentos ou procedimentos de maior valor que acabam indo parar em clínicas concorrentes da região"
+      ],
+      "objectionsAndAnswers": [
+        {
+          "objection": "Já fazemos postagens no Instagram todos os dias.",
+          "howToCounter": "Post orgânico fala com quem já é cliente. O que a Pinas faz com o tráfego é colocar a clínica na frente do tutor que precisa de atendimento urgente agora no seu bairro."
+        },
+        {
+          "objection": "Não sei se temos orçamento para marketing agora.",
+          "howToCounter": "O projeto se paga trazendo 2 a 3 novos atendimentos ou cirurgias no mês. Se a conta não fechar com lucro no seu bolso, a gente nem começa."
+        }
+      ],
+      "agreedNextSteps": "Aguardando retorno da mensagem de abordagem no WhatsApp",
+      "callScript": {
+        "title": "Roteiro da Call de Fechamento Baseado no WhatsApp",
+        "openingHook": "Opa, tudo bem? Vi que você recebeu a nossa análise sobre a presença digital da Animal Life | Hospital Veterinário no Morumbi - SP | Veterinários 24 Horas em Santo Amaro SP e queria bater um papo rápido de 15 minutos sem enrolação.",
+        "steps": [
+          {
+            "time": "00:00 - 03:00",
+            "title": "Abertura & Conexão pelo WhatsApp",
+            "objective": "Reconectar de forma humana e direta citando a conversa do chat",
+            "script": "Fala, tudo bem? Poxa, obrigado pelo tempo. Vi aqui o perfil da Animal Life | Hospital Veterinário no Morumbi - SP | Veterinários 24 Horas e achei muito forte a nota no Google. Queria entender rapidamente como está a entrada de novos clientes vindo pela internet hoje aí em Santo Amaro SP.",
+            "tip": "Mantenha tom calmo, profissional e escuta ativa. Nada de afobação."
+          },
+          {
+            "time": "03:00 - 07:00",
+            "title": "Diagnóstico & Aprofundamento nas Dores",
+            "objective": "Fazer o cliente verbalizar o gargalo atual de faturamento",
+            "questions": [
+              {
+                "question": "Hoje, a maior parte dos clientes novos chega por indicação ou por busca ativa no Google e redes?",
+                "why": "Mapear a dependência de canais orgânicos passivos."
+              },
+              {
+                "question": "Quando um cliente chega no seu WhatsApp, você sente que a conversão em fechamento é rápida ou muitos somem?",
+                "why": "Identificar gargalo comercial no atendimento."
+              }
+            ]
+          },
+          {
+            "time": "07:00 - 11:00",
+            "title": "Apresentação da Solução Pinas Sob Medida",
+            "objective": "Mostrar na tela compartilhada como resolver o gargalo",
+            "keyPoints": [
+              "Anúncios hiperlocais no raio de Santo Amaro SP para captar quem tem intenção de compra agora",
+              "Landing page ultra-rápida direcionando cliques direto para o seu WhatsApp",
+              "Script de atendimento comercial para não deixar leads esfriarem"
+            ]
+          },
+          {
+            "time": "11:00 - 15:00",
+            "title": "Proposta & Fechamento Comercial",
+            "objective": "Combinar os próximos passos práticos de início",
+            "script": "O que eu proponho é a gente começar um piloto estruturado de 30 dias. A gente coloca as campanhas no ar e valida o fluxo de novos clientes entrando no seu WhatsApp.",
+            "callToAction": "Podemos dar o pontapé inicial na segunda-feira?"
+          }
+        ],
+        "goldenClosingPhrase": "Faz sentido a gente começar a captar esses tutores que estão buscando atendimento agora em Santo Amaro SP e que hoje estão indo para a clínica concorrente?"
+      }
+    },
+    "conversationScriptGeneratedAt": "2026-10-09T16:05:59.525Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1790820665678-zxusjo",
+    "name": "Patas e Bigodes - Pet Shop & Clínica Veterinária | Veterinário | Banho e Tosa",
+    "niche": "clinica veterinaria",
+    "phone": "(11) 2533-4796",
+    "cleanPhone": "551125334796",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://patasebigodes.com.br/?utm_source=google-my-business&utm_medium=search",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Patas+e+Bigodes+-+Pet+Shop+%26+Cl%C3%ADnica+Veterin%C3%A1ria+%7C+Veterin%C3%A1rio+%7C+Banho+e+Tosa/data=!4m7!3m6!1s0x94ce50ff2a8a6123:0xfeec3d9bdd62ecdb!8m2!3d-23.6528432!4d-46.6973925!16s%2Fg%2F113f3tmrh!19sChIJI2GKKv9QzpQR2-xi3Zs97P4?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkyOC4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.7",
+    "reviews": 313,
+    "address": "Pet Shop · Rua Darwin, 561",
+    "neighborhood": "Santo Amaro SP",
+    "city": "São Paulo",
+    "notes": "Já possui site. Oportunidade em Tráfego Pago / Anúncios.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-01T02:11:05.678Z",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (313 avaliações ★4.7)"
+    },
+    "score": 10,
+    "conversationScript": {
+      "hasCustomerReplied": false,
+      "conversationSummary": "Lead qualificado pronto para abordagem inicial. Identificado potencial imediato de captação local em Santo Amaro SP através da assessoria de tráfego pago e posicionamento digital da Pinas Studio.",
+      "interlocutor": {
+        "name": "Responsável / Decisor",
+        "role": "Não identificado",
+        "tone": "Neutro / Aguardando",
+        "decisionPower": "Alto (Decisor Final)"
+      },
+      "painsAndNeeds": [
+        "Falta de previsibilidade de novos tutores no raio de 3km a 5km de Santo Amaro SP",
+        "Dependência excessiva de indicação boca a boca ou de buscas passivas no Google Maps",
+        "Atendimentos ou procedimentos de maior valor que acabam indo parar em clínicas concorrentes da região"
+      ],
+      "objectionsAndAnswers": [
+        {
+          "objection": "Já fazemos postagens no Instagram todos os dias.",
+          "howToCounter": "Post orgânico fala com quem já é cliente. O que a Pinas faz com o tráfego é colocar a clínica na frente do tutor que precisa de atendimento urgente agora no seu bairro."
+        },
+        {
+          "objection": "Não sei se temos orçamento para marketing agora.",
+          "howToCounter": "O projeto se paga trazendo 2 a 3 novos atendimentos ou cirurgias no mês. Se a conta não fechar com lucro no seu bolso, a gente nem começa."
+        }
+      ],
+      "agreedNextSteps": "Aguardando retorno da mensagem de abordagem no WhatsApp",
+      "callScript": {
+        "title": "Roteiro da Call de Fechamento Baseado no WhatsApp",
+        "openingHook": "Opa, tudo bem? Vi que você recebeu a nossa análise sobre a presença digital da Patas e Bigodes - Pet Shop & Clínica Veterinária | Veterinário | Banho e Tosa em Santo Amaro SP e queria bater um papo rápido de 15 minutos sem enrolação.",
+        "steps": [
+          {
+            "time": "00:00 - 03:00",
+            "title": "Abertura & Conexão pelo WhatsApp",
+            "objective": "Reconectar de forma humana e direta citando a conversa do chat",
+            "script": "Fala, tudo bem? Poxa, obrigado pelo tempo. Vi aqui o perfil da Patas e Bigodes - Pet Shop & Clínica Veterinária | Veterinário | Banho e Tosa e achei muito forte a nota no Google. Queria entender rapidamente como está a entrada de novos clientes vindo pela internet hoje aí em Santo Amaro SP.",
+            "tip": "Mantenha tom calmo, profissional e escuta ativa. Nada de afobação."
+          },
+          {
+            "time": "03:00 - 07:00",
+            "title": "Diagnóstico & Aprofundamento nas Dores",
+            "objective": "Fazer o cliente verbalizar o gargalo atual de faturamento",
+            "questions": [
+              {
+                "question": "Hoje, a maior parte dos clientes novos chega por indicação ou por busca ativa no Google e redes?",
+                "why": "Mapear a dependência de canais orgânicos passivos."
+              },
+              {
+                "question": "Quando um cliente chega no seu WhatsApp, você sente que a conversão em fechamento é rápida ou muitos somem?",
+                "why": "Identificar gargalo comercial no atendimento."
+              }
+            ]
+          },
+          {
+            "time": "07:00 - 11:00",
+            "title": "Apresentação da Solução Pinas Sob Medida",
+            "objective": "Mostrar na tela compartilhada como resolver o gargalo",
+            "keyPoints": [
+              "Anúncios hiperlocais no raio de Santo Amaro SP para captar quem tem intenção de compra agora",
+              "Landing page ultra-rápida direcionando cliques direto para o seu WhatsApp",
+              "Script de atendimento comercial para não deixar leads esfriarem"
+            ]
+          },
+          {
+            "time": "11:00 - 15:00",
+            "title": "Proposta & Fechamento Comercial",
+            "objective": "Combinar os próximos passos práticos de início",
+            "script": "O que eu proponho é a gente começar um piloto estruturado de 30 dias. A gente coloca as campanhas no ar e valida o fluxo de novos clientes entrando no seu WhatsApp.",
+            "callToAction": "Podemos dar o pontapé inicial na segunda-feira?"
+          }
+        ],
+        "goldenClosingPhrase": "Faz sentido a gente começar a captar esses tutores que estão buscando atendimento agora em Santo Amaro SP e que hoje estão indo para a clínica concorrente?"
+      }
+    },
+    "conversationScriptGeneratedAt": "2026-10-09T16:05:59.525Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1790820665678-gbyspc",
+    "name": "Centro Veterinário Seres Alto da Boa Vista",
+    "niche": "clinica veterinaria",
+    "phone": "(11) 2181-7330",
+    "cleanPhone": "551121817330",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://www.seres.vet/unidades/detalhes/petz-alto-da-boa-vista",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Centro+Veterin%C3%A1rio+Seres+Alto+da+Boa+Vista/data=!4m7!3m6!1s0x94ce51c04d5fa205:0x3d536cda278d0d29!8m2!3d-23.6400769!4d-46.696909!16s%2Fg%2F11j6n2p2xg!19sChIJBaJfTcBRzpQRKQ2NJ9psUz0?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkyOC4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.6",
+    "reviews": 40,
+    "address": "Hospital Veterinário ·  · Av. Adolfo Pinheiro, 1600",
+    "neighborhood": "Santo Amaro SP",
+    "city": "São Paulo",
+    "notes": "Já possui site. Oportunidade em Tráfego Pago / Anúncios.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-01T02:11:05.678Z",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (40 avaliações ★4.6)"
+    },
+    "score": 10,
+    "conversationScript": {
+      "hasCustomerReplied": false,
+      "conversationSummary": "Lead qualificado pronto para abordagem inicial. Identificado potencial imediato de captação local em Santo Amaro SP através da assessoria de tráfego pago e posicionamento digital da Pinas Studio.",
+      "interlocutor": {
+        "name": "Responsável / Decisor",
+        "role": "Não identificado",
+        "tone": "Neutro / Aguardando",
+        "decisionPower": "Alto (Decisor Final)"
+      },
+      "painsAndNeeds": [
+        "Falta de previsibilidade de novos tutores no raio de 3km a 5km de Santo Amaro SP",
+        "Dependência excessiva de indicação boca a boca ou de buscas passivas no Google Maps",
+        "Atendimentos ou procedimentos de maior valor que acabam indo parar em clínicas concorrentes da região"
+      ],
+      "objectionsAndAnswers": [
+        {
+          "objection": "Já fazemos postagens no Instagram todos os dias.",
+          "howToCounter": "Post orgânico fala com quem já é cliente. O que a Pinas faz com o tráfego é colocar a clínica na frente do tutor que precisa de atendimento urgente agora no seu bairro."
+        },
+        {
+          "objection": "Não sei se temos orçamento para marketing agora.",
+          "howToCounter": "O projeto se paga trazendo 2 a 3 novos atendimentos ou cirurgias no mês. Se a conta não fechar com lucro no seu bolso, a gente nem começa."
+        }
+      ],
+      "agreedNextSteps": "Aguardando retorno da mensagem de abordagem no WhatsApp",
+      "callScript": {
+        "title": "Roteiro da Call de Fechamento Baseado no WhatsApp",
+        "openingHook": "Opa, tudo bem? Vi que você recebeu a nossa análise sobre a presença digital da Centro Veterinário Seres Alto da Boa Vista em Santo Amaro SP e queria bater um papo rápido de 15 minutos sem enrolação.",
+        "steps": [
+          {
+            "time": "00:00 - 03:00",
+            "title": "Abertura & Conexão pelo WhatsApp",
+            "objective": "Reconectar de forma humana e direta citando a conversa do chat",
+            "script": "Fala, tudo bem? Poxa, obrigado pelo tempo. Vi aqui o perfil da Centro Veterinário Seres Alto da Boa Vista e achei muito forte a nota no Google. Queria entender rapidamente como está a entrada de novos clientes vindo pela internet hoje aí em Santo Amaro SP.",
+            "tip": "Mantenha tom calmo, profissional e escuta ativa. Nada de afobação."
+          },
+          {
+            "time": "03:00 - 07:00",
+            "title": "Diagnóstico & Aprofundamento nas Dores",
+            "objective": "Fazer o cliente verbalizar o gargalo atual de faturamento",
+            "questions": [
+              {
+                "question": "Hoje, a maior parte dos clientes novos chega por indicação ou por busca ativa no Google e redes?",
+                "why": "Mapear a dependência de canais orgânicos passivos."
+              },
+              {
+                "question": "Quando um cliente chega no seu WhatsApp, você sente que a conversão em fechamento é rápida ou muitos somem?",
+                "why": "Identificar gargalo comercial no atendimento."
+              }
+            ]
+          },
+          {
+            "time": "07:00 - 11:00",
+            "title": "Apresentação da Solução Pinas Sob Medida",
+            "objective": "Mostrar na tela compartilhada como resolver o gargalo",
+            "keyPoints": [
+              "Anúncios hiperlocais no raio de Santo Amaro SP para captar quem tem intenção de compra agora",
+              "Landing page ultra-rápida direcionando cliques direto para o seu WhatsApp",
+              "Script de atendimento comercial para não deixar leads esfriarem"
+            ]
+          },
+          {
+            "time": "11:00 - 15:00",
+            "title": "Proposta & Fechamento Comercial",
+            "objective": "Combinar os próximos passos práticos de início",
+            "script": "O que eu proponho é a gente começar um piloto estruturado de 30 dias. A gente coloca as campanhas no ar e valida o fluxo de novos clientes entrando no seu WhatsApp.",
+            "callToAction": "Podemos dar o pontapé inicial na segunda-feira?"
+          }
+        ],
+        "goldenClosingPhrase": "Faz sentido a gente começar a captar esses tutores que estão buscando atendimento agora em Santo Amaro SP e que hoje estão indo para a clínica concorrente?"
+      }
+    },
+    "conversationScriptGeneratedAt": "2026-10-09T16:05:59.525Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1790820665677-jl2qem",
+    "name": "Emiliano Centro Veterinário",
+    "niche": "clinica veterinaria",
+    "phone": "(11) 5181-7073",
+    "cleanPhone": "551151817073",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://wa.me/5511948005207",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Emiliano+Centro+Veterin%C3%A1rio/data=!4m7!3m6!1s0x94ce5144b9b5a70f:0x879c9aa12ff85e26!8m2!3d-23.6303224!4d-46.6960731!16s%2Fg%2F11t79r_bd0!19sChIJD6e1uURRzpQRJl74L6GanIc?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkyOC4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.9",
+    "reviews": 72,
+    "address": "Veterinário · R. Thomás Deloney, 240",
+    "neighborhood": "Santo Amaro SP",
+    "city": "São Paulo",
+    "notes": "Já possui site. Oportunidade em Tráfego Pago / Anúncios.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-01T02:11:05.677Z",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (72 avaliações ★4.9)"
+    },
+    "score": 10,
+    "conversationScript": {
+      "hasCustomerReplied": false,
+      "conversationSummary": "Lead qualificado pronto para abordagem inicial. Identificado potencial imediato de captação local em Santo Amaro SP através da assessoria de tráfego pago e posicionamento digital da Pinas Studio.",
+      "interlocutor": {
+        "name": "Responsável / Decisor",
+        "role": "Não identificado",
+        "tone": "Neutro / Aguardando",
+        "decisionPower": "Alto (Decisor Final)"
+      },
+      "painsAndNeeds": [
+        "Falta de previsibilidade de novos tutores no raio de 3km a 5km de Santo Amaro SP",
+        "Dependência excessiva de indicação boca a boca ou de buscas passivas no Google Maps",
+        "Atendimentos ou procedimentos de maior valor que acabam indo parar em clínicas concorrentes da região"
+      ],
+      "objectionsAndAnswers": [
+        {
+          "objection": "Já fazemos postagens no Instagram todos os dias.",
+          "howToCounter": "Post orgânico fala com quem já é cliente. O que a Pinas faz com o tráfego é colocar a clínica na frente do tutor que precisa de atendimento urgente agora no seu bairro."
+        },
+        {
+          "objection": "Não sei se temos orçamento para marketing agora.",
+          "howToCounter": "O projeto se paga trazendo 2 a 3 novos atendimentos ou cirurgias no mês. Se a conta não fechar com lucro no seu bolso, a gente nem começa."
+        }
+      ],
+      "agreedNextSteps": "Aguardando retorno da mensagem de abordagem no WhatsApp",
+      "callScript": {
+        "title": "Roteiro da Call de Fechamento Baseado no WhatsApp",
+        "openingHook": "Opa, tudo bem? Vi que você recebeu a nossa análise sobre a presença digital da Emiliano Centro Veterinário em Santo Amaro SP e queria bater um papo rápido de 15 minutos sem enrolação.",
+        "steps": [
+          {
+            "time": "00:00 - 03:00",
+            "title": "Abertura & Conexão pelo WhatsApp",
+            "objective": "Reconectar de forma humana e direta citando a conversa do chat",
+            "script": "Fala, tudo bem? Poxa, obrigado pelo tempo. Vi aqui o perfil da Emiliano Centro Veterinário e achei muito forte a nota no Google. Queria entender rapidamente como está a entrada de novos clientes vindo pela internet hoje aí em Santo Amaro SP.",
+            "tip": "Mantenha tom calmo, profissional e escuta ativa. Nada de afobação."
+          },
+          {
+            "time": "03:00 - 07:00",
+            "title": "Diagnóstico & Aprofundamento nas Dores",
+            "objective": "Fazer o cliente verbalizar o gargalo atual de faturamento",
+            "questions": [
+              {
+                "question": "Hoje, a maior parte dos clientes novos chega por indicação ou por busca ativa no Google e redes?",
+                "why": "Mapear a dependência de canais orgânicos passivos."
+              },
+              {
+                "question": "Quando um cliente chega no seu WhatsApp, você sente que a conversão em fechamento é rápida ou muitos somem?",
+                "why": "Identificar gargalo comercial no atendimento."
+              }
+            ]
+          },
+          {
+            "time": "07:00 - 11:00",
+            "title": "Apresentação da Solução Pinas Sob Medida",
+            "objective": "Mostrar na tela compartilhada como resolver o gargalo",
+            "keyPoints": [
+              "Anúncios hiperlocais no raio de Santo Amaro SP para captar quem tem intenção de compra agora",
+              "Landing page ultra-rápida direcionando cliques direto para o seu WhatsApp",
+              "Script de atendimento comercial para não deixar leads esfriarem"
+            ]
+          },
+          {
+            "time": "11:00 - 15:00",
+            "title": "Proposta & Fechamento Comercial",
+            "objective": "Combinar os próximos passos práticos de início",
+            "script": "O que eu proponho é a gente começar um piloto estruturado de 30 dias. A gente coloca as campanhas no ar e valida o fluxo de novos clientes entrando no seu WhatsApp.",
+            "callToAction": "Podemos dar o pontapé inicial na segunda-feira?"
+          }
+        ],
+        "goldenClosingPhrase": "Faz sentido a gente começar a captar esses tutores que estão buscando atendimento agora em Santo Amaro SP e que hoje estão indo para a clínica concorrente?"
+      }
+    },
+    "conversationScriptGeneratedAt": "2026-10-09T16:05:59.526Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1790820665677-fdhh5o",
+    "name": "Núcleo Diagnóstico Veterinário",
+    "niche": "clinica veterinaria",
+    "phone": "(11) 5186-2222",
+    "cleanPhone": "551151862222",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://www.nucleoveterinario.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/N%C3%BAcleo+Diagn%C3%B3stico+Veterin%C3%A1rio/data=!4m7!3m6!1s0x94ce50ecdfada68b:0x6d6146e7d9a56d69!8m2!3d-23.630695!4d-46.693305!16s%2Fg%2F1ydnqff0d!19sChIJi6at3-xQzpQRaW2l2edGYW0?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkyOC4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.7",
+    "reviews": 1738,
+    "address": "Laboratório ·  · R. São Sebastião, 601",
+    "neighborhood": "Santo Amaro SP",
+    "city": "São Paulo",
+    "notes": "Já possui site. Oportunidade em Tráfego Pago / Anúncios.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-01T02:11:05.677Z",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (1738 avaliações ★4.7)"
+    },
+    "score": 10,
+    "conversationScript": {
+      "hasCustomerReplied": false,
+      "conversationSummary": "Lead qualificado pronto para abordagem inicial. Identificado potencial imediato de captação local em Santo Amaro SP através da assessoria de tráfego pago e posicionamento digital da Pinas Studio.",
+      "interlocutor": {
+        "name": "Responsável / Decisor",
+        "role": "Não identificado",
+        "tone": "Neutro / Aguardando",
+        "decisionPower": "Alto (Decisor Final)"
+      },
+      "painsAndNeeds": [
+        "Falta de previsibilidade de novos tutores no raio de 3km a 5km de Santo Amaro SP",
+        "Dependência excessiva de indicação boca a boca ou de buscas passivas no Google Maps",
+        "Atendimentos ou procedimentos de maior valor que acabam indo parar em clínicas concorrentes da região"
+      ],
+      "objectionsAndAnswers": [
+        {
+          "objection": "Já fazemos postagens no Instagram todos os dias.",
+          "howToCounter": "Post orgânico fala com quem já é cliente. O que a Pinas faz com o tráfego é colocar a clínica na frente do tutor que precisa de atendimento urgente agora no seu bairro."
+        },
+        {
+          "objection": "Não sei se temos orçamento para marketing agora.",
+          "howToCounter": "O projeto se paga trazendo 2 a 3 novos atendimentos ou cirurgias no mês. Se a conta não fechar com lucro no seu bolso, a gente nem começa."
+        }
+      ],
+      "agreedNextSteps": "Aguardando retorno da mensagem de abordagem no WhatsApp",
+      "callScript": {
+        "title": "Roteiro da Call de Fechamento Baseado no WhatsApp",
+        "openingHook": "Opa, tudo bem? Vi que você recebeu a nossa análise sobre a presença digital da Núcleo Diagnóstico Veterinário em Santo Amaro SP e queria bater um papo rápido de 15 minutos sem enrolação.",
+        "steps": [
+          {
+            "time": "00:00 - 03:00",
+            "title": "Abertura & Conexão pelo WhatsApp",
+            "objective": "Reconectar de forma humana e direta citando a conversa do chat",
+            "script": "Fala, tudo bem? Poxa, obrigado pelo tempo. Vi aqui o perfil da Núcleo Diagnóstico Veterinário e achei muito forte a nota no Google. Queria entender rapidamente como está a entrada de novos clientes vindo pela internet hoje aí em Santo Amaro SP.",
+            "tip": "Mantenha tom calmo, profissional e escuta ativa. Nada de afobação."
+          },
+          {
+            "time": "03:00 - 07:00",
+            "title": "Diagnóstico & Aprofundamento nas Dores",
+            "objective": "Fazer o cliente verbalizar o gargalo atual de faturamento",
+            "questions": [
+              {
+                "question": "Hoje, a maior parte dos clientes novos chega por indicação ou por busca ativa no Google e redes?",
+                "why": "Mapear a dependência de canais orgânicos passivos."
+              },
+              {
+                "question": "Quando um cliente chega no seu WhatsApp, você sente que a conversão em fechamento é rápida ou muitos somem?",
+                "why": "Identificar gargalo comercial no atendimento."
+              }
+            ]
+          },
+          {
+            "time": "07:00 - 11:00",
+            "title": "Apresentação da Solução Pinas Sob Medida",
+            "objective": "Mostrar na tela compartilhada como resolver o gargalo",
+            "keyPoints": [
+              "Anúncios hiperlocais no raio de Santo Amaro SP para captar quem tem intenção de compra agora",
+              "Landing page ultra-rápida direcionando cliques direto para o seu WhatsApp",
+              "Script de atendimento comercial para não deixar leads esfriarem"
+            ]
+          },
+          {
+            "time": "11:00 - 15:00",
+            "title": "Proposta & Fechamento Comercial",
+            "objective": "Combinar os próximos passos práticos de início",
+            "script": "O que eu proponho é a gente começar um piloto estruturado de 30 dias. A gente coloca as campanhas no ar e valida o fluxo de novos clientes entrando no seu WhatsApp.",
+            "callToAction": "Podemos dar o pontapé inicial na segunda-feira?"
+          }
+        ],
+        "goldenClosingPhrase": "Faz sentido a gente começar a captar esses tutores que estão buscando atendimento agora em Santo Amaro SP e que hoje estão indo para a clínica concorrente?"
+      }
+    },
+    "conversationScriptGeneratedAt": "2026-10-09T16:05:59.526Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1790820665677-9lc1lo",
+    "name": "WeVets | Hospital Veterinário 24h | Unidade Washington Luís",
+    "niche": "clinica veterinaria",
+    "phone": "(11) 5043-3756",
+    "cleanPhone": "551150433756",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://wevets.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/WeVets+%7C+Hospital+Veterin%C3%A1rio+24h+%7C+Unidade+Washington+Lu%C3%ADs/data=!4m7!3m6!1s0x94ce51d54ad663e5:0xc894d0f0cf407ffd!8m2!3d-23.6526695!4d-46.6813136!16s%2Fg%2F11w8hf0gcs!19sChIJ5WPWStVRzpQR_X9Az_DQlMg?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkyOC4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.8",
+    "reviews": 397,
+    "address": "Hospital Veterinário ·  · Av. Washington Luís, 3054",
+    "neighborhood": "Santo Amaro SP",
+    "city": "São Paulo",
+    "notes": "Já possui site. Oportunidade em Tráfego Pago / Anúncios.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-01T02:11:05.677Z",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (397 avaliações ★4.8)"
+    },
+    "score": 10,
+    "conversationScript": {
+      "hasCustomerReplied": false,
+      "conversationSummary": "Lead qualificado pronto para abordagem inicial. Identificado potencial imediato de captação local em Santo Amaro SP através da assessoria de tráfego pago e posicionamento digital da Pinas Studio.",
+      "interlocutor": {
+        "name": "Responsável / Decisor",
+        "role": "Não identificado",
+        "tone": "Neutro / Aguardando",
+        "decisionPower": "Alto (Decisor Final)"
+      },
+      "painsAndNeeds": [
+        "Falta de previsibilidade de novos tutores no raio de 3km a 5km de Santo Amaro SP",
+        "Dependência excessiva de indicação boca a boca ou de buscas passivas no Google Maps",
+        "Atendimentos ou procedimentos de maior valor que acabam indo parar em clínicas concorrentes da região"
+      ],
+      "objectionsAndAnswers": [
+        {
+          "objection": "Já fazemos postagens no Instagram todos os dias.",
+          "howToCounter": "Post orgânico fala com quem já é cliente. O que a Pinas faz com o tráfego é colocar a clínica na frente do tutor que precisa de atendimento urgente agora no seu bairro."
+        },
+        {
+          "objection": "Não sei se temos orçamento para marketing agora.",
+          "howToCounter": "O projeto se paga trazendo 2 a 3 novos atendimentos ou cirurgias no mês. Se a conta não fechar com lucro no seu bolso, a gente nem começa."
+        }
+      ],
+      "agreedNextSteps": "Aguardando retorno da mensagem de abordagem no WhatsApp",
+      "callScript": {
+        "title": "Roteiro da Call de Fechamento Baseado no WhatsApp",
+        "openingHook": "Opa, tudo bem? Vi que você recebeu a nossa análise sobre a presença digital da WeVets | Hospital Veterinário 24h | Unidade Washington Luís em Santo Amaro SP e queria bater um papo rápido de 15 minutos sem enrolação.",
+        "steps": [
+          {
+            "time": "00:00 - 03:00",
+            "title": "Abertura & Conexão pelo WhatsApp",
+            "objective": "Reconectar de forma humana e direta citando a conversa do chat",
+            "script": "Fala, tudo bem? Poxa, obrigado pelo tempo. Vi aqui o perfil da WeVets | Hospital Veterinário 24h | Unidade Washington Luís e achei muito forte a nota no Google. Queria entender rapidamente como está a entrada de novos clientes vindo pela internet hoje aí em Santo Amaro SP.",
+            "tip": "Mantenha tom calmo, profissional e escuta ativa. Nada de afobação."
+          },
+          {
+            "time": "03:00 - 07:00",
+            "title": "Diagnóstico & Aprofundamento nas Dores",
+            "objective": "Fazer o cliente verbalizar o gargalo atual de faturamento",
+            "questions": [
+              {
+                "question": "Hoje, a maior parte dos clientes novos chega por indicação ou por busca ativa no Google e redes?",
+                "why": "Mapear a dependência de canais orgânicos passivos."
+              },
+              {
+                "question": "Quando um cliente chega no seu WhatsApp, você sente que a conversão em fechamento é rápida ou muitos somem?",
+                "why": "Identificar gargalo comercial no atendimento."
+              }
+            ]
+          },
+          {
+            "time": "07:00 - 11:00",
+            "title": "Apresentação da Solução Pinas Sob Medida",
+            "objective": "Mostrar na tela compartilhada como resolver o gargalo",
+            "keyPoints": [
+              "Anúncios hiperlocais no raio de Santo Amaro SP para captar quem tem intenção de compra agora",
+              "Landing page ultra-rápida direcionando cliques direto para o seu WhatsApp",
+              "Script de atendimento comercial para não deixar leads esfriarem"
+            ]
+          },
+          {
+            "time": "11:00 - 15:00",
+            "title": "Proposta & Fechamento Comercial",
+            "objective": "Combinar os próximos passos práticos de início",
+            "script": "O que eu proponho é a gente começar um piloto estruturado de 30 dias. A gente coloca as campanhas no ar e valida o fluxo de novos clientes entrando no seu WhatsApp.",
+            "callToAction": "Podemos dar o pontapé inicial na segunda-feira?"
+          }
+        ],
+        "goldenClosingPhrase": "Faz sentido a gente começar a captar esses tutores que estão buscando atendimento agora em Santo Amaro SP e que hoje estão indo para a clínica concorrente?"
+      }
+    },
+    "conversationScriptGeneratedAt": "2026-10-09T16:05:59.526Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-2",
+    "name": "Vetnasa Santo Amaro",
+    "niche": "Clínicas Veterinárias",
+    "phone": "(11) 5199-8041",
+    "cleanPhone": "551151998041",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://vetnasa.com.br",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/search/clinica+veterinaria+santo+amaro",
+    "rating": "4.5",
+    "reviews": 84,
+    "address": "Av. Washington Luís, Santo Amaro, SP",
+    "neighborhood": "Santo Amaro",
+    "city": "São Paulo",
+    "notes": "Clínica 24h, tem site institucional. Pode se beneficiar do Pinas Vet AI™ para emergências e consultas particulares.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-01T00:00:00.000Z",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (84 avaliações ★4.5)"
+    },
+    "score": 10,
+    "conversationScript": {
+      "hasCustomerReplied": false,
+      "conversationSummary": "Lead qualificado pronto para abordagem inicial. Identificado potencial imediato de captação local em Santo Amaro através da assessoria de tráfego pago e posicionamento digital da Pinas Studio.",
+      "interlocutor": {
+        "name": "Responsável / Decisor",
+        "role": "Não identificado",
+        "tone": "Neutro / Aguardando",
+        "decisionPower": "Alto (Decisor Final)"
+      },
+      "painsAndNeeds": [
+        "Falta de previsibilidade de novos tutores no raio de 3km a 5km de Santo Amaro",
+        "Dependência excessiva de indicação boca a boca ou de buscas passivas no Google Maps",
+        "Atendimentos ou procedimentos de maior valor que acabam indo parar em clínicas concorrentes da região"
+      ],
+      "objectionsAndAnswers": [
+        {
+          "objection": "Já fazemos postagens no Instagram todos os dias.",
+          "howToCounter": "Post orgânico fala com quem já é cliente. O que a Pinas faz com o tráfego é colocar a clínica na frente do tutor que precisa de atendimento urgente agora no seu bairro."
+        },
+        {
+          "objection": "Não sei se temos orçamento para marketing agora.",
+          "howToCounter": "O projeto se paga trazendo 2 a 3 novos atendimentos ou cirurgias no mês. Se a conta não fechar com lucro no seu bolso, a gente nem começa."
+        }
+      ],
+      "agreedNextSteps": "Aguardando retorno da mensagem de abordagem no WhatsApp",
+      "callScript": {
+        "title": "Roteiro da Call de Fechamento Baseado no WhatsApp",
+        "openingHook": "Opa, tudo bem? Vi que você recebeu a nossa análise sobre a presença digital da Vetnasa Santo Amaro em Santo Amaro e queria bater um papo rápido de 15 minutos sem enrolação.",
+        "steps": [
+          {
+            "time": "00:00 - 03:00",
+            "title": "Abertura & Conexão pelo WhatsApp",
+            "objective": "Reconectar de forma humana e direta citando a conversa do chat",
+            "script": "Fala, tudo bem? Poxa, obrigado pelo tempo. Vi aqui o perfil da Vetnasa Santo Amaro e achei muito forte a nota no Google. Queria entender rapidamente como está a entrada de novos clientes vindo pela internet hoje aí em Santo Amaro.",
+            "tip": "Mantenha tom calmo, profissional e escuta ativa. Nada de afobação."
+          },
+          {
+            "time": "03:00 - 07:00",
+            "title": "Diagnóstico & Aprofundamento nas Dores",
+            "objective": "Fazer o cliente verbalizar o gargalo atual de faturamento",
+            "questions": [
+              {
+                "question": "Hoje, a maior parte dos clientes novos chega por indicação ou por busca ativa no Google e redes?",
+                "why": "Mapear a dependência de canais orgânicos passivos."
+              },
+              {
+                "question": "Quando um cliente chega no seu WhatsApp, você sente que a conversão em fechamento é rápida ou muitos somem?",
+                "why": "Identificar gargalo comercial no atendimento."
+              }
+            ]
+          },
+          {
+            "time": "07:00 - 11:00",
+            "title": "Apresentação da Solução Pinas Sob Medida",
+            "objective": "Mostrar na tela compartilhada como resolver o gargalo",
+            "keyPoints": [
+              "Anúncios hiperlocais no raio de Santo Amaro para captar quem tem intenção de compra agora",
+              "Landing page ultra-rápida direcionando cliques direto para o seu WhatsApp",
+              "Script de atendimento comercial para não deixar leads esfriarem"
+            ]
+          },
+          {
+            "time": "11:00 - 15:00",
+            "title": "Proposta & Fechamento Comercial",
+            "objective": "Combinar os próximos passos práticos de início",
+            "script": "O que eu proponho é a gente começar um piloto estruturado de 30 dias. A gente coloca as campanhas no ar e valida o fluxo de novos clientes entrando no seu WhatsApp.",
+            "callToAction": "Podemos dar o pontapé inicial na segunda-feira?"
+          }
+        ],
+        "goldenClosingPhrase": "Faz sentido a gente começar a captar esses tutores que estão buscando atendimento agora em Santo Amaro e que hoje estão indo para a clínica concorrente?"
+      }
+    },
+    "conversationScriptGeneratedAt": "2026-10-09T16:05:59.526Z",
+    "priorityScore": 85,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791922821471-x0xjdv",
+    "name": "Pande Consultoria de Branding",
+    "niche": "Coach & Mentor (Palestrante de Treinamentos)",
+    "phone": "(11) 3849-9099",
+    "cleanPhone": "551138499099",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "/aclk?sa=L&ai=DChsSEwiUjJbX6LeXAxXGTUgAHWrLI64YACICCAEQCBoCY2U&co=1&ase=2&gclid=EAIaIQobChMIlIyW1-i3lwMVxk1IAB1qyyOuEBAYASAAEgI4OfD_BwE&cid=CAASuwHkaAViP_N8FWKrtGz9RZfBgwzIGEBshikpiZ2E8HSPUxY9vd6eh0OOTgsZHpXAnEBNuRW5FhHYpPiFT3b_2t_1-3hFSKPyWgyc3av7XK7XTCRBJa9EnBKKJ1zTMBbBb3wY9u_dCB2UYJ9a7-MiFbIkmSudErgRH4TokFdDGEnWKJCjjYYpzev6wVJebac0giaEDOZlTyOM04K0BjgkWBvbM9sXJySVB6QDXOi_FS-dbws59TKC7-R2BaAg&cce=2&category=acrcp_v1_32&sig=AOD64_0LtfJZUk7sLCL24dleXMSP2AtqeQ&adurl&q&ctype=99&nis=5",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Pande+Consultoria+de+Branding/data=!4m7!3m6!1s0x94ce574fb1da6de5:0xf7690dab1b8b9468!8m2!3d-23.595379!4d-46.682301!16s%2Fg%2F1thl_km5!19sChIJ5W3asU9XzpQRaJSLG6sNafc?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.9",
+    "reviews": 38,
+    "address": "Agência de design · 1509 Rua Alvorada",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (38 avaliações ★4.9)"
+    },
+    "score": 8,
+    "notes": "Comércio ativo na região com potencial de captação digital.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:20:21.471Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370210-t70k2r",
+    "name": "ProntVet - Casa Verde - Hospital Veterinário 24 Horas",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 3858-3983",
+    "cleanPhone": "551138583983",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://prontvet.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/ProntVet+-+Casa+Verde+-+Hospital+Veterin%C3%A1rio+24+Horas/data=!4m7!3m6!1s0x94cef7f0515b5ae1:0x782650de90fc4c9b!8m2!3d-23.5060357!4d-46.6663509!16s%2Fg%2F1thl6kxd!19sChIJ4VpbUfD3zpQRm0z8kN5QJng?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.3",
+    "reviews": 1342,
+    "address": "Serviço veterinário de emergência ·  · R. Frederico Penteado Júnior, 35",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (1342 avaliações)"
+    },
+    "score": 8,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.210Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370209-pry1ae",
+    "name": "ProntVet - Pompeia - Hospital Veterinário 24 Horas",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 3873-9230",
+    "cleanPhone": "551138739230",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://prontvet.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/ProntVet+-+Pompeia+-+Hospital+Veterin%C3%A1rio+24+Horas/data=!4m7!3m6!1s0x94ce57164da1e293:0x868c0e87012670b5!8m2!3d-23.5383404!4d-46.6905687!16s%2Fg%2F11jmbpl95b!19sChIJk-KhTRZXzpQRtXAmAYcOjIY?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.3",
+    "reviews": 1143,
+    "address": "Hospital Veterinário ·  · Av. Pompéia, 1701",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (1143 avaliações)"
+    },
+    "score": 8,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.209Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370209-ombnnf",
+    "name": "Med&Dog Hospital veterinário 24 horas",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 2273-7908",
+    "cleanPhone": "551122737908",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://www.meddog.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Med%26Dog+Hospital+veterin%C3%A1rio+24+horas/data=!4m7!3m6!1s0x94ce59647b5465e3:0x4cddc80bbe17f03a!8m2!3d-23.5757743!4d-46.6195079!16s%2Fg%2F12q4xxjr4!19sChIJ42VUe2RZzpQROvAXvgvI3Uw?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.1",
+    "reviews": 313,
+    "address": "Hospital Veterinário ·  · R. Heitor Peixoto, 799",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (313 avaliações)"
+    },
+    "score": 8,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.209Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370209-alzmgu",
+    "name": "AMARE Hospital Veterinário 24 Horas",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 3832-8887",
+    "cleanPhone": "551138328887",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://amarehospitalvet.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/AMARE+Hospital+Veterin%C3%A1rio+24+Horas/data=!4m7!3m6!1s0x94cef949e43bbfb9:0x51dc932da772c560!8m2!3d-23.5259356!4d-46.7125556!16s%2Fg%2F11s9xsx5jz!19sChIJub875En5zpQRYMVypy2T3FE?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.3",
+    "reviews": 325,
+    "address": "Veterinário ·  · R. Brg. Gavião Peixoto, 249",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (325 avaliações)"
+    },
+    "score": 8,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.209Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370209-c5s1ao",
+    "name": "Hospital Veterinário Seres Augusta",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 2181-7365",
+    "cleanPhone": "551121817365",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://www.seres.vet/unidades/seres-augusta",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Hospital+Veterin%C3%A1rio+Seres+Augusta/data=!4m7!3m6!1s0x94ce5907481a66cb:0x92e9476da05105a0!8m2!3d-23.5513926!4d-46.6479542!16s%2Fg%2F11rd1l6dcv!19sChIJy2YaSAdZzpQRoAVRoG1H6ZI?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.3",
+    "reviews": 479,
+    "address": "Hospital Veterinário ·  · R. Augusta, 215",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (479 avaliações)"
+    },
+    "score": 8,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.209Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370209-lb54cw",
+    "name": "Zoovet 24 horas",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 5573-1222",
+    "cleanPhone": "551155731222",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://zoovet.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Zoovet+24+horas/data=!4m7!3m6!1s0x94ce5a2f655c62db:0xb552d2e9b965909!8m2!3d-23.5950456!4d-46.6408419!16s%2Fg%2F1pty_12kk!19sChIJ22JcZS9azpQRCVmWmy4tVQs?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.2",
+    "reviews": 862,
+    "address": "Hospital Veterinário ·  · R. Marselhesa, 333",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (862 avaliações)"
+    },
+    "score": 8,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.209Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370208-f9xveb",
+    "name": "Centro Veterinário Alpha Conde",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 4193-8231",
+    "cleanPhone": "551141938231",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://veterinarioalphaconde.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Centro+Veterin%C3%A1rio+Alpha+Conde/data=!4m7!3m6!1s0x94cf024dabce057d:0xaa8fc773103a6014!8m2!3d-23.4854131!4d-46.8614003!16s%2Fg%2F11h01201v!19sChIJfQXOq00Cz5QRFGA6EHPHj6o?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.0",
+    "reviews": 105,
+    "address": "Serviço veterinário de emergência ·  · R. Capricórnio, 64",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (105 avaliações)"
+    },
+    "score": 8,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.208Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370208-vfhb05",
+    "name": "Centro Médico Veterinário - 24 Horas",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 2129-6500",
+    "cleanPhone": "551121296500",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://www.animalcentersp.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Centro+M%C3%A9dico+Veterin%C3%A1rio+-+24+Horas/data=!4m7!3m6!1s0x94ce52264192a88f:0xd2c66e411a73261f!8m2!3d-23.6756428!4d-46.7517442!16s%2Fg%2F11bxbypkxn!19sChIJj6iSQSZSzpQRHyZzGkFuxtI?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.2",
+    "reviews": 593,
+    "address": "4,2(593)",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (593 avaliações)"
+    },
+    "score": 8,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.208Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370208-3mygoh",
+    "name": "CitVet Centro Veterinário Especializado 24 Horas",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 4575-4777",
+    "cleanPhone": "551145754777",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://www.citvet.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/CitVet+Centro+Veterin%C3%A1rio+Especializado+24+Horas/data=!4m7!3m6!1s0x94ceff6bc5399561:0x44a459157635703d!8m2!3d-23.5420203!4d-46.7704598!16s%2Fg%2F11b5yt_rqb!19sChIJYZU5xWv_zpQRPXA1dhVZpEQ?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.4",
+    "reviews": 565,
+    "address": "Serviço veterinário de emergência ·  · R. Manoel Saraíva, 118",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (565 avaliações)"
+    },
+    "score": 8,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.208Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370207-yoyhwr",
+    "name": "Hospital Veterinário Saúde - Clínica Pet - Pronto Socorro 24 horas",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 5594-1758",
+    "cleanPhone": "551155941758",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://hospitalveterinariosaude.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Hospital+Veterin%C3%A1rio+Sa%C3%BAde+-+Cl%C3%ADnica+Pet+-+Pronto+Socorro+24+horas/data=!4m7!3m6!1s0x94ce5b0bf666dae9:0x635254df4de1cdf5!8m2!3d-23.6229274!4d-46.6166915!16s%2Fg%2F11g_lglxs!19sChIJ6dpm9gtbzpQR9c3hTd9UUmM?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.4",
+    "reviews": 602,
+    "address": "Hospital Veterinário ·  · R. Nossa Sra. da Saúde, 366",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (602 avaliações)"
+    },
+    "score": 8,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.207Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370206-d13gs5",
+    "name": "Centro Veterinário Cães e Gatos 24H",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 3684-1080",
+    "cleanPhone": "551136841080",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://www.caesegatos24h.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Centro+Veterin%C3%A1rio+C%C3%A3es+e+Gatos+24H/data=!4m7!3m6!1s0x94ceff6ce5f85999:0xabfb6fce7da3331d!8m2!3d-23.5405231!4d-46.7740554!16s%2Fg%2F11b7lc38h5!19sChIJmVn45Wz_zpQRHTOjfc5v-6s?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.3",
+    "reviews": 2980,
+    "address": "Hospital Veterinário ·  · R. Narciso Sturlini, 186",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (2980 avaliações)"
+    },
+    "score": 8,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.206Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791923370206-vgst2q",
+    "name": "Pet Help",
+    "niche": "Clínica Veterinária",
+    "phone": "(11) 4184-8806",
+    "cleanPhone": "551141848806",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://pethelp.vet.br/hospital-carapicuiba/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Pet+Help/data=!4m7!3m6!1s0x94cf01c4a992c817:0x8d4b764fc4e7b21!8m2!3d-23.5272758!4d-46.8349246!16s%2Fg%2F11g6_1ycv2!19sChIJF8iSqcQBz5QRIXtO_GS31Ag?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.2",
+    "reviews": 1361,
+    "address": "Hospital Veterinário ·  · Av. Inocêncio Seráfico, 647",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (1361 avaliações)"
+    },
+    "score": 8,
+    "notes": "Fluxo contínuo de emergências e consultas particulares via Google Maps e Search",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:30.206Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791922821472-m2ahpm",
+    "name": "Palestrante de Vendas e Motivação de equipes",
+    "niche": "Coach & Mentor (Palestrante de Treinamentos)",
+    "phone": "(62) 3314-2952",
+    "cleanPhone": "556233142952",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "",
+    "hasWebsite": false,
+    "mapsUrl": "https://www.google.com/maps/place/Palestrante+de+Vendas+e+Motiva%C3%A7%C3%A3o+de+equipes/data=!4m7!3m6!1s0x94ce59bf309e842f:0xf62b936cc880c8f0!8m2!3d-23.5683585!4d-46.6493134!16s%2Fg%2F11bxc7gt9n!19sChIJL4SeML9ZzpQR8MiAyGyTK_Y?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "5.0",
+    "reviews": 2,
+    "address": "Escritório da empresa · n,conj. 701-702, Av. Brigadeiro Luís Antônio, 2367",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado"
+    },
+    "score": 8,
+    "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:20:21.472Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791922809936-ujwp99",
+    "name": "Instituto da Carreira - Coaching & Carreira",
+    "niche": "Coach & Mentor (Coach de Carreira)",
+    "phone": "(11) 3728-9434",
+    "cleanPhone": "551137289434",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "",
+    "hasWebsite": false,
+    "mapsUrl": "https://www.google.com/maps/place/Instituto+da+Carreira+-+Coaching+%26+Carreira/data=!4m7!3m6!1s0x94ce574f30402ff3:0x9bc93b8da4beda2a!8m2!3d-23.5958012!4d-46.6844954!16s%2Fg%2F11gg2dbb9g!19sChIJ8y9AME9XzpQRKtq-pI07yZs?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "N/A",
+    "reviews": 0,
+    "address": "Consultoria · R. Olimpíadas, 205",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado"
+    },
+    "score": 8,
+    "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:20:09.936Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791922801898-k1tq8y",
+    "name": "Mentor Soluções & Serviços",
+    "niche": "Coach & Mentor (Mentor de Negócios)",
+    "phone": "(11) 2094-6622",
+    "cleanPhone": "551120946622",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "",
+    "hasWebsite": false,
+    "mapsUrl": "https://www.google.com/maps/place/Mentor+Solu%C3%A7%C3%B5es+%26+Servi%C3%A7os/data=!4m7!3m6!1s0x94ce67d1d084548f:0x4c6aa068d5ea9b25!8m2!3d-23.5347707!4d-46.5811551!16s%2Fg%2F1tfv67sg!19sChIJj1SE0NFnzpQRJZvq1Wigakw?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "5.0",
+    "reviews": 1,
+    "address": "Serviço de transporte e armazenamento de móveis · Av. Celso Garcia, 3215",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado"
+    },
+    "score": 8,
+    "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:20:01.898Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791922793695-qbymw5",
+    "name": "Instituto Coaching Financeiro",
+    "niche": "Coach & Mentor (Coach Financeiro)",
+    "phone": "(21) 2437-8827",
+    "cleanPhone": "552124378827",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "",
+    "hasWebsite": false,
+    "mapsUrl": "https://www.google.com/maps/place/Instituto+Coaching+Financeiro/data=!4m7!3m6!1s0x94ce57800fa39891:0x6366b95b118ac63c!8m2!3d-23.5601824!4d-46.6708267!16s%2Fg%2F11dxl9dk8q!19sChIJkZijD4BXzpQRPMaKEVu5ZmM?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "3.0",
+    "reviews": 2,
+    "address": "Centro de coaching · Av. Rebouças, 955",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado"
+    },
+    "score": 8,
+    "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:19:53.695Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1790820689033-uped3g",
+    "name": "Animaniac's Hospital Veterinário Tatuapé - Clínica Veterinária 24h",
+    "niche": "clinica veterinaria",
+    "phone": "(11) 2090-9230",
+    "cleanPhone": "551120909230",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://www.animaniacs.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Animaniac%27s+Hospital+Veterin%C3%A1rio+Tatuap%C3%A9+-+Cl%C3%ADnica+Veterin%C3%A1ria+24h/data=!4m7!3m6!1s0x94ce5e8ebc390d41:0x645011bcbb22769c!8m2!3d-23.5472104!4d-46.5607666!16s%2Fg%2F11bc7r3vth!19sChIJQQ05vI5ezpQRnHYiu7wRUGQ?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkyOC4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.4",
+    "reviews": 1016,
+    "address": "Hospital Veterinário ·  · Rua Monte Serrat, 1090",
+    "neighborhood": "Tatuapé SP",
+    "city": "São Paulo",
+    "notes": "Já possui site. Oportunidade em Tráfego Pago / Anúncios.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-01T02:11:29.033Z",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (1016 avaliações)"
+    },
+    "score": 8,
+    "conversationScript": {
+      "hasCustomerReplied": false,
+      "conversationSummary": "Lead qualificado pronto para abordagem inicial. Identificado potencial imediato de captação local em Tatuapé SP através da assessoria de tráfego pago e posicionamento digital da Pinas Studio.",
+      "interlocutor": {
+        "name": "Responsável / Decisor",
+        "role": "Não identificado",
+        "tone": "Neutro / Aguardando",
+        "decisionPower": "Alto (Decisor Final)"
+      },
+      "painsAndNeeds": [
+        "Falta de previsibilidade de novos tutores no raio de 3km a 5km de Tatuapé SP",
+        "Dependência excessiva de indicação boca a boca ou de buscas passivas no Google Maps",
+        "Atendimentos ou procedimentos de maior valor que acabam indo parar em clínicas concorrentes da região"
+      ],
+      "objectionsAndAnswers": [
+        {
+          "objection": "Já fazemos postagens no Instagram todos os dias.",
+          "howToCounter": "Post orgânico fala com quem já é cliente. O que a Pinas faz com o tráfego é colocar a clínica na frente do tutor que precisa de atendimento urgente agora no seu bairro."
+        },
+        {
+          "objection": "Não sei se temos orçamento para marketing agora.",
+          "howToCounter": "O projeto se paga trazendo 2 a 3 novos atendimentos ou cirurgias no mês. Se a conta não fechar com lucro no seu bolso, a gente nem começa."
+        }
+      ],
+      "agreedNextSteps": "Aguardando retorno da mensagem de abordagem no WhatsApp",
+      "callScript": {
+        "title": "Roteiro da Call de Fechamento Baseado no WhatsApp",
+        "openingHook": "Opa, tudo bem? Vi que você recebeu a nossa análise sobre a presença digital da Animaniac's Hospital Veterinário Tatuapé - Clínica Veterinária 24h em Tatuapé SP e queria bater um papo rápido de 15 minutos sem enrolação.",
+        "steps": [
+          {
+            "time": "00:00 - 03:00",
+            "title": "Abertura & Conexão pelo WhatsApp",
+            "objective": "Reconectar de forma humana e direta citando a conversa do chat",
+            "script": "Fala, tudo bem? Poxa, obrigado pelo tempo. Vi aqui o perfil da Animaniac's Hospital Veterinário Tatuapé - Clínica Veterinária 24h e achei muito forte a nota no Google. Queria entender rapidamente como está a entrada de novos clientes vindo pela internet hoje aí em Tatuapé SP.",
+            "tip": "Mantenha tom calmo, profissional e escuta ativa. Nada de afobação."
+          },
+          {
+            "time": "03:00 - 07:00",
+            "title": "Diagnóstico & Aprofundamento nas Dores",
+            "objective": "Fazer o cliente verbalizar o gargalo atual de faturamento",
+            "questions": [
+              {
+                "question": "Hoje, a maior parte dos clientes novos chega por indicação ou por busca ativa no Google e redes?",
+                "why": "Mapear a dependência de canais orgânicos passivos."
+              },
+              {
+                "question": "Quando um cliente chega no seu WhatsApp, você sente que a conversão em fechamento é rápida ou muitos somem?",
+                "why": "Identificar gargalo comercial no atendimento."
+              }
+            ]
+          },
+          {
+            "time": "07:00 - 11:00",
+            "title": "Apresentação da Solução Pinas Sob Medida",
+            "objective": "Mostrar na tela compartilhada como resolver o gargalo",
+            "keyPoints": [
+              "Anúncios hiperlocais no raio de Tatuapé SP para captar quem tem intenção de compra agora",
+              "Landing page ultra-rápida direcionando cliques direto para o seu WhatsApp",
+              "Script de atendimento comercial para não deixar leads esfriarem"
+            ]
+          },
+          {
+            "time": "11:00 - 15:00",
+            "title": "Proposta & Fechamento Comercial",
+            "objective": "Combinar os próximos passos práticos de início",
+            "script": "O que eu proponho é a gente começar um piloto estruturado de 30 dias. A gente coloca as campanhas no ar e valida o fluxo de novos clientes entrando no seu WhatsApp.",
+            "callToAction": "Podemos dar o pontapé inicial na segunda-feira?"
+          }
+        ],
+        "goldenClosingPhrase": "Faz sentido a gente começar a captar esses tutores que estão buscando atendimento agora em Tatuapé SP e que hoje estão indo para a clínica concorrente?"
+      }
+    },
+    "conversationScriptGeneratedAt": "2026-10-09T16:05:59.524Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1790820665678-ymqyq5",
+    "name": "AMAONCARE Centro Veterinário 24hrs São Paulo",
+    "niche": "clinica veterinaria",
+    "phone": "(11) 2307-6923",
+    "cleanPhone": "551123076923",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://www.amaoncare.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/AMAONCARE+Centro+Veterin%C3%A1rio+24hrs+S%C3%A3o+Paulo/data=!4m7!3m6!1s0x94ce517b68ab4adf:0xd69e5e63b0d141d5!8m2!3d-23.6257292!4d-46.7413461!16s%2Fg%2F11h2y5h3cl!19sChIJ30qraHtRzpQR1UHRsGNentY?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkyOC4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.3",
+    "reviews": 329,
+    "address": "Hospital Veterinário ·  · R. José da Mota, 69",
+    "neighborhood": "Santo Amaro SP",
+    "city": "São Paulo",
+    "notes": "Já possui site. Oportunidade em Tráfego Pago / Anúncios.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-01T02:11:05.678Z",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (329 avaliações)"
+    },
+    "score": 8,
+    "conversationScript": {
+      "hasCustomerReplied": false,
+      "conversationSummary": "Lead qualificado pronto para abordagem inicial. Identificado potencial imediato de captação local em Santo Amaro SP através da assessoria de tráfego pago e posicionamento digital da Pinas Studio.",
+      "interlocutor": {
+        "name": "Responsável / Decisor",
+        "role": "Não identificado",
+        "tone": "Neutro / Aguardando",
+        "decisionPower": "Alto (Decisor Final)"
+      },
+      "painsAndNeeds": [
+        "Falta de previsibilidade de novos tutores no raio de 3km a 5km de Santo Amaro SP",
+        "Dependência excessiva de indicação boca a boca ou de buscas passivas no Google Maps",
+        "Atendimentos ou procedimentos de maior valor que acabam indo parar em clínicas concorrentes da região"
+      ],
+      "objectionsAndAnswers": [
+        {
+          "objection": "Já fazemos postagens no Instagram todos os dias.",
+          "howToCounter": "Post orgânico fala com quem já é cliente. O que a Pinas faz com o tráfego é colocar a clínica na frente do tutor que precisa de atendimento urgente agora no seu bairro."
+        },
+        {
+          "objection": "Não sei se temos orçamento para marketing agora.",
+          "howToCounter": "O projeto se paga trazendo 2 a 3 novos atendimentos ou cirurgias no mês. Se a conta não fechar com lucro no seu bolso, a gente nem começa."
+        }
+      ],
+      "agreedNextSteps": "Aguardando retorno da mensagem de abordagem no WhatsApp",
+      "callScript": {
+        "title": "Roteiro da Call de Fechamento Baseado no WhatsApp",
+        "openingHook": "Opa, tudo bem? Vi que você recebeu a nossa análise sobre a presença digital da AMAONCARE Centro Veterinário 24hrs São Paulo em Santo Amaro SP e queria bater um papo rápido de 15 minutos sem enrolação.",
+        "steps": [
+          {
+            "time": "00:00 - 03:00",
+            "title": "Abertura & Conexão pelo WhatsApp",
+            "objective": "Reconectar de forma humana e direta citando a conversa do chat",
+            "script": "Fala, tudo bem? Poxa, obrigado pelo tempo. Vi aqui o perfil da AMAONCARE Centro Veterinário 24hrs São Paulo e achei muito forte a nota no Google. Queria entender rapidamente como está a entrada de novos clientes vindo pela internet hoje aí em Santo Amaro SP.",
+            "tip": "Mantenha tom calmo, profissional e escuta ativa. Nada de afobação."
+          },
+          {
+            "time": "03:00 - 07:00",
+            "title": "Diagnóstico & Aprofundamento nas Dores",
+            "objective": "Fazer o cliente verbalizar o gargalo atual de faturamento",
+            "questions": [
+              {
+                "question": "Hoje, a maior parte dos clientes novos chega por indicação ou por busca ativa no Google e redes?",
+                "why": "Mapear a dependência de canais orgânicos passivos."
+              },
+              {
+                "question": "Quando um cliente chega no seu WhatsApp, você sente que a conversão em fechamento é rápida ou muitos somem?",
+                "why": "Identificar gargalo comercial no atendimento."
+              }
+            ]
+          },
+          {
+            "time": "07:00 - 11:00",
+            "title": "Apresentação da Solução Pinas Sob Medida",
+            "objective": "Mostrar na tela compartilhada como resolver o gargalo",
+            "keyPoints": [
+              "Anúncios hiperlocais no raio de Santo Amaro SP para captar quem tem intenção de compra agora",
+              "Landing page ultra-rápida direcionando cliques direto para o seu WhatsApp",
+              "Script de atendimento comercial para não deixar leads esfriarem"
+            ]
+          },
+          {
+            "time": "11:00 - 15:00",
+            "title": "Proposta & Fechamento Comercial",
+            "objective": "Combinar os próximos passos práticos de início",
+            "script": "O que eu proponho é a gente começar um piloto estruturado de 30 dias. A gente coloca as campanhas no ar e valida o fluxo de novos clientes entrando no seu WhatsApp.",
+            "callToAction": "Podemos dar o pontapé inicial na segunda-feira?"
+          }
+        ],
+        "goldenClosingPhrase": "Faz sentido a gente começar a captar esses tutores que estão buscando atendimento agora em Santo Amaro SP e que hoje estão indo para a clínica concorrente?"
+      }
+    },
+    "conversationScriptGeneratedAt": "2026-10-09T16:05:59.525Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1790820665678-ht20n3",
+    "name": "Vetnasa Barueri | Clínica Veterinária 24 horas",
+    "niche": "clinica veterinaria",
+    "phone": "(11) 4382-4668",
+    "cleanPhone": "551143824668",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "/aclk?sa=L&ai=DChsSEwip96fs3peXAxWqSEgAHUaSLhcYACICCAEQARoCY2U&co=1&ase=2&gclid=EAIaIQobChMIqfen7N6XlwMVqkhIAB1Gki4XEBAYASAAEgL4yvD_BwE&cid=CAASuwHkaL3HjB-mpfmyaCAsHxZOr0uNwnCWrCXNIMUiAb3qERQjWspCbmBg0chzFyIyK8ZyV1TT2F7sv8U7d3_YUsBLYM_PFctiLl3EU883MdzHZHfO74sgji_izX9Hb_AxXCnU3ToWqaVDNHFHREXKnxZ46OclcNrWB9zaNiI5KB4U77LAqH-_KbLQiKHC4KrRRDQoqzgFy-xKsq5LHc2Lxa7OrNTuzFt75lsxrndZnmsLoVJlM-HbbqRnqt4v&cce=2&category=acrcp_v1_32&sig=AOD64_2Lgd3-R-hoTAqc9BWe5U9P6du-tw&adurl&q&ctype=99&nis=5",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Vetnasa+Barueri+%7C+Cl%C3%ADnica+Veterin%C3%A1ria+24+horas/data=!4m7!3m6!1s0x94cf03ed115e5b6d:0xb289db698e9e3da9!8m2!3d-23.510296!4d-46.878684!16s%2Fg%2F11pdrxth0s!19sChIJbVteEe0Dz5QRqT2ejmnbibI?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkyOC4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.3",
+    "reviews": 589,
+    "address": "Veterinário · 235 Rua Santo Antônio",
+    "neighborhood": "Santo Amaro SP",
+    "city": "São Paulo",
+    "notes": "Já possui site. Oportunidade em Tráfego Pago / Anúncios.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-01T02:11:05.678Z",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (589 avaliações)"
+    },
+    "score": 8,
+    "conversationScript": {
+      "hasCustomerReplied": false,
+      "conversationSummary": "Lead qualificado pronto para abordagem inicial. Identificado potencial imediato de captação local em Santo Amaro SP através da assessoria de tráfego pago e posicionamento digital da Pinas Studio.",
+      "interlocutor": {
+        "name": "Responsável / Decisor",
+        "role": "Não identificado",
+        "tone": "Neutro / Aguardando",
+        "decisionPower": "Alto (Decisor Final)"
+      },
+      "painsAndNeeds": [
+        "Falta de previsibilidade de novos tutores no raio de 3km a 5km de Santo Amaro SP",
+        "Dependência excessiva de indicação boca a boca ou de buscas passivas no Google Maps",
+        "Atendimentos ou procedimentos de maior valor que acabam indo parar em clínicas concorrentes da região"
+      ],
+      "objectionsAndAnswers": [
+        {
+          "objection": "Já fazemos postagens no Instagram todos os dias.",
+          "howToCounter": "Post orgânico fala com quem já é cliente. O que a Pinas faz com o tráfego é colocar a clínica na frente do tutor que precisa de atendimento urgente agora no seu bairro."
+        },
+        {
+          "objection": "Não sei se temos orçamento para marketing agora.",
+          "howToCounter": "O projeto se paga trazendo 2 a 3 novos atendimentos ou cirurgias no mês. Se a conta não fechar com lucro no seu bolso, a gente nem começa."
+        }
+      ],
+      "agreedNextSteps": "Aguardando retorno da mensagem de abordagem no WhatsApp",
+      "callScript": {
+        "title": "Roteiro da Call de Fechamento Baseado no WhatsApp",
+        "openingHook": "Opa, tudo bem? Vi que você recebeu a nossa análise sobre a presença digital da Vetnasa Barueri | Clínica Veterinária 24 horas em Santo Amaro SP e queria bater um papo rápido de 15 minutos sem enrolação.",
+        "steps": [
+          {
+            "time": "00:00 - 03:00",
+            "title": "Abertura & Conexão pelo WhatsApp",
+            "objective": "Reconectar de forma humana e direta citando a conversa do chat",
+            "script": "Fala, tudo bem? Poxa, obrigado pelo tempo. Vi aqui o perfil da Vetnasa Barueri | Clínica Veterinária 24 horas e achei muito forte a nota no Google. Queria entender rapidamente como está a entrada de novos clientes vindo pela internet hoje aí em Santo Amaro SP.",
+            "tip": "Mantenha tom calmo, profissional e escuta ativa. Nada de afobação."
+          },
+          {
+            "time": "03:00 - 07:00",
+            "title": "Diagnóstico & Aprofundamento nas Dores",
+            "objective": "Fazer o cliente verbalizar o gargalo atual de faturamento",
+            "questions": [
+              {
+                "question": "Hoje, a maior parte dos clientes novos chega por indicação ou por busca ativa no Google e redes?",
+                "why": "Mapear a dependência de canais orgânicos passivos."
+              },
+              {
+                "question": "Quando um cliente chega no seu WhatsApp, você sente que a conversão em fechamento é rápida ou muitos somem?",
+                "why": "Identificar gargalo comercial no atendimento."
+              }
+            ]
+          },
+          {
+            "time": "07:00 - 11:00",
+            "title": "Apresentação da Solução Pinas Sob Medida",
+            "objective": "Mostrar na tela compartilhada como resolver o gargalo",
+            "keyPoints": [
+              "Anúncios hiperlocais no raio de Santo Amaro SP para captar quem tem intenção de compra agora",
+              "Landing page ultra-rápida direcionando cliques direto para o seu WhatsApp",
+              "Script de atendimento comercial para não deixar leads esfriarem"
+            ]
+          },
+          {
+            "time": "11:00 - 15:00",
+            "title": "Proposta & Fechamento Comercial",
+            "objective": "Combinar os próximos passos práticos de início",
+            "script": "O que eu proponho é a gente começar um piloto estruturado de 30 dias. A gente coloca as campanhas no ar e valida o fluxo de novos clientes entrando no seu WhatsApp.",
+            "callToAction": "Podemos dar o pontapé inicial na segunda-feira?"
+          }
+        ],
+        "goldenClosingPhrase": "Faz sentido a gente começar a captar esses tutores que estão buscando atendimento agora em Santo Amaro SP e que hoje estão indo para a clínica concorrente?"
+      }
+    },
+    "conversationScriptGeneratedAt": "2026-10-09T16:05:59.525Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1790820665678-vf2ewt",
+    "name": "Pet Shop Marajoara",
+    "niche": "clinica veterinaria",
+    "phone": "(11) 5525-1360",
+    "cleanPhone": "551155251360",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://www.veterinariamarajoara.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Pet+Shop+Marajoara/data=!4m7!3m6!1s0x94ce5a7ad90cf20b:0xbd1fffdfb74f4633!8m2!3d-23.657027!4d-46.696036!16s%2Fg%2F1pty6tn04!19sChIJC_IM2XpazpQRM0ZPt9__H70?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkyOC4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.3",
+    "reviews": 592,
+    "address": "Hospital Veterinário ·  · Av. Washington Luís, 957",
+    "neighborhood": "Santo Amaro SP",
+    "city": "São Paulo",
+    "notes": "Já possui site. Oportunidade em Tráfego Pago / Anúncios.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-01T02:11:05.678Z",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (592 avaliações)"
+    },
+    "score": 8,
+    "conversationScript": {
+      "hasCustomerReplied": false,
+      "conversationSummary": "Lead qualificado pronto para abordagem inicial. Identificado potencial imediato de captação local em Santo Amaro SP através da assessoria de tráfego pago e posicionamento digital da Pinas Studio.",
+      "interlocutor": {
+        "name": "Responsável / Decisor",
+        "role": "Não identificado",
+        "tone": "Neutro / Aguardando",
+        "decisionPower": "Alto (Decisor Final)"
+      },
+      "painsAndNeeds": [
+        "Falta de previsibilidade de novos tutores no raio de 3km a 5km de Santo Amaro SP",
+        "Dependência excessiva de indicação boca a boca ou de buscas passivas no Google Maps",
+        "Atendimentos ou procedimentos de maior valor que acabam indo parar em clínicas concorrentes da região"
+      ],
+      "objectionsAndAnswers": [
+        {
+          "objection": "Já fazemos postagens no Instagram todos os dias.",
+          "howToCounter": "Post orgânico fala com quem já é cliente. O que a Pinas faz com o tráfego é colocar a clínica na frente do tutor que precisa de atendimento urgente agora no seu bairro."
+        },
+        {
+          "objection": "Não sei se temos orçamento para marketing agora.",
+          "howToCounter": "O projeto se paga trazendo 2 a 3 novos atendimentos ou cirurgias no mês. Se a conta não fechar com lucro no seu bolso, a gente nem começa."
+        }
+      ],
+      "agreedNextSteps": "Aguardando retorno da mensagem de abordagem no WhatsApp",
+      "callScript": {
+        "title": "Roteiro da Call de Fechamento Baseado no WhatsApp",
+        "openingHook": "Opa, tudo bem? Vi que você recebeu a nossa análise sobre a presença digital da Pet Shop Marajoara em Santo Amaro SP e queria bater um papo rápido de 15 minutos sem enrolação.",
+        "steps": [
+          {
+            "time": "00:00 - 03:00",
+            "title": "Abertura & Conexão pelo WhatsApp",
+            "objective": "Reconectar de forma humana e direta citando a conversa do chat",
+            "script": "Fala, tudo bem? Poxa, obrigado pelo tempo. Vi aqui o perfil da Pet Shop Marajoara e achei muito forte a nota no Google. Queria entender rapidamente como está a entrada de novos clientes vindo pela internet hoje aí em Santo Amaro SP.",
+            "tip": "Mantenha tom calmo, profissional e escuta ativa. Nada de afobação."
+          },
+          {
+            "time": "03:00 - 07:00",
+            "title": "Diagnóstico & Aprofundamento nas Dores",
+            "objective": "Fazer o cliente verbalizar o gargalo atual de faturamento",
+            "questions": [
+              {
+                "question": "Hoje, a maior parte dos clientes novos chega por indicação ou por busca ativa no Google e redes?",
+                "why": "Mapear a dependência de canais orgânicos passivos."
+              },
+              {
+                "question": "Quando um cliente chega no seu WhatsApp, você sente que a conversão em fechamento é rápida ou muitos somem?",
+                "why": "Identificar gargalo comercial no atendimento."
+              }
+            ]
+          },
+          {
+            "time": "07:00 - 11:00",
+            "title": "Apresentação da Solução Pinas Sob Medida",
+            "objective": "Mostrar na tela compartilhada como resolver o gargalo",
+            "keyPoints": [
+              "Anúncios hiperlocais no raio de Santo Amaro SP para captar quem tem intenção de compra agora",
+              "Landing page ultra-rápida direcionando cliques direto para o seu WhatsApp",
+              "Script de atendimento comercial para não deixar leads esfriarem"
+            ]
+          },
+          {
+            "time": "11:00 - 15:00",
+            "title": "Proposta & Fechamento Comercial",
+            "objective": "Combinar os próximos passos práticos de início",
+            "script": "O que eu proponho é a gente começar um piloto estruturado de 30 dias. A gente coloca as campanhas no ar e valida o fluxo de novos clientes entrando no seu WhatsApp.",
+            "callToAction": "Podemos dar o pontapé inicial na segunda-feira?"
+          }
+        ],
+        "goldenClosingPhrase": "Faz sentido a gente começar a captar esses tutores que estão buscando atendimento agora em Santo Amaro SP e que hoje estão indo para a clínica concorrente?"
+      }
+    },
+    "conversationScriptGeneratedAt": "2026-10-09T16:05:59.525Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1790820665677-cec37n",
+    "name": "My Vets - Hospital Veterinário 24h",
+    "niche": "clinica veterinaria",
+    "phone": "(11) 2924-8122",
+    "cleanPhone": "551129248122",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://www.clinicamyvets.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/My+Vets+-+Hospital+Veterin%C3%A1rio+24h/data=!4m7!3m6!1s0x94ce50571026fd77:0x293b7374b8795a47!8m2!3d-23.650744!4d-46.7012384!16s%2Fg%2F11f2qfb4dw!19sChIJd_0mEFdQzpQRR1p5uHRzOyk?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkyOC4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.3",
+    "reviews": 683,
+    "address": "Veterinário ·  · Rua Comendador Elias Zarzur, 178",
+    "neighborhood": "Santo Amaro SP",
+    "city": "São Paulo",
+    "notes": "Já possui site. Oportunidade em Tráfego Pago / Anúncios.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-01T02:11:05.677Z",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 80,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (683 avaliações)"
+    },
+    "score": 8,
+    "conversationScript": {
+      "hasCustomerReplied": false,
+      "conversationSummary": "Lead qualificado pronto para abordagem inicial. Identificado potencial imediato de captação local em Santo Amaro SP através da assessoria de tráfego pago e posicionamento digital da Pinas Studio.",
+      "interlocutor": {
+        "name": "Responsável / Decisor",
+        "role": "Não identificado",
+        "tone": "Neutro / Aguardando",
+        "decisionPower": "Alto (Decisor Final)"
+      },
+      "painsAndNeeds": [
+        "Falta de previsibilidade de novos tutores no raio de 3km a 5km de Santo Amaro SP",
+        "Dependência excessiva de indicação boca a boca ou de buscas passivas no Google Maps",
+        "Atendimentos ou procedimentos de maior valor que acabam indo parar em clínicas concorrentes da região"
+      ],
+      "objectionsAndAnswers": [
+        {
+          "objection": "Já fazemos postagens no Instagram todos os dias.",
+          "howToCounter": "Post orgânico fala com quem já é cliente. O que a Pinas faz com o tráfego é colocar a clínica na frente do tutor que precisa de atendimento urgente agora no seu bairro."
+        },
+        {
+          "objection": "Não sei se temos orçamento para marketing agora.",
+          "howToCounter": "O projeto se paga trazendo 2 a 3 novos atendimentos ou cirurgias no mês. Se a conta não fechar com lucro no seu bolso, a gente nem começa."
+        }
+      ],
+      "agreedNextSteps": "Aguardando retorno da mensagem de abordagem no WhatsApp",
+      "callScript": {
+        "title": "Roteiro da Call de Fechamento Baseado no WhatsApp",
+        "openingHook": "Opa, tudo bem? Vi que você recebeu a nossa análise sobre a presença digital da My Vets - Hospital Veterinário 24h em Santo Amaro SP e queria bater um papo rápido de 15 minutos sem enrolação.",
+        "steps": [
+          {
+            "time": "00:00 - 03:00",
+            "title": "Abertura & Conexão pelo WhatsApp",
+            "objective": "Reconectar de forma humana e direta citando a conversa do chat",
+            "script": "Fala, tudo bem? Poxa, obrigado pelo tempo. Vi aqui o perfil da My Vets - Hospital Veterinário 24h e achei muito forte a nota no Google. Queria entender rapidamente como está a entrada de novos clientes vindo pela internet hoje aí em Santo Amaro SP.",
+            "tip": "Mantenha tom calmo, profissional e escuta ativa. Nada de afobação."
+          },
+          {
+            "time": "03:00 - 07:00",
+            "title": "Diagnóstico & Aprofundamento nas Dores",
+            "objective": "Fazer o cliente verbalizar o gargalo atual de faturamento",
+            "questions": [
+              {
+                "question": "Hoje, a maior parte dos clientes novos chega por indicação ou por busca ativa no Google e redes?",
+                "why": "Mapear a dependência de canais orgânicos passivos."
+              },
+              {
+                "question": "Quando um cliente chega no seu WhatsApp, você sente que a conversão em fechamento é rápida ou muitos somem?",
+                "why": "Identificar gargalo comercial no atendimento."
+              }
+            ]
+          },
+          {
+            "time": "07:00 - 11:00",
+            "title": "Apresentação da Solução Pinas Sob Medida",
+            "objective": "Mostrar na tela compartilhada como resolver o gargalo",
+            "keyPoints": [
+              "Anúncios hiperlocais no raio de Santo Amaro SP para captar quem tem intenção de compra agora",
+              "Landing page ultra-rápida direcionando cliques direto para o seu WhatsApp",
+              "Script de atendimento comercial para não deixar leads esfriarem"
+            ]
+          },
+          {
+            "time": "11:00 - 15:00",
+            "title": "Proposta & Fechamento Comercial",
+            "objective": "Combinar os próximos passos práticos de início",
+            "script": "O que eu proponho é a gente começar um piloto estruturado de 30 dias. A gente coloca as campanhas no ar e valida o fluxo de novos clientes entrando no seu WhatsApp.",
+            "callToAction": "Podemos dar o pontapé inicial na segunda-feira?"
+          }
+        ],
+        "goldenClosingPhrase": "Faz sentido a gente começar a captar esses tutores que estão buscando atendimento agora em Santo Amaro SP e que hoje estão indo para a clínica concorrente?"
+      }
+    },
+    "conversationScriptGeneratedAt": "2026-10-09T16:05:59.526Z",
+    "priorityScore": 80,
+    "tier": "diamante"
+  },
+  {
+    "id": "lead-1791922821472-9z7maj",
+    "name": "Star Palestras",
+    "niche": "Coach & Mentor (Palestrante de Treinamentos)",
+    "phone": "(11) 3884-2323",
+    "cleanPhone": "551138842323",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://www.starpalestras.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Star+Palestras/data=!4m7!3m6!1s0x35989f9ced038c7:0xf19b9e614e70fd12!8m2!3d-23.5730597!4d-46.6500509!16s%2Fg%2F11tsv3d8hg!19sChIJxzjQzvmJWQMREv1wTmGem_E?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "5.0",
+    "reviews": 22,
+    "address": "Consultor educacional ·  · R. Teixeira da Silva, 660 - 3º andar, cj 33",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 75,
+      "type": "ouro",
+      "label": "🥇 Ouro (Boa Oportunidade)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (22 avaliações)"
+    },
+    "score": 8,
+    "notes": "Comércio ativo na região com potencial de captação digital.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:20:21.472Z",
+    "priorityScore": 75,
+    "tier": "ouro"
+  },
+  {
+    "id": "lead-1791922809934-y09nrw",
+    "name": "Coaching & Carreiras",
+    "niche": "Coach & Mentor (Coach de Carreira)",
+    "phone": "(11) 5051-5631",
+    "cleanPhone": "551150515631",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://www.coachingcarreiras.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Coaching+%26+Carreiras/data=!4m7!3m6!1s0x94ce5a04da604125:0x2da0ac1909d54c45!8m2!3d-23.6023983!4d-46.6615519!16s%2Fg%2F11c5qm62sr!19sChIJJUFg2gRazpQRRUzVCRmsoC0?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.4",
+    "reviews": 594,
+    "address": "Consultoria empresarial ·  · Av. Ibirapuera, 2064 - 12º Andar",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 75,
+      "type": "ouro",
+      "label": "🥇 Ouro (Boa Oportunidade)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Ativa no Maps (594 avaliações)"
+    },
+    "score": 8,
+    "notes": "Comércio ativo na região com potencial de captação digital.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:20:09.934Z",
+    "priorityScore": 75,
+    "tier": "ouro"
+  },
+  {
+    "id": "lead-1791923362290-t9w0gk",
+    "name": "Estelles Advogados Associados",
+    "niche": "Escritório de Advocacia",
+    "phone": "(11) 3256-4999",
+    "cleanPhone": "551132564999",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "/aclk?sa=L&ai=DChsSEwjb6uXa6reXAxUNTUgAHaBcHXEYACICCAEQBRoCY2U&co=1&ase=2&gclid=EAIaIQobChMI2-rl2uq3lwMVDU1IAB2gXB1xEBAYAiAAEgLeAfD_BwE&cid=CAASuwHkaK6EHsEp6PS28RsZ_4hSDriWQ_8DK4gJwAz1MzJSpTdy2v-fwY2WFhcyqRCqd8WWDgl0R651NfTYP0RYlyJiat9xLChlrxk7rg6NBxPOScmaWQecOmgXNq1lDu9zlPcXb1sS_R9XY9M2acYdd-UGqnXW0WesKhopD8J__Zc7ed3ijyrhhHEgemLxkBhvRBaOtG8KVqOMH66yKWCxGf0_9XXBOH2iUYXirpvQkQawxPqPXpMWwfhW-TH1&cce=2&category=acrcp_v1_32&sig=AOD64_1qRI3K8ZQwhFDSHVe-4sZsqyLaeA&adurl&q&ctype=99&nis=5",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Estelles+Advogados+Associados/data=!4m7!3m6!1s0x94ce584c2f6e4447:0x5fb0fd5ab2956e65!8m2!3d-23.54722!4d-46.644653!16s%2Fg%2F1td43mbp!19sChIJR0RuL0xYzpQRZW6Vslr9sF8?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.5",
+    "reviews": 2,
+    "address": "Advogado · Rua da Consolação",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 5,
+      "numericRank": 70,
+      "type": "ouro",
+      "label": "🥇 Ouro (Boa Oportunidade)",
+      "attackAngle": "Advocacia (Alto Ticket / Honorários) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado"
+    },
+    "score": 5,
+    "notes": "Captação ativa de clientes qualificados no Google Search para ações de alto valor",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:22.290Z",
+    "priorityScore": 70,
+    "tier": "ouro"
+  },
+  {
+    "id": "lead-1791923377997-g1fwrn",
+    "name": "Métodos MB Consultoria",
+    "niche": "Mentor de Negócios",
+    "phone": "(11) 4116-1047",
+    "cleanPhone": "551141161047",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://consultoriaempresarialmc.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/M%C3%A9todos+MB+Consultoria/data=!4m7!3m6!1s0x94ce58336a6fbae3:0x2fd508e1ee01e1d4!8m2!3d-23.5547689!4d-46.6570624!16s%2Fg%2F11c2kltgzg!19sChIJ47pvajNYzpQR1OEB7uEI1S8?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "5.0",
+    "reviews": 1,
+    "address": "Consultoria empresarial · R. Fernando de Albuquerque, 31 - Conj 42",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 5,
+      "numericRank": 65,
+      "type": "ouro",
+      "label": "🥇 Ouro (Boa Oportunidade)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado"
+    },
+    "score": 5,
+    "notes": "Geração de novos mentorados e clientes de alto ticket para consultoria",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:37.997Z",
+    "priorityScore": 65,
+    "tier": "ouro"
+  },
+  {
+    "id": "lead-1791922821472-zw6jzr",
+    "name": "ATUAL - Palestras e Eventos",
+    "niche": "Coach & Mentor (Palestrante de Treinamentos)",
+    "phone": "(11) 3522-7200",
+    "cleanPhone": "551135227200",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://www.atualqv.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/ATUAL+-+Palestras+e+Eventos/data=!4m7!3m6!1s0x94ce59bde6c71ac1:0x12ce80b2fed5fde0!8m2!3d-23.5702839!4d-46.6460461!16s%2Fg%2F11cssr5rz1!19sChIJwRrH5r1ZzpQR4P3V_rKAzhI?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "5.0",
+    "reviews": 1,
+    "address": "Empresa de organização de eventos · Av. Paulista, 1765 - 171",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 5,
+      "numericRank": 65,
+      "type": "ouro",
+      "label": "🥇 Ouro (Boa Oportunidade)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado"
+    },
+    "score": 5,
+    "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:20:21.472Z",
+    "priorityScore": 65,
+    "tier": "ouro"
+  },
+  {
+    "id": "lead-1791922809937-vvvlx8",
+    "name": "L.Castelo Desenvolvimento Profissional",
+    "niche": "Coach & Mentor (Coach de Carreira)",
+    "phone": "(11) 3171-3079",
+    "cleanPhone": "551131713079",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://lcastelo.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/L.Castelo+Desenvolvimento+Profissional/data=!4m7!3m6!1s0x94ce581c932f1a01:0xafbb4a2fa92beb18!8m2!3d-23.5658537!4d-46.6421384!16s%2Fg%2F11byyl_4sh!19sChIJARovkxxYzpQRGOsrqS9Ku68?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "5.0",
+    "reviews": 1,
+    "address": "Consultoria empresarial · Condom Edifício Central Offices Paulista - R. Maestro Cardim, 560",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 5,
+      "numericRank": 65,
+      "type": "ouro",
+      "label": "🥇 Ouro (Boa Oportunidade)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado"
+    },
+    "score": 5,
+    "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:20:09.937Z",
+    "priorityScore": 65,
+    "tier": "ouro"
+  },
+  {
+    "id": "lead-1791922801898-eu6mdr",
+    "name": "Mentor Inteligência",
+    "niche": "Coach & Mentor (Mentor de Negócios)",
+    "phone": "(11) 3181-7922",
+    "cleanPhone": "551131817922",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://mentorinteligencia.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Mentor+Intelig%C3%AAncia/data=!4m7!3m6!1s0x94ce59bed9ec2aaf:0xc31a458db928caaf!8m2!3d-23.5680675!4d-46.6490589!16s%2Fg%2F11ghvhsfyq!19sChIJryrs2b5ZzpQRr8oouY1FGsM?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "N/A",
+    "reviews": 0,
+    "address": "Consultoria empresarial ·  · Av. Paulista, 575 - Cj 1903",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 5,
+      "numericRank": 65,
+      "type": "ouro",
+      "label": "🥇 Ouro (Boa Oportunidade)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado"
+    },
+    "score": 5,
+    "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:20:01.898Z",
+    "priorityScore": 65,
+    "tier": "ouro"
+  },
+  {
+    "id": "lead-1791922801898-lgvqzr",
+    "name": "Mentoria Financeira Empresarial - Projeto DSD Consultores",
+    "niche": "Coach & Mentor (Mentor de Negócios)",
+    "phone": "(11) 5542-7886",
+    "cleanPhone": "551155427886",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://projetodsd.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Mentoria+Financeira+Empresarial+-+Projeto+DSD+Consultores/data=!4m7!3m6!1s0x94ce50be51636b19:0x413e3af8d64c601!8m2!3d-23.6215048!4d-46.6869233!16s%2Fg%2F1thw383f!19sChIJGWtjUb5QzpQRAcZkja_jEwQ?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.8",
+    "reviews": 4,
+    "address": "Consultoria ·  · R. Álvaro Rodrigues, 182",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 5,
+      "numericRank": 65,
+      "type": "ouro",
+      "label": "🥇 Ouro (Boa Oportunidade)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado"
+    },
+    "score": 5,
+    "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:20:01.898Z",
+    "priorityScore": 65,
+    "tier": "ouro"
+  },
+  {
+    "id": "lead-1791922801898-p56nlo",
+    "name": "Mentor do Corretor",
+    "niche": "Coach & Mentor (Mentor de Negócios)",
+    "phone": "(11) 5069-0800",
+    "cleanPhone": "551150690800",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://mentordocorretor.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Mentor+do+Corretor/data=!4m7!3m6!1s0x94ce5b758136ffff:0x3424f30a6a64843c!8m2!3d-23.6021299!4d-46.6185213!16s%2Fg%2F11jx29xhtz!19sChIJ__82gXVbzpQRPIRkagrzJDQ?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "2.5",
+    "reviews": 2,
+    "address": "Consultoria · R. Santa Cruz, 2105 - Conj 1312",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 5,
+      "numericRank": 65,
+      "type": "ouro",
+      "label": "🥇 Ouro (Boa Oportunidade)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado"
+    },
+    "score": 5,
+    "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:20:01.898Z",
+    "priorityScore": 65,
+    "tier": "ouro"
+  },
+  {
+    "id": "lead-1791922793694-fyvihf",
+    "name": "Grupo Maximuns - Treinamentos Empresariais, Consultoria Empresarial, Mentoria, Recrutamento e Seleção e Coaching Executivo.",
+    "niche": "Coach & Mentor (Coach Financeiro)",
+    "phone": "(11) 5194-0284",
+    "cleanPhone": "551151940284",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://www.grupomaximuns.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Grupo+Maximuns+-+Treinamentos+Empresariais,+Consultoria+Empresarial,+Mentoria,+Recrutamento+e+Sele%C3%A7%C3%A3o+e+Coaching+Executivo./data=!4m7!3m6!1s0x94ce59b8c107d17b:0x3c2b88bf868f0cf6!8m2!3d-23.566677!4d-46.649659!16s%2Fg%2F12hkz8h66!19sChIJe9EHwbhZzpQR9gyPhr-IKzw?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "5.0",
+    "reviews": 1,
+    "address": "Consultoria empresarial · Av. Paulista, 726",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 5,
+      "numericRank": 65,
+      "type": "ouro",
+      "label": "🥇 Ouro (Boa Oportunidade)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado"
+    },
+    "score": 5,
+    "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:19:53.694Z",
+    "priorityScore": 65,
+    "tier": "ouro"
+  },
+  {
+    "id": "lead-1791922793694-x9d11y",
+    "name": "Lara Dias Gestão De Negócios E Pessoas",
+    "niche": "Coach & Mentor (Coach Financeiro)",
+    "phone": "(11) 2096-7205",
+    "cleanPhone": "551120967205",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "http://www.laradiasgnp.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Lara+Dias+Gest%C3%A3o+De+Neg%C3%B3cios+E+Pessoas/data=!4m7!3m6!1s0x94ce598dc4fb5833:0x81da781d9ca65da8!8m2!3d-23.5801638!4d-46.6387423!16s%2Fg%2F11fv7_mg6y!19sChIJM1j7xI1ZzpQRqF2mnB142oE?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "N/A",
+    "reviews": 0,
+    "address": "Serviço de desenvolvimento empresarial · Rua Vergueiro, 2087 - Sl 502",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 5,
+      "numericRank": 65,
+      "type": "ouro",
+      "label": "🥇 Ouro (Boa Oportunidade)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado"
+    },
+    "score": 5,
+    "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:19:53.694Z",
+    "priorityScore": 65,
+    "tier": "ouro"
+  },
+  {
+    "id": "lead-1791922793694-975yzk",
+    "name": "Coaching SP - Profissional e Pessoal",
+    "niche": "Coach & Mentor (Coach Financeiro)",
+    "phone": "(11) 4502-4455",
+    "cleanPhone": "551145024455",
+    "hasPhone": true,
+    "hasMobile": false,
+    "website": "https://www.coaching-sp.com/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Coaching+SP+-+Profissional+e+Pessoal/data=!4m7!3m6!1s0x94ce50cb1112888d:0x71bf37b1236e5f81!8m2!3d-23.6081835!4d-46.6930608!16s%2Fg%2F11bzq42kqr!19sChIJjYgSEctQzpQRgV9uI7E3v3E?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.5",
+    "reviews": 2,
+    "address": "Consultoria · Rua Alcides Ricardini Neves, 12 - Conj 715",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 5,
+      "numericRank": 65,
+      "type": "ouro",
+      "label": "🥇 Ouro (Boa Oportunidade)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado"
+    },
+    "score": 5,
+    "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:19:53.694Z",
+    "priorityScore": 65,
+    "tier": "ouro"
+  }
+]

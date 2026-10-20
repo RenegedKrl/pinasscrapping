@@ -144,6 +144,14 @@ function getConversationState(lead, storeInstance) {
     lastSender = lastMessage.fromMe ? 'me' : 'lead';
   }
 
+  // Verifica se há evidência inequívoca de intervenção manual do Kauê:
+  // 1. Flag explícita no lead (manualControl ou humanTakeover)
+  // 2. Presença de áudios de voz gravados por nós (o robô nunca envia áudio PTT)
+  // 3. Mensagens com flag isBot === false
+  const hasManualAudio = outboundMsgs.some(m => m.type === 'audio' || (m.text && (m.text.includes('[Áudio de voz]') || m.text.includes('[Audio]'))));
+  const hasManualFlag = outboundMsgs.some(m => m.isBot === false);
+  const hasManualIntervention = !!(lead?.manualControl || lead?.humanTakeover || hasManualAudio || hasManualFlag);
+
   // Se a última mensagem foi nossa, estamos aguardando a resposta do lead!
   const isWaitingForCustomerReply = (lastSender === 'me');
   const customerHasEverReplied = inboundMsgs.length > 0;
@@ -154,6 +162,7 @@ function getConversationState(lead, storeInstance) {
     inboundCount: inboundMsgs.length,
     lastSender,
     lastMessage,
+    hasManualIntervention,
     isWaitingForCustomerReply,
     customerHasEverReplied
   };
@@ -164,6 +173,7 @@ function getConversationState(lead, storeInstance) {
  * Determina com precisão se é permitido enviar uma nova mensagem para o lead.
  * 
  * Regra:
+ * - Lead sob atendimento manual do Kauê -> BLOQUEADO TOTALMENTE (IA NUNCA interfere)
  * - Lead novo (sem mensagem prévia) -> PERMITIDO (1º contato / outbound frio)
  * - Lead já recebeu mensagem nossa e NÃO respondeu -> BLOQUEADO TOTALMENTE
  * - Lead respondeu por último -> PERMITIDO (responder à dúvida dele)
@@ -195,8 +205,26 @@ function canSendMessageToLead(lead, storeInstance, options = {}) {
     };
   }
 
-  // 3. Estado real da conversa no WhatsApp
+  // 3. INTERVENÇÃO MANUAL DO KAUÊ (HUMAN TAKEOVER):
+  // Se o Kauê já assumiu o atendimento manual deste lead, a IA é SILENCIADA DEFINITIVAMENTE!
+  if (lead.manualControl || lead.humanTakeover) {
+    return {
+      allowed: false,
+      reason: 'Lead sob atendimento manual exclusivo do Kauê. O robô/IA está silenciado para esta conversa.',
+      code: 'HUMAN_TAKEOVER'
+    };
+  }
+
+  // 4. Estado real da conversa no WhatsApp
   const state = getConversationState(lead, storeInstance);
+
+  if (state.hasManualIntervention) {
+    return {
+      allowed: false,
+      reason: 'Detectada intervenção humana do Kauê no histórico da conversa (áudio ou mensagem manual). O robô/IA cedeu o controle.',
+      code: 'HUMAN_TAKEOVER'
+    };
+  }
 
   // REGRA DE OURO DO KAUÊ:
   // Se a última mensagem foi enviada por nós (Pinas/Kauê), o cliente AINDA NÃO RESPONDEU.

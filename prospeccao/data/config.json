@@ -1,6 +1,8 @@
 {
   "autoStartAutopilot": true,
-  "dailyLimit": 30,
+  "onlyRespondReplies": false,
+  "disableNewLeadOutbound": false,
+  "dailyLimit": 17,
   "outboundStartHour": 10,
   "outboundEndHour": 19,
   "outboundDays": [
@@ -9,8 +11,8 @@
     4,
     5
   ],
-  "sentToday": 30,
-  "lastResetDate": "2026-10-12",
+  "sentToday": 5,
+  "lastResetDate": "2026-10-20",
   "minDelaySeconds": 300,
   "maxDelaySeconds": 330,
   "excludedChains": [
@@ -62,7 +64,11 @@
     "brás",
     "bras",
     "faculdade",
-    "governo"
+    "governo",
+    "gov",
+    "mel pitanga",
+    "panzini buffet",
+    "coach amani"
   ],
   "excludedKeywords": [
     "estética",
@@ -98,33 +104,68 @@
     "bras",
     "faculdade",
     "topografia",
-    "governo"
+    "governo",
+    "gov",
+    "mel pitanga",
+    "panzini buffet",
+    "coach amani"
   ],
   "defaultNiches": [
     {
       "name": "Clínicas Veterinárias",
       "query": "clinica veterinaria",
-      "templateId": "veterinaria"
+      "templateId": "veterinaria",
+      "priority": 1,
+      "active": true
     },
     {
       "name": "Consultórios Veterinários",
       "query": "consultorio veterinario",
-      "templateId": "veterinaria"
+      "templateId": "veterinaria",
+      "priority": 1,
+      "active": true
     },
     {
       "name": "Escritórios de Advocacia",
       "query": "escritorio de advocacia",
-      "templateId": "advogado"
+      "templateId": "advogado",
+      "priority": 2,
+      "active": true
     },
     {
       "name": "Advogados Especialistas",
       "query": "advogado",
-      "templateId": "advogado"
+      "templateId": "advogado",
+      "priority": 2,
+      "active": true
     },
     {
-      "name": "Lojas de Roupas (Geral)",
-      "query": "loja de roupas femininas",
-      "templateId": "roupas-moda"
+      "name": "Coaches Financeiros",
+      "query": "coach financeiro",
+      "templateId": "coach",
+      "priority": 3,
+      "active": true
+    },
+    {
+      "name": "Mentores de Negócios e Executivos",
+      "query": "mentor de negocios",
+      "templateId": "coach",
+      "priority": 3,
+      "active": true
+    },
+    {
+      "name": "Coaches de Carreira e Liderança",
+      "query": "coach de carreira",
+      "templateId": "coach",
+      "priority": 3,
+      "active": true
+    },
+    {
+      "name": "Palestrantes e Treinamentos",
+      "query": "palestrante treinamentos",
+      "templateId": "coach",
+      "priority": 3,
+      "active": true
     }
   ]
 }

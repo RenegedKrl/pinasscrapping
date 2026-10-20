@@ -104,7 +104,7 @@ function calculateOpportunity(lead) {
 /**
  * Scraper principal do Google Maps
  */
-async function scrapeGoogleMaps({ niche, location, maxResults = 20, onlyMobile = false, filterDuplicates = true, onProgress }) {
+async function scrapeGoogleMaps({ niche, location, maxResults = 20, onlyMobile = false, filterDuplicates = true, filterMinSize = true, onProgress }) {
   const config = loadConfig();
   const query = `${niche} ${location}`.trim();
   const notify = (msg, percent = null) => {
@@ -272,14 +272,42 @@ async function scrapeGoogleMaps({ niche, location, maxResults = 20, onlyMobile =
           break;
         }
       }
-      if (!address && lines.length > 2) address = lines[2].trim();
+      // FILTRO DE PORTE MÍNIMO DA PINAS (@pinas.studio):
+      // Garante que só entram empresas reais com fluxo de clientes e caixa ativo
+      const numReviews = Number(item.reviews) || 0;
+      const numRating = Number(item.rating) || 0;
+      const minReviewsRequired = config.minReviews !== undefined ? config.minReviews : 8;
+      const minRatingRequired = config.minRating !== undefined ? config.minRating : 4.0;
+
+      if (filterMinSize) {
+        if (numReviews < minReviewsRequired) {
+          continue; // Descarta autônomos sem histórico ou negócios inativos
+        }
+        if (numRating > 0 && numRating < minRatingRequired) {
+          continue; // Descarta negócios com reputação ruim
+        }
+      }
+      if (onlyMobile && !phoneInfo.isMobile) {
+        continue;
+      }
+
+      const auditor = require('./auditor');
+      const leadScore = auditor.calculateLeadScore({
+        name: item.name.trim(),
+        niche,
+        website: item.website,
+        cleanPhone: phoneInfo.clean,
+        hasMobile: phoneInfo.isMobile,
+        reviews: numReviews,
+        rating: numRating
+      });
 
       const opp = calculateOpportunity({
         hasWebsite: !!item.website,
         website: item.website,
         hasMobile: phoneInfo.isMobile,
-        reviews: item.reviews || 0,
-        rating: item.rating || 0
+        reviews: numReviews,
+        rating: numRating
       });
 
       const lead = {
@@ -294,13 +322,21 @@ async function scrapeGoogleMaps({ niche, location, maxResults = 20, onlyMobile =
         hasWebsite: !!item.website,
         mapsUrl: item.mapsUrl,
         rating: item.rating || 'N/A',
-        reviews: item.reviews || 0,
+        reviews: numReviews,
         address: address || location,
         neighborhood: location,
         city: 'São Paulo',
-        opportunity: opp,
+        opportunity: {
+          score: opp.score,
+          numericRank: leadScore.score,
+          type: leadScore.tier,
+          label: leadScore.tierLabel,
+          attackAngle: leadScore.attackAngle
+        },
+        priorityScore: leadScore.score,
+        tier: leadScore.tier,
         score: opp.score,
-        notes: opp.attackAngle,
+        notes: leadScore.attackAngle,
         status: 'novo',
         lastContact: null,
         createdAt: new Date().toISOString()

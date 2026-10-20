@@ -302,12 +302,39 @@ function renderLeadsTable(leads) {
       : '<span style="color: var(--text-muted);">-</span>';
 
     const opp = lead.opportunity || { type: 'geral', label: '📍 Presença Local', desc: '' };
+    const priorityScoreBadge = lead.priorityScore
+      ? `<div style="margin-top: 4px;"><span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); font-weight: 800; font-size: 0.72rem;">⚡ ${lead.priorityScore} pts</span></div>`
+      : '';
     const oppBadge = `
       <div class="badge-opportunity" title="${escapeHtml(opp.attackAngle || opp.desc || '')}">
         <span class="opp-tag ${opp.type || 'geral'}">${opp.label}</span>
-        <span class="score-stars">${'★'.repeat(lead.score || 3)}${'☆'.repeat(5 - (lead.score || 3))}</span>
+        ${priorityScoreBadge}
       </div>
     `;
+
+    let metaAdsBadge = '';
+    if (lead.metaAds && lead.metaAds.checked) {
+      if (lead.metaAds.hasActiveAds) {
+        metaAdsBadge = `
+          <div style="margin-top: 5px;">
+            <a href="${lead.metaAds.searchUrl}" target="_blank" class="badge" style="background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.35); text-decoration: none; font-size: 0.7rem; font-weight: 700;" title="Ver anúncios na Meta Ads Library">
+              🟢 Meta: ${lead.metaAds.adCountText} ↗
+            </a>
+          </div>`;
+      } else {
+        metaAdsBadge = `
+          <div style="margin-top: 5px;">
+            <span class="badge" style="background: rgba(148,163,184,0.12); color: #94a3b8; font-size: 0.68rem;">⚪ Meta: 0 anúncios</span>
+          </div>`;
+      }
+    } else {
+      metaAdsBadge = `
+        <div style="margin-top: 5px;">
+          <button type="button" class="btn btn-sm btn-outline" style="font-size: 0.68rem; padding: 2px 6px; border-color: rgba(59,130,246,0.35); color: #60a5fa;" onclick="checkMetaAds('${lead.id}', this)" title="Checar autonomamente se possui anúncios no Meta Ads Library">
+            🔍 Checar Meta Ads
+          </button>
+        </div>`;
+    }
 
     return `
       <tr id="row-${lead.id}">
@@ -320,7 +347,10 @@ function renderLeadsTable(leads) {
           <div style="font-weight: 600;">${lead.phone}</div>
           ${phoneBadge}
         </td>
-        <td>${websiteBadge}</td>
+        <td>
+          ${websiteBadge}
+          ${metaAdsBadge}
+        </td>
         <td>${ratingDisplay}</td>
         <td>
           <div style="font-size: 0.85rem;">${lead.neighborhood || lead.address || 'São Paulo'}</div>
@@ -431,12 +461,13 @@ async function handleScrapeSubmit(e) {
 
   const onlyMobile = document.getElementById('check-only-whatsapp')?.checked ?? true;
   const filterDuplicates = document.getElementById('check-filter-duplicates')?.checked ?? true;
+  const filterMinSize = document.getElementById('check-filter-min-size')?.checked ?? true;
 
   try {
     const res = await fetch('/api/scrape', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ niche, location, maxResults, onlyMobile, filterDuplicates })
+      body: JSON.stringify({ niche, location, maxResults, onlyMobile, filterDuplicates, filterMinSize })
     });
     const data = await res.json();
 
@@ -835,7 +866,9 @@ function renderAutopilotStatus(status) {
     if (dot) dot.classList.add('active');
 
     if (statusLabel) {
-      if (status.isSleepingNight) {
+      if (status.onlyRespondReplies) {
+        statusLabel.innerHTML = 'Piloto Automático: <strong style="color: #38bdf8;">💬 Modo Apenas Respostas Ativo • Disparos a Novos Leads Pausados (Atendendo Respostas 24/7)</strong>';
+      } else if (status.isSleepingNight) {
         statusLabel.innerHTML = 'Piloto Automático: <strong style="color: #60a5fa;">🌙 Standby Noturno (Meta Batida) • IA 24/7 Ativa</strong>';
       } else if (status.commercialWindow && status.commercialWindow.isAllowedDay === false) {
         statusLabel.innerHTML = `Piloto Automático: <strong style="color: #93C5FD;">🗓️ Standby: ${status.commercialWindow.dayName} sem novos disparos • Próx: ${status.commercialWindow.nextDayName} ${status.commercialWindow.start}h • IA 24/7 Ativa</strong>`;
@@ -5084,9 +5117,41 @@ window.showToastNotification = showToastNotification;
 window.showSuccessModal = showSuccessModal;
 window.initToastSystem = initToastSystem;
 window.openChatLightbox = openChatLightbox;
-window.closeChatLightbox = closeChatLightbox;
-window.lightboxNext = lightboxNext;
-window.lightboxPrev = lightboxPrev;
-window.initLightbox = initLightbox;
+window.checkMetaAds = async function(leadId, btnElement) {
+  if (btnElement) {
+    btnElement.disabled = true;
+    btnElement.innerHTML = '⏳ Verificando no Meta...';
+  }
+  try {
+    const res = await fetch(`/api/leads/${leadId}/check-meta-ads`, { method: 'POST' });
+    const data = await res.json();
+    if (data.success && data.lead) {
+      const idx = allLeads.findIndex(l => l.id === leadId);
+      if (idx !== -1) {
+        allLeads[idx] = data.lead;
+      }
+      renderLeadsTable(allLeads);
+      if (window.showToast) {
+        const text = data.metaAds.hasActiveAds 
+          ? `🎯 ${data.lead.name}: ${data.metaAds.adCountText} identificados no Meta!`
+          : `ℹ️ ${data.lead.name}: Nenhum anúncio ativo no Meta.`;
+        showToast(text, data.metaAds.hasActiveAds ? 'success' : 'info');
+      }
+    } else {
+      alert(data.error || 'Falha ao verificar Meta Ads.');
+      if (btnElement) {
+        btnElement.disabled = false;
+        btnElement.innerHTML = '🔍 Checar Meta Ads';
+      }
+    }
+  } catch (err) {
+    alert('Erro ao conectar com o verificador do Meta: ' + err.message);
+    if (btnElement) {
+      btnElement.disabled = false;
+      btnElement.innerHTML = '🔍 Checar Meta Ads';
+    }
+  }
+};
+
 
 

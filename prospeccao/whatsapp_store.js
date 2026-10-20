@@ -482,6 +482,7 @@ function addMessage(jid, msgData) {
     type: msgData.type || 'text', // text, image, audio, document
     mediaUrl: msgData.mediaUrl || null,
     fileName: msgData.fileName || null,
+    isBot: msgData.isBot !== undefined ? msgData.isBot : null,
     status: msgData.status || 'sent'
   };
 

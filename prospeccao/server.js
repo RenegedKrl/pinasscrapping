@@ -524,14 +524,34 @@ app.post('/api/whatsapp/mark-read', (req, res) => {
   res.json({ success: true });
 });
 
-// Enviar mensagem de texto no chat direto
+// Enviar mensagem de texto no chat direto (Intervenção manual do Kauê)
 app.post('/api/whatsapp/send-chat', async (req, res) => {
   const { jid, text } = req.body;
   if (!jid || !text) {
     return res.status(400).json({ error: 'JID e texto são obrigatórios.' });
   }
   try {
-    const result = await whatsapp.sendMessage(jid, text);
+    const result = await whatsapp.sendMessage(jid, text, { isBot: false });
+    // Marcar lead como atendimento manual definitivo do Kauê
+    try {
+      const cleanDigits = String(jid).replace(/\D/g, '');
+      const leads = readJson(LEADS_FILE, []);
+      const lead = findLeadByPhone(leads, cleanDigits);
+      if (lead) {
+        if (autoResponderQueue.has(lead.id)) {
+          clearTimeout(autoResponderQueue.get(lead.id));
+          autoResponderQueue.delete(lead.id);
+        }
+        lead.manualControl = true;
+        lead.humanTakeover = true;
+        lead.lastManualMessageAt = new Date().toISOString();
+        if (!lead.notes || !lead.notes.includes('Atendimento manual do Kauê')) {
+          lead.notes = (lead.notes ? lead.notes + ' | ' : '') + 'Atendimento manual do Kauê (IA desativada)';
+        }
+        writeJson(LEADS_FILE, leads);
+        console.log(`[Human Takeover] 👤 Mensagem enviada pelo painel para "${lead.name}". Controle manual assumido!`);
+      }
+    } catch (e) {}
     res.json(result);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -546,6 +566,21 @@ app.post('/api/whatsapp/send-media', async (req, res) => {
   }
   try {
     const result = await whatsapp.sendMediaMessage(jid, { base64Data, mimetype, caption, fileName });
+    try {
+      const cleanDigits = String(jid).replace(/\D/g, '');
+      const leads = readJson(LEADS_FILE, []);
+      const lead = findLeadByPhone(leads, cleanDigits);
+      if (lead) {
+        if (autoResponderQueue.has(lead.id)) {
+          clearTimeout(autoResponderQueue.get(lead.id));
+          autoResponderQueue.delete(lead.id);
+        }
+        lead.manualControl = true;
+        lead.humanTakeover = true;
+        lead.lastManualMessageAt = new Date().toISOString();
+        writeJson(LEADS_FILE, leads);
+      }
+    } catch (e) {}
     res.json(result);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -560,6 +595,21 @@ app.post('/api/whatsapp/send-audio', async (req, res) => {
   }
   try {
     const result = await whatsapp.sendAudioMessage(jid, { base64Data, mimetype });
+    try {
+      const cleanDigits = String(jid).replace(/\D/g, '');
+      const leads = readJson(LEADS_FILE, []);
+      const lead = findLeadByPhone(leads, cleanDigits);
+      if (lead) {
+        if (autoResponderQueue.has(lead.id)) {
+          clearTimeout(autoResponderQueue.get(lead.id));
+          autoResponderQueue.delete(lead.id);
+        }
+        lead.manualControl = true;
+        lead.humanTakeover = true;
+        lead.lastManualMessageAt = new Date().toISOString();
+        writeJson(LEADS_FILE, leads);
+      }
+    } catch (e) {}
     res.json(result);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -574,7 +624,7 @@ app.post('/api/scrape', async (req, res) => {
     return res.status(400).json({ error: 'Já existe uma varredura em execução.' });
   }
 
-  const { niche, location, maxResults = 25, onlyMobile = false, filterDuplicates = true } = req.body;
+  const { niche, location, maxResults = 25, onlyMobile = false, filterDuplicates = true, filterMinSize = true } = req.body;
 
   if (!niche || !location) {
     return res.status(400).json({ error: 'Nicho e localização são obrigatórios.' });
@@ -599,6 +649,7 @@ app.post('/api/scrape', async (req, res) => {
         maxResults: parseInt(maxResults, 10) || 25,
         onlyMobile: !!onlyMobile,
         filterDuplicates: filterDuplicates !== false,
+        filterMinSize: filterMinSize !== false,
         onProgress: (p) => {
           scraperState.message = p.message;
           if (p.percent) scraperState.percent = p.percent;
@@ -640,6 +691,33 @@ app.post('/api/scrape', async (req, res) => {
 // Status do scraper
 app.get('/api/scrape/status', (req, res) => {
   res.json(scraperState);
+});
+
+// Varredura automática das 4 categorias de Coaches & Mentores
+app.post('/api/scrape/coaches-automatico', async (req, res) => {
+  if (scraperState.running) {
+    return res.status(400).json({ error: 'Já existe uma varredura em execução.' });
+  }
+
+  res.json({ success: true, message: 'Varredura automática de coaches iniciada em segundo plano.' });
+
+  try {
+    const { runAutonomousCoachScraper } = require('./scripts/varrer_coaches_automatico');
+    scraperState.running = true;
+    scraperState.message = 'Varrendo coaches, finanças, negócios, carreira e palestrantes...';
+    scraperState.percent = 10;
+    
+    const result = await runAutonomousCoachScraper();
+    
+    scraperState.running = false;
+    scraperState.percent = 100;
+    scraperState.leadsFound = result.totalNewAdded;
+    scraperState.message = `Varredura concluída! ${result.totalNewAdded} novos coaches adicionados.`;
+  } catch (err) {
+    scraperState.running = false;
+    scraperState.error = err.message;
+    scraperState.message = `Erro: ${err.message}`;
+  }
 });
 
 // Caça ativa e autônoma de sites ruins na Web
@@ -919,6 +997,36 @@ function classifyLeadResponse(text) {
   return 'neutral';
 }
 
+// Detecta mensagens automáticas de secretária eletrônica do WhatsApp Business (ausência, catálogo, horários)
+function isAutomatedBusinessGreeting(text) {
+  if (!text || typeof text !== 'string') return false;
+  const t = text.toLowerCase().trim();
+
+  // Se o atendente humano disse que vai encaminhar para o responsável, NÃO é secretária eletrônica!
+  const humanForwarding = ['vou encaminhar', 'irei encaminhar', 'vou passar', 'irei passar', 'vou avisar', 'irei avisar', 'vou falar com'];
+  if (humanForwarding.some(p => t.includes(p))) return false;
+
+  const businessPatterns = [
+    'horário de atendimento', 'horario de atendimento',
+    'agradecemos seu contato', 'agradecemos sua mensagem', 'agradece seu contato', 'agradece sua mensagem',
+    'mensagem automática', 'mensagem automatica',
+    'estamos ausentes', 'estou ausente', 'no momento estamos ausentes', 'fora do nosso horário', 'fora do horario',
+    'responderemos assim que possível', 'responderemos assim que possivel', 'retornaremos assim que possível', 'retornaremos assim que possivel',
+    'logo mais volto para te responder', 'em breve respondo', 'em breve responderemos',
+    'conhecer meus principais serviços no catálogo', 'conhecer meu catálogo', 'explore meu catálogo', 'explore nosso catálogo',
+    'catálogo 📌', 'catalogo 📌', 'catálogo online', 'catalogo online',
+    'seja muito bem-vinda à', 'seja muito bem-vindo à', 'seja muito bem-vinda ao', 'seja muito bem-vindo ao',
+    'atendimento automatizado', 'resposta automatica', 'resposta automática',
+    'não estamos disponíveis no momento', 'nao estamos disponiveis no momento',
+    'escolha uma especialidade', 'bem-vindos ao nosso canal de atendimento', 'bem-vindo ao nosso canal de atendimento',
+    'assistente virtual', 'informações para orçamento', 'informacoes para orcamento',
+    'não podemos atender sua ligação', 'nao podemos atender sua ligacao',
+    'nossa equipe responderá assim que possível', 'retornaremos o mais breve possível'
+  ];
+
+  return businessPatterns.some(p => t.includes(p));
+}
+
 function generateCleanWhatsAppLink(lead) {
   let raw = String(lead.cleanPhone || lead.phone || '').replace(/\D/g, '');
   if (!raw) return 'https://wa.me/5511999999999?text=Ol%C3%A1!%20Vi%20no%20Google%20e%20gostaria%20de%20informa%C3%A7%C3%B5es';
@@ -957,6 +1065,7 @@ function formatStepMessage(lead, rawTemplate, withSite = false) {
 const autoResponderQueue = new Map();
 const processedIncomingMsgIds = new Set();
 const leadLastRepliedAt = new Map();
+const activeLeadResponses = new Set(); // TRAVA ATÔMICA ANTI-DUPLICAÇÃO: impede geração paralela pro mesmo lead
 
 // Executar resposta inteligente para um lead específico (usado em tempo real e na recuperação offline)
 async function executeLeadResponse(lead, text, targetJid = null, source = 'realtime') {
@@ -973,7 +1082,26 @@ async function executeLeadResponse(lead, text, targetJid = null, source = 'realt
     return false;
   }
 
-  // SEGURANÇA MÁXIMA 6: Se o ÚLTIMO remetente na conversa já foi o Kauê (nós), NUNCA responder novamente!
+  // SEGURANÇA MÁXIMA 5.1 (HUMAN TAKEOVER): Se o Kauê já assumiu o atendimento manual deste lead, IA 100% SILENCIADA!
+  if (lead.manualControl || lead.humanTakeover) {
+    console.log(`[Auto-Responder] 👤 Lead "${lead.name}" está sob atendimento manual do Kauê. IA desativada.`);
+    return false;
+  }
+
+  // TRAVA ANTI-DUPLICAÇÃO 1: Se a IA já está gerando resposta ativamente para este lead, ABORTA execução paralela
+  if (activeLeadResponses.has(lead.id)) {
+    console.log(`[Auto-Responder] 🛡️ Lead "${lead.name}" já possui geração de resposta em andamento. Abortando concorrência.`);
+    return false;
+  }
+
+  // TRAVA ANTI-DUPLICAÇÃO 2: Cooldown de 90 segundos por lead (impede qualquer disparo duplo repetido)
+  const now = Date.now();
+  if (leadLastRepliedAt.has(lead.id) && (now - leadLastRepliedAt.get(lead.id) < 90000)) {
+    console.log(`[Auto-Responder] 🛡️ Cooldown ativo para "${lead.name}" (< 90s desde o último envio). Abortando.`);
+    return false;
+  }
+
+  // SEGURANÇA MÁXIMA 6 (REGRA DE OURO): Se o ÚLTIMO remetente na conversa já foi o Kauê (nós), NUNCA responder novamente!
   const jid = targetJid || (lead.cleanPhone + '@s.whatsapp.net');
   const chatHistory = whatsapp.store.getMessages(jid) || [];
   if (chatHistory.length > 0) {
@@ -981,64 +1109,78 @@ async function executeLeadResponse(lead, text, targetJid = null, source = 'realt
     if (textMsgs.length > 0) {
       const lastMsg = textMsgs[textMsgs.length - 1];
       if (lastMsg.fromMe) {
+        console.log(`[Auto-Responder] 🛡️ A última mensagem para "${lead.name}" já foi enviada por nós. Aguardando o cliente responder.`);
         return false;
       }
     }
   }
 
-  // SEGURANÇA MÁXIMA 7: Cooldown por lead (evita mensagens duplicadas num intervalo menor que 60 segundos)
-  const now = Date.now();
-  if (leadLastRepliedAt.has(lead.id) && (now - leadLastRepliedAt.get(lead.id) < 60000)) {
+  // SEGURANÇA MÁXIMA 7: Validação estrita via conversationGuard antes de prosseguir
+  const guardCheck = conversationGuard.canSendMessageToLead(lead, whatsapp.store);
+  if (!guardCheck.allowed) {
+    console.log(`[Auto-Responder] 🛡️ conversationGuard bloqueou envio para "${lead.name}": ${guardCheck.reason}`);
     return false;
   }
 
-  // Atualiza status do lead para "respondeu" (mantendo "reuniao" caso já tenha sido agendada)
-  const freshLeads = readJson(LEADS_FILE, []);
-  const currentLead = freshLeads.find(l => l.id === lead.id) || lead;
-  if (currentLead.status !== 'reuniao') {
-    currentLead.status = 'respondeu';
-  }
-  currentLead.repliedAt = new Date().toISOString();
-  writeJson(LEADS_FILE, freshLeads);
-
-  const stepData = readJson(STEP_TEMPLATES_FILE, { settings: {}, stages: [] });
-  const settings = stepData.settings || {};
-
-  if (settings.autoResponderEnabled === false) {
-    console.log(`[Auto-Responder] Lead "${currentLead.name}" respondeu, mas automação de resposta de etapas está pausada.`);
-    return false;
+  // Limpar IMEDIATAMENTE qualquer timer pendente na fila em tempo real deste lead para evitar segundo disparo
+  if (autoResponderQueue.has(lead.id)) {
+    clearTimeout(autoResponderQueue.get(lead.id));
+    autoResponderQueue.delete(lead.id);
   }
 
-  // Verificar intenção (recusa explícita e categórica)
-  const intent = classifyLeadResponse(text);
-  if (intent === 'negative') {
-    console.log(`[Auto-Responder] Lead "${currentLead.name}" enviou recusa explícita: "${text}". Marcando como perdido.`);
-    currentLead.status = 'perdido';
-    currentLead.notes = (currentLead.notes ? currentLead.notes + ' | ' : '') + `Recusou: "${text}"`;
-    writeJson(LEADS_FILE, freshLeads);
-    return false;
-  }
-
-  const isAiChatActive = (gemini.isConfigured() && settings.useGeminiConversationalAi !== false);
-  const currentStage = currentLead.stage || 1;
-
-  if (!isAiChatActive) {
-    if (currentStage >= (settings.maxAutoStage || 3) && currentLead.status !== 'reuniao') {
-      console.log(`[Auto-Responder] ℹ️ Lead "${currentLead.name}" atingiu o limite de templates manuais. Mantendo para atendimento.`);
-      return false;
-    }
-  }
-
-  let targetStage = currentStage + 1;
-  let combineWithNext = (currentStage === 1 && settings.combineStages2and3);
-
-  console.log(`[Auto-Responder 24/7] 🎯 Lead minerado "${currentLead.name}" mandou mensagem: "${text}". IA preparando resposta (${source})...`);
+  // ATIVAR AS TRAVAS ANTES DE QUALQUER OPERAÇÃO ASSÍNCRONA DA IA
+  activeLeadResponses.add(lead.id);
+  leadLastRepliedAt.set(lead.id, Date.now());
 
   try {
+    // Atualiza status do lead para "respondeu" (mantendo "reuniao" caso já tenha sido agendada)
+    const freshLeads = readJson(LEADS_FILE, []);
+    const currentLead = freshLeads.find(l => l.id === lead.id) || lead;
+    if (currentLead.status !== 'reuniao') {
+      currentLead.status = 'respondeu';
+    }
+    currentLead.repliedAt = new Date().toISOString();
+    writeJson(LEADS_FILE, freshLeads);
+
+    const stepData = readJson(STEP_TEMPLATES_FILE, { settings: {}, stages: [] });
+    const settings = stepData.settings || {};
+
+    if (settings.autoResponderEnabled === false) {
+      console.log(`[Auto-Responder] Lead "${currentLead.name}" respondeu, mas automação de resposta de etapas está pausada.`);
+      return false;
+    }
+
+    // Verificar intenção (recusa explícita e categórica)
+    const intent = classifyLeadResponse(text);
+    if (intent === 'negative') {
+      console.log(`[Auto-Responder] Lead "${currentLead.name}" enviou recusa explícita: "${text}". Marcando como perdido.`);
+      currentLead.status = 'perdido';
+      currentLead.manualControl = true;
+      currentLead.humanTakeover = true;
+      currentLead.notes = (currentLead.notes ? currentLead.notes + ' | ' : '') + `Recusou: "${text}"`;
+      writeJson(LEADS_FILE, freshLeads);
+      return false;
+    }
+
+    const isAiChatActive = (gemini.isConfigured() && settings.useGeminiConversationalAi !== false);
+    const currentStage = currentLead.stage || 1;
+
+    if (!isAiChatActive) {
+      if (currentStage >= (settings.maxAutoStage || 3) && currentLead.status !== 'reuniao') {
+        console.log(`[Auto-Responder] ℹ️ Lead "${currentLead.name}" atingiu o limite de templates manuais. Mantendo para atendimento.`);
+        return false;
+      }
+    }
+
+    let targetStage = currentStage + 1;
+    let combineWithNext = (currentStage === 1 && settings.combineStages2and3);
+
+    console.log(`[Auto-Responder 24/7] 🎯 Lead minerado "${currentLead.name}" mandou mensagem: "${text}". IA preparando resposta (${source})...`);
+
     let replyMessage = '';
     let targetAction = 'reply';
 
-    // 1. Gerar resposta contextual inteligente e contínua com Gemini AI na voz do Kauê
+    // 1. Gerar resposta contextual inteligente e contínua com Gemini AI na voz autêntica do Kauê
     if (isAiChatActive) {
       try {
         console.log(`[Auto-Responder AI 24/7] Gerando resposta adaptativa com Gemini para "${currentLead.name}"...`);
@@ -1061,29 +1203,31 @@ async function executeLeadResponse(lead, text, targetJid = null, source = 'realt
       }
     }
 
-    // 2. Fallback para templates manuais APENAS se não foi recusa e a IA não retornou texto
+    // 2. Fallback humanizado e contextual (NUNCA robótico ou agressivo)
     if (!replyMessage && targetAction !== 'mark_lost') {
-      const stageObj = (stepData.stages || []).find(s => s.number === targetStage);
-      if (stageObj) {
-        const hasSite = currentLead.hasWebsite === true;
-        const rawText = hasSite ? stageObj.templates.comSite : stageObj.templates.semSite;
-        replyMessage = formatStepMessage(currentLead, rawText, hasSite);
-
-        if (combineWithNext) {
-          const stage3Obj = (stepData.stages || []).find(s => s.number === 3);
-          if (stage3Obj) {
-            const raw3 = hasSite ? stage3Obj.templates.comSite : stage3Obj.templates.semSite;
-            replyMessage += '\n\n' + formatStepMessage(currentLead, raw3, hasSite);
-            targetStage = 3;
-          }
-        }
+      const neighborhood = currentLead.neighborhood || currentLead.city || 'São Paulo';
+      if (targetStage <= 2) {
+        replyMessage = `Opa, tudo bem? Prazer! Aqui é o Kauê, da Pinas.\n\nVi o perfil de vocês no Google Maps em ${neighborhood} e achei muito bacana a reputação por aí. Dei uma olhada rápida na estrutura digital de vocês pelo celular e queria entender: vocês já têm alguém cuidando dessa parte de site e novos contatos por aí hoje?`;
+      } else {
+        replyMessage = `Entendi perfeitamente! Dei um toque justamente por isso — a gente aqui na Pinas ajuda empresas da região estruturando páginas rápidas pensadas pra quem pesquisa no Google no bairro já chamar no WhatsApp na hora.\n\nConsegue 10 a 15 minutinhos no Google Meet essa semana pra eu te mostrar uma prévia rápida sem compromisso?`;
       }
     }
 
-    if (!replyMessage) return false;
+    // Sanitização e formatação de segurança com parágrafos legíveis (\n\n) e sigilo de clientes
+    const isAskingAboutPortfolio = /quais\s+clientes|cases|portf[oó]lio|com\s+quem\s+(voc[eê]s?\s+)?trabalha/i.test(text || '');
+    if (gemini && typeof gemini.formatHumanWhatsAppMessage === 'function') {
+      replyMessage = gemini.formatHumanWhatsAppMessage(replyMessage, { allowClients: isAskingAboutPortfolio });
+    } else {
+      replyMessage = String(replyMessage)
+        .replace(/\[\s*(link\s*(do\s*v[ií]deo)?|v[ií]deo|link)\s*\]/gi, '')
+        .replace(/\s*\([^)]*\b(petiva|pink\s*luxo|chay\s*b|bem\s*zanza)\b[^)]*\)/gi, '')
+        .replace(/\b(como\s+(a|o)\s+)?(petiva|pink\s*luxo|chay\s*b|bem\s*zanza)\b/gi, 'empresas parceiras')
+        .replace(/[^\S\n]{2,}/g, ' ')
+        .replace(/\n{3,}/g, '\n\n')
+        .trim();
+    }
 
-    // Registrar timestamp de envio para cooldown
-    leadLastRepliedAt.set(currentLead.id, Date.now());
+    if (!replyMessage) return false;
 
     // Simular status "digitando..." por 3 a 4 segundos antes do envio para comportamento 100% humanizado
     try {
@@ -1091,7 +1235,7 @@ async function executeLeadResponse(lead, text, targetJid = null, source = 'realt
       await new Promise(r => setTimeout(r, 3500));
     } catch (tErr) {}
 
-    await whatsapp.sendMessage(currentLead.cleanPhone, replyMessage);
+    await whatsapp.sendMessage(currentLead.cleanPhone, replyMessage, { isBot: true });
 
     currentLead.stage = targetStage;
     currentLead.lastContact = new Date().toISOString();
@@ -1100,7 +1244,15 @@ async function executeLeadResponse(lead, text, targetJid = null, source = 'realt
       console.log(`[Auto-Responder AI] 🎉 Reunião com "${currentLead.name}" agendada pelo Gemini!`);
     } else if (targetAction === 'mark_lost') {
       currentLead.status = 'perdido';
-      console.log(`[Auto-Responder AI] ⏹️ Resposta educada enviada e lead "${currentLead.name}" arquivado.`);
+      currentLead.manualControl = true;
+      currentLead.humanTakeover = true;
+      console.log(`[Auto-Responder AI] ⏹️ Resposta educada de despedida enviada e lead "${currentLead.name}" arquivado (IA silenciada).`);
+    } else if (targetAction === 'mark_postponed') {
+      currentLead.status = 'adiado';
+      currentLead.manualControl = true;
+      currentLead.humanTakeover = true;
+      currentLead.notes = (currentLead.notes ? currentLead.notes + ' | ' : '') + `Lead pediu para retornar depois (IA silenciada para follow-up manual)`;
+      console.log(`[Auto-Responder AI] 📅 Lead "${currentLead.name}" pediu para falar em data futura. Status 'adiado' e IA silenciada.`);
     }
     currentLead.stageHistory = currentLead.stageHistory || [];
     currentLead.stageHistory.push({
@@ -1121,34 +1273,110 @@ async function executeLeadResponse(lead, text, targetJid = null, source = 'realt
     console.log(`[Auto-Responder] ✅ Resposta (${source}) disparada com sucesso para "${currentLead.name}"!`);
     return true;
   } catch (err) {
-    console.error(`[Auto-Responder] Erro ao responder "${currentLead.name}":`, err.message);
+    console.error(`[Auto-Responder] Erro ao responder "${lead.name}":`, err.message);
     return false;
+  } finally {
+    // SEMPRE liberar a trava atômica e atualizar o cooldown ao finalizar
+    activeLeadResponses.delete(lead.id);
+    leadLastRepliedAt.set(lead.id, Date.now());
   }
 }
 
-// Verifica e atende leads quentes minerados com mensagens pendentes (ex: recebidas enquanto o PC estava desligado)
-async function checkAndRespondPendingLeads(maxAgeHours = 48) {
+// Controle de cadência humanizada para respostas de leads pendentes (~5 minutos / 270s entre envios)
+let lastCatchupReplyAt = 0;
+
+// Verifica e atende leads quentes minerados com mensagens pendentes (até 30 dias / 720h de histórico)
+async function checkAndRespondPendingLeads(maxAgeHours = 720) {
   const leads = readJson(LEADS_FILE, []);
   const now = Date.now();
   const maxAgeMs = maxAgeHours * 3600 * 1000;
 
+  // CADÊNCIA HUMANIZADA DO KAUÊ:
+  // Se acabou de responder um lead pendente, aguarda pelo menos 4.5 minutos (~270s) antes do próximo
+  if (lastCatchupReplyAt && (now - lastCatchupReplyAt < 270000)) {
+    return false;
+  }
+
   for (const lead of leads) {
     if (!lead.cleanPhone) continue;
     if (lead.status === 'perdido' || lead.status === 'arquivado') continue;
+    if (lead.manualControl || lead.humanTakeover) continue;
     if (isProtectedBlacklist(lead)) continue;
 
-    const targetJid = lead.cleanPhone + '@s.whatsapp.net';
-    const chatHistory = whatsapp.store.getMessages(targetJid) || [];
-    const textMsgs = chatHistory.filter(m => m.text && !m.text.startsWith('[Sistema]'));
-    if (textMsgs.length === 0) continue;
+    // TRAVA ANTI-DUPLICAÇÃO 1: Se o lead já está agendado na fila em tempo real, NÃO interceptar via catchup!
+    if (autoResponderQueue.has(lead.id)) continue;
 
-    const lastMsg = textMsgs[textMsgs.length - 1];
+    // TRAVA ANTI-DUPLICAÇÃO 2: Se já está em geração ativa agora, NÃO rodar em paralelo!
+    if (activeLeadResponses.has(lead.id)) continue;
+
+    // TRAVA ANTI-DUPLICAÇÃO 3: Cooldown recente (< 90 segundos)
+    if (leadLastRepliedAt.has(lead.id) && (now - leadLastRepliedAt.get(lead.id) < 90000)) continue;
+
+    const chatHistory = conversationGuard.findMessagesForLead(lead, whatsapp.store) || [];
+    const validMsgs = chatHistory.filter(m => (m.text || m.type === 'audio' || m.type === 'image') && !m.text?.startsWith('[Sistema]'));
+    if (validMsgs.length === 0) continue;
+
+    const outboundMsgs = validMsgs.filter(m => m.fromMe);
+    // REGRA DE OURO DO KAUÊ: Se o Kauê mandou áudio ou mensagem manual neste chat, NUNCA responder pela IA!
+    const hasKauAudio = outboundMsgs.some(m => m.type === 'audio' || (m.text && (m.text.includes('[Áudio de voz]') || m.text.includes('[Audio]'))));
+    const hasKauManual = outboundMsgs.some(m => m.isBot === false);
+    if (hasKauAudio || hasKauManual) {
+      if (!lead.manualControl || !lead.humanTakeover) {
+        lead.manualControl = true;
+        lead.humanTakeover = true;
+        lead.notes = (lead.notes ? lead.notes + ' | ' : '') + 'Intervenção manual do Kauê detectada no histórico (IA silenciada)';
+        const toSaveLeads = readJson(LEADS_FILE, []);
+        const idx = toSaveLeads.findIndex(l => l.id === lead.id);
+        if (idx !== -1) {
+          toSaveLeads[idx] = { ...toSaveLeads[idx], ...lead };
+          writeJson(LEADS_FILE, toSaveLeads);
+        }
+      }
+      continue;
+    }
+
+    const lastMsg = validMsgs[validMsgs.length - 1];
     if (!lastMsg.fromMe) {
       const ageMs = now - lastMsg.timestamp;
+
+      // Se for áudio pendente, não tentar interpretar com IA: passar pro Kauê e notificar
+      if (lastMsg.type === 'audio' || (lastMsg.text && lastMsg.text.includes('[Áudio de voz]'))) {
+        lead.manualControl = true;
+        lead.humanTakeover = true;
+        lead.notes = (lead.notes ? lead.notes + ' | ' : '') + 'Áudio pendente recebido — Kauê notificado';
+        const toSaveLeads = readJson(LEADS_FILE, []);
+        const idx = toSaveLeads.findIndex(l => l.id === lead.id);
+        if (idx !== -1) {
+          toSaveLeads[idx] = { ...toSaveLeads[idx], ...lead };
+          writeJson(LEADS_FILE, toSaveLeads);
+        }
+        const cleanDigits = String(lead.cleanPhone).replace(/\D/g, '');
+        const waLink = `https://wa.me/${cleanDigits}`;
+        try {
+          await whatsapp.sendAlertToSelf(`🎧 *ÁUDIO DE LEAD PENDENTE!*\n\n*Lead:* ${lead.name}\n*Nicho:* ${lead.niche || 'Geral'}\n*Telefone:* ${lead.phone || cleanDigits}\n\n👉 *Toque para responder:* ${waLink}`);
+        } catch (e) {}
+        continue;
+      }
+
+      // Se for resposta automática de WhatsApp Business (secretária eletrônica / menu)
+      if (isAutomatedBusinessGreeting(lastMsg.text)) {
+        continue;
+      }
+
+      // Se a mensagem do cliente chegou há menos de 25 segundos, o listener em tempo real
+      // já está cuidando com digitação humanizada. Pular para nunca disparar duas vezes!
+      if (ageMs < 25000) continue;
+
       if (ageMs <= maxAgeMs) {
+        // Validação estrita via conversationGuard
+        const safety = conversationGuard.canSendMessageToLead(lead, whatsapp.store);
+        if (!safety.allowed) continue;
+
+        const targetJid = (lead.cleanPhone.startsWith('55') ? lead.cleanPhone : '55' + lead.cleanPhone) + '@s.whatsapp.net';
         console.log(`[Pending Leads Catch-up] 🔔 Lead quente encontrado aguardando resposta: "${lead.name}" (${(ageMs / 3600000).toFixed(1)}h atrás). Disparando IA...`);
         const handled = await executeLeadResponse(lead, lastMsg.text, targetJid, 'catchup');
         if (handled) {
+          lastCatchupReplyAt = Date.now();
           return true; // Atendeu 1 lead quente, aguarda próximo ciclo
         }
       }
@@ -1160,8 +1388,8 @@ async function checkAndRespondPendingLeads(maxAgeHours = 48) {
 function initAutoResponder() {
   if (!whatsapp.events) return;
 
-  whatsapp.events.on('message.received', async ({ jid, phone, text, msgId, timestamp }) => {
-    if (!phone || !text) return;
+  whatsapp.events.on('message.received', async ({ jid, phone, text, msgId, timestamp, type, mediaUrl }) => {
+    if (!phone || (!text && type !== 'audio')) return;
 
     // SEGURANÇA MÁXIMA 0: Deduplicação de msgId (evita disparar 2 vezes a mesma mensagem)
     if (msgId) {
@@ -1175,10 +1403,10 @@ function initAutoResponder() {
       }
     }
 
-    // SEGURANÇA MÁXIMA 1: NUNCA responder mensagens excessivamente antigas (mais de 48 horas de idade)
+    // SEGURANÇA MÁXIMA 1: NUNCA responder mensagens excessivamente antigas (mais de 30 dias / 720 horas de idade)
     if (timestamp) {
       const ageHours = (Date.now() - timestamp) / (1000 * 3600);
-      if (ageHours > 48) {
+      if (ageHours > 720) {
         return;
       }
     }
@@ -1198,6 +1426,92 @@ function initAutoResponder() {
       return;
     }
 
+    // SEGURANÇA MÁXIMA 3.1 (HUMAN TAKEOVER): Se o Kauê já assumiu o atendimento manual deste lead, IA 100% SILENCIADA!
+    if (lead.manualControl || lead.humanTakeover) {
+      console.log(`[Auto-Responder] 👤 Lead "${lead.name}" está em atendimento manual pelo Kauê. IA desativada.`);
+      return;
+    }
+
+    // SEGURANÇA MÁXIMA 3.15 (ÁUDIO RECEBIDO DE LEAD):
+    // Se o lead enviou uma mensagem de áudio:
+    // 1. A IA NÃO tenta interpretar nem finge ouvir.
+    // 2. Manda apenas uma mensagem curta e educada: "Opa! Só um minutinho que já ouço aqui e te respondo!"
+    // 3. Marca humanTakeover: true e manualControl: true para a IA sair da conversa.
+    // 4. Dispara alerta com link direto no WhatsApp do próprio Kauê (https://wa.me/{numero})
+    const isAudio = (type === 'audio') || 
+                    (text && (text.includes('[Áudio de voz]') || text.includes('[Audio]'))) ||
+                    (mediaUrl && mediaUrl.includes('audio_'));
+
+    if (isAudio) {
+      console.log(`[Auto-Responder] 🎧 ÁUDIO RECEBIDO do lead "${lead.name}" (${cleanDigits})!`);
+
+      // Cancelar qualquer timer pendente desse lead na fila
+      if (autoResponderQueue.has(lead.id)) {
+        clearTimeout(autoResponderQueue.get(lead.id));
+        autoResponderQueue.delete(lead.id);
+      }
+
+      // Enviar resposta curta e acolhedora
+      const audioAck = "Opa! Só um minutinho que já ouço aqui e te respondo!";
+      try {
+        await whatsapp.sendTyping(lead.cleanPhone);
+        await new Promise(r => setTimeout(r, 2000));
+        await whatsapp.sendMessage(lead.cleanPhone, audioAck, { isBot: true });
+        console.log(`[Auto-Responder] Resposta de confirmação de áudio enviada para "${lead.name}".`);
+      } catch (sendErr) {
+        console.warn(`[Auto-Responder] Erro ao enviar confirmação de áudio para "${lead.name}":`, sendErr.message);
+      }
+
+      // Ativar Human Takeover imediato (IA 100% pausada para esse lead)
+      lead.manualControl = true;
+      lead.humanTakeover = true;
+      lead.lastAudioReceivedAt = new Date().toISOString();
+      const audioNote = 'Áudio recebido do lead — Kauê notificado para responder no manual';
+      lead.notes = lead.notes ? `${lead.notes} | ${audioNote}` : audioNote;
+
+      const toSaveLeads = readJson(LEADS_FILE, []);
+      const lIdx = toSaveLeads.findIndex(l => l.id === lead.id);
+      if (lIdx !== -1) {
+        toSaveLeads[lIdx] = { ...toSaveLeads[lIdx], ...lead };
+        writeJson(LEADS_FILE, toSaveLeads);
+      }
+
+      // Disparar notificação imediata para o WhatsApp do Kauê
+      try {
+        const waLink = `https://wa.me/${cleanDigits}`;
+        const alertText = `🎧 *ÁUDIO RECEBIDO DE LEAD!*\n\n*Lead:* ${lead.name}\n*Nicho:* ${lead.niche || 'Geral'} (${lead.neighborhood || lead.city || 'SP'})\n*Telefone:* ${lead.phone || cleanDigits}\n\n👉 *Toque aqui para abrir a conversa no WhatsApp:*\n${waLink}\n\n_(A IA avisou que você já vai ouvir e pausou para você atender no manual!)_`;
+
+        await whatsapp.sendAlertToSelf(alertText);
+        console.log(`[Auto-Responder] 📲 Notificação com link wa.me disparada para o WhatsApp do Kauê!`);
+      } catch (alertErr) {
+        console.warn('[Auto-Responder] Falha ao enviar alerta de áudio para o Kauê:', alertErr.message);
+      }
+
+      return; // Interrompe na hora — nunca chama o Gemini
+    }
+
+    // SEGURANÇA MÁXIMA 3.2: Se a mensagem recebida for uma resposta automática de WhatsApp Business (secretária eletrônica)
+    if (isAutomatedBusinessGreeting(text)) {
+      console.log(`[Auto-Responder] 🤖 Detectada resposta automática de WhatsApp Business para "${lead.name}". Aguardando atendimento humano da empresa.`);
+      return;
+    }
+
+    // TRAVA ANTI-DUPLICAÇÃO: Se o lead já está sendo respondido agora, não enfileirar duplicata
+    if (activeLeadResponses.has(lead.id)) {
+      console.log(`[Auto-Responder] Resposta ativa em andamento para "${lead.name}". Ignorando agendamento duplicado.`);
+      return;
+    }
+
+    // Se respondemos a este lead há menos de 60s e a última mensagem foi nossa, não agendar
+    if (leadLastRepliedAt.has(lead.id) && (Date.now() - leadLastRepliedAt.get(lead.id) < 60000)) {
+      const targetJid = lead.cleanPhone + '@s.whatsapp.net';
+      const history = whatsapp.store.getMessages(targetJid) || [];
+      const valid = history.filter(m => m.text && !m.text.startsWith('[Sistema]'));
+      if (valid.length > 0 && valid[valid.length - 1].fromMe) {
+        return;
+      }
+    }
+
     // Debounce inteligente: se o lead enviar mensagens consecutivas rápidas, aguarda ele terminar de digitar
     if (autoResponderQueue.has(lead.id)) {
       clearTimeout(autoResponderQueue.get(lead.id));
@@ -1206,8 +1520,8 @@ function initAutoResponder() {
 
     const stepData = readJson(STEP_TEMPLATES_FILE, { settings: {}, stages: [] });
     const settings = stepData.settings || {};
-    const delaySec = Math.max(10, settings.responseDelaySeconds || 16);
-    const jitter = Math.floor(Math.random() * 6);
+    const delaySec = Math.max(12, settings.responseDelaySeconds || 16);
+    const jitter = Math.floor(Math.random() * 5);
     const totalDelayMs = (delaySec + jitter) * 1000;
 
     const timerId = setTimeout(async () => {
@@ -1216,6 +1530,38 @@ function initAutoResponder() {
     }, totalDelayMs);
 
     autoResponderQueue.set(lead.id, timerId);
+  });
+
+  // OUVINTE DE INTERVENÇÃO MANUAL DO KAUÊ (HUMAN TAKEOVER AUTOMÁTICO):
+  // Quando o Kauê envia uma mensagem manual pelo celular ou WhatsApp Web, a IA cede o controle na hora!
+  whatsapp.events.on('message.sent_manual', async ({ jid, phone, text, type, timestamp }) => {
+    try {
+      const cleanDigits = String(phone || '').replace(/\D/g, '');
+      const leads = readJson(LEADS_FILE, []);
+      const lead = findLeadByPhone(leads, cleanDigits);
+
+      if (lead) {
+        // 1. Cancelar imediatamente qualquer timer pendente no auto-responder
+        if (autoResponderQueue.has(lead.id)) {
+          clearTimeout(autoResponderQueue.get(lead.id));
+          autoResponderQueue.delete(lead.id);
+          console.log(`[Human Takeover] 🛑 Timer de resposta da IA cancelado imediatamente para "${lead.name}".`);
+        }
+
+        // 2. Marcar controle manual definitivo do Kauê
+        lead.manualControl = true;
+        lead.humanTakeover = true;
+        lead.lastManualMessageAt = new Date(timestamp || Date.now()).toISOString();
+        if (!lead.notes || !lead.notes.includes('Atendimento manual do Kauê')) {
+          lead.notes = (lead.notes ? lead.notes + ' | ' : '') + 'Atendimento manual do Kauê (IA desativada)';
+        }
+
+        writeJson(LEADS_FILE, leads);
+        console.log(`[Human Takeover] 👤 Kauê interagiu com "${lead.name}". Controle manual ativado e IA silenciada!`);
+      }
+    } catch (err) {
+      console.warn('[Human Takeover] Erro ao registrar intervenção manual:', err.message);
+    }
   });
 }
 
@@ -1410,8 +1756,11 @@ app.post('/api/server/shutdown', (req, res) => {
 
 // Configuração do Modo 24/7 Autônomo e limites do Piloto Automático
 app.post('/api/autopilot/config', (req, res) => {
-  const { autoStartAutopilot, dailyLimit, outboundStartHour, outboundEndHour, outboundDays, minDelaySeconds, maxDelaySeconds } = req.body;
+  const { autoStartAutopilot, dailyLimit, outboundStartHour, outboundEndHour, outboundDays, minDelaySeconds, maxDelaySeconds, onlyRespondReplies } = req.body;
   const config = readJson(CONFIG_FILE, {});
+  if (typeof onlyRespondReplies === 'boolean') {
+    config.onlyRespondReplies = onlyRespondReplies;
+  }
   if (typeof autoStartAutopilot === 'boolean') {
     config.autoStartAutopilot = autoStartAutopilot;
   }
@@ -1456,9 +1805,114 @@ app.post('/api/leads/:id/audit', async (req, res) => {
     const auditResult = await auditor.auditLeadFull(lead);
     lead.siteAudit = auditResult.site;
     lead.mapsAudit = auditResult.maps;
+
+    // Recalcular Lead Scoring com os dados frescos
+    const newScore = auditor.calculateLeadScore(lead, auditResult.site, auditResult.maps, lead.metaAds || {});
+    lead.priorityScore = newScore.score;
+    lead.tier = newScore.tier;
+    lead.opportunity = {
+      score: auditResult.site?.opportunityScore || lead.score || 5,
+      numericRank: newScore.score,
+      type: newScore.tier,
+      label: newScore.tierLabel,
+      attackAngle: newScore.attackAngle
+    };
+
     writeJson(LEADS_FILE, leads);
 
-    res.json({ success: true, audit: auditResult });
+    res.json({ success: true, audit: auditResult, score: newScore });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Checagem Autônoma de Anúncios na Meta Ads Library (@pinas.studio)
+app.post('/api/leads/:id/check-meta-ads', async (req, res) => {
+  const { id } = req.params;
+  const leads = readJson(LEADS_FILE, []);
+  const lead = leads.find(l => l.id === id);
+
+  if (!lead) {
+    return res.status(404).json({ error: 'Lead não encontrado.' });
+  }
+
+  try {
+    console.log(`[Meta Ads Library] 🔍 Checando anúncios ativos autonomamente para "${lead.name}"...`);
+    const metaResult = await auditor.checkMetaAdsLibrary(lead.name, lead.website);
+
+    lead.metaAds = metaResult;
+
+    // Recalcular Lead Score considerando a presença de anúncios ativos
+    const newScore = auditor.calculateLeadScore(lead, lead.siteAudit || {}, lead.mapsAudit || {}, metaResult);
+    lead.priorityScore = newScore.score;
+    lead.tier = newScore.tier;
+    lead.opportunity = {
+      ...(lead.opportunity || {}),
+      numericRank: newScore.score,
+      type: newScore.tier,
+      label: newScore.tierLabel,
+      attackAngle: newScore.attackAngle
+    };
+
+    writeJson(LEADS_FILE, leads);
+    console.log(`[Meta Ads Library] ✅ Concluído para "${lead.name}": ${metaResult.hasActiveAds ? metaResult.adCountText : 'Sem anúncios'} (Score: ${newScore.score} pts)`);
+
+    res.json({
+      success: true,
+      metaAds: metaResult,
+      score: newScore,
+      lead
+    });
+  } catch (err) {
+    console.error('[Meta Ads Library] Erro:', err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Recalcular Lead Scoring de 0 a 100 para toda a base existente
+app.post('/api/leads/score-all', (req, res) => {
+  try {
+    const leads = readJson(LEADS_FILE, []);
+    let diamantes = 0;
+    let ouros = 0;
+    let pratas = 0;
+
+    for (const lead of leads) {
+      const scoreResult = auditor.calculateLeadScore(lead, lead.siteAudit || {}, lead.mapsAudit || {}, lead.metaAds || {});
+      lead.priorityScore = scoreResult.score;
+      lead.tier = scoreResult.tier;
+      lead.opportunity = {
+        ...(lead.opportunity || {}),
+        numericRank: scoreResult.score,
+        type: scoreResult.tier,
+        label: scoreResult.tierLabel,
+        attackAngle: scoreResult.attackAngle
+      };
+
+      if (scoreResult.tier === 'diamante') diamantes++;
+      else if (scoreResult.tier === 'ouro') ouros++;
+      else pratas++;
+    }
+
+    // Ordenar a base: leads respondidos/reunião primeiro, depois novos por prioridade decrescente
+    leads.sort((a, b) => {
+      const statusPriority = { reuniao: 4, proposta: 3, respondeu: 2, contatado: 1, novo: 0, perdido: -1, arquivado: -2 };
+      const pA = statusPriority[a.status] || 0;
+      const pB = statusPriority[b.status] || 0;
+      if (pA !== pB) return pB - pA;
+      return (b.priorityScore || 0) - (a.priorityScore || 0);
+    });
+
+    writeJson(LEADS_FILE, leads);
+    console.log(`[Lead Scoring] 🏆 100% da base ranqueada: ${diamantes} Diamantes | ${ouros} Ouros | ${pratas} Pratas`);
+
+    res.json({
+      success: true,
+      total: leads.length,
+      diamantes,
+      ouros,
+      pratas
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -1600,12 +2054,38 @@ const server = app.listen(PORT, () => {
     console.warn('[Startup] Aviso na reconciliação de leads:', recErr.message);
   }
 
+  // Reconciliar leads com intervenção manual prévia do Kauê (áudios ou mensagens manuais)
+  try {
+    const leads = readJson(LEADS_FILE, []);
+    let updated = 0;
+    for (const lead of leads) {
+      if (lead.manualControl || lead.humanTakeover) continue;
+      const messages = conversationGuard.findMessagesForLead(lead, whatsapp.store);
+      const hasAudio = messages.some(m => m.fromMe && m.type === 'audio');
+      const hasManual = messages.some(m => m.fromMe && m.isBot === false);
+      if (hasAudio || hasManual) {
+        lead.manualControl = true;
+        lead.humanTakeover = true;
+        if (!lead.notes || !lead.notes.includes('Atendimento manual do Kauê')) {
+          lead.notes = (lead.notes ? lead.notes + ' | ' : '') + 'Atendimento manual do Kauê (IA desativada)';
+        }
+        updated++;
+      }
+    }
+    if (updated > 0) {
+      writeJson(LEADS_FILE, leads);
+      console.log(`[Human Takeover] 🛡️ ${updated} leads com conversas manuais do Kauê foram blindados contra automações.`);
+    }
+  } catch (mErr) {
+    console.warn('[Human Takeover] Aviso na reconciliação de chats manuais:', mErr.message);
+  }
+
   // Ouvinte de conexão do WhatsApp para Auto-Start do Piloto Automático e Atendimento de Leads Pendentes
   if (whatsapp.events) {
     whatsapp.events.on('connected', async () => {
       autopilot.handleWhatsAppConnected();
       try {
-        await checkAndRespondPendingLeads(48);
+        await checkAndRespondPendingLeads(720);
       } catch (pendErr) {
         console.warn('[Startup] Erro ao checar leads pendentes:', pendErr.message);
       }
@@ -1620,7 +2100,7 @@ const server = app.listen(PORT, () => {
     if (whatsapp.getStatus().connected) {
       autopilot.handleWhatsAppConnected();
       try {
-        await checkAndRespondPendingLeads(48);
+        await checkAndRespondPendingLeads(720);
       } catch (pendErr) {
         console.warn('[Startup] Erro ao checar leads pendentes:', pendErr.message);
       }

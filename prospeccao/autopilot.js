@@ -262,6 +262,7 @@ class AutoPilotEngine {
       nextRunSeconds: this.nextRunTimestamp ? Math.max(0, Math.round((this.nextRunTimestamp - Date.now()) / 1000)) : null,
       dispatchedToday: sentToday,
       dailyLimit: dailyLimit,
+      onlyRespondReplies: !!config.onlyRespondReplies,
       freeTier,
       logs: this.logs.slice(0, 35)
     };
@@ -326,8 +327,41 @@ class AutoPilotEngine {
         return;
       }
 
-      // 2. Validar Limite Diário do WhatsApp com Reset Noturno Automático
+      // 1.1 Validar Cota Gratuita do Gemini
+      const freeTier = geminiGuard.getFreeTierStatus();
+      if (!freeTier.canProceed) {
+        this.addLog('warn', `⚠️ Limite de segurança do Gemini Free Tier atingido (${freeTier.requestsToday}/${freeTier.limitDaily}). Pausado para manter 100% gratuito.`);
+        this.scheduleNext(300000);
+        return;
+      }
+
+      // 1.2 PRIORIDADE MÁXIMA 24/7: Atender Leads Quentes com Respostas Pendentes
+      // Se algum lead respondeu (ex: enquanto o PC estava desligado ou durante a noite),
+      // o sistema DEVE responder esse lead com a IA IMEDIATAMENTE (inclusive fora do horário de novos disparos)!
+      if (typeof this.checkPendingRepliesHandler === 'function') {
+        const handledWarm = await this.checkPendingRepliesHandler();
+        if (handledWarm) {
+          this.stats.repliesHandledToday = (this.stats.repliesHandledToday || 0) + 1;
+          // Cadência humanizada solicitada pelo Kauê: ~5 minutos entre respostas de leads pendentes
+          const delayMs = Math.floor(Math.random() * (320000 - 280000 + 1)) + 280000;
+          const mins = (delayMs / 60000).toFixed(1);
+          this.addLog('success', `🔥 Resposta de lead enviada pela IA! Aguardando cadência humanizada de ~${mins} minutos antes do próximo lead pendente...`);
+          this.scheduleNext(delayMs);
+          return;
+        }
+      }
+
       let config = readJson(CONFIG_FILE, {});
+
+      // 1.3 MODO "APENAS RESPOSTAS" (Solicitado pelo Kauê):
+      // NUNCA avança para caçar ou disparar para novos contatos frios. Fica 100% focado em atender respostas!
+      if (config.onlyRespondReplies || config.disableNewLeadOutbound) {
+        this.addLog('info', '🛑 Modo "Apenas Respostas" ATIVO: Disparo para novos contatos pausado. Monitorando e respondendo leads 24/7.');
+        this.scheduleNext(25000);
+        return;
+      }
+
+      // 2. Validar Limite Diário do WhatsApp com Reset Noturno Automático
       config = checkAndResetDailyLimit(config);
       const sentToday = config.sentToday || 0;
       const dailyLimit = config.dailyLimit || 30;
@@ -355,27 +389,6 @@ class AutoPilotEngine {
         }
         this.scheduleNext(Math.min(commercial.msUntilNextStart, 300000)); // Checa a cada 5 min ou quando abrir
         return;
-      }
-
-      // 4. Validar Cota Gratuita do Gemini
-      const freeTier = geminiGuard.getFreeTierStatus();
-      if (!freeTier.canProceed) {
-        this.addLog('warn', `⚠️ Limite de segurança do Gemini Free Tier atingido (${freeTier.requestsToday}/${freeTier.limitDaily}). Pausado para manter 100% gratuito.`);
-        this.scheduleNext(300000);
-        return;
-      }
-
-      // 4.1. PRIORIDADE MÁXIMA: Atender Leads Quentes com Respostas Pendentes
-      // Se algum lead respondeu (ex: enquanto o PC estava desligado ou durante a noite),
-      // o sistema DEVE responder esse lead com a IA ANTES de caçar e disparar para novos leads frios!
-      if (typeof this.checkPendingRepliesHandler === 'function') {
-        const handledWarm = await this.checkPendingRepliesHandler();
-        if (handledWarm) {
-          this.stats.repliesHandledToday = (this.stats.repliesHandledToday || 0) + 1;
-          this.addLog('success', '🔥 Resposta de lead quente enviada com prioridade máxima pela IA! Aguardando próximo ciclo...');
-          this.scheduleNext(15000);
-          return;
-        }
       }
 
       // 5. Selecionar Próximo Lead Elegível na Base (Priorizando Sites Ruins / Sem Site)
@@ -476,7 +489,7 @@ class AutoPilotEngine {
         await new Promise(r => setTimeout(r, 3500)); // Simula digitação humana
       } catch (tErr) {}
 
-      await this.whatsapp.sendMessage(lead.cleanPhone, pitchResult.pitchText);
+      await this.whatsapp.sendMessage(lead.cleanPhone, pitchResult.pitchText, { isBot: true });
 
       // 8. Atualizar Registro do Lead e Contadores
       lead.status = 'contatado';

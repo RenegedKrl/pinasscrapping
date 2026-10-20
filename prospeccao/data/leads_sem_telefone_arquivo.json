@@ -1,0 +1,522 @@
+[
+  {
+    "id": "lead-1791922809936-lipfsy",
+    "name": "Coaching Vida & Carreira",
+    "niche": "Coach & Mentor (Coach de Carreira)",
+    "phone": "Não listado",
+    "cleanPhone": "",
+    "hasPhone": false,
+    "hasMobile": false,
+    "website": "",
+    "hasWebsite": false,
+    "mapsUrl": "https://www.google.com/maps/place/Coaching+Vida+%26+Carreira/data=!4m7!3m6!1s0x94ce599be2eeead5:0xed44993cd88ba2cf!8m2!3d-23.5651809!4d-46.6495472!16s%2Fg%2F11kpw9n3jf!19sChIJ1eru4ptZzpQRz6KL2DyZRO0?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "5.0",
+    "reviews": 11,
+    "address": "Life coach · Av. Paulista, 726",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 75,
+      "type": "ouro",
+      "label": "🥇 Ouro (Boa Oportunidade)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | Ficha Ativa no Maps (11 avaliações)"
+    },
+    "score": 10,
+    "notes": "Comércio ativo na região com potencial de captação digital.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:20:09.936Z",
+    "priorityScore": 75,
+    "tier": "ouro"
+  },
+  {
+    "id": "lead-1791923362289-7163lf",
+    "name": "Advogada Letícia Dias - ADVOCACIA",
+    "niche": "Escritório de Advocacia",
+    "phone": "Não listado",
+    "cleanPhone": "",
+    "hasPhone": false,
+    "hasMobile": false,
+    "website": "https://advleticiadias.com.br/advogada/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Advogada+Let%C3%ADcia+Dias+-+ADVOCACIA/data=!4m7!3m6!1s0x94cf01ed0bf97e69:0x5e09e64906506a1a!8m2!3d-23.5560325!4d-46.8281313!16s%2Fg%2F11rt_j0sxg!19sChIJaX75C-0Bz5QRGmpQBknmCV4?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "5.0",
+    "reviews": 31,
+    "address": "5,0(31)",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 10,
+      "numericRank": 70,
+      "type": "ouro",
+      "label": "🥇 Ouro (Boa Oportunidade)",
+      "attackAngle": "Advocacia (Alto Ticket / Honorários) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | Ficha Forte no Maps (31 avaliações ★5)"
+    },
+    "score": 10,
+    "notes": "Captação ativa de clientes qualificados no Google Search para ações de alto valor",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:29:22.289Z",
+    "priorityScore": 70,
+    "tier": "ouro"
+  },
+  {
+    "id": "lead-1791922821472-eh9sba",
+    "name": "Pedrina Duarte - Palestrante Motivacional I Treinamentos Corporativos",
+    "niche": "Coach & Mentor (Palestrante de Treinamentos)",
+    "phone": "Não listado",
+    "cleanPhone": "",
+    "hasPhone": false,
+    "hasMobile": false,
+    "website": "http://www.pedrinaduarte.com/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Pedrina+Duarte+-+Palestrante+Motivacional+I+Treinamentos+Corporativos/data=!4m7!3m6!1s0x94ce5d5cfe307c41:0xc24a29ff6b4f44bf!8m2!3d-23.5557714!4d-46.6395571!16s%2Fg%2F11jt2qvmgp!19sChIJQXww_lxdzpQRv0RPa_8pSsI?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "5.0",
+    "reviews": 50,
+    "address": "5,0(50)",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 65,
+      "type": "ouro",
+      "label": "🥇 Ouro (Boa Oportunidade)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | Ficha Forte no Maps (50 avaliações ★5)"
+    },
+    "score": 8,
+    "notes": "Comércio ativo na região com potencial de captação digital.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:20:21.472Z",
+    "priorityScore": 65,
+    "tier": "ouro"
+  },
+  {
+    "id": "lead-1791922801899-h21wjc",
+    "name": "Mentory International",
+    "niche": "Coach & Mentor (Mentor de Negócios)",
+    "phone": "Não listado",
+    "cleanPhone": "",
+    "hasPhone": false,
+    "hasMobile": false,
+    "website": "https://mentoryacademy.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Mentory+International/data=!4m7!3m6!1s0x94cf03a83ac16147:0x2d65f3be0849d765!8m2!3d-23.4926972!4d-46.8497107!16s%2Fg%2F11x1gvbdd3!19sChIJR2HBOqgDz5QRZddJCL7zZS0?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "5.0",
+    "reviews": 65,
+    "address": "Centro educacional · Al. Rio Negro, 1477",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 65,
+      "type": "ouro",
+      "label": "🥇 Ouro (Boa Oportunidade)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | Ficha Forte no Maps (65 avaliações ★5)"
+    },
+    "score": 8,
+    "notes": "Comércio ativo na região com potencial de captação digital.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:20:01.899Z",
+    "priorityScore": 65,
+    "tier": "ouro"
+  },
+  {
+    "id": "lead-1791922801899-fzk5kk",
+    "name": "Mentoria VND",
+    "niche": "Coach & Mentor (Mentor de Negócios)",
+    "phone": "Não listado",
+    "cleanPhone": "",
+    "hasPhone": false,
+    "hasMobile": false,
+    "website": "",
+    "hasWebsite": false,
+    "mapsUrl": "https://www.google.com/maps/place/Mentoria+VND/data=!4m7!3m6!1s0x94cf03185d39a603:0xbf59d3ce1d101df4!8m2!3d-23.4958905!4d-46.8747994!16s%2Fg%2F11ytnpkzdl!19sChIJA6Y5XRgDz5QR9B0QHc7TWb8?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "N/A",
+    "reviews": 0,
+    "address": "Serviço de desenvolvimento empresarial · Rua Werner Goldberg",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 65,
+      "type": "ouro",
+      "label": "🥇 Ouro (Boa Oportunidade)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero)"
+    },
+    "score": 8,
+    "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:20:01.899Z",
+    "priorityScore": 65,
+    "tier": "ouro"
+  },
+  {
+    "id": "lead-1790820689033-htar0a",
+    "name": "Dog Life - Plano de Saúde para Pets",
+    "niche": "clinica veterinaria",
+    "phone": "Não listado",
+    "cleanPhone": "",
+    "hasPhone": false,
+    "hasMobile": false,
+    "website": "/aclk?sa=L&ai=DChsSEwjj8pP03peXAxWzTkgAHaQhGpAYACICCAEQAhoCY2U&co=1&ase=2&gclid=EAIaIQobChMI4_KT9N6XlwMVs05IAB2kIRqQEBAYAiAAEgJ_ofD_BwE&cid=CAASuwHkaD2PDnluUYyQRXsL-HIKkOiKWxibu0RKdzjM3oec1TuHHGStQSyEo6-8q8VsuF_5AAdzcMSfMNSOssO44Sv0d6g__h-a5-023wH2tD7SNVBceAl81QqIb46sZGwh0HJ8ZPoP_uy6Yq8iFW42nAWDIyIGBB5Rlbtvm6YZ6omyxYENiuBQBMlqMr4wZC7iPWdUFZLNEBgTVQ6UJN-u7Ta-8BdXwLK6eg35bo0SKTA_ZzSAotM7nF-gTNhb&cce=2&category=acrcp_v1_32&sig=AOD64_1NAsLyvvCJMJqppJUwonU758qlUA&adurl&q&ctype=99&nis=5",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Dog+Life+-+Plano+de+Sa%C3%BAde+para+Pets/data=!4m7!3m6!1s0x94ce573d4ea1e2d3:0xdf9ec69e370b0c5a!8m2!3d-23.585442!4d-46.673587!16s%2Fg%2F11q360crt_!19sChIJ0-KhTj1XzpQRWgwLN57Gnt8?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkyOC4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.4",
+    "reviews": 383,
+    "address": "Veterinário · 750 Rua Doutor Renato Paes de Barros",
+    "neighborhood": "Tatuapé SP",
+    "city": "São Paulo",
+    "notes": "Já possui site. Oportunidade em Tráfego Pago / Anúncios.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-01T02:11:29.033Z",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 65,
+      "type": "ouro",
+      "label": "🥇 Ouro (Boa Oportunidade)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | Ficha Ativa no Maps (383 avaliações)"
+    },
+    "score": 8,
+    "conversationScript": {
+      "hasCustomerReplied": false,
+      "conversationSummary": "Lead qualificado pronto para abordagem inicial. Identificado potencial imediato de captação local em Tatuapé SP através da assessoria de tráfego pago e posicionamento digital da Pinas Studio.",
+      "interlocutor": {
+        "name": "Responsável / Decisor",
+        "role": "Não identificado",
+        "tone": "Neutro / Aguardando",
+        "decisionPower": "Alto (Decisor Final)"
+      },
+      "painsAndNeeds": [
+        "Falta de previsibilidade de novos tutores no raio de 3km a 5km de Tatuapé SP",
+        "Dependência excessiva de indicação boca a boca ou de buscas passivas no Google Maps",
+        "Atendimentos ou procedimentos de maior valor que acabam indo parar em clínicas concorrentes da região"
+      ],
+      "objectionsAndAnswers": [
+        {
+          "objection": "Já fazemos postagens no Instagram todos os dias.",
+          "howToCounter": "Post orgânico fala com quem já é cliente. O que a Pinas faz com o tráfego é colocar a clínica na frente do tutor que precisa de atendimento urgente agora no seu bairro."
+        },
+        {
+          "objection": "Não sei se temos orçamento para marketing agora.",
+          "howToCounter": "O projeto se paga trazendo 2 a 3 novos atendimentos ou cirurgias no mês. Se a conta não fechar com lucro no seu bolso, a gente nem começa."
+        }
+      ],
+      "agreedNextSteps": "Aguardando retorno da mensagem de abordagem no WhatsApp",
+      "callScript": {
+        "title": "Roteiro da Call de Fechamento Baseado no WhatsApp",
+        "openingHook": "Opa, tudo bem? Vi que você recebeu a nossa análise sobre a presença digital da Dog Life - Plano de Saúde para Pets em Tatuapé SP e queria bater um papo rápido de 15 minutos sem enrolação.",
+        "steps": [
+          {
+            "time": "00:00 - 03:00",
+            "title": "Abertura & Conexão pelo WhatsApp",
+            "objective": "Reconectar de forma humana e direta citando a conversa do chat",
+            "script": "Fala, tudo bem? Poxa, obrigado pelo tempo. Vi aqui o perfil da Dog Life - Plano de Saúde para Pets e achei muito forte a nota no Google. Queria entender rapidamente como está a entrada de novos clientes vindo pela internet hoje aí em Tatuapé SP.",
+            "tip": "Mantenha tom calmo, profissional e escuta ativa. Nada de afobação."
+          },
+          {
+            "time": "03:00 - 07:00",
+            "title": "Diagnóstico & Aprofundamento nas Dores",
+            "objective": "Fazer o cliente verbalizar o gargalo atual de faturamento",
+            "questions": [
+              {
+                "question": "Hoje, a maior parte dos clientes novos chega por indicação ou por busca ativa no Google e redes?",
+                "why": "Mapear a dependência de canais orgânicos passivos."
+              },
+              {
+                "question": "Quando um cliente chega no seu WhatsApp, você sente que a conversão em fechamento é rápida ou muitos somem?",
+                "why": "Identificar gargalo comercial no atendimento."
+              }
+            ]
+          },
+          {
+            "time": "07:00 - 11:00",
+            "title": "Apresentação da Solução Pinas Sob Medida",
+            "objective": "Mostrar na tela compartilhada como resolver o gargalo",
+            "keyPoints": [
+              "Anúncios hiperlocais no raio de Tatuapé SP para captar quem tem intenção de compra agora",
+              "Landing page ultra-rápida direcionando cliques direto para o seu WhatsApp",
+              "Script de atendimento comercial para não deixar leads esfriarem"
+            ]
+          },
+          {
+            "time": "11:00 - 15:00",
+            "title": "Proposta & Fechamento Comercial",
+            "objective": "Combinar os próximos passos práticos de início",
+            "script": "O que eu proponho é a gente começar um piloto estruturado de 30 dias. A gente coloca as campanhas no ar e valida o fluxo de novos clientes entrando no seu WhatsApp.",
+            "callToAction": "Podemos dar o pontapé inicial na segunda-feira?"
+          }
+        ],
+        "goldenClosingPhrase": "Faz sentido a gente começar a captar esses tutores que estão buscando atendimento agora em Tatuapé SP e que hoje estão indo para a clínica concorrente?"
+      }
+    },
+    "conversationScriptGeneratedAt": "2026-10-09T16:05:59.525Z",
+    "priorityScore": 65,
+    "tier": "ouro"
+  },
+  {
+    "id": "lead-1791922821471-eyr8t1",
+    "name": "Grupo Extraordinários Treinamentos Palestras e Consultorias",
+    "niche": "Coach & Mentor (Palestrante de Treinamentos)",
+    "phone": "Não listado",
+    "cleanPhone": "",
+    "hasPhone": false,
+    "hasMobile": false,
+    "website": "https://grupoextraordinarios.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Grupo+Extraordin%C3%A1rios+Treinamentos+Palestras+e+Consultorias/data=!4m7!3m6!1s0x94ce59d969bc46d5:0x82790f62c72c3e28!8m2!3d-23.6115086!4d-46.6948205!16s%2Fg%2F11sf18mb0t!19sChIJ1Ua8adlZzpQRKD4sx2IPeYI?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.8",
+    "reviews": 16,
+    "address": "Planejador de eventos · Av. Engenheiro Luís Carlos Berrini, 1681",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 60,
+      "type": "ouro",
+      "label": "🥇 Ouro (Boa Oportunidade)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | Ficha Ativa no Maps (16 avaliações)"
+    },
+    "score": 8,
+    "notes": "Comércio ativo na região com potencial de captação digital.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:20:21.471Z",
+    "priorityScore": 60,
+    "tier": "ouro"
+  },
+  {
+    "id": "lead-1791922809935-2v9czt",
+    "name": "Débora Catarina Treinamentos Corporativos | Coach de Carreira | Orientação Profissional | Mentoria | Coaching Profissional",
+    "niche": "Coach & Mentor (Coach de Carreira)",
+    "phone": "Não listado",
+    "cleanPhone": "",
+    "hasPhone": false,
+    "hasMobile": false,
+    "website": "https://www.deboracatarina.com.br/agenda",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/D%C3%A9bora+Catarina+Treinamentos+Corporativos+%7C+Coach+de+Carreira+%7C+Orienta%C3%A7%C3%A3o+Profissional+%7C+Mentoria+%7C+Coaching+Profissional/data=!4m7!3m6!1s0x94ce5b2650679609:0xdd68d776e38afb12!8m2!3d-23.6006655!4d-46.6364137!16s%2Fg%2F11jw_s728l!19sChIJCZZnUCZbzpQREvuK43bXaN0?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "5.0",
+    "reviews": 11,
+    "address": "Centro de coaching · R. Domingos de Morais, 2777",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 8,
+      "numericRank": 60,
+      "type": "ouro",
+      "label": "🥇 Ouro (Boa Oportunidade)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | Ficha Ativa no Maps (11 avaliações)"
+    },
+    "score": 8,
+    "notes": "Comércio ativo na região com potencial de captação digital.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:20:09.935Z",
+    "priorityScore": 60,
+    "tier": "ouro"
+  },
+  {
+    "id": "lead-1790820726941-kclzut",
+    "name": "Lamis Feminine",
+    "niche": "loja de roupas femininas",
+    "phone": "Não listado",
+    "cleanPhone": "",
+    "hasPhone": false,
+    "hasMobile": false,
+    "website": "",
+    "hasWebsite": false,
+    "mapsUrl": "https://www.google.com/maps/place/Lamis+Feminine/data=!4m7!3m6!1s0x94ce5054f76adb03:0xdfbc9e1c9dc1bbe5!8m2!3d-23.6525602!4d-46.7069647!16s%2Fg%2F1ptymfcly!19sChIJA9tq91RQzpQR5bvBnRyevN8?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MDkyOC4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.3",
+    "reviews": 0,
+    "address": "Loja de Roupa · R. Cap. Tiago Luz, 88",
+    "neighborhood": "Santo Amaro SP",
+    "city": "São Paulo",
+    "notes": "Sem site cadastrado no Maps (Oportunidade alta para site + Google Ads).",
+    "status": "novo",
+    "lastContact": "2026-10-08T03:19:22.263Z",
+    "createdAt": "2026-10-01T02:12:06.941Z",
+    "opportunity": {
+      "score": 5,
+      "numericRank": 55,
+      "type": "prata",
+      "label": "🥈 Prata",
+      "attackAngle": "Comércio / Serviço Local | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero)"
+    },
+    "score": 5,
+    "stage": 1,
+    "stageHistory": [],
+    "conversationScript": {
+      "hasCustomerReplied": false,
+      "conversationSummary": "Lead qualificado pronto para abordagem inicial. Identificado potencial imediato de captação local em Santo Amaro SP através da assessoria de tráfego pago e posicionamento digital da Pinas Studio.",
+      "interlocutor": {
+        "name": "Responsável / Decisor",
+        "role": "Não identificado",
+        "tone": "Neutro / Aguardando",
+        "decisionPower": "Alto (Decisor Final)"
+      },
+      "painsAndNeeds": [
+        "Tráfego do Instagram gerando curiosos que não convertem em compras reais no WhatsApp",
+        "Concorrência pesada de preços e falta de catálogo de alta conversão estruturado",
+        "Dificuldade de reter clientes para compras recorrentes nas novas coleções"
+      ],
+      "objectionsAndAnswers": [
+        {
+          "objection": "Já tenho alguém que cuida do tráfego ou dos posts.",
+          "howToCounter": "Nosso foco não é métrica de vaidade (curtida ou seguidor), é cliente chamando no WhatsApp com intenção de compra. Vamos comparar os resultados."
+        },
+        {
+          "objection": "Quanto custa para começar?",
+          "howToCounter": "Trabalhamos com investimento acessível e focado no retorno da sua coleção. A estrutura se paga nas primeiras semanas de campanha."
+        }
+      ],
+      "agreedNextSteps": "Aguardando retorno da mensagem de abordagem no WhatsApp",
+      "callScript": {
+        "title": "Roteiro da Call de Fechamento Baseado no WhatsApp",
+        "openingHook": "Opa, tudo bem? Vi que você recebeu a nossa análise sobre a presença digital da Lamis Feminine em Santo Amaro SP e queria bater um papo rápido de 15 minutos sem enrolação.",
+        "steps": [
+          {
+            "time": "00:00 - 03:00",
+            "title": "Abertura & Conexão pelo WhatsApp",
+            "objective": "Reconectar de forma humana e direta citando a conversa do chat",
+            "script": "Fala, tudo bem? Poxa, obrigado pelo tempo. Vi aqui o perfil da Lamis Feminine e achei muito forte a nota no Google. Queria entender rapidamente como está a entrada de novos clientes vindo pela internet hoje aí em Santo Amaro SP.",
+            "tip": "Mantenha tom calmo, profissional e escuta ativa. Nada de afobação."
+          },
+          {
+            "time": "03:00 - 07:00",
+            "title": "Diagnóstico & Aprofundamento nas Dores",
+            "objective": "Fazer o cliente verbalizar o gargalo atual de faturamento",
+            "questions": [
+              {
+                "question": "Hoje, a maior parte dos clientes novos chega por indicação ou por busca ativa no Google e redes?",
+                "why": "Mapear a dependência de canais orgânicos passivos."
+              },
+              {
+                "question": "Quando um cliente chega no seu WhatsApp, você sente que a conversão em fechamento é rápida ou muitos somem?",
+                "why": "Identificar gargalo comercial no atendimento."
+              }
+            ]
+          },
+          {
+            "time": "07:00 - 11:00",
+            "title": "Apresentação da Solução Pinas Sob Medida",
+            "objective": "Mostrar na tela compartilhada como resolver o gargalo",
+            "keyPoints": [
+              "Anúncios hiperlocais no raio de Santo Amaro SP para captar quem tem intenção de compra agora",
+              "Landing page ultra-rápida direcionando cliques direto para o seu WhatsApp",
+              "Script de atendimento comercial para não deixar leads esfriarem"
+            ]
+          },
+          {
+            "time": "11:00 - 15:00",
+            "title": "Proposta & Fechamento Comercial",
+            "objective": "Combinar os próximos passos práticos de início",
+            "script": "O que eu proponho é a gente começar um piloto estruturado de 30 dias. A gente coloca as campanhas no ar e valida o fluxo de novos clientes entrando no seu WhatsApp.",
+            "callToAction": "Podemos dar o pontapé inicial na segunda-feira?"
+          }
+        ],
+        "goldenClosingPhrase": "Podemos estruturar esse fluxo para transformar os cliques do seu Instagram em pedidos faturados no WhatsApp a partir da semana que vem?"
+      }
+    },
+    "conversationScriptGeneratedAt": "2026-10-09T16:05:59.524Z",
+    "priorityScore": 55,
+    "tier": "prata"
+  },
+  {
+    "id": "lead-1791922801899-064vfx",
+    "name": "WiFi Mentor",
+    "niche": "Coach & Mentor (Mentor de Negócios)",
+    "phone": "Não listado",
+    "cleanPhone": "",
+    "hasPhone": false,
+    "hasMobile": false,
+    "website": "http://wifimentor.com.br/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/WiFi+Mentor/data=!4m7!3m6!1s0x94ce5a384b64fc89:0x81eda225dbb79035!8m2!3d-23.6058737!4d-46.6430058!16s%2Fg%2F11h45lg9n4!19sChIJifxkSzhazpQRNZC32yWi7YE?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "3.0",
+    "reviews": 4,
+    "address": "Escritório da empresa · R. das Glicínias, 300",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 5,
+      "numericRank": 50,
+      "type": "prata",
+      "label": "🥈 Prata",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero)"
+    },
+    "score": 5,
+    "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:20:01.899Z",
+    "priorityScore": 50,
+    "tier": "prata"
+  },
+  {
+    "id": "lead-1791922801899-3pyh65",
+    "name": "Mentora",
+    "niche": "Coach & Mentor (Mentor de Negócios)",
+    "phone": "Não listado",
+    "cleanPhone": "",
+    "hasPhone": false,
+    "hasMobile": false,
+    "website": "https://mentora.ai/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Mentora/data=!4m7!3m6!1s0x94ce598311ffef11:0x2382c0af909d3a6a!8m2!3d-23.5339414!4d-46.6597939!16s%2Fg%2F11wmxv5vn5!19sChIJEe__EYNZzpQRajqdkK_AgiM?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "5.0",
+    "reviews": 1,
+    "address": "Serviços de informação · R. Conselheiro Brotero, 860 - cj. 25",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 5,
+      "numericRank": 50,
+      "type": "prata",
+      "label": "🥈 Prata",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero)"
+    },
+    "score": 5,
+    "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:20:01.899Z",
+    "priorityScore": 50,
+    "tier": "prata"
+  },
+  {
+    "id": "lead-1791922801899-9ljx3h",
+    "name": "Crypto Mentor Club",
+    "niche": "Coach & Mentor (Mentor de Negócios)",
+    "phone": "Não listado",
+    "cleanPhone": "",
+    "hasPhone": false,
+    "hasMobile": false,
+    "website": "https://cryptomentorclub.com/",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Crypto+Mentor+Club/data=!4m7!3m6!1s0x94ce59c8ba555c3f:0x6b87d952764b1d15!8m2!3d-23.5665616!4d-46.64959!16s%2Fg%2F11zcw4hkgh!19sChIJP1xVushZzpQRFR1LdlLZh2s?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAxMS4wIJJjKgBIAVAD&rclk=1",
+    "rating": "N/A",
+    "reviews": 0,
+    "address": "Empresa de Software · Av. Paulista, 726",
+    "neighborhood": "São Paulo",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 5,
+      "numericRank": 50,
+      "type": "prata",
+      "label": "🥈 Prata",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero)"
+    },
+    "score": 5,
+    "notes": "Perfil no Maps com poucas avaliações. Ideal para gestão de reputação e atração local.",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-13T20:20:01.899Z",
+    "priorityScore": 50,
+    "tier": "prata"
+  }
+]

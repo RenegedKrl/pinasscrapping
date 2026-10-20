@@ -25,8 +25,10 @@ criação de sites e campanhas de tráfego pago (Meta Ads e Google Ads).
 ## Sobre a Pinas
 
 - **Responsável:** Kauê (toca a operação de ponta a ponta: tráfego, sites, copies e prospecção)
-- **Serviços:** Tráfego pago (Google/Meta Ads), Criação de sites de alta conversão, reestruturação de posicionamento comercial para atração de clientes qualificados.
+- **WhatsApp / Celular:** +55 (11) 94171-3647
+- **Site:** `https://pinasstudio.netlify.app/`
 - **Instagram:** `@pinas.studio`
+- **Serviços:** Tráfego pago (Google/Meta Ads), Criação de sites de alta conversão, reestruturação de posicionamento comercial para atração de clientes qualificados.
 - **Faturamento atual (MRR):** R$ 5.700,00 (4 clientes ativos)
 
 ---
@@ -56,3 +58,11 @@ criação de sites e campanhas de tráfego pago (Meta Ads e Google Ads).
 - **Relatório de tráfego:** Usar `/relatorio-ads` lendo os exports de campanhas e gerando diagnósticos rápidos.
 - **Conteúdo e carrosséis:** Usar `/carrossel` aproveitando o gerador nativo `generate_image` para posts da Pinas ou clientes.
 - **Prospecção:** Prioridade número 1 — apoiar o Kauê com roteiros de abordagem e propostas para aumentar a base e viabilizar a saída do CLT.
+- **Blacklist Estrita de Prospecção (NUNCA pesquisar ou abordar):**
+  - Clientes Atuais: **Petiva**, **Pink Luxo**, **Chay B**, **Bem Zanza** (e todas as suas variações de nome).
+  - Região / Nicho proibido: **Brás** e lojas em geral do Brás.
+- **Nichos Prioritários:** 1º Clínicas Veterinárias | 2º Escritórios de Advocacia | 3º Coaches & Mentores (Negócios, Finanças, Carreira, Liderança, Palestrantes — PROIBIDO academias, treinos físicos ou crossfit) | 4º Lojas de Roupa (fora do Brás, prioridade menor).
+- **Regra de Ouro Anti-Spam (Inviolável):** NUNCA mandar mais de uma mensagem para um lead se ele não responder. O sistema identifica automaticamente threads aguardando resposta e bloqueia novos envios/etapas. SÓ responder quando o lead responder.
+- **Cronograma de Prospecção para Novos Clientes:** Disparos de 1º contato (outbound/frio) rodam exclusivamente de **Segunda, Terça, Quinta e Sexta (10h às 19h)**. Quarta-feira, Sábado e Domingo pausados para novos leads. **Atendimento a respostas de clientes continua 100% ativo 24/7**.
+- **Formato da 1ª Mensagem (Anti-Venda Obrigatório):** A 1ª mensagem enviada para novos leads deve ser 100% despretensiosa em 1 linha (*"Olá, tudo bem? É da clínica {nome}?"* / *"Olá, tudo bem? É da {nome}?"*). ZERO menção de venda, Pinas ou site. Somente após a resposta de confirmação do cliente (*"Ah, sou sim"*), a IA apresenta a Pinas, a auditoria e a proposta de valor do negócio.
+

@@ -465,9 +465,240 @@ async function auditLeadFull(lead) {
   return Promise.race([executionPromise, timeoutPromise]);
 }
 
+/**
+ * Limpa o nome da empresa para busca precisa na Meta Ads Library
+ */
+function cleanCompanyNameForMeta(rawName, website = '') {
+  let base = (rawName || '').trim();
+
+  let domainSlug = '';
+  if (website) {
+    try {
+      const u = new URL(website.startsWith('http') ? website : `https://${website}`);
+      const host = u.hostname.replace(/^www\./i, '').split('.')[0];
+      if (host && host.length >= 3 && !['instagram', 'facebook', 'wa', 'linktr'].includes(host)) {
+        domainSlug = host;
+      }
+    } catch (e) {}
+  }
+
+  base = base
+    .replace(/\s*-\s*.*$/, '')
+    .replace(/\s*\|\s*.*$/, '')
+    .replace(/\s*·\s*.*$/, '')
+    .replace(/\b(ltda|me|epp|eireli|s\/a|sa)\b/gi, '')
+    .replace(/\b(dr\.|dra\.|doutor|doutora)\b/gi, '')
+    .replace(/\b(clínica|clinica|centro clínico|centro clinico|hospital|escritório de advocacia|escritorio de advocacia|advocacia|advogados|consultoria|treinamento)\b/gi, '')
+    .replace(/[^\p{L}\p{N}\s]/gu, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  if (!base || base.length < 3) {
+    if (domainSlug) return domainSlug;
+    return (rawName || '').split(' ').slice(0, 2).join(' ').trim();
+  }
+
+  const words = base.split(' ');
+  return words.slice(0, 3).join(' ');
+}
+
+/**
+ * Consulta Autônoma na Meta Ads Library via Playwright Headless (@pinas.studio)
+ * Abre a biblioteca oficial em segundo plano, lê se há anúncios ativos e retorna a contagem.
+ */
+async function checkMetaAdsLibrary(rawName, website = '', timeoutMs = 12000) {
+  const company = cleanCompanyNameForMeta(rawName, website);
+  const searchUrl = `https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=BR&q=${encodeURIComponent(company)}&search_type=keyword_unordered&media_type=all`;
+
+  if (!company || company.length < 2) {
+    return {
+      checked: false,
+      hasActiveAds: false,
+      adCount: 0,
+      adCountText: 'Nome insuficiente',
+      searchUrl,
+      checkedAt: new Date().toISOString()
+    };
+  }
+
+  let browser;
+  try {
+    const { chromium } = require('playwright');
+    try {
+      browser = await chromium.launch({ channel: 'chrome', headless: true });
+    } catch (e1) {
+      browser = await chromium.launch({ channel: 'msedge', headless: true });
+    }
+
+    const context = await browser.newContext({
+      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+      locale: 'pt-BR'
+    });
+    const page = await context.newPage();
+
+    await page.goto(searchUrl, { waitUntil: 'domcontentloaded', timeout: timeoutMs });
+    await page.waitForTimeout(3500);
+
+    const bodyText = await page.innerText('body');
+    const isZeroResults = bodyText.includes('Nenhum anúncio corresponde') || 
+                          bodyText.includes('Nenhum resultado') || 
+                          bodyText.includes('0 resultados');
+
+    if (isZeroResults) {
+      return {
+        checked: true,
+        hasActiveAds: false,
+        adCount: 0,
+        adCountText: '0 anúncios ativos',
+        companyQueried: company,
+        searchUrl,
+        checkedAt: new Date().toISOString()
+      };
+    }
+
+    const countMatch = bodyText.match(/(\~?\s*\d+[\.\d]*)\s*resultados/i) || bodyText.match(/(\d+)\s*anúncio/i);
+    const countText = countMatch ? countMatch[0].trim() : 'Anúncios ativos identificados';
+    const numDigits = countText.replace(/\D/g, '');
+    const adCount = numDigits ? parseInt(numDigits, 10) : 1;
+
+    return {
+      checked: true,
+      hasActiveAds: true,
+      adCount,
+      adCountText: countText,
+      companyQueried: company,
+      searchUrl,
+      checkedAt: new Date().toISOString()
+    };
+  } catch (err) {
+    return {
+      checked: false,
+      hasActiveAds: false,
+      adCount: 0,
+      error: err.message,
+      companyQueried: company,
+      searchUrl,
+      checkedAt: new Date().toISOString()
+    };
+  } finally {
+    if (browser) {
+      try { await browser.close(); } catch (e) {}
+    }
+  }
+}
+
+/**
+ * Motor de Lead Scoring em 3 Dimensões (0 a 100 pontos)
+ */
+function calculateLeadScore(lead = {}, siteAudit = {}, mapsAudit = {}, metaAds = {}) {
+  let score = 0;
+  const breakdown = [];
+
+  const niche = (lead.niche || '').toLowerCase();
+  const name = (lead.name || '').toLowerCase();
+  const reviews = Number(lead.reviews || mapsAudit.reviews) || 0;
+  const rating = Number(lead.rating || mapsAudit.rating) || 0;
+  const hasMobile = !!(lead.hasMobile || (lead.cleanPhone && lead.cleanPhone.length >= 10));
+  const hasWebsite = !!(lead.website || lead.hasWebsite || siteAudit.hasWebsite);
+  const isOnline = siteAudit.isOnline;
+  const hasWhatsApp = siteAudit.hasWhatsApp;
+  const loadTimeMs = siteAudit.loadTimeMs || 0;
+  const doesPaidTraffic = siteAudit.doesPaidTraffic || metaAds.hasActiveAds;
+
+  // DIMENSÃO 1: Nicho de Alto Ticket (0 a 35 pts)
+  if (niche.includes('vet') || niche.includes('pet') || name.includes('veterin')) {
+    score += 35;
+    breakdown.push({ item: 'Nicho Veterinário (Case Petiva / Alto Ticket)', pts: 35 });
+  } else if (niche.includes('advoc') || niche.includes('jurídic') || name.includes('advoc')) {
+    score += 35;
+    breakdown.push({ item: 'Advocacia (Alto Ticket / Honorários)', pts: 35 });
+  } else if (niche.includes('odont') || niche.includes('dent') || name.includes('odont')) {
+    score += 35;
+    breakdown.push({ item: 'Odontologia (Implantes & Particular)', pts: 35 });
+  } else if (niche.includes('mentor') || niche.includes('coach') || niche.includes('treinamento')) {
+    score += 30;
+    breakdown.push({ item: 'Mentoria / Negócios de Alto Valor', pts: 30 });
+  } else {
+    score += 20;
+    breakdown.push({ item: 'Comércio / Serviço Local', pts: 20 });
+  }
+
+  // DIMENSÃO 2: Oportunidade Técnica & Tráfego (0 a 35 pts)
+  if (!hasWebsite) {
+    score += 30;
+    breakdown.push({ item: 'Sem Site Próprio (Oportunidade Máxima Landing Page)', pts: 30 });
+  } else if (isOnline === false) {
+    score += 30;
+    breakdown.push({ item: 'Site Fora do Ar no Maps (Urgência Imediata)', pts: 30 });
+  } else {
+    if (!hasWhatsApp) {
+      score += 15;
+      breakdown.push({ item: 'Site Sem Botão Direto de WhatsApp', pts: 15 });
+    }
+    if (loadTimeMs > 2500) {
+      score += 10;
+      breakdown.push({ item: `Site Lento no Celular (${(loadTimeMs/1000).toFixed(1)}s)`, pts: 10 });
+    }
+  }
+
+  // Meta Ads / Tráfego
+  if (metaAds.hasActiveAds) {
+    score += 15;
+    breakdown.push({ item: `Anunciante Ativo no Meta (${metaAds.adCountText || metaAds.adCount + ' anúncios'})`, pts: 15 });
+  } else if (doesPaidTraffic) {
+    score += 10;
+    breakdown.push({ item: 'Possui Pixel / Tag de Anúncio Instalada', pts: 10 });
+  } else {
+    score += 5;
+    breakdown.push({ item: 'Sem Anúncios Ativos (Oportunidade Tráfego do Zero)', pts: 5 });
+  }
+
+  // DIMENSÃO 3: Porte, Caixa & Contato (0 a 30 pts)
+  if (hasMobile) {
+    score += 15;
+    breakdown.push({ item: 'WhatsApp Celular Direto Verificado', pts: 15 });
+  }
+  if (reviews >= 25 && rating >= 4.5) {
+    score += 15;
+    breakdown.push({ item: `Ficha Forte no Maps (${reviews} avaliações ★${rating})`, pts: 15 });
+  } else if (reviews >= 8 && rating >= 4.0) {
+    score += 10;
+    breakdown.push({ item: `Ficha Ativa no Maps (${reviews} avaliações)`, pts: 10 });
+  }
+
+  score = Math.min(100, Math.max(0, score));
+
+  let tier = 'prata';
+  let tierLabel = '🥈 Prata';
+  let badgeColor = '#94a3b8';
+
+  if (score >= 80) {
+    tier = 'diamante';
+    tierLabel = '💎 Diamante (Alta Conversão)';
+    badgeColor = '#38bdf8';
+  } else if (score >= 60) {
+    tier = 'ouro';
+    tierLabel = '🥇 Ouro (Boa Oportunidade)';
+    badgeColor = '#f59e0b';
+  }
+
+  return {
+    score,
+    priorityScore: score,
+    tier,
+    tierLabel,
+    badgeColor,
+    breakdown,
+    attackAngle: breakdown.map(b => b.item).join(' | ')
+  };
+}
+
 module.exports = {
   fetchUrlText,
   auditWebsite,
   auditGoogleMaps,
-  auditLeadFull
+  auditLeadFull,
+  cleanCompanyNameForMeta,
+  checkMetaAdsLibrary,
+  calculateLeadScore
 };

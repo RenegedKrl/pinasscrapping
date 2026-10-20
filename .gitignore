@@ -24,6 +24,9 @@ prospeccao/data/media/
 # Logs e arquivos temporários
 *.log
 *.tmp
+*.bak
+*.bak_*
+*.exe
 .DS_Store
 Thumbs.db
 **/data/gemini_usage.json

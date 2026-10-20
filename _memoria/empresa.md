@@ -13,26 +13,15 @@
 **Perfil:** Agência / Consultoria (solo operado por Kauê)
 **Equipe:** Kauê (toca a operação de ponta a ponta: criação de conteúdos, gestão de tráfego pago, planejamento estratégico e prospecção ativa).
 
-## Clientes Ativos
+## Cases e Clientes Atualmente Operados pelo Kauê (Portfólio & Prova Social)
 
-1. **PETIVA (Centro Clínico Veterinário):**
-   - Mensalidade: R$ 1.500,00
-   - Escopo: Tráfego pago, atração de tutores locais e presença digital.
+O Kauê opera a gestão de tráfego, copies e estratégias de 4 contas ativas (em parceria/sociedade com repasse de R$ 1.440,00/mês para ele):
+1. **PETIVA (Centro Clínico Veterinário):** R$ 1.500,00/mês — Tráfego pago Google/Meta Ads e atração de tutores locais em SP. Case principal para prospecção veterinária.
+2. **Pink Luxo (Centro Estético):** R$ 2.000,00/mês — Tráfego pago Meta Ads e captação de leads para procedimentos estéticos.
+3. **Chay B (Loja de Roupas no Brás e Bom Retiro):** R$ 1.200,00/mês — Tráfego pago Meta Ads e catálogo para vendas de moda.
+4. **Bem Zanza (Loja de Roupas no Brás):** R$ 1.000,00/mês — Tráfego pago Meta Ads e pedidos diretos no WhatsApp.
 
-2. **Pink Luxo (Centro Estético):**
-   - Mensalidade: R$ 2.000,00
-   - Escopo: Tráfego pago e geração de leads para procedimentos estéticos.
-   - Ponto de atenção / gargalo: Dificuldade interna da cliente em converter leads de WhatsApp em agendamentos/vendas, além de baixa frequência de gravação de novos conteúdos pelas donas (causando desgaste/queda nos leads).
-
-3. **Chay B (Loja de Roupas no Brás e Bom Retiro):**
-   - Mensalidade: R$ 1.200,00
-   - Escopo: Tráfego pago e vendas de moda/vestuário.
-
-4. **Bem Zanza (Loja de Roupas no Brás):**
-   - Mensalidade: R$ 1.000,00
-   - Escopo: Tráfego pago e vendas de vestuário.
-
-*Faturamento recorrente atual (MRR): R$ 5.700,00.*
+*Nota Estratégica da Pinas:* A **Pinas** é a agência 100% solo e direta do Kauê. Esses 4 clientes são citados como portfólio real e cases de sucesso operados por ele para gerar autoridade imediata. Cada novo cliente fechado diretamente pela Pinas (R$ 1.500 a R$ 2.500/mês) tem 100% da margem líquida para o Kauê.
 
 ## Principais Entregas
 

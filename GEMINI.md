@@ -33,12 +33,13 @@ criação de sites e campanhas de tráfego pago (Meta Ads e Google Ads).
 
 ---
 
-## Clientes Ativos
+## Portfólio & Cases Operados pelo Kauê (Prova Social)
 
-1. **PETIVA (Centro Clínico Veterinário):** R$ 1.500/mês — `clientes/petiva/`
-2. **Pink Luxo (Centro Estético):** R$ 2.000/mês — `clientes/pink-luxo/` (gargalo de conversão interna e gravação)
+1. **PETIVA (Centro Clínico Veterinário):** R$ 1.500/mês — `clientes/petiva/` (Case principal de tráfego local)
+2. **Pink Luxo (Centro Estético):** R$ 2.000/mês — `clientes/pink-luxo/`
 3. **Chay B (Moda Brás e Bom Retiro):** R$ 1.200/mês — `clientes/chay-b/`
 4. **Bem Zanza (Moda Brás):** R$ 1.000/mês — `clientes/bem-zanza/`
+*Operados na prática pelo Kauê; citados com autoridade nas propostas e abordagens da Pinas.*
 
 ---
 
@@ -61,8 +62,14 @@ criação de sites e campanhas de tráfego pago (Meta Ads e Google Ads).
 - **Blacklist Estrita de Prospecção (NUNCA pesquisar ou abordar):**
   - Clientes Atuais: **Petiva**, **Pink Luxo**, **Chay B**, **Bem Zanza** (e todas as suas variações de nome).
   - Região / Nicho proibido: **Brás** e lojas em geral do Brás.
-- **Nichos Prioritários:** 1º Clínicas Veterinárias | 2º Escritórios de Advocacia | 3º Lojas de Roupa (fora do Brás, prioridade menor) | Outros serviços qualificados.
+- **Nichos Prioritários:** 1º Clínicas Veterinárias | 2º Escritórios de Advocacia | 3º Coaches & Mentores (Negócios, Finanças, Carreira, Liderança, Palestrantes — PROIBIDO academias, treinos físicos ou crossfit) | 4º Lojas de Roupa (fora do Brás, prioridade menor).
 - **Regra de Ouro Anti-Spam (Inviolável):** NUNCA mandar mais de uma mensagem para um lead se ele não responder. O sistema identifica automaticamente threads aguardando resposta e bloqueia novos envios/etapas. SÓ responder quando o lead responder.
 - **Cronograma de Prospecção para Novos Clientes:** Disparos de 1º contato (outbound/frio) rodam exclusivamente de **Segunda, Terça, Quinta e Sexta (10h às 19h)**. Quarta-feira, Sábado e Domingo pausados para novos leads. **Atendimento a respostas de clientes continua 100% ativo 24/7**.
 - **Formato da 1ª Mensagem (Anti-Venda Obrigatório):** A 1ª mensagem enviada para novos leads deve ser 100% despretensiosa em 1 linha (*"Olá, tudo bem? É da clínica {nome}?"* / *"Olá, tudo bem? É da {nome}?"*). ZERO menção de venda, Pinas ou site. Somente após a resposta de confirmação do cliente (*"Ah, sou sim"*), a IA apresenta a Pinas, a auditoria e a proposta de valor do negócio.
+- **Prospecção 100% Automática (Zero Vídeos e Zero Placeholders):** O Kauê opera a prospecção de forma totalmente automatizada. NUNCA prometer gravação de tela, envio de vídeo/áudio gravado ou links externos (proibido falar "gravei um vídeo", "vou mandar um vídeo"). NUNCA gerar placeholders entre colchetes como `[Link do Vídeo]`. O diagnóstico é entregue diretamente em texto no WhatsApp e o objetivo comercial é convidar para um bate-papo de 10 a 15 minutos no Google Meet.
+- **Sigilo de Clientes Atuais (Zero Nomes Sem Perguntarem):** NUNCA citar nomes de lojas/clientes da Pinas (Petiva, Pink Luxo, Chay B, Bem Zanza) nas abordagens ou respostas da IA. Falar genericamente ("cuidamos de clínicas veterinárias aqui em SP", "ajudamos escritórios de advocacia"). APENAS citar nomes se o lead perguntar diretamente por cases ou clientes.
+- **Formatação de Texto Humanizada (Espaçamento Obrigatório com Linhas Pulo):** PROIBIDO enviar blocos contínuos de texto. Separar obrigatoriamente os pensamentos com linha em branco (`\n\n`): 1º Saudação/Acolhimento (`\n\n`) 2º Contexto da Pinas + Diagnóstico prático (`\n\n`) 3º Pergunta rápida de qualificação. Fácil de ler e leve no celular.
+- **Cadência Humanizada de Resposta:** No atendimento de múltiplos leads pendentes acumulados, respeitar um intervalo de aproximadamente 5 minutos (~300 segundos) entre um lead e outro para evitar comportamento acelerado de robô.
+
+
 

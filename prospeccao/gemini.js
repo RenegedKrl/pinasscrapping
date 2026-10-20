@@ -41,11 +41,11 @@ function getApiKey() {
   return '';
 }
 
-// Modelos oficiais suportados (priorizando os com cota e resposta ativa 200 OK)
-const PRIMARY_MODEL = 'gemini-3.5-flash-lite';
-const FALLBACK_MODEL = 'gemini-flash-lite-latest';
+// Modelos oficiais suportados (priorizando os com resposta ativa 200 OK no ambiente)
+const PRIMARY_MODEL = 'gemini-flash-lite-latest';
+const FALLBACK_MODEL = 'gemini-3.5-flash-lite';
 const SECONDARY_FALLBACK = 'gemini-3-flash-preview';
-const TERTIARY_FALLBACK = 'gemini-3.5-flash';
+const TERTIARY_FALLBACK = 'gemini-3.6-flash';
 
 /**
  * Chamada genérica para a API do Gemini com fallback automático
@@ -84,28 +84,50 @@ async function callGemini({ prompt, systemInstruction = '', jsonMode = false, mo
     payload.generationConfig.responseMimeType = 'application/json';
   }
 
-  async function executeRequest(targetModel) {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${targetModel}:generateContent?key=${apiKey}`;
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
+  async function executeRequest(targetModel, retries = 2) {
+    for (let attempt = 0; attempt <= retries; attempt++) {
+      try {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${targetModel}:generateContent?key=${apiKey}`;
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          signal: AbortSignal.timeout(20000)
+        });
 
-    if (!res.ok) {
-      const errText = await res.text();
-      let parsedErr = errText;
-      try { parsedErr = JSON.parse(errText); } catch (e) {}
-      throw new Error(`Google Gemini Error (${res.status}): ${JSON.stringify(parsedErr)}`);
-    }
+        if (res.status === 503 || res.status === 500 || res.status === 502 || res.status === 429) {
+          if (attempt < retries) {
+            const waitMs = 1500 * (attempt + 1);
+            console.log(`[Gemini] ${targetModel} retornou ${res.status} (instabilidade temporária). Aguardando ${waitMs}ms para retentar...`);
+            await new Promise(r => setTimeout(r, waitMs));
+            continue;
+          }
+        }
 
-    const data = await res.json();
-    const candidate = data.candidates?.[0];
-    const text = candidate?.content?.parts?.[0]?.text;
-    if (!text) {
-      throw new Error('Nenhuma resposta retornada pelo Gemini.');
+        if (!res.ok) {
+          const errText = await res.text();
+          let parsedErr = errText;
+          try { parsedErr = JSON.parse(errText); } catch (e) {}
+          throw new Error(`Google Gemini Error (${res.status}): ${JSON.stringify(parsedErr)}`);
+        }
+
+        const data = await res.json();
+        const candidate = data.candidates?.[0];
+        const text = candidate?.content?.parts?.[0]?.text;
+        if (!text) {
+          throw new Error('Nenhuma resposta retornada pelo Gemini.');
+        }
+        return text;
+      } catch (err) {
+        if (attempt < retries && (err.message.includes('503') || err.message.includes('500') || err.message.includes('timeout') || err.name === 'TimeoutError')) {
+          const waitMs = 1500 * (attempt + 1);
+          console.log(`[Gemini] Tentativa ${attempt + 1} com ${targetModel} falhou (${err.message}). Retentando em ${waitMs}ms...`);
+          await new Promise(r => setTimeout(r, waitMs));
+          continue;
+        }
+        throw err;
+      }
     }
-    return text;
   }
 
   try {
@@ -129,21 +151,35 @@ async function callGemini({ prompt, systemInstruction = '', jsonMode = false, mo
   }
 }
 
-// System Instruction central com o Tom de Voz do Kauê e da Pinas (@pinas.studio)
+// System Instruction central com o Tom de Voz do Kauê e da Pinas
 const PINAS_SYSTEM_PROMPT = `
-Você é o estrategista de inteligência comercial da Pinas (@pinas.studio), agência/assessoria de marketing digital do Kauê em São Paulo.
+Você é o estrategista de inteligência comercial da Pinas, assessoria de marketing digital e captação local do Kauê em São Paulo.
 A Pinas é especializada em:
-1. Criação de sites de alta conversão (landing pages modernas, rápidas, com botão de WhatsApp direto).
-2. Tráfego pago focado em captação local (Google Ads Search/Maps e Meta Ads no raio do bairro).
-3. Estruturação comercial para transformar cliques em clientes que pagam.
+1. Assessoria Contínua de Tráfego Pago (Google Ads e Meta Ads) para colocar novos clientes e pacientes qualificados no WhatsApp todo mês com previsibilidade.
+2. Criação e otimização de Landing Pages rápidas que abrem em 1s no celular, servindo de alicerce para os anúncios converterem no máximo.
+3. Apoio na conversão do WhatsApp: entrega de scripts simples para a recepcionista/secretária acolher os contatos do Google e agendar avaliações na hora.
+
+REGRA DE SIGILO ABSOLUTO DE CLIENTES (NUNCA CITAR NOMES):
+- PROIBIDO CITAR NOMES DE CLIENTES OU LOJAS (Petiva, Pink Luxo, Chay B, Bem Zanza) nas mensagens automáticas de abordagem e respostas.
+- Fale SEMPRE de forma genérica e profissional: "ajudamos clínicas veterinárias aqui de SP a captarem clientes particulares no Google", "atendemos marcas de moda e confecções", "cuidamos de centros de estética".
+- APENAS cite o nome específico de um cliente caso o lead pergunte expressamente ("Quais clientes vocês atendem?", "Com quem você já trabalhou?", "Tem algum case?").
 
 TOM DE VOZ DO KAUÊ (OBRIGATÓRIO):
 - 100% Humano, natural, descontraído e educado. Conversa de profissional sério com outro empreendedor.
+- NUNCA use @pinas.studio ou arrobas de redes sociais nas mensagens. Apresente-se unicamente como "Kauê, da Pinas".
 - NUNCA use corporativês ou jargões vazios ("sinergia", "alavancar", "otimização holística", "ecossistema").
 - NUNCA soe como telemarketing ou robô de vendas ("Prezado responsável", "Venho por meio desta", "Boa tarde, sou da agência X").
 - Fale com clareza sobre o mundo real: falar do bairro, das avaliações no Google Maps, de tutores/pacientes/clientes da região.
 - Frases diretas e fáceis de ler no celular/WhatsApp.
-- NUNCA envie textão gigante de uma vez. Mensagens para WhatsApp devem ter entre 2 e 5 linhas, divididas em parágrafos curtos.
+
+REGRA VISUAL DE FORMATAÇÃO E ESPAÇAMENTO (OBRIGATÓRIO):
+- NUNCA envie blocos contínuos de texto (paredes de texto sem quebra).
+- É OBRIGATÓRIO pular uma linha em branco (\n\n) entre os tópicos/assuntos para ficar leve e bonito no WhatsApp:
+  Parágrafo 1: Saudação e apresentação rápida (ex: "Show, prazer falar contigo! Sou o Kauê, da Pinas.")
+  \n\n
+  Parágrafo 2: Contexto + Diagnóstico rápido do site/Google Maps da empresa dele (ex: "A gente ajuda consultorias aqui de SP a atraírem clientes qualificados no Google Maps todo mês. Dei uma olhada no site de vocês e achei o trabalho super bacana, mas notei pelo celular que a página demora um pouco para abrir e não tem botão direto de WhatsApp no topo.")
+  \n\n
+  Parágrafo 3: Pergunta curta de qualificação ou próximo passo (ex: "Vocês já têm alguém cuidando dessa parte de site e anúncios no Google por aí hoje ou a maioria dos mentorados ainda vem por indicação?")
 `;
 
 /**
@@ -153,6 +189,13 @@ function safeJsonParse(rawStr) {
   if (!rawStr) return {};
   let cleaned = String(rawStr).trim();
   cleaned = cleaned.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim();
+
+  // Se houver texto ou raciocínio antes ou depois do JSON, extrai apenas o bloco { ... }
+  const firstBrace = cleaned.indexOf('{');
+  const lastBrace = cleaned.lastIndexOf('}');
+  if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+    cleaned = cleaned.substring(firstBrace, lastBrace + 1).trim();
+  }
 
   try {
     return JSON.parse(cleaned);
@@ -175,6 +218,21 @@ function safeJsonParse(rawStr) {
       }
       return JSON.parse(output);
     } catch (secondErr) {
+      // 2. Extração resiliente via regex para campos comuns (detectedIntent, action, replyText, pitchText, etc.)
+      const result = {};
+      const intentMatch = cleaned.match(/"detectedIntent"\s*:\s*"([^"]+)"/);
+      if (intentMatch) result.detectedIntent = intentMatch[1];
+      const actionMatch = cleaned.match(/"action"\s*:\s*"([^"]+)"/);
+      if (actionMatch) result.action = actionMatch[1];
+      const replyMatch = cleaned.match(/"replyText"\s*:\s*"([\s\S]*?)(?:",\s*"reasoning"|"\s*}|$)/);
+      if (replyMatch) result.replyText = replyMatch[1].replace(/\\n/g, '\n').replace(/\\"/g, '"');
+      const pitchMatch = cleaned.match(/"pitchText"\s*:\s*"([\s\S]*?)(?:",\s*"angle"|"\s*}|$)/);
+      if (pitchMatch) result.pitchText = pitchMatch[1].replace(/\\n/g, '\n').replace(/\\"/g, '"');
+
+      if (result.replyText || result.pitchText || result.detectedIntent) {
+        return result;
+      }
+
       console.error('[Gemini safeJsonParse Error]:', secondErr.message, 'Raw:', cleaned.slice(0, 300));
       throw new Error(`Falha ao decodificar JSON retornado pelo Gemini: ${err.message}`);
     }
@@ -221,7 +279,7 @@ Retorne EXCLUSIVAMENTE um objeto JSON válido com a seguinte estrutura:
  */
 async function generatePitches(lead, userGuidance = '') {
   const prompt = `
-Crie 3 opções de mensagens de abordagem para o WhatsApp para este lead. As mensagens devem ser enviadas pelo Kauê da Pinas (@pinas.studio).
+Crie 3 opções de mensagens de abordagem para o WhatsApp para este lead. As mensagens devem ser enviadas pelo Kauê da Pinas. NUNCA use arroba de redes sociais.
 
 DADOS DO LEAD:
 - Nome: ${lead.name}
@@ -283,7 +341,7 @@ async function suggestChatReply({ lead, messages = [], lastIncomingMessage = '' 
   }).slice(-8).join('\n');
 
   const prompt = `
-O lead respondeu no WhatsApp. Como o Kauê (@pinas.studio), sugira a melhor resposta para dar continuidade à conversa de forma natural e conduzir o contato para um alinhamento rápido (call de 15 minutos ou apresentação rápida de proposta).
+O lead respondeu no WhatsApp. Como o Kauê, da Pinas, sugira a melhor resposta para dar continuidade à conversa de forma natural e conduzir o contato para um alinhamento rápido (call de 15 minutos ou apresentação rápida de proposta). Proibido usar arroba (@pinas.studio).
 
 DADOS DO LEAD:
 - Nome: ${lead?.name || 'Cliente'}
@@ -349,28 +407,52 @@ function formatOpeningMessage(lead) {
 
   const nicheLower = (lead?.niche || '').toLowerCase();
   const nameLower = cleanName.toLowerCase();
+  const neighborhood = lead?.neighborhood || '';
 
-  // Se o próprio nome já contém termos como clínica, consultório, escritório, etc.
+  // Determinar artigo / prefixo do negócio
+  let targetDesc = cleanName;
   if (nameLower.includes('clínica') || nameLower.includes('clinica')) {
-    return `Olá, tudo bem? É da ${cleanName}?`;
-  }
-  if (nameLower.includes('consultório') || nameLower.includes('consultorio') || nameLower.includes('escritório') || nameLower.includes('escritorio') || nameLower.includes('hospital')) {
-    return `Olá, tudo bem? É do ${cleanName}?`;
+    targetDesc = cleanName;
+  } else if (nameLower.includes('consultório') || nameLower.includes('consultorio') || nameLower.includes('escritório') || nameLower.includes('escritorio') || nameLower.includes('hospital')) {
+    targetDesc = cleanName;
+  } else if (nicheLower.includes('vet') || nicheLower.includes('clínica') || nicheLower.includes('clinica') || nicheLower.includes('odont') || nicheLower.includes('saúde') || nicheLower.includes('saude') || nicheLower.includes('médic') || nicheLower.includes('medic')) {
+    targetDesc = `clínica ${cleanName}`;
+  } else if (nicheLower.includes('advoc') || nicheLower.includes('jurídic') || nicheLower.includes('juridic')) {
+    targetDesc = `escritório ${cleanName}`;
+  } else if (nicheLower.includes('roup') || nicheLower.includes('moda') || nicheLower.includes('loja')) {
+    targetDesc = nameLower.startsWith('loja') ? cleanName : `loja ${cleanName}`;
+  } else if (nicheLower.includes('consultor') || nicheLower.includes('mentor')) {
+    targetDesc = cleanName;
   }
 
-  if (nicheLower.includes('vet') || nicheLower.includes('clínica') || nicheLower.includes('clinica') || nicheLower.includes('odont') || nicheLower.includes('saúde') || nicheLower.includes('saude') || nicheLower.includes('médic') || nicheLower.includes('medic')) {
-    return `Olá, tudo bem? É da clínica ${cleanName}?`;
+  const isMasculine = targetDesc.toLowerCase().startsWith('escritório') || targetDesc.toLowerCase().startsWith('consultório') || targetDesc.toLowerCase().startsWith('hospital');
+  const art = isMasculine ? 'do' : 'da';
+
+  // Matriz de Variação Humana Dinâmica (SpinTax Anti-Ban de Alta Entropia)
+  const variations = [
+    `Olá, tudo bem? É ${art} ${targetDesc}?`,
+    `Opa, tudo bem? É ${art} ${targetDesc}?`,
+    `Oi, tudo certo? É ${art} ${targetDesc}?`,
+    `Olá, como vai? Falo com o pessoal ${art} ${targetDesc}?`,
+    `Opa, bom dia! É ${art} ${targetDesc}?`,
+    `Olá, boa tarde! É ${art} ${targetDesc}?`,
+    `Oi, tudo bem? Falo ${art} ${targetDesc}?`,
+    `Opa tudo bem por aí? É ${art} ${targetDesc}?`,
+    `Olá! É o WhatsApp ${art} ${targetDesc}?`,
+    `Oi! É ${art} ${targetDesc}?`
+  ];
+
+  // Se tiver bairro conhecido no Maps, adiciona variações com contexto local
+  if (neighborhood && neighborhood !== 'São Paulo' && neighborhood.length > 3) {
+    variations.push(
+      `Opa, tudo bem? É ${art} ${targetDesc} aí em ${neighborhood}?`,
+      `Olá, tudo certo? Encontrei o contato de vocês em ${neighborhood}, é ${art} ${targetDesc}?`,
+      `Oi, tudo bem? Falo com ${art} ${targetDesc} de ${neighborhood}?`
+    );
   }
-  if (nicheLower.includes('advoc') || nicheLower.includes('jurídic') || nicheLower.includes('juridic')) {
-    return `Olá, tudo bem? É do escritório ${cleanName}?`;
-  }
-  if (nicheLower.includes('roup') || nicheLower.includes('moda') || nicheLower.includes('loja')) {
-    if (nameLower.startsWith('loja')) {
-      return `Olá, tudo bem? É da ${cleanName}?`;
-    }
-    return `Olá, tudo bem? É da loja ${cleanName}?`;
-  }
-  return `Olá, tudo bem? É da ${cleanName}?`;
+
+  // Sorteia aleatoriamente: cada mensagem terá um texto e hash MD5 completamente diferente
+  return variations[Math.floor(Math.random() * variations.length)];
 }
 
 /**
@@ -384,75 +466,160 @@ async function generateAutoPilotReply({ lead, messages = [], lastIncomingMessage
     return `${sender}: ${m.text || '[mídia/anexo]'}`;
   }).slice(-12).join('\n');
 
-  const siteAudit = lead?.siteAudit || {};
-  const mapsAudit = lead?.mapsAudit || {};
-  const neighborhood = lead?.neighborhood || lead?.city || 'São Paulo';
-  
-  let auditStatusStr = '';
-  if (lead?.hasWebsite === false || !lead?.website) {
-    auditStatusStr = `SEM SITE PRÓPRIO. O negócio tem boa nota no Google Maps (${lead?.reviews || 0} avaliações, nota ${lead?.rating || 'N/A'}), mas NÃO tem site próprio com botão direto de WhatsApp. Está deixando clientes que pesquisam no Google escaparem para concorrentes do bairro.`;
-  } else {
-    auditStatusStr = `POSSUI SITE (${lead.website}): ${siteAudit.isOnline === false ? 'Site fora do ar ou com erro.' : (siteAudit.hasWhatsApp === false ? 'Site no ar mas sem botão direto de WhatsApp visível para celular.' : (siteAudit.loadTimeMs > 4000 ? 'Site pesado/lento no celular.' : 'Site no ar, com oportunidade de melhoria de conversão local.'))}`;
+  // Auditoria em tempo real: se o lead tem site e ainda não foi auditado profundamente, audita agora!
+  let siteAudit = lead?.siteAudit;
+  let mapsAudit = lead?.mapsAudit;
+
+  if (lead?.website && (!siteAudit || !siteAudit.domDetails)) {
+    try {
+      const auditor = require('./auditor');
+      const fullAudit = await auditor.auditLeadFull(lead);
+      lead.siteAudit = fullAudit.site;
+      lead.mapsAudit = fullAudit.maps;
+      siteAudit = fullAudit.site;
+      mapsAudit = fullAudit.maps;
+    } catch (e) {
+      console.warn('[Gemini] Falha ao auditar site on-the-fly:', e.message);
+    }
   }
 
+  if (!mapsAudit) {
+    try {
+      const auditor = require('./auditor');
+      mapsAudit = auditor.auditGoogleMaps(lead);
+      lead.mapsAudit = mapsAudit;
+    } catch (e) {}
+  }
+
+  const neighborhood = lead?.neighborhood || mapsAudit?.neighborhood || lead?.city || 'São Paulo';
+  
+  let auditDetailsText = '';
+  if (lead?.hasWebsite === false || !lead?.website) {
+    auditDetailsText = `
+- PRESENÇA DIGITAL: NÃO POSSUI SITE PRÓPRIO CADASTRADO NO GOOGLE MAPS.
+- GOOGLE MAPS: ${lead?.reviews || mapsAudit?.reviews || 0} avaliações com nota ${lead?.rating || mapsAudit?.rating || 'N/A'}★.
+- ENDEREÇO / BAIRRO: ${neighborhood} (${lead?.address || 'Região de São Paulo'}).
+- GARGALO REAL: A empresa depende 100% de indicações ou da ficha do Maps. Quem pesquisa no Google pelo celular não encontra uma landing page rápida com botão direto de WhatsApp e acaba chamando o concorrente da região que anuncia no topo.`;
+  } else if (siteAudit && siteAudit.isOnline) {
+    const dom = siteAudit.domDetails || {};
+    const loadSec = siteAudit.loadTimeMs ? (siteAudit.loadTimeMs / 1000).toFixed(1) : '1.5';
+    const speedLabel = siteAudit.loadTimeMs > 2500 ? `LENTO (${loadSec}s para abrir no celular - visitante desiste antes de carregar)` : `Rápido (${loadSec}s)`;
+    const headings = [...(dom.h1List || []), ...(dom.h2List || [])].slice(0, 4).join(' | ');
+
+    auditDetailsText = `
+- SITE OFICIAL ANALISADO EM TEMPO REAL: ${siteAudit.url || lead.website}
+- TÍTULO DA PÁGINA: "${siteAudit.title || 'Não informado'}"
+- CMS / PLATAFORMA DETECTADA: ${dom.detectedCms || 'Personalizado / Próprio'}
+- VELOCIDADE NO CELULAR: ${speedLabel}
+- BOTÃO DIRETO DE WHATSAPP: ${siteAudit.hasWhatsApp ? 'SIM, possui botão visível' : 'NÃO POSSUI botão de WhatsApp visível no celular (cliente precisa procurar telefone ou preencher formulário)'}
+- ANÚNCIOS / TRACKING: ${siteAudit.doesPaidTraffic ? 'SIM, possui tags de anúncio ativas (Pixel ou Google Tag)' : 'NÃO POSSUI Pixel do Meta nem Google Ads ativo (não faz tráfego pago)'}
+- CONTEÚDOS / SERVIÇOS ENCONTRADOS NO SITE: ${headings || 'Estrutura institucional básica'}
+- BOTÕES / CTAs DA PÁGINA: ${(dom.buttonCtaList || []).slice(0, 3).join(', ') || 'Poucos CTAs visíveis'}
+- PONTOS FRACOS REAIS: ${siteAudit.weaknesses?.length ? siteAudit.weaknesses.join('; ') : 'Página pode melhorar conversão mobile e tráfego local'}
+- FICHA NO GOOGLE MAPS: ${mapsAudit?.reviews || lead?.reviews || 0} avaliações com nota ${mapsAudit?.rating || lead?.rating || 'N/A'}★ em ${neighborhood}.`;
+  } else if (siteAudit && siteAudit.isOnline === false) {
+    auditDetailsText = `
+- SITE COM ERRO OU FORA DO AR: O link oficial cadastrado no Maps (${siteAudit.url || lead.website}) deu erro (${siteAudit.error || 'timeout'}). Clientes do Google que clicam no link encontram página com falha.`;
+  }
+
+  let metaAdsText = '';
+  if (lead?.metaAds && lead.metaAds.checked) {
+    if (lead.metaAds.hasActiveAds) {
+      metaAdsText = `\n- ANÚNCIOS NO INSTAGRAM/FACEBOOK (META ADS LIBRARY): SIM, a empresa possui ${lead.metaAds.adCountText || lead.metaAds.adCount + ' anúncios ativos'} rodando no Instagram/Facebook. Já possui verba de tráfego aprovada e valoriza conversão de clientes!`;
+    } else {
+      metaAdsText = `\n- ANÚNCIOS NO INSTAGRAM/FACEBOOK (META ADS LIBRARY): NÃO possui anúncios ativos identificados na Meta Library. Oportunidade de estruturar captação profissional do zero.`;
+    }
+  }
+  auditDetailsText += metaAdsText;
+
   const prompt = `
-Você é o Kauê, fundador da Pinas (@pinas.studio). Você está conversando pessoalmente pelo WhatsApp com o dono ou responsável por este negócio local em São Paulo.
+Você é o Kauê, fundador da Pinas. Você está trocando mensagens reais no WhatsApp com o dono ou responsável por este negócio local em São Paulo.
 
-DADOS REAIS DO NEGÓCIO:
+DADOS REAIS DO NEGÓCIO & AUDITORIA TÉCNICA (USE FATOS CONCRETOS DAQUI):
 - Nome: ${lead?.name || 'Empresa'}
-- Nicho: ${lead?.niche || 'Comércio Local'}
+- Nicho: ${lead?.niche || 'Comércio/Serviço Local'}
 - Bairro/Região: ${neighborhood}
-- Presença Digital & Auditoria: ${auditStatusStr}
-- Avaliação Maps: ${lead?.rating || 'N/A'} estrelas (${lead?.reviews || 0} reviews no Google Maps)
+${auditDetailsText}
 
-HISTÓRICO DA CONVERSA NO WHATSAPP:
+HISTÓRICO REAL DA CONVERSA NO WHATSAPP:
 ${conversationFormatted || 'Cliente: ' + lastIncomingMessage}
 
 ÚLTIMA MENSAGEM DO CLIENTE:
 "${lastIncomingMessage || (messages.filter(m => !m.fromMe).pop()?.text) || ''}"
 
-DIRETRIZES DA CONVERSA DO KAUÊ (ESTRATÉGIA COMERCIAL DA PINAS):
+DIRETRIZES DA VOZ DO KAUÊ (REGRAS ABSOLUTAS ANTI-ROBÔ):
+1. VOCÊ É UMA PESSOA REAL, FALANDO NO WHATSAPP.
+   - Seja natural, descontraído, educado e direto. Conversa de profissional com outro empreendedor.
+   - ZERO "corporativês" (proibido falar "alavancar", "sinergia", "gerar valor", "estruturação robusta", etc.).
+   - ZERO frases de telemarketing ou respostas automáticas engessadas.
 
-1. SE ESTA FOR A 1ª RESPOSTA DO CLIENTE (O CLIENTE CONFIRMOU O LOCAL / RESPONDEU À NOSSA ABERTURA):
-   Contexto: Nossa 1ª mensagem foi apenas uma confirmação despretensiosa em 1 linha ("Olá, tudo bem? É da clínica X?"), SEM NADA DE VENDA.
-   Exemplos de resposta do cliente: "Ah, sou sim", "Sim, é daqui", "Sim, sou eu", "Sim, quem fala?", "Olá, sim, pois não?", "Sim, em que posso ajudar?", "Sou eu, o Dr. Roberto".
+2. NUNCA REPITA A MESMA FÓRMULA OU AS MESMAS FRASES:
+   - Não use sempre a mesma saudação. Varie naturalmente:
+     "Opa, tudo bem? Prazer!", "Fala [Nome], tudo ótimo por aqui! Prazer...", "Tudo certo por aqui! Sou o Kauê, da Pinas...", "Show! Prazer falar contigo..."
+   - Responda DIRETAMENTE ao que o cliente acabou de escrever, acolhendo as palavras dele.
+   - Se o cliente se identificou pelo nome (ex: "Aqui é a Thais", "Dr. Roberto"), use o nome dele com carinho e profissionalismo.
+   - NUNCA use arroba de redes sociais (@pinas.studio) nas mensagens. Apresente-se simplesmente como "Kauê, da Pinas".
 
-   👉 AGORA É A HORA DE APRESENTAR O NEGÓCIO DA PINAS E FALAR DO QUE SE TRATA (COM TOTAL NATURALIDADE E ELEGÂNCIA):
-   - Passo 1 (Apresentação humana e simpática):
-     "Show! Prazer, aqui é o Kauê da Pinas (@pinas.studio)." ou "Tudo ótimo por aqui! Prazer, Kauê por aqui da Pinas."
-   - Passo 2 (Como encontrou):
-     Diga que encontrou o perfil deles no Google aqui em ${neighborhood}, viu que eles têm ótimas avaliações e foi dar uma olhada na estrutura deles pelo celular.
-   - Passo 3 (A questão de venda e valor da Pinas):
-     * Se NÃO tem site próprio: comente que viu as ótimas avaliações deles no Google Maps, mas notou que ainda não têm um site próprio com botão direto de WhatsApp. Explique que a Pinas ajuda empresas/clínicas da região estruturando páginas rápidas (abrem em 1s) pensadas pra quem pesquisa no Google no bairro já chamar no WhatsApp na hora e virar cliente.
-     * Se TEM site próprio: aponte com gentileza o ponto que viu (ex: falta de botão visível de WhatsApp no celular ou velocidade), explicando que a Pinas melhora páginas para dobrar os contatos de clientes locais no WhatsApp.
-   - Passo 4 (Pergunta leve de diálogo):
-     Termine com uma pergunta simples e aberta para iniciar a conversa:
-     "Vocês já têm alguém cuidando dessa parte do site/digital por aí hoje?" ou "Tô falando direto com o dono ou responsável por aí?"
+3. TAMANHO E FORMATAÇÃO DA MENSAGEM (REGRA DO KAUÊ: ESPAÇAMENTO OBRIGATÓRIO):
+   - Mantenha a resposta CURTA e leve: 2 a 4 linhas no total.
+   - PROIBIDO enviar blocos contínuos de texto (paredes de texto sem quebra).
+   - É OBRIGATÓRIO separar os tópicos usando quebra de linha dupla (\n\n):
+     Bloco 1: Saudação e apresentação (ex: "Show, prazer falar contigo! Sou o Kauê, da Pinas.")
+     \n\n
+     Bloco 2: O que fazemos no nicho + detalhe observado na auditoria do Maps/site
+     \n\n
+     Bloco 3: Pergunta de qualificação ou próximo passo
+   - NUNCA mande textão longo.
 
-2. SE O CLIENTE JÁ SOUBER QUEM É E ESTIVER EM FASE DE DÚVIDAS, OBJEÇÕES OU PERGUNTAS (Turno 2 em diante):
-   - NUNCA force a call de forma afobada. Responda com paciência, clareza e transparência para ganhar a confiança do cliente.
-   - Se perguntar preço: seja sincero. Diga que depende do escopo (ajustar o site atual ou fazer página nova com tráfego), mas que é um investimento acessível para comércio local e que se paga rápido com poucos clientes do bairro.
-   - Se perguntar como achou o contato: explique com honestidade que pesquisa empresas com boa reputação no Google Maps no bairro e gosta de olhar a presença digital para ver se acompanha a qualidade do serviço físico.
-   - Se disser que já tem agência ou site: respeite, elogie e aponte apenas o diferencial de conversão no WhatsApp de quem pesquisa no Google.
-   - Se for secretária / recepção: trate com respeito e pergunte o melhor momento ou WhatsApp do dono/gerente para trocar uma ideia rápida.
-   - Se o cliente for receptivo ou quiser ver como fica: sugira um papo rápido de 10 a 15 min no Google Meet ("Prefere amanhã de manhã ou à tarde?").
+4. COMO CONDUZIR CONFORME O MOMENTO DA CONVERSA (100% AUTOMÁTICO EM TEXTO):
+   a) SE FOR A 1ª RESPOSTA DO CLIENTE (ele apenas confirmou o local, ex: "Sim", "Sou eu", "Em que posso ajudar?", "Quem fala?", "Aqui é a Thayane"):
+      - Cumprimente simpaticamente e use o nome da pessoa caso ela tenha se apresentado ("Opa Thayane, tudo ótimo por aqui!").
+      - Apresente-se de forma direta: "Sou o Kauê, da Pinas." (Proibido usar arroba @pinas.studio).
+      - Conecte autoridade no nicho dele de forma genérica (REGRA DO KAUÊ: PROIBIDO citar nomes de lojas como Petiva, Pink Luxo, Chay B, Bem Zanza):
+        * SE FOR VETERINÁRIA: mencione que a Pinas cuida da presença digital e captação de clínicas veterinárias em SP e viu o perfil deles no Google Maps em ${neighborhood}.
+        * SE FOR ESTÉTICA / BELEZA: mencione que gerencia o tráfego de clínicas e centros de estética em SP para captação de procedimentos.
+        * SE FOR MODA / ROUPAS: mencione que cuida da presença digital e atração de clientes para marcas e confecções de moda em SP.
+        * SE FOR ADVOCACIA, ODONTOLOGIA, CONSULTORIA OU OUTROS: mencione que ajuda escritórios, consultorias e empresas da região de ${neighborhood} a captarem clientes particulares e qualificados no Google todo mês.
+      - ENTREGUE O DIAGNÓSTICO DIRETO E ESPECÍFICO EM TEXTO (Sem enrolação, 1 a 2 linhas):
+        * SE TEM SITE: Cite com naturalidade 1 detalhe REAL que você viu na auditoria (ex: "achei o trabalho de vocês em [serviço/título] muito bacana, mas notei pelo celular que a página demora quase X segundos pra carregar e não tem o botão direto de WhatsApp no topo, o que faz clientes da região acabarem indo pro concorrente").
+        * SE NÃO TEM SITE: Diga que viu o perfil no Maps em ${neighborhood} com ${lead?.rating || 'ótimas'} estrelas, mas quem pesquisa pelo celular não acha um site próprio com botão direto de WhatsApp e acaba indo pro concorrente que já anuncia.
+      - FAÇA A PERGUNTA DE QUALIFICAÇÃO (Micro-compromisso sem empurrar venda):
+        Pergunte com naturalidade se eles já têm alguém cuidando dessa parte de site e novos contatos pelo Google por aí hoje, ou se a maioria dos novos clientes ainda vem por indicação boca a boca.
+        Exemplo: "Vocês já têm alguém cuidando dessa parte de site e captação no Google por aí hoje?"
+      - Mensagem curta dividida em blocos com \n\n!
 
-3. SE O CLIENTE CONCORDAR COM A CALL:
-   - Confirme dia/horário e peça o email dele para o convite do Google Meet (marque action = "mark_meeting").
+   b) SE O CLIENTE JÁ SOUBER QUEM É E ESTIVER RESPONDENDO DÚVIDAS OU QUALIFICANDO (Turno 2 em diante):
+      - Se disse que NÃO TEM NINGUÉM / ELE MESMO CUIDA ("não temos", "eu mesmo cuido", "não tenho agência"):
+        Acolha com simpatia e explique que deu um toque justamente por isso — a Pinas cuida de toda a esteira (ajuste da página rápida que abre em 1s + gestão dos anúncios no Google) para colocar clientes qualificados no WhatsApp sem ele ter trabalho nenhum.
+        Proponha um papo de 10 a 15 min no Google Meet: "Consegue 10 a 15 minutinhos no Google Meet essa semana pra eu te mostrar na prática como funciona? É bem direto ao ponto e sem compromisso nenhum. Fica melhor para você amanhã ou quinta?"
+      - Se disse que JÁ TEM ALGUÉM / AGÊNCIA:
+        Elogie com educação ("Que bacana!") e pergunte se eles estão satisfeitos com o volume e a qualidade de contatos chegando pelo Google hoje.
+      - Se perguntou "COMO FUNCIONA?", "O QUE VOCÊ VIU?" OU "DO QUE SE TRATA?":
+        Explique em 2 parágrafos curtos direto no texto: a gente posiciona o negócio no topo das buscas da região no Google e cria uma página ultra rápida que joga o cliente com intenção de compra direto no WhatsApp pronto para agendar. E convide para ver na prática em 10 min no Google Meet.
+      - Se perguntou PREÇO:
+        Seja transparente e seguro: a Pinas entrega a assessoria completa de tráfego com a página estruturada por uma mensalidade acessível de negócio local (em torno de R$ 1.500/mês), e que com apenas 1 ou 2 novos clientes o investimento já se paga todo mês com folga. Proponha bater um papo rápido de 15 min no Google Meet para ver se faz sentido para o momento dele.
+      - Se perguntar COMO ACHOU O CONTATO:
+        Explique honestamente que pesquisa negócios bem avaliados no Google Maps da região.
+      - Se for SECRETÁRIA / ATENDIMENTO:
+        Trate com respeito e pergunte com carinho quem cuida dessa parte comercial/novos clientes ou se consegue falar com o responsável.
+      - Se concordar em bater um papo ("Pode ser", "Quinta fica bom", "Manda o link"):
+        Comemore educadamente, combine o melhor dia/horário e peça o e-mail para enviar o convite da chamada no Google Meet (marque action: "mark_meeting").
+      - Se o cliente PEDIR PARA FALAR DEPOIS / ADIAR / RETORNAR EM DATA FUTURA (ex: "me chama em novembro", "primeira semana de novembro", "semana que vem", "mês que vem", "agora estou na correria"):
+        Acolha com simpatia e combine a data que ele pediu sem pressionar (ex: "Perfeito! Combinado então, te dou um toque na primeira semana de novembro. Um abraço!"). NUNCA insista nem tente empurrar reunião agora. Marque action: "mark_postponed".
+      - Se for RECUSA DEFINITIVA OU FALTA DE INTERESSE ("não tenho interesse", "não quero", "não temos interesse agora", "obrigado mas não", "sem interesse"):
+        Agradeça com simpatia, deseje sucesso e encerre a conversa com classe (ex: "Sem problemas! Agradeço pelo retorno e muito sucesso por aí. Um abraço!"). Marque action: "mark_lost".
 
-4. SE FOR RECUSA CATEGÓRICA ("não tenho interesse", "não mande mais mensagem"):
-   - Agradeça educadamente e encerre com classe sem insistir (marque action = "mark_lost").
-
-REGRAS DE TOM E FORMATAÇÃO:
-- Responda em 1 a 3 parágrafos curtos (estilo WhatsApp brasileiro, 2 a 5 linhas no total).
-- Humano, direto, educado, sem corporativês vazio e sem parecer robô.
+5. REGRAS INEGOCIÁVEIS ANTI-FALHA E 100% AUTOMÁTICO:
+   - PROIBIDO prometer envio de vídeo, áudio gravado, gravação de tela ou links de arquivos. A operação é 100% automática; você NUNCA deve falar "gravei um vídeo", "vou mandar um vídeo", "posso te mandar o vídeo" ou "segue o link do vídeo".
+   - PROIBIDO TERMINANTEMENTE gerar placeholders entre colchetes como "[Link do Vídeo]", "[Link do Video]", "[Link]", "[Vídeo]", "[Nome]", etc. Tudo o que você escrever será enviado de verdade para o WhatsApp do cliente.
+   - Qualquer demonstração visual é feita EXCLUSIVAMENTE ao vivo em um bate-papo rápido de 10 a 15 minutos no Google Meet.
 
 Retorne EXCLUSIVAMENTE um objeto JSON no formato:
 {
-  "detectedIntent": "confirm_identity | interested | asking_questions | asking_price | gatekeeper | objection | confirmed | refused",
-  "action": "reply | mark_meeting | mark_lost",
+  "detectedIntent": "confirm_identity | interested | asking_questions | asking_price | gatekeeper | objection | confirmed | postponed | refused",
+  "action": "reply | mark_meeting | mark_lost | mark_postponed",
   "replyText": "texto exato da mensagem pronta para enviar no WhatsApp",
-  "reasoning": "estratégia adotada para responder e gerar confiança"
+  "reasoning": "por que respondeu dessa forma"
 }
 `;
 
@@ -462,7 +629,62 @@ Retorne EXCLUSIVAMENTE um objeto JSON no formato:
     jsonMode: true
   });
 
-  return safeJsonParse(jsonStr);
+  const parsed = safeJsonParse(jsonStr);
+
+  // Blindagem de segurança e Formatação Humanizada com Linhas Pulo exigida pelo Kauê
+  if (parsed && typeof parsed.replyText === 'string') {
+    const isAskingAboutPortfolio = /quais\s+clientes|cases|portf[oó]lio|com\s+quem\s+(voc[eê]s?\s+)?trabalha/i.test(lastIncomingMessage || '');
+    parsed.replyText = formatHumanWhatsAppMessage(parsed.replyText, {
+      allowClients: isAskingAboutPortfolio
+    });
+  }
+
+  return parsed;
+}
+
+/**
+ * Formata a mensagem para o padrão estético humanizado exigido pelo Kauê:
+ * - Parágrafos separados por quebra de linha dupla (\n\n)
+ * - Sigilo estrito de clientes (remove Petiva, Pink Luxo, Chay B, Bem Zanza)
+ * - Zero placeholders entre colchetes
+ */
+function formatHumanWhatsAppMessage(text, options = {}) {
+  if (!text) return '';
+  let str = String(text);
+
+  // 1. Remover placeholders residuais entre colchetes
+  str = str.replace(/\[\s*(link\s*(do\s*v[ií]deo)?|v[ií]deo|link|nome)\s*\]/gi, '');
+
+  // 2. REGRA DO KAUÊ: NUNCA citar nomes de lojas atendidas a menos que perguntem expressamente por cases
+  if (!options.allowClients) {
+    str = str.replace(/\s*\([^)]*\b(petiva|pink\s*luxo|chay\s*b|bem\s*zanza)\b[^)]*\)/gi, '');
+    str = str.replace(/\s*(?:,\s*)?(?:como\s+(?:a\s+|o\s+)?|inclusive\s+(?:da\s+|do\s+)?|da\s+|do\s+)?\b(petiva|pink\s*luxo|chay\s*b(?:\s+e\s+bem\s*zanza)?|bem\s*zanza)\b(?:\s+aqui\s+em\s+sp)?/gi, '');
+  }
+
+  // 3. Normalizar quebras de linha
+  str = str.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+
+  // 4. Se o texto veio colado em uma única linha ou bloco sem quebra dupla (\n\n)
+  if (!str.includes('\n\n')) {
+    // Quebrar após a apresentação inicial (ex: "Sou o Kauê, da Pinas.")
+    const introRegex = /(.*?Sou o Kauê,?\s+da Pinas[.!?]?|.*?Prazer falar contigo[.!?]?|.*?Tudo [^\n.!?]+[.!?]?\s+Sou o Kauê[.!?]?)\s+/i;
+    if (introRegex.test(str)) {
+      str = str.replace(introRegex, '$1\n\n');
+    }
+
+    // Quebrar antes da pergunta final de fechamento/qualificação
+    const questionRegex = /\s+((?:Vocês já têm|Como vocês cuidam|Consegue 10|Consegue 15|Fica melhor|Você teria|Quem cuida|Você saberia|Sabe dizer|Topa um|Topa uma|O que acha)[^?\n]*\?)/i;
+    if (questionRegex.test(str)) {
+      str = str.replace(questionRegex, '\n\n$1');
+    }
+  }
+
+  // 5. Limpar espaços horizontais duplicados sem matar as quebras de linha
+  str = str.replace(/[^\S\n]{2,}/g, ' ');
+  // Limpar quebras excessivas (máximo 2 \n consecutivos)
+  str = str.replace(/\n{3,}/g, '\n\n');
+
+  return str.trim();
 }
 
 /**
@@ -491,7 +713,7 @@ async function generateDeepVisualAuditAndCallScript({ lead, siteAudit, mapsAudit
   const dom = site.domDetails || {};
 
   const prompt = `
-Você é o Kauê, fundador da Pinas (@pinas.studio), especialista em Design Web de Alta Conversão, Tráfego Pago e Posicionamento Comercial para negócios locais em São Paulo.
+Você é o Kauê, fundador da Pinas, assessoria de marketing e design web de alta conversão para negócios locais em São Paulo. NUNCA use arroba de redes sociais.
 O lead abaixo é um comércio/serviço local em São Paulo.
 
 DADOS DA EMPRESA:
@@ -653,7 +875,7 @@ async function generateWhatsAppConversationScript({ lead, messages = [] }) {
   }
 
   const prompt = `
-Você é o estrategista comercial sênior da Pinas (@pinas.studio), trabalhando lado a lado com o Kauê.
+Você é o estrategista comercial sênior da Pinas, trabalhando lado a lado com o Kauê. NUNCA use arroba de redes sociais.
 O Kauê precisa de um RESUMO EXECUTIVO DA CONVERSA DO WHATSAPP e um ROTEIRO DE CALL sob medida para fechar contrato com este lead.
 
 DADOS DO LEAD:
@@ -940,5 +1162,6 @@ module.exports = {
   generateDeepVisualAuditAndCallScript,
   generateWhatsAppConversationScript,
   buildInstantWhatsAppConversationScript,
+  formatHumanWhatsAppMessage,
   getFreeTierStatus: geminiGuard.getFreeTierStatus
 };

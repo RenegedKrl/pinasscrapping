@@ -23,6 +23,7 @@ let lastError = null;
 let reconnectTimer = null;
 let isInitializing = false;
 let isExplicitLogout = false;
+const botMessageIds = new Set(); // Rastreia mensagens disparadas pelo robô para diferenciar do Kauê humano
 
 // Limpar e normalizar telefone para padrão brasileiro internacional (ex: 5511999999999)
 function cleanPhoneForWhatsApp(phone) {
@@ -280,9 +281,12 @@ async function processIncomingMessage(m, isLive = false) {
 
   if (!text && !mediaUrl && type === 'text') return;
 
+  const isBot = botMessageIds.has(msgId);
+
   store.addMessage(jid, {
     id: msgId,
     fromMe,
+    isBot,
     senderName,
     participant,
     isGroup,
@@ -294,23 +298,44 @@ async function processIncomingMessage(m, isLive = false) {
     status: 'delivered'
   });
 
-  // Notificar ouvintes (auto-responder de etapas) para mensagens recebidas recentemente (até 48h para cobrir offline)
+  // Notificar ouvintes (auto-responder de etapas) para mensagens recebidas recentemente (até 30 dias / 720h para cobrir offline e mensagens anteriores)
   const ageMs = Date.now() - timestamp;
-  const isRecent = ageMs >= -5000 && ageMs < (48 * 3600 * 1000); // até 48 horas para cobrir respostas recebidas enquanto offline
+  const isRecent = ageMs >= -5000 && ageMs < (720 * 3600 * 1000);
 
-  if (isRecent && !fromMe && !isGroup && text) {
+  if (isRecent && !fromMe && !isGroup && (text || type === 'audio')) {
     try {
       const extractedPhone = store.extractPhone(jid) || phone;
       waEvents.emit('message.received', {
         jid,
         phone: extractedPhone,
-        text: text.trim(),
+        text: text ? text.trim() : '[Áudio de voz]',
         senderName,
         msgId,
-        timestamp
+        timestamp,
+        type,
+        mediaUrl
       });
     } catch (evtErr) {
       console.warn('[WhatsApp] Erro ao emitir evento de mensagem recebida:', evtErr.message);
+    }
+  }
+
+  // DETECÇÃO AUTOMÁTICA DE ATENDIMENTO MANUAL DO KAUÊ (HUMAN TAKEOVER):
+  // Se uma mensagem enviada por nós (fromMe) NÃO foi gerada pelo robô, significa que o Kauê mandou pelo celular ou web!
+  if (isRecent && fromMe && !isGroup && !isBot) {
+    try {
+      const extractedPhone = store.extractPhone(jid) || phone;
+      console.log(`[WhatsApp] 👤 Kauê enviou mensagem MANUAL para ${jid} ("${(text || type || '').slice(0, 40)}"). Disparando detecção de atendimento humano...`);
+      waEvents.emit('message.sent_manual', {
+        jid,
+        phone: extractedPhone,
+        text: text ? text.trim() : '',
+        type,
+        msgId,
+        timestamp
+      });
+    } catch (manualErr) {
+      console.warn('[WhatsApp] Erro ao emitir evento de mensagem manual do Kauê:', manualErr.message);
     }
   }
 
@@ -613,7 +638,7 @@ async function resolveJid(targetPhoneOrJid) {
 }
 
 // 1. Enviar mensagem de texto direta (usado pelo Piloto Automático e Chat)
-async function sendMessage(rawPhoneOrJid, text) {
+async function sendMessage(rawPhoneOrJid, text, options = {}) {
   if (connectionStatus !== 'connected' || !sock) {
     throw new Error('WhatsApp não está conectado. Conecte seu aparelho escaneando o QR Code.');
   }
@@ -630,11 +655,16 @@ async function sendMessage(rawPhoneOrJid, text) {
   }
 
   const sent = await sock.sendMessage(targetJid, { text });
+  const isBot = options?.isBot === true;
+  if (isBot) {
+    botMessageIds.add(sent.key.id);
+  }
 
   // Salvar no Store local para aparecer no Inbox
   store.addMessage(targetJid, {
     id: sent.key.id,
     fromMe: true,
+    isBot,
     text,
     type: 'text',
     timestamp: Date.now(),
@@ -759,6 +789,43 @@ async function sendAudioMessage(rawPhoneOrJid, { base64Data, mimetype }) {
   };
 }
 
+// Enviar notificação/alerta diretamente para o WhatsApp do Kauê (chat consigo mesmo)
+async function sendAlertToSelf(text) {
+  if (connectionStatus !== 'connected' || !sock) {
+    console.warn('[WhatsApp Alerta] WhatsApp não conectado para enviar notificação ao Kauê.');
+    return false;
+  }
+
+  // Número do Kauê conectado ou fallback oficial
+  const myPhone = connectedUser?.phone || '5511941713647';
+  const cleanPhone = String(myPhone).replace(/\D/g, '');
+  const targetJid = `${cleanPhone}@s.whatsapp.net`;
+
+  try {
+    const sent = await sock.sendMessage(targetJid, { text });
+    if (sent?.key?.id) {
+      botMessageIds.add(sent.key.id);
+    }
+    
+    // Salvar no store para ficar registrado
+    store.addMessage(targetJid, {
+      id: sent?.key?.id || `alert_${Date.now()}`,
+      fromMe: true,
+      isBot: true,
+      text,
+      type: 'text',
+      timestamp: Date.now(),
+      status: 'sent'
+    });
+
+    console.log(`[WhatsApp Alerta] 📲 Notificação enviada para o WhatsApp do Kauê (${targetJid})!`);
+    return true;
+  } catch (err) {
+    console.warn('[WhatsApp Alerta] Erro ao enviar notificação para o Kauê:', err.message);
+    return false;
+  }
+}
+
 module.exports = {
   initWhatsApp,
   disconnectWhatsApp,
@@ -767,10 +834,13 @@ module.exports = {
   sendMessage,
   sendMediaMessage,
   sendAudioMessage,
+  sendAlertToSelf,
   cleanPhoneForWhatsApp,
   syncAllGroupsMetadata,
   store,
   events: waEvents,
+  botMessageIds,
+  registerBotMessageId: (id) => { if (id) botMessageIds.add(id); },
   sendTyping: async (rawPhoneOrJid) => {
     try {
       if (sock && typeof sock.sendPresenceUpdate === 'function') {
