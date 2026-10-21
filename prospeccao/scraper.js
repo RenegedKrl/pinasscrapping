@@ -2,14 +2,11 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 
+const configManager = require('./config_manager');
+
 // Carregar filtros de exclusão
 function loadConfig() {
-  try {
-    const configPath = path.join(__dirname, 'data', 'config.json');
-    return JSON.parse(fs.readFileSync(configPath, 'utf8'));
-  } catch (err) {
-    return { excludedChains: [], excludedKeywords: [] };
-  }
+  return configManager.readConfig();
 }
 
 // Normalizar e extrair telefone brasileiro
@@ -34,34 +31,13 @@ function parseBrazilianPhone(rawText) {
 
 // Normalização sem acentos para comparação à prova de falhas
 function stripAccents(str) {
-  return (str || '')
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .trim();
+  return configManager.stripAccents(str);
 }
 
 // Verificar se o negócio é cliente atual, grande rede, Brás ou do ramo proibido
 function isExcluded(name, text, config) {
-  const fullText = stripAccents(`${name} ${text}`);
-
-  // 1. Verificar redes gigantes e clientes atuais protegidos
-  for (const chain of config.excludedChains || []) {
-    const chainNorm = stripAccents(chain);
-    if (chainNorm && fullText.includes(chainNorm)) {
-      return { excluded: true, reason: `Exclusão protegida / Cliente atual (${chain})` };
-    }
-  }
-
-  // 2. Verificar termos e regiões excluídas (Brás, estética, etc.)
-  for (const kw of config.excludedKeywords || []) {
-    const kwNorm = stripAccents(kw);
-    if (kwNorm && fullText.includes(kwNorm)) {
-      return { excluded: true, reason: `Palavra/Região excluída (${kw})` };
-    }
-  }
-
-  return { excluded: false };
+  const dummyLead = { name, notes: text, address: text };
+  return configManager.isExcludedLead(dummyLead, config);
 }
 
 // Calcular Score de Oportunidade e Ângulo de Venda Recomendado

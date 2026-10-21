@@ -391,68 +391,104 @@ Retorne EXCLUSIVAMENTE um objeto JSON no formato:
  * Regra do Kauê: 100% despretensiosa, confirmando o local, sem cara de venda!
  * Ex: "Olá, tudo bem? É da clínica [Nome]?" ou "Olá, tudo bem? É do escritório [Nome]?"
  */
-function formatOpeningMessage(lead) {
+// Memória de rotação para NUNCA repetir o mesmo início/estilo em disparos seguidos
+const lastOpeningSignatures = [];
+
+function cleanLeadDisplayName(lead) {
   let rawName = (lead?.name || '').trim();
-  let cleanName = rawName.replace(/\s+(LTDA|ME|EPP|S\/A|S\.A\.|EIRELI)\b/gi, '').trim();
+  let clean = rawName.replace(/\s+(LTDA|ME|EPP|S\/A|S\.A\.|EIRELI)\b/gi, '').trim();
 
-  // Limpar pipes e hifens longos de SEO no Maps
-  if (cleanName.includes(' | ')) {
-    const parts = cleanName.split(' | ');
-    if (parts[0].trim().length >= 3) cleanName = parts[0].trim();
-  }
-  if (cleanName.includes(' - ')) {
-    const parts = cleanName.split(' - ');
-    if (parts[0].trim().length >= 3) cleanName = parts[0].trim();
+  // Se tiver nome de doutor(a) ou profissional:
+  const doctorMatch = clean.match(/\b(dra?\.?\s+[A-Za-zÀ-ÿ]+(?:\s+[A-Za-zÀ-ÿ]+)?)/i);
+  if (doctorMatch) {
+    return doctorMatch[1].trim();
   }
 
-  const nicheLower = (lead?.niche || '').toLowerCase();
-  const nameLower = cleanName.toLowerCase();
-  const neighborhood = lead?.neighborhood || '';
-
-  // Determinar artigo / prefixo do negócio
-  let targetDesc = cleanName;
-  if (nameLower.includes('clínica') || nameLower.includes('clinica')) {
-    targetDesc = cleanName;
-  } else if (nameLower.includes('consultório') || nameLower.includes('consultorio') || nameLower.includes('escritório') || nameLower.includes('escritorio') || nameLower.includes('hospital')) {
-    targetDesc = cleanName;
-  } else if (nicheLower.includes('vet') || nicheLower.includes('clínica') || nicheLower.includes('clinica') || nicheLower.includes('odont') || nicheLower.includes('saúde') || nicheLower.includes('saude') || nicheLower.includes('médic') || nicheLower.includes('medic')) {
-    targetDesc = `clínica ${cleanName}`;
-  } else if (nicheLower.includes('advoc') || nicheLower.includes('jurídic') || nicheLower.includes('juridic')) {
-    targetDesc = `escritório ${cleanName}`;
-  } else if (nicheLower.includes('roup') || nicheLower.includes('moda') || nicheLower.includes('loja')) {
-    targetDesc = nameLower.startsWith('loja') ? cleanName : `loja ${cleanName}`;
-  } else if (nicheLower.includes('consultor') || nicheLower.includes('mentor')) {
-    targetDesc = cleanName;
+  const parts = clean.split(/\s*[\-\|\–]\s*/);
+  if (parts.length > 1) {
+    const candidate = parts.find(p => p.trim().length >= 4 && p.trim().length <= 32 && !/^(implantes|psicólogo|advocacia|loja|clínica veterinária e pet shop)/i.test(p.trim()));
+    if (candidate) return candidate.trim();
+    if (parts[0].trim().length >= 3) return parts[0].trim();
   }
 
-  const isMasculine = targetDesc.toLowerCase().startsWith('escritório') || targetDesc.toLowerCase().startsWith('consultório') || targetDesc.toLowerCase().startsWith('hospital');
+  return clean;
+}
+
+function formatOpeningMessage(lead) {
+  const name = cleanLeadDisplayName(lead);
+  const rawNeighborhood = lead?.neighborhood || '';
+  const cleanNeighborhood = rawNeighborhood.split(',')[0].replace(/São Paulo.*$/i, '').trim();
+
+  const now = new Date();
+  const spHour = (now.getUTCHours() - 3 + 24) % 24;
+  const timeGreeting = spHour < 12 ? 'Bom dia' : 'Boa tarde';
+
+  const isDra = /\bdra\.?\b/i.test(name);
+  const isDr = /\bdr\.?\b/i.test(name) && !isDra;
+  const isMasculine = isDr || /^(o |o\b|escritório|consultório|hospital|centro|instituto)/i.test(name);
   const art = isMasculine ? 'do' : 'da';
+  const comArt = isMasculine ? 'com o' : 'com a';
 
-  // Matriz de Variação Humana Dinâmica (SpinTax Anti-Ban de Alta Entropia)
-  const variations = [
-    `Olá, tudo bem? É ${art} ${targetDesc}?`,
-    `Opa, tudo bem? É ${art} ${targetDesc}?`,
-    `Oi, tudo certo? É ${art} ${targetDesc}?`,
-    `Olá, como vai? Falo com o pessoal ${art} ${targetDesc}?`,
-    `Opa, bom dia! É ${art} ${targetDesc}?`,
-    `Olá, boa tarde! É ${art} ${targetDesc}?`,
-    `Oi, tudo bem? Falo ${art} ${targetDesc}?`,
-    `Opa tudo bem por aí? É ${art} ${targetDesc}?`,
-    `Olá! É o WhatsApp ${art} ${targetDesc}?`,
-    `Oi! É ${art} ${targetDesc}?`
+  // Pool Amplo de Variação Humanizada (solicitado pelo Kauê: 'Olá', 'Oi', 'Opa', ou direto perguntando 'É da clínica...')
+  const pool = [
+    // 1. Direto ao ponto (Sem saudação ou com pergunta direta)
+    `É ${art} ${name}?`,
+    `Falo ${comArt} ${name}?`,
+    `Aqui é ${art} ${name}?`,
+    `Por acaso é ${art} ${name}?`,
+    `Tudo bem? É ${art} ${name}?`,
+    `Tudo bom? Falo ${comArt} ${name}?`,
+    `Tudo bem por aí? É ${art} ${name}?`,
+
+    // 2. Com 'Oi'
+    `Oi, tudo bem? É ${art} ${name}?`,
+    `Oi, tudo bem? Falo ${comArt} ${name}?`,
+    `Oi, tudo certo? É ${art} ${name}?`,
+    `Oi! É ${art} ${name}?`,
+    `Oi oi, tudo bom? É ${art} ${name}?`,
+    `Oi, tudo bem? Aqui é ${art} ${name}?`,
+
+    // 3. Com 'Olá'
+    `Olá, tudo bem? É ${art} ${name}?`,
+    `Olá, tudo bem? Falo ${comArt} ${name}?`,
+    `Olá! É o WhatsApp ${art} ${name}?`,
+    `Olá, tudo certo por aí? Falo ${comArt} ${name}?`,
+    `Olá, como vai? É ${art} ${name}?`,
+
+    // 4. Com 'Opa'
+    `Opa, tudo bem? É ${art} ${name}?`,
+    `Opa, tudo certo? Falo ${comArt} ${name}?`,
+    `Opa, tudo bem por aí? É ${art} ${name}?`,
+    `Opa, como vai? Falo ${comArt} ${name}?`,
+    `Opa! É ${art} ${name}?`,
+
+    // 5. Temporal
+    `${timeGreeting}, tudo bem? É ${art} ${name}?`,
+    `${timeGreeting}! Falo ${comArt} ${name}?`,
+    `${timeGreeting}, tudo bem? Aqui é ${art} ${name}?`
   ];
 
-  // Se tiver bairro conhecido no Maps, adiciona variações com contexto local
-  if (neighborhood && neighborhood !== 'São Paulo' && neighborhood.length > 3) {
-    variations.push(
-      `Opa, tudo bem? É ${art} ${targetDesc} aí em ${neighborhood}?`,
-      `Olá, tudo certo? Encontrei o contato de vocês em ${neighborhood}, é ${art} ${targetDesc}?`,
-      `Oi, tudo bem? Falo com ${art} ${targetDesc} de ${neighborhood}?`
+  if (cleanNeighborhood && cleanNeighborhood.length >= 3 && !cleanNeighborhood.toLowerCase().includes('são paulo')) {
+    pool.push(
+      `Opa, tudo bem? É ${art} ${name} aí em ${cleanNeighborhood}?`,
+      `Olá, tudo bem? Falo ${comArt} ${name} de ${cleanNeighborhood}?`,
+      `Oi, tudo certo? É ${art} ${name} em ${cleanNeighborhood}?`
     );
   }
 
-  // Sorteia aleatoriamente: cada mensagem terá um texto e hash MD5 completamente diferente
-  return variations[Math.floor(Math.random() * variations.length)];
+  // Filtrar contra as últimas 5 assinaturas usadas para NUNCA repetir em mensagens consecutivas
+  let candidates = pool.filter(p => {
+    const sig = p.split(' ').slice(0, 2).join(' ').toLowerCase();
+    return !lastOpeningSignatures.includes(sig);
+  });
+  if (candidates.length === 0) candidates = pool;
+
+  const chosen = candidates[Math.floor(Math.random() * candidates.length)];
+  const sig = chosen.split(' ').slice(0, 2).join(' ').toLowerCase();
+  lastOpeningSignatures.push(sig);
+  if (lastOpeningSignatures.length > 5) lastOpeningSignatures.shift();
+
+  return chosen;
 }
 
 /**

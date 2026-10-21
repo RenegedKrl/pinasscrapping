@@ -93,41 +93,19 @@ function writeJson(file, data) {
   }
 }
 
-// Reset diário do contador de mensagens enviadas
-function checkAndResetDailyLimit(config) {
-  const today = new Date().toISOString().split('T')[0];
-  if (config.lastResetDate !== today) {
-    config.sentToday = 0;
-    config.lastResetDate = today;
-    writeJson(CONFIG_FILE, config);
-  }
-  return config;
-}
+const configManager = require('./config_manager');
+const {
+  readConfig,
+  saveConfig,
+  checkAndResetDailyLimit,
+  isExcludedLead
+} = configManager;
 
-// Verificação de Blacklist Rígida da Pinas (Clientes Atuais & Brás)
+// Verificação de Blacklist Rígida e Ramos Excluídos da Pinas
 function isProtectedBlacklist(lead) {
   if (!lead) return false;
-  const rawText = `${lead.name || ''} ${lead.address || ''} ${lead.neighborhood || ''} ${lead.city || ''} ${lead.niche || ''}`
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '');
-
-  const protectedTerms = [
-    'petiva',
-    'pink luxo',
-    'bem zanza',
-    'chay b',
-    'chayb',
-    'bras'
-  ];
-
-  return protectedTerms.some(term => {
-    // Se o termo for "bras", garantir que não seja falso positivo como "brasil" ou "brasilia"
-    if (term === 'bras') {
-      return /\bbras\b/.test(rawText);
-    }
-    return rawText.includes(term);
-  });
+  const res = isExcludedLead(lead);
+  return res.excluded;
 }
 
 // Estado do scraper em execução
@@ -255,6 +233,10 @@ app.get('/api/leads', (req, res) => {
 
   if (status && status !== 'todos') {
     leads = leads.filter(l => l.status === status);
+    if (status === 'novo') {
+      leads = leads.filter(l => !isProtectedBlacklist(l));
+      leads.sort((a, b) => (b.conversionScore || b.priorityScore || 0) - (a.conversionScore || a.priorityScore || 0));
+    }
   }
   if (niche && niche !== 'todos') {
     const targetCanon = getCanonicalNiche(niche);
@@ -763,17 +745,12 @@ app.post('/api/scrape/hunt-bad-sites', async (req, res) => {
 // ==================== ROTAS DE CONFIGURAÇÃO E TEMPLATES ====================
 
 app.get('/api/config', (req, res) => {
-  const config = checkAndResetDailyLimit(readJson(CONFIG_FILE, {}));
+  const config = checkAndResetDailyLimit(readConfig());
   res.json(config);
 });
 
 app.post('/api/config', (req, res) => {
-  let config = readJson(CONFIG_FILE, {});
-  if (Array.isArray(req.body.outboundDays)) {
-    req.body.outboundDays = req.body.outboundDays.map(Number).filter(n => !isNaN(n) && n >= 0 && n <= 6);
-  }
-  config = { ...config, ...req.body };
-  writeJson(CONFIG_FILE, config);
+  const config = saveConfig(req.body);
   res.json(config);
 });
 
@@ -1776,35 +1753,35 @@ app.post('/api/server/shutdown', (req, res) => {
 // Configuração do Modo 24/7 Autônomo e limites do Piloto Automático
 app.post('/api/autopilot/config', (req, res) => {
   const { autoStartAutopilot, dailyLimit, outboundStartHour, outboundEndHour, outboundDays, minDelaySeconds, maxDelaySeconds, onlyRespondReplies } = req.body;
-  const config = readJson(CONFIG_FILE, {});
+  const updates = {};
   if (typeof onlyRespondReplies === 'boolean') {
-    config.onlyRespondReplies = onlyRespondReplies;
-    config.disableNewLeadOutbound = onlyRespondReplies;
+    updates.onlyRespondReplies = onlyRespondReplies;
+    updates.disableNewLeadOutbound = onlyRespondReplies;
   }
   if (typeof autoStartAutopilot === 'boolean') {
-    config.autoStartAutopilot = autoStartAutopilot;
+    updates.autoStartAutopilot = autoStartAutopilot;
   }
   if (typeof dailyLimit === 'number' && dailyLimit > 0) {
-    config.dailyLimit = dailyLimit;
+    updates.dailyLimit = dailyLimit;
   }
   if (typeof outboundStartHour === 'number' && outboundStartHour >= 0 && outboundStartHour <= 23) {
-    config.outboundStartHour = outboundStartHour;
+    updates.outboundStartHour = outboundStartHour;
   }
   if (typeof outboundEndHour === 'number' && outboundEndHour >= 0 && outboundEndHour <= 23) {
-    config.outboundEndHour = outboundEndHour;
+    updates.outboundEndHour = outboundEndHour;
   }
   if (Array.isArray(outboundDays)) {
-    config.outboundDays = outboundDays.map(Number).filter(n => !isNaN(n) && n >= 0 && n <= 6);
+    updates.outboundDays = outboundDays.map(Number).filter(n => !isNaN(n) && n >= 0 && n <= 6);
   }
   if (typeof minDelaySeconds === 'number' && minDelaySeconds > 0) {
-    config.minDelaySeconds = minDelaySeconds;
+    updates.minDelaySeconds = minDelaySeconds;
   }
   if (typeof maxDelaySeconds === 'number' && maxDelaySeconds > 0) {
-    config.maxDelaySeconds = maxDelaySeconds;
+    updates.maxDelaySeconds = maxDelaySeconds;
   }
-  writeJson(CONFIG_FILE, config);
+  const config = saveConfig(updates);
 
-  if (autoStartAutopilot && !autopilot.isActive && whatsapp.getStatus().connected) {
+  if (config.autoStartAutopilot && !autopilot.isActive && whatsapp.getStatus().connected) {
     autopilot.start();
   }
 
@@ -1813,15 +1790,16 @@ app.post('/api/autopilot/config', (req, res) => {
 
 // Alternar envio exclusivo para novos leads (Modo Apenas Respostas vs Envio Ativo)
 app.post('/api/autopilot/toggle-new-leads', (req, res) => {
-  const config = readJson(CONFIG_FILE, {});
+  const config = readConfig();
   const current = !!(config.onlyRespondReplies || config.disableNewLeadOutbound);
   const nextState = (req.body && typeof req.body.onlyRespondReplies === 'boolean')
     ? req.body.onlyRespondReplies
     : !current;
 
-  config.onlyRespondReplies = nextState;
-  config.disableNewLeadOutbound = nextState;
-  writeJson(CONFIG_FILE, config);
+  const updatedConfig = saveConfig({
+    onlyRespondReplies: nextState,
+    disableNewLeadOutbound: nextState
+  });
 
   console.log(`[Piloto Automático] 🔄 Envio para novos leads ${nextState ? 'PAUSADO (Modo Apenas Respostas Ativo 24/7)' : 'RETOMADO (Disparos Ativos)'}.`);
 

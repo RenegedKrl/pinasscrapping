@@ -244,9 +244,13 @@ function canSendMessageToLead(lead, storeInstance, options = {}) {
 
   // 4. Verificação de consistência em leads.json se o store não tiver mensagens
   if (state.totalMessages === 0) {
-    // Se no leads.json consta como 'contatado' ou tem lastContact sem repliedAt,
-    // significa que já foi contatado em outro momento e não temos resposta registrada!
-    if (lead.status === 'contatado' && !lead.repliedAt) {
+    // Se no leads.json consta como 'contatado', tem stageHistory ou tem lastContact sem repliedAt,
+    // significa que já foi contatado e não temos resposta registrada!
+    const hasPriorOutbound = lead.status === 'contatado' || 
+      (Array.isArray(lead.stageHistory) && lead.stageHistory.length > 0) || 
+      !!lead.lastContact;
+
+    if (hasPriorOutbound && !lead.repliedAt) {
       return {
         allowed: false,
         waitingForCustomerReply: true,
@@ -254,13 +258,13 @@ function canSendMessageToLead(lead, storeInstance, options = {}) {
         totalMessages: 1,
         outboundCount: 1,
         inboundCount: 0,
-        reason: `Lead já marcado como contatado sem resposta registrada. Aguardando o cliente responder.`,
+        reason: `Lead já contatado anteriormente (${lead.stageHistory?.length || 1} mensagem enviada) e aguarda resposta. A regra da Pinas proíbe novo envio.`,
         code: 'WAITING_FOR_REPLY'
       };
     }
 
-    // Se é um lead virgem (status novo), permitido disparar a 1ª mensagem!
-    if (lead.status === 'novo' || !lead.lastContact) {
+    // Se é um lead 100% virgem (status novo, sem histórico e sem lastContact), permitido disparar a 1ª mensagem!
+    if (lead.status === 'novo' && !lead.lastContact && (!lead.stageHistory || lead.stageHistory.length === 0)) {
       return {
         allowed: true,
         waitingForCustomerReply: false,

@@ -637,6 +637,15 @@ async function resolveJid(targetPhoneOrJid) {
   return targetJid;
 }
 
+// Registro de envios recentes para proteção absoluta contra disparo duplicado (Trava anti-spam de 3 minutos)
+const recentOutboundSends = new Map();
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, ts] of recentOutboundSends.entries()) {
+    if (now - ts > 600000) recentOutboundSends.delete(key);
+  }
+}, 300000);
+
 // 1. Enviar mensagem de texto direta (usado pelo Piloto Automático e Chat)
 async function sendMessage(rawPhoneOrJid, text, options = {}) {
   if (connectionStatus !== 'connected' || !sock) {
@@ -653,6 +662,21 @@ async function sendMessage(rawPhoneOrJid, text, options = {}) {
   if (rawPhoneOrJid.includes('@lid') && targetJid.includes('@s.whatsapp.net')) {
     store.unifyLidChat(rawPhoneOrJid);
   }
+
+  // Trava de Segurança Anti-Duplicidade (Mínimo de 3 minutos entre mensagens para o mesmo lead)
+  const cleanKey = targetJid.replace(/[^0-9]/g, '');
+  const now = Date.now();
+  const lastSent = recentOutboundSends.get(cleanKey);
+  if (lastSent && (now - lastSent) < 180000 && !options.allowDuplicate) {
+    const elapsedSec = Math.round((now - lastSent) / 1000);
+    console.warn(`[WhatsApp Anti-Spam Guard] 🛑 Tentativa de 2º envio para ${cleanKey} em apenas ${elapsedSec}s bloqueada com sucesso!`);
+    return {
+      success: false,
+      blockedDuplicate: true,
+      message: `Bloqueado por segurança: já foi enviada mensagem para esse contato há ${elapsedSec}s.`
+    };
+  }
+  recentOutboundSends.set(cleanKey, now);
 
   const sent = await sock.sendMessage(targetJid, { text });
   const isBot = options?.isBot === true;

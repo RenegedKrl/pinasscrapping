@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initInbox();
   initModals();
   initAutopilot();
+  initSettings();
 });
 
 // ==================== TABS ====================
@@ -111,6 +112,9 @@ async function loadConfig() {
     appConfig = await res.json();
     updateSafetyWidget();
 
+    const cadenceLimitCount = document.getElementById('cadence-limit-count');
+    if (cadenceLimitCount) cadenceLimitCount.textContent = appConfig.dailyLimit || 10;
+
     // Preencher campos de settings
     const chainsTextarea = document.getElementById('settings-excluded-chains');
     const kwTextarea = document.getElementById('settings-excluded-keywords');
@@ -126,7 +130,7 @@ async function loadConfig() {
     if (kwTextarea && appConfig.excludedKeywords) {
       kwTextarea.value = appConfig.excludedKeywords.join('\n');
     }
-    if (dailyLimitInput) dailyLimitInput.value = appConfig.dailyLimit || 30;
+    if (dailyLimitInput) dailyLimitInput.value = appConfig.dailyLimit || 10;
     if (minDelayInput) minDelayInput.value = appConfig.minDelaySeconds || 300;
     if (maxDelayInput) maxDelayInput.value = appConfig.maxDelaySeconds || 330;
     if (startHourInput) startHourInput.value = appConfig.outboundStartHour !== undefined ? appConfig.outboundStartHour : 10;
@@ -134,7 +138,7 @@ async function loadConfig() {
 
     const activeDays = Array.isArray(appConfig.outboundDays) && appConfig.outboundDays.length > 0
       ? appConfig.outboundDays
-      : [1, 2, 4, 5];
+      : [1, 2, 3, 4, 5];
     [0, 1, 2, 3, 4, 5, 6].forEach(d => {
       const chk = document.getElementById(`settings-day-${d}`);
       if (chk) chk.checked = activeDays.includes(d);
@@ -562,6 +566,19 @@ async function renderCadenceQueue() {
     pendingLeads = (allLeads || []).filter(l => l.status === 'novo');
   }
 
+  // Filtrar contra exclusões caso algum remanescente ainda exista
+  const excludedKws = (appConfig?.excludedKeywords || []).map(k => k.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim());
+  const excludedChs = (appConfig?.excludedChains || []).map(c => c.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim());
+  pendingLeads = pendingLeads.filter(l => {
+    const raw = `${l.name || ''} ${l.niche || ''} ${l.address || ''} ${l.notes || ''}`
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+    if (excludedKws.some(k => k && raw.includes(k))) return false;
+    if (excludedChs.some(c => c && raw.includes(c))) return false;
+    return true;
+  });
+
   const countBadge = document.getElementById('queue-pending-count');
   if (countBadge) countBadge.textContent = pendingLeads.length;
 
@@ -570,23 +587,42 @@ async function renderCadenceQueue() {
     return;
   }
 
-  queueList.innerHTML = pendingLeads.slice(0, 80).map(l => {
+  // Ordenar estritamente por maior probabilidade de aceite (conversionScore / priorityScore)
+  pendingLeads.sort((a, b) => (b.conversionScore || b.priorityScore || 0) - (a.conversionScore || a.priorityScore || 0));
+
+  queueList.innerHTML = pendingLeads.slice(0, 80).map((l, idx) => {
     const recId = getRecommendedTemplateId(l);
     const recTemplate = (templates || []).find(t => t.id === recId);
     const recLabel = recTemplate ? recTemplate.name.split('/')[1] || recTemplate.name.split(':')[1] || recTemplate.name : 'Pinas AI';
 
+    const score = l.conversionScore || l.priorityScore || (l.opportunity ? l.opportunity.score : 50);
+    const tier = l.acceptanceTier || (score >= 85 ? 'Diamante' : score >= 70 ? 'Ouro' : score >= 50 ? 'Prata' : 'Bronze');
+    const tierColor = tier === 'Diamante' ? '#3B82F6' : tier === 'Ouro' ? '#F59E0B' : tier === 'Prata' ? '#9CA3AF' : '#6B7280';
+    const tierIcon = tier === 'Diamante' ? '💎' : tier === 'Ouro' ? '🥇' : tier === 'Prata' ? '🥈' : '🥉';
+    const reason = l.acceptanceReason || (l.hasWebsite ? 'Com Site' : '⚠️ Sem Site (Oportunidade)');
+
     return `
-      <div class="queue-item" id="queue-item-${l.id}">
+      <div class="queue-item" id="queue-item-${l.id}" style="border-left: 3px solid ${tierColor};">
         <div class="queue-item-info">
-          <h4>${escapeHtml(l.name)}</h4>
-          <p>${escapeHtml(l.phone || '')} • ${escapeHtml(l.neighborhood || 'SP')} • ${l.hasWebsite ? 'Com Site' : '⚠️ Sem Site (Oportunidade)'}</p>
-          <div style="margin-top: 0.25rem;">
-            <span class="badge badge-hassite" style="font-size: 0.7rem;">⚡ ${escapeHtml(recLabel)}</span>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap;">
+            <span style="background: rgba(255,255,255,0.08); padding: 2px 7px; border-radius: 4px; font-size: 0.72rem; font-weight: 700; color: #fff;">#${idx + 1}</span>
+            <span style="background: ${tierColor}22; color: ${tierColor}; border: 1px solid ${tierColor}55; padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 700;">${tierIcon} ${tier} (${score}%)</span>
+            <span style="font-size: 0.75rem; color: var(--text-muted);">${escapeHtml(l.niche || '')}</span>
+          </div>
+          <h4 style="margin: 0 0 4px 0; font-size: 0.95rem; color: #fff;">${escapeHtml(l.name)}</h4>
+          <p style="margin: 0 0 6px 0; font-size: 0.8rem; color: var(--text-muted);">
+            ${escapeHtml(l.phone || '')} • ${escapeHtml(l.neighborhood || 'SP')}
+            ${l.rating ? ` • ★ ${Number(l.rating).toFixed(1)} (${l.reviews || 0} avaliações)` : ''}
+          </p>
+          <div style="font-size: 0.72rem; color: #94A3B8; background: rgba(0,0,0,0.25); padding: 4px 8px; border-radius: 4px; margin-top: 4px; border: 1px dashed rgba(255,255,255,0.08);">
+            🎯 <strong>Diagnóstico de Aceite:</strong> ${escapeHtml(reason)}
           </div>
         </div>
-        <button class="btn btn-whatsapp btn-sm" onclick="openWhatsAppModal('${l.id}')">
-          Disparar Agora 💬
-        </button>
+        <div style="display: flex; flex-direction: column; gap: 6px; align-items: flex-end; justify-content: center;">
+          <button class="btn btn-whatsapp btn-sm" onclick="openWhatsAppModal('${l.id}')">
+            Disparar Agora 💬
+          </button>
+        </div>
       </div>
     `;
   }).join('');
@@ -1659,12 +1695,39 @@ function formatStageText(lead, stageNumber, withSite) {
   const stageObj = stepTemplatesData.stages.find(s => s.number === stageNumber);
   if (!stageObj) return '';
 
-  const rawText = withSite ? stageObj.templates.comSite : stageObj.templates.semSite;
   let cleanName = (lead.name || '')
     .replace(/\s*-\s*.*$/, '')
     .replace(/\b(LTDA|ME|EPP|S\/A|EIRELI)\b/gi, '')
     .trim();
 
+  // Etapa 1 Dinâmica (Regra Anti-Ban de Alta Entropia solicitada pelo Kauê)
+  if (stageNumber === 1) {
+    const doctorMatch = (lead.name || '').match(/\b(dra?\.?\s+[A-Za-zÀ-ÿ]+(?:\s+[A-Za-zÀ-ÿ]+)?)/i);
+    const displayName = doctorMatch ? doctorMatch[1].trim() : (cleanName || 'empresa');
+    const isDra = /\bdra\.?\b/i.test(displayName);
+    const isDr = /\bdr\.?\b/i.test(displayName) && !isDra;
+    const isMasculine = isDr || /^(o |o\b|escritório|consultório|hospital|centro|instituto)/i.test(displayName);
+    const art = isMasculine ? 'do' : 'da';
+    const comArt = isMasculine ? 'com o' : 'com a';
+
+    const openingOptions = [
+      `É ${art} ${displayName}?`,
+      `Falo ${comArt} ${displayName}?`,
+      `Aqui é ${art} ${displayName}?`,
+      `Tudo bem? É ${art} ${displayName}?`,
+      `Oi, tudo bem? É ${art} ${displayName}?`,
+      `Oi, tudo bem? Falo ${comArt} ${displayName}?`,
+      `Oi! É ${art} ${displayName}?`,
+      `Olá, tudo bem? É ${art} ${displayName}?`,
+      `Olá, tudo bem? Falo ${comArt} ${displayName}?`,
+      `Opa, tudo bem? É ${art} ${displayName}?`,
+      `Opa, tudo certo? Falo ${comArt} ${displayName}?`
+    ];
+    if (lead.initialPitch) return lead.initialPitch;
+    return openingOptions[Math.floor(Math.random() * openingOptions.length)];
+  }
+
+  const rawText = withSite ? stageObj.templates.comSite : stageObj.templates.semSite;
   const waLink = generateCleanWhatsAppLink(lead);
 
   let text = rawText;
@@ -2979,13 +3042,27 @@ function renderScriptsEditor() {
     };
   }
 
-  // Settings Save
+}
+
+// ==================== CONFIGURAÇÕES & FILTROS ====================
+function initSettings() {
   const btnSaveSettings = document.getElementById('btn-save-settings');
-  if (btnSaveSettings) {
-    btnSaveSettings.onclick = async () => {
-      const chains = document.getElementById('settings-excluded-chains').value.split('\n').map(s => s.trim()).filter(Boolean);
-      const keywords = document.getElementById('settings-excluded-keywords').value.split('\n').map(s => s.trim()).filter(Boolean);
-      const limit = parseInt(document.getElementById('settings-daily-limit').value, 10) || 30;
+  if (!btnSaveSettings) return;
+
+  btnSaveSettings.onclick = async () => {
+    try {
+      btnSaveSettings.disabled = true;
+      btnSaveSettings.textContent = 'Salvando...';
+
+      const chains = (document.getElementById('settings-excluded-chains')?.value || '')
+        .split('\n')
+        .map(s => s.trim())
+        .filter(Boolean);
+      const keywords = (document.getElementById('settings-excluded-keywords')?.value || '')
+        .split('\n')
+        .map(s => s.trim())
+        .filter(Boolean);
+      const limit = parseInt(document.getElementById('settings-daily-limit')?.value, 10) || 10;
       const minDelay = parseInt(document.getElementById('settings-min-delay')?.value, 10) || 300;
       const maxDelay = parseInt(document.getElementById('settings-max-delay')?.value, 10) || 330;
       const startHour = parseInt(document.getElementById('settings-outbound-start')?.value, 10);
@@ -2997,7 +3074,7 @@ function renderScriptsEditor() {
         if (chk && chk.checked) selectedDays.push(d);
       });
 
-      await fetch('/api/config', {
+      const res = await fetch('/api/config', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -3008,17 +3085,31 @@ function renderScriptsEditor() {
           maxDelaySeconds: maxDelay,
           outboundStartHour: isNaN(startHour) ? 10 : startHour,
           outboundEndHour: isNaN(endHour) ? 19 : endHour,
-          outboundDays: selectedDays.length > 0 ? selectedDays : [1, 2, 4, 5]
+          outboundDays: selectedDays.length > 0 ? selectedDays : [1, 2, 3, 4, 5]
         })
       });
-      showSuccessModal({
-        title: 'Configurações Salvas!',
-        message: 'O limite diário, os horários da janela comercial e os filtros foram atualizados com sucesso.',
-        icon: '⚙️'
-      });
-      loadConfig();
-    };
-  }
+
+      if (res.ok) {
+        appConfig = await res.json();
+        updateSafetyWidget();
+        showToast('Configurações salvas com sucesso!', 'success');
+        showSuccessModal({
+          title: 'Configurações Salvas!',
+          message: 'O limite diário de 10 leads, horários da janela comercial e os filtros de exclusão foram gravados com sucesso.',
+          icon: '⚙️'
+        });
+        await loadConfig();
+      } else {
+        showToast('Erro ao gravar configurações.', 'error');
+      }
+    } catch (err) {
+      console.error('Erro ao salvar settings:', err);
+      showToast('Erro de comunicação ao salvar.', 'error');
+    } finally {
+      btnSaveSettings.disabled = false;
+      btnSaveSettings.textContent = 'Salvar Configurações';
+    }
+  };
 }
 
 // Helper debounce
