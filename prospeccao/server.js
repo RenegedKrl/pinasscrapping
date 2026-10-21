@@ -1225,9 +1225,8 @@ async function executeLeadResponse(lead, text, targetJid = null, source = 'realt
 
     if (!replyMessage) return false;
 
-    // REGRA DE OURO DO KAUÊ: Demorar pelo menos 1 minuto (60 a 70s) simulando "digitando..."
-    // Mantém o status "digitando..." visível continuamente no WhatsApp do cliente renovando a cada 8.5s
-    const typingDurationMs = Math.floor(Math.random() * (72000 - 60000 + 1)) + 60000; // 60s a 72s
+    // Simulação natural de digitação humana: 7 a 12 segundos (rápido e natural)
+    const typingDurationMs = Math.floor(Math.random() * (12000 - 7000 + 1)) + 7000; // 7s a 12s
     console.log(`[Auto-Responder 100% Humano] ⏳ Mantendo presença "digitando..." para "${currentLead.name}" por ${(typingDurationMs/1000).toFixed(0)}s antes de enviar a resposta...`);
 
     const typingStart = Date.now();
@@ -1535,8 +1534,8 @@ function initAutoResponder() {
 
     const stepData = readJson(STEP_TEMPLATES_FILE, { settings: {}, stages: [] });
     const settings = stepData.settings || {};
-    const delaySec = Math.max(12, settings.responseDelaySeconds || 16);
-    const jitter = Math.floor(Math.random() * 5);
+    const delaySec = Math.max(3, settings.responseDelaySeconds ? Math.min(settings.responseDelaySeconds, 5) : 4);
+    const jitter = Math.floor(Math.random() * 3);
     const totalDelayMs = (delaySec + jitter) * 1000;
 
     const timerId = setTimeout(async () => {

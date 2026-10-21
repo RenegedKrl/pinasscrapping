@@ -41,10 +41,10 @@ function getApiKey() {
   return '';
 }
 
-// Modelos oficiais suportados (priorizando os com resposta ativa 200 OK no ambiente)
-const PRIMARY_MODEL = 'gemini-flash-lite-latest';
-const FALLBACK_MODEL = 'gemini-3.5-flash-lite';
-const SECONDARY_FALLBACK = 'gemini-3-flash-preview';
+// Modelos oficiais suportados (priorizando os com resposta ativa 200 OK e menor latência no ambiente)
+const PRIMARY_MODEL = 'gemini-3-flash-preview';
+const FALLBACK_MODEL = 'gemini-3.8-flash';
+const SECONDARY_FALLBACK = 'gemini-3.5-flash';
 const TERTIARY_FALLBACK = 'gemini-3.6-flash';
 
 /**
@@ -84,7 +84,7 @@ async function callGemini({ prompt, systemInstruction = '', jsonMode = false, mo
     payload.generationConfig.responseMimeType = 'application/json';
   }
 
-  async function executeRequest(targetModel, retries = 2) {
+  async function executeRequest(targetModel, retries = 1) {
     for (let attempt = 0; attempt <= retries; attempt++) {
       try {
         const url = `https://generativelanguage.googleapis.com/v1beta/models/${targetModel}:generateContent?key=${apiKey}`;
@@ -92,7 +92,7 @@ async function callGemini({ prompt, systemInstruction = '', jsonMode = false, mo
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
-          signal: AbortSignal.timeout(20000)
+          signal: AbortSignal.timeout(10000)
         });
 
         if (res.status === 503 || res.status === 500 || res.status === 502 || res.status === 429) {
