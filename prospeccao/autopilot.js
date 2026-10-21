@@ -88,7 +88,7 @@ function getBrazilTime() {
 
 // Janela comercial e cronograma de dias permitidos para NOVOS LEADS (Prospecção Fria Outbound)
 // Solicitado pelo Kauê:
-// - Disparos para novos clientes: Segunda, Terça, Quinta e Sexta (Quarta-feira, Sábado e Domingo pausados)
+// - Disparos para novos clientes: Segunda, Quarta e Sexta (Terça, Quinta, Sábado e Domingo pausados para novos leads)
 // - Horário comercial: 10h da manhã até as 19h da noite (Horário de Brasília)
 // - Respostas de leads recebidas: Atendimento contínuo da IA 24/7 sem qualquer restrição de dia ou horário!
 function checkCommercialHours(config = {}) {
@@ -96,7 +96,7 @@ function checkCommercialHours(config = {}) {
   const endHour = config.outboundEndHour !== undefined ? config.outboundEndHour : 19;
   const outboundDays = Array.isArray(config.outboundDays) && config.outboundDays.length > 0
     ? config.outboundDays
-    : [1, 2, 3, 4, 5]; // Padrão: Seg a Sex (10h às 19h)
+    : [1, 3, 5]; // Padrão: Seg, Qua e Sex (10h às 19h)
 
   const { hour, minute, second, dayOfWeek } = getBrazilTime();
   const dayName = DAY_NAMES[dayOfWeek];

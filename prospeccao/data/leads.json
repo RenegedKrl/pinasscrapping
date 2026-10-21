@@ -1124,15 +1124,57 @@
     },
     "score": 10,
     "notes": "Clientela física forte (100 reviews, nota 5), mas perde buscas diárias no Google por não ter site próprio.",
-    "status": "novo",
-    "lastContact": null,
+    "status": "contatado",
+    "lastContact": "2026-10-21T17:11:47.895Z",
     "createdAt": "2026-10-13T19:41:17.326Z",
     "tier": "diamante",
     "priorityScore": 100,
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (100 reviews ★5.0) • WhatsApp Celular Direto"
+    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (100 reviews ★5.0) • WhatsApp Celular Direto",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 100,
+      "neighborhood": "Santo André, SP",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (100 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (100 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Santo André, SP. Avaliações: 100 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Santo André, SP (100 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Oi, tudo bem? É da Edna Rubi Coach Tarot?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-21T17:11:47.895Z",
+        "auto": true,
+        "ai": true,
+        "text": "Oi, tudo bem? É da Edna Rubi Coach Tarot?"
+      }
+    ]
   },
   {
     "id": "lead-1791923354443-j455xo",

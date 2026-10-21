@@ -30,7 +30,7 @@ Kauê atualmente divide o tempo entre trabalho CLT e a operação da Pinas. O ob
   - **Estratégia Conversacional Definida:** Não falar de venda ou site na primeira mensagem. Começar com abertura 100% despretensiosa em 1 linha ("Olá, tudo bem? É da clínica {nome}?"). Quando a pessoa responder ("Ah, sou sim", "Sim, é daqui"), aí sim apresentar a Pinas, a auditoria real e a pergunta de qualificação, conduzindo com paciência até agendar a call de 10 a 15 min no Google Meet (zero vídeo gravado).
   - **Lead Piloto Já Auditado e Salvo no Painel:** Clínica Veterinária Tatuapé (`lead-1791504801537`, WhatsApp: `(11) 93380-9012`, Dr. Rodrigo / Dra. Tatiana).
   - **Modos de Operação:** Co-piloto (assistido no chat) ou SDR IA 24/7 (plugado no `server.js` via API gratuita do Google Gemini para rodar enquanto o Kauê está no CLT).
-  - **Cronograma de Disparo para Novos Leads:** Disparos de novos clientes em Segunda, Terça, Quinta e Sexta (10h às 19h). Quarta-feira e Fins de Semana sem novos envios. Atendimento a respostas recebidas sempre ativo 24/7.
+  - **Cronograma de Disparo para Novos Leads:** Disparos de novos clientes exclusivamente em **Segunda, Quarta e Sexta (10h às 19h)** com meta de **12 a 17 leads/dia**. Terças, quintas e fins de semana sem novos envios frios. Atendimento a respostas recebidas sempre ativo 24/7 (todos os dias).
 
 
 ## O que Pode Esperar

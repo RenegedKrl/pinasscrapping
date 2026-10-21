@@ -138,7 +138,7 @@ async function loadConfig() {
 
     const activeDays = Array.isArray(appConfig.outboundDays) && appConfig.outboundDays.length > 0
       ? appConfig.outboundDays
-      : [1, 2, 3, 4, 5];
+      : [1, 3, 5];
     [0, 1, 2, 3, 4, 5, 6].forEach(d => {
       const chk = document.getElementById(`settings-day-${d}`);
       if (chk) chk.checked = activeDays.includes(d);
@@ -3085,7 +3085,7 @@ function initSettings() {
           maxDelaySeconds: maxDelay,
           outboundStartHour: isNaN(startHour) ? 10 : startHour,
           outboundEndHour: isNaN(endHour) ? 19 : endHour,
-          outboundDays: selectedDays.length > 0 ? selectedDays : [1, 2, 3, 4, 5]
+          outboundDays: selectedDays.length > 0 ? selectedDays : [1, 3, 5]
         })
       });
 

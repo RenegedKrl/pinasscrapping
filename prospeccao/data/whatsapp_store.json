@@ -48403,6 +48403,24 @@
         "senderName": "Kauê"
       },
       "updatedAt": 1792602098200
+    },
+    "5511995494251@s.whatsapp.net": {
+      "id": "5511995494251@s.whatsapp.net",
+      "jid": "5511995494251@s.whatsapp.net",
+      "name": "Edna Rubi Coach Tarot",
+      "phone": "5511995494251",
+      "isGroup": false,
+      "isGroupSubject": false,
+      "participantCount": 0,
+      "unreadCount": 0,
+      "lastMessage": {
+        "text": "Oi, tudo bem? É da Edna Rubi Coach Tarot?",
+        "timestamp": 1792602712774,
+        "fromMe": true,
+        "type": "text",
+        "senderName": "Kauê"
+      },
+      "updatedAt": 1792602712774
     }
   },
   "messages": {
@@ -139223,6 +139241,22 @@
         "isGroup": false,
         "text": "Oi! É da Gabriel Camargo?",
         "timestamp": 1792602098200,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": true,
+        "status": "sent"
+      }
+    ],
+    "5511995494251@s.whatsapp.net": [
+      {
+        "id": "3EB043FFCEA1180AF28EFE",
+        "fromMe": true,
+        "senderName": "Kauê",
+        "participant": null,
+        "isGroup": false,
+        "text": "Oi, tudo bem? É da Edna Rubi Coach Tarot?",
+        "timestamp": 1792602712774,
         "type": "text",
         "mediaUrl": null,
         "fileName": null,

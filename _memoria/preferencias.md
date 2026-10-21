@@ -36,9 +36,9 @@
 4. **Outros comércios/serviços de alto ticket** (Aberto a oportunidades: energia solar, contabilidade, clínicas odontológicas, etc.)
 
 ### Regra de Ouro Anti-Spam & Abordagem Conversacional (Inviolável):
-- **CRONOGRAMA DE DISPARO PARA NOVOS CLIENTES:** O disparo de 1º contato (outbound/frio) ocorre exclusivamente de **Segunda, Terça, Quinta e Sexta**, entre as **10h e 19h** (Horário de Brasília).
-- **DIAS PAUSADOS PARA NOVOS LEADS:** **Quarta-feira**, **Sábado** e **Domingo** o sistema fica em Standby para prospecção fria.
-- **ATENDIMENTO A RESPOSTAS 24/7 (Sempre Ativo):** Leads que já responderam ou mandarem mensagem continuam sendo respondidos de imediato pela IA do Gemini de forma contínua, **em qualquer dia da semana (inclusive quartas e finais de semana) e 24h por dia**.
+- **CRONOGRAMA E VOLUME DE NOVOS CLIENTES:** O disparo de 1º contato (outbound/frio) ocorre exclusivamente de **Segunda, Quarta e Sexta**, entre as **10h e 19h** (Horário de Brasília), com meta entre **12 e 17 leads/dia** distribuídos ao longo do dia comercial.
+- **DIAS PAUSADOS PARA NOVOS LEADS:** **Terça-feira**, **Quinta-feira**, **Sábado** e **Domingo** o sistema fica em Standby para prospecção fria de novos contatos.
+- **ATENDIMENTO A RESPOSTAS 24/7 (Sempre Ativo):** Leads que já responderam ou mandarem mensagem continuam sendo respondidos com delay humanizado (1 a 1.5 min) pela IA de forma contínua, **em qualquer dia da semana (inclusive terças, quintas e finais de semana) e 24h por dia**.
 - **LIMITE ESTRITO DE 1 MENSAGEM SEM RESPOSTA:** NUNCA enviar mais de uma mensagem para um lead se ele não responder. Se o primeiro contato foi enviado e o lead não respondeu, o sistema identifica esse estado e **NUNCA envia outra mensagem** (sem follow-ups forçados, sem etapas automáticas subsequentes).
 - **SÓ RESPONDE QUANDO O LEAD RESPONDER:** O sistema e a IA só voltam a interagir quando o lead enviar uma resposta real no WhatsApp.
 - **1ª Mensagem (Abertura 100% Despretensiosa - ZERO Cara de Venda):** NUNCA vender na primeira mensagem, nunca falar de site, tráfego ou da Pinas de cara. Enviar estritamente uma confirmação curta em 1 linha: *"Olá, tudo bem? É da clínica {nome}?"* (ou *"Olá, tudo bem? É do escritório {nome}?"*, *"Olá, tudo bem? É da loja {nome}?"*, *"Olá, tudo bem? É da {nome}?"*).

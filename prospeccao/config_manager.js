@@ -7,11 +7,11 @@ const DEFAULT_CONFIG = {
   autoStartAutopilot: true,
   onlyRespondReplies: false,
   disableNewLeadOutbound: false,
-  dailyLimit: 10,
+  dailyLimit: 15,
   distributeOverDay: true,
   outboundStartHour: 10,
   outboundEndHour: 19,
-  outboundDays: [1, 2, 3, 4, 5],
+  outboundDays: [1, 3, 5],
   sentToday: 0,
   lastResetDate: new Date().toISOString().split('T')[0],
   minDelaySeconds: 300,
@@ -232,11 +232,9 @@ function saveConfig(updates = {}) {
 }
 
 const DYNAMIC_DAY_LIMITS = {
-  1: 11, // Segunda: 11 leads (aquecimento)
-  2: 13, // Terça: 13 leads (dia ativo)
-  3: 15, // Quarta: 15 leads (pico solicitado pelo Kauê)
-  4: 10, // Quinta: 10 leads (desaceleração)
-  5: 14  // Sexta: 14 leads (fechamento de semana)
+  1: 15, // Segunda: 15 leads (faixa de 12 a 17 leads/dia solicitada pelo Kauê)
+  3: 16, // Quarta: 16 leads (dia de pico)
+  5: 15  // Sexta: 15 leads (fechamento de semana)
 };
 
 function getDynamicDayLimit() {
@@ -247,9 +245,9 @@ function getDynamicDayLimit() {
     }).format(new Date());
     const dayMap = { 'Sun': 0, 'Mon': 1, 'Tue': 2, 'Wed': 3, 'Thu': 4, 'Fri': 5, 'Sat': 6 };
     const currentDay = dayMap[spDateStr] !== undefined ? dayMap[spDateStr] : new Date().getDay();
-    return DYNAMIC_DAY_LIMITS[currentDay] || 10;
+    return DYNAMIC_DAY_LIMITS[currentDay] || 15;
   } catch (e) {
-    return 10;
+    return 15;
   }
 }
 
