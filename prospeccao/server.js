@@ -1071,10 +1071,10 @@ async function executeLeadResponse(lead, text, targetJid = null, source = 'realt
     return false;
   }
 
-  // TRAVA ANTI-DUPLICAÇÃO 2: Cooldown de 90 segundos por lead (impede qualquer disparo duplo repetido)
+  // TRAVA ANTI-CONCORRÊNCIA: Cooldown mínimo de 10s (evita processamento paralelo no exato mesmo segundo)
   const now = Date.now();
-  if (leadLastRepliedAt.has(lead.id) && (now - leadLastRepliedAt.get(lead.id) < 90000)) {
-    console.log(`[Auto-Responder] 🛡️ Cooldown ativo para "${lead.name}" (< 90s desde o último envio). Abortando.`);
+  if (leadLastRepliedAt.has(lead.id) && (now - leadLastRepliedAt.get(lead.id) < 10000)) {
+    console.log(`[Auto-Responder] 🛡️ Cooldown ativo para "${lead.name}" (< 10s desde o último envio). Abortando.`);
     return false;
   }
 
@@ -1105,9 +1105,8 @@ async function executeLeadResponse(lead, text, targetJid = null, source = 'realt
     autoResponderQueue.delete(lead.id);
   }
 
-  // ATIVAR AS TRAVAS ANTES DE QUALQUER OPERAÇÃO ASSÍNCRONA DA IA
+  // ATIVAR A TRAVA ATÔMICA ANTES DE QUALQUER OPERAÇÃO ASSÍNCRONA DA IA
   activeLeadResponses.add(lead.id);
-  leadLastRepliedAt.set(lead.id, Date.now());
 
   try {
     // Atualiza status do lead para "respondeu" (mantendo "reuniao" caso já tenha sido agendada)
@@ -1249,7 +1248,7 @@ async function executeLeadResponse(lead, text, targetJid = null, source = 'realt
       await new Promise(r => setTimeout(r, sleepChunk));
     }
 
-    await whatsapp.sendMessage(currentLead.cleanPhone, replyMessage, { isBot: true });
+    await whatsapp.sendMessage(currentLead.cleanPhone, replyMessage, { isBot: true, allowDuplicate: true });
 
     currentLead.stage = targetStage;
     currentLead.lastContact = new Date().toISOString();
@@ -1323,8 +1322,8 @@ async function checkAndRespondPendingLeads(maxAgeHours = 720) {
     // TRAVA ANTI-DUPLICAÇÃO 2: Se já está em geração ativa agora, NÃO rodar em paralelo!
     if (activeLeadResponses.has(lead.id)) continue;
 
-    // TRAVA ANTI-DUPLICAÇÃO 3: Cooldown recente (< 90 segundos)
-    if (leadLastRepliedAt.has(lead.id) && (now - leadLastRepliedAt.get(lead.id) < 90000)) continue;
+    // TRAVA ANTI-CONCORRÊNCIA: Cooldown recente (< 15 segundos)
+    if (leadLastRepliedAt.has(lead.id) && (now - leadLastRepliedAt.get(lead.id) < 15000)) continue;
 
     const chatHistory = conversationGuard.findMessagesForLead(lead, whatsapp.store) || [];
     const validMsgs = chatHistory.filter(m => (m.text || m.type === 'audio' || m.type === 'image') && !m.text?.startsWith('[Sistema]'));
@@ -1377,9 +1376,9 @@ async function checkAndRespondPendingLeads(maxAgeHours = 720) {
         continue;
       }
 
-      // Se a mensagem do cliente chegou há menos de 25 segundos, o listener em tempo real
-      // já está cuidando com digitação humanizada. Pular para nunca disparar duas vezes!
-      if (ageMs < 25000) continue;
+      // Se a mensagem do cliente chegou há menos de 95 segundos, o listener em tempo real
+      // já está cuidando com intervalo humanizado (65-80s) e digitação. Pular para nunca duplicar!
+      if (ageMs < 95000) continue;
 
       if (ageMs <= maxAgeMs) {
         // Validação estrita via conversationGuard
@@ -1532,16 +1531,15 @@ function initAutoResponder() {
       autoResponderQueue.delete(lead.id);
     }
 
-    const stepData = readJson(STEP_TEMPLATES_FILE, { settings: {}, stages: [] });
-    const settings = stepData.settings || {};
-    const delaySec = Math.max(3, settings.responseDelaySeconds ? Math.min(settings.responseDelaySeconds, 5) : 4);
-    const jitter = Math.floor(Math.random() * 3);
-    const totalDelayMs = (delaySec + jitter) * 1000;
+    // Tempo de espera humanizado solicitado pelo Kauê: 1 a 1.5 minutos (~60 a 75 segundos de debounce + 8 a 12s de digitação)
+    // Se o lead mandar mais mensagens nesse intervalo, o timer reinicia e aguarda ele terminar!
+    const debounceDelayMs = Math.floor(Math.random() * (75000 - 60000 + 1)) + 60000;
+    console.log(`[Auto-Responder Realtime] ⏳ Lead "${lead.name}" mandou mensagem. Aguardando intervalo humanizado de ~${Math.round(debounceDelayMs / 1000)}s antes de responder...`);
 
     const timerId = setTimeout(async () => {
       autoResponderQueue.delete(lead.id);
       await executeLeadResponse(lead, text, jid, 'realtime');
-    }, totalDelayMs);
+    }, debounceDelayMs);
 
     autoResponderQueue.set(lead.id, timerId);
   });

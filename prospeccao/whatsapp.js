@@ -682,11 +682,12 @@ async function checkOnWhatsApp(rawPhoneOrJid) {
   return { exists: true, jid: targetJid };
 }
 
-// Registro de envios recentes para proteção absoluta contra disparo duplicado (Trava anti-spam de 3 minutos)
+// Registro de envios recentes para proteção contra cliques duplos acidentais
 const recentOutboundSends = new Map();
 setInterval(() => {
   const now = Date.now();
-  for (const [key, ts] of recentOutboundSends.entries()) {
+  for (const [key, data] of recentOutboundSends.entries()) {
+    const ts = (typeof data === 'object' && data !== null) ? data.time : data;
     if (now - ts > 600000) recentOutboundSends.delete(key);
   }
 }, 300000);
@@ -708,23 +709,31 @@ async function sendMessage(rawPhoneOrJid, text, options = {}) {
     store.unifyLidChat(rawPhoneOrJid);
   }
 
-  // Trava de Segurança Anti-Duplicidade (Mínimo de 3 minutos entre mensagens para o mesmo lead)
+  // Trava de Segurança Anti-Duplicidade (Anti-Double-Click e prevenção de envio acidental repetido)
   const cleanKey = targetJid.replace(/[^0-9]/g, '');
   const now = Date.now();
-  const lastSent = recentOutboundSends.get(cleanKey);
-  if (lastSent && (now - lastSent) < 180000 && !options.allowDuplicate) {
-    const elapsedSec = Math.round((now - lastSent) / 1000);
-    console.warn(`[WhatsApp Anti-Spam Guard] 🛑 Tentativa de 2º envio para ${cleanKey} em apenas ${elapsedSec}s bloqueada com sucesso!`);
-    return {
-      success: false,
-      blockedDuplicate: true,
-      message: `Bloqueado por segurança: já foi enviada mensagem para esse contato há ${elapsedSec}s.`
-    };
+  const lastSentData = recentOutboundSends.get(cleanKey);
+  const isBot = options?.isBot === true;
+  const allowDup = options?.allowDuplicate === true;
+
+  if (lastSentData && !allowDup) {
+    const lastTime = (typeof lastSentData === 'object' && lastSentData !== null) ? lastSentData.time : lastSentData;
+    const lastText = (typeof lastSentData === 'object' && lastSentData !== null) ? lastSentData.text : null;
+    const elapsedSec = Math.round((now - lastTime) / 1000);
+
+    // Se for exatamente o mesmo texto em menos de 15s (ou qualquer texto em menos de 3s para evitar race condition)
+    if ((elapsedSec < 15 && lastText === text) || (elapsedSec < 3 && !isBot)) {
+      console.warn(`[WhatsApp Anti-Spam Guard] 🛑 Tentativa de reenvio de mensagem para ${cleanKey} em apenas ${elapsedSec}s bloqueada.`);
+      return {
+        success: false,
+        blockedDuplicate: true,
+        message: `Bloqueado por segurança: mensagem já enviada há ${elapsedSec}s.`
+      };
+    }
   }
-  recentOutboundSends.set(cleanKey, now);
+  recentOutboundSends.set(cleanKey, { time: now, text });
 
   const sent = await sock.sendMessage(targetJid, { text });
-  const isBot = options?.isBot === true;
   if (isBot) {
     botMessageIds.add(sent.key.id);
   }

@@ -188,6 +188,15 @@ class AutoPilotEngine {
 
   setPendingRepliesChecker(fn) {
     this.checkPendingRepliesHandler = fn;
+    if (!this.repliesInterval) {
+      this.repliesInterval = setInterval(async () => {
+        if (this.whatsapp && typeof this.whatsapp.getStatus === 'function' && this.whatsapp.getStatus().connected) {
+          try {
+            await this.checkPendingRepliesHandler();
+          } catch (e) {}
+        }
+      }, 45000); // Garante que nenhum lead com resposta pendente aguarde mais que 45s
+    }
   }
 
   handleWhatsAppConnected() {
