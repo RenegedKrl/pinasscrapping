@@ -1225,11 +1225,30 @@ async function executeLeadResponse(lead, text, targetJid = null, source = 'realt
 
     if (!replyMessage) return false;
 
-    // Simular status "digitando..." por 3 a 4 segundos antes do envio para comportamento 100% humanizado
-    try {
-      await whatsapp.sendTyping(currentLead.cleanPhone);
-      await new Promise(r => setTimeout(r, 3500));
-    } catch (tErr) {}
+    // REGRA DE OURO DO KAUÊ: Demorar pelo menos 1 minuto (60 a 70s) simulando "digitando..."
+    // Mantém o status "digitando..." visível continuamente no WhatsApp do cliente renovando a cada 8.5s
+    const typingDurationMs = Math.floor(Math.random() * (72000 - 60000 + 1)) + 60000; // 60s a 72s
+    console.log(`[Auto-Responder 100% Humano] ⏳ Mantendo presença "digitando..." para "${currentLead.name}" por ${(typingDurationMs/1000).toFixed(0)}s antes de enviar a resposta...`);
+
+    const typingStart = Date.now();
+    while (Date.now() - typingStart < typingDurationMs) {
+      // Se durante o minuto o Kauê enviou mensagem manual pelo celular, aborta a IA na hora (Human Takeover)
+      const checkLeads = readJson(LEADS_FILE, []);
+      const liveLead = checkLeads.find(l => l.id === currentLead.id);
+      if (liveLead && (liveLead.manualControl || liveLead.humanTakeover)) {
+        console.log(`[Human Takeover] 🛑 Kauê interveio manualmente durante o minuto de digitação para "${currentLead.name}". Resposta da IA abortada.`);
+        return false;
+      }
+
+      try {
+        await whatsapp.sendTyping(currentLead.cleanPhone);
+      } catch (tErr) {}
+
+      const remainingMs = typingDurationMs - (Date.now() - typingStart);
+      const sleepChunk = Math.min(8500, remainingMs);
+      if (sleepChunk <= 0) break;
+      await new Promise(r => setTimeout(r, sleepChunk));
+    }
 
     await whatsapp.sendMessage(currentLead.cleanPhone, replyMessage, { isBot: true });
 

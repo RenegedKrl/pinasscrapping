@@ -2,7 +2,7 @@
   "settings": {
     "autoResponderEnabled": true,
     "useGeminiConversationalAi": true,
-    "responseDelaySeconds": 20,
+    "responseDelaySeconds": 60,
     "combineStages2and3": false,
     "maxAutoStage": 4,
     "notifyOnReply": true
