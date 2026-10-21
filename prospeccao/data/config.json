@@ -2,7 +2,7 @@
   "autoStartAutopilot": true,
   "onlyRespondReplies": false,
   "disableNewLeadOutbound": false,
-  "dailyLimit": 10,
+  "dailyLimit": 15,
   "distributeOverDay": true,
   "outboundStartHour": 10,
   "outboundEndHour": 19,
@@ -13,7 +13,7 @@
     4,
     5
   ],
-  "sentToday": 1,
+  "sentToday": 2,
   "lastResetDate": "2026-10-21",
   "minDelaySeconds": 300,
   "maxDelaySeconds": 330,

@@ -232,37 +232,46 @@ function saveConfig(updates = {}) {
 }
 
 const DYNAMIC_DAY_LIMITS = {
-  1: 10, // Segunda: 10 leads/dia
-  2: 10, // Terça: 10 leads/dia
-  3: 10, // Quarta: 10 leads/dia
-  4: 10, // Quinta: 10 leads/dia
-  5: 10  // Sexta: 10 leads/dia
+  1: 11, // Segunda: 11 leads (aquecimento)
+  2: 13, // Terça: 13 leads (dia ativo)
+  3: 15, // Quarta: 15 leads (pico solicitado pelo Kauê)
+  4: 10, // Quinta: 10 leads (desaceleração)
+  5: 14  // Sexta: 14 leads (fechamento de semana)
 };
+
+function getDynamicDayLimit() {
+  try {
+    const spDateStr = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Sao_Paulo',
+      weekday: 'short'
+    }).format(new Date());
+    const dayMap = { 'Sun': 0, 'Mon': 1, 'Tue': 2, 'Wed': 3, 'Thu': 4, 'Fri': 5, 'Sat': 6 };
+    const currentDay = dayMap[spDateStr] !== undefined ? dayMap[spDateStr] : new Date().getDay();
+    return DYNAMIC_DAY_LIMITS[currentDay] || 10;
+  } catch (e) {
+    return 10;
+  }
+}
 
 function checkAndResetDailyLimit(config) {
   const cfg = config && config.excludedChains ? config : readConfig();
   const today = new Date().toISOString().split('T')[0];
+  const dynamicLimit = getDynamicDayLimit();
+  let changed = false;
+
   if (cfg.lastResetDate !== today) {
     cfg.sentToday = 0;
     cfg.lastResetDate = today;
+    cfg.dailyLimit = dynamicLimit;
+    changed = true;
+    console.log(`[ConfigManager] 🌅 Novo dia (${today}): Contador de disparos resetado para 0. Meta de hoje: ${dynamicLimit} leads.`);
+  } else if (!cfg.dailyLimit || cfg.dailyLimit !== dynamicLimit) {
+    cfg.dailyLimit = dynamicLimit;
+    changed = true;
+  }
 
-    // Ajuste dinâmico anti-ban: flutua entre 10 e 15 leads dependendo do dia da semana
-    try {
-      const spDateStr = new Intl.DateTimeFormat('en-US', {
-        timeZone: 'America/Sao_Paulo',
-        weekday: 'short'
-      }).format(new Date());
-      const dayMap = { 'Sun': 0, 'Mon': 1, 'Tue': 2, 'Wed': 3, 'Thu': 4, 'Fri': 5, 'Sat': 6 };
-      const currentDay = dayMap[spDateStr] !== undefined ? dayMap[spDateStr] : new Date().getDay();
-
-      if (DYNAMIC_DAY_LIMITS[currentDay]) {
-        cfg.dailyLimit = DYNAMIC_DAY_LIMITS[currentDay];
-        console.log(`[ConfigManager] 📅 Flutuação Anti-Ban: Limite diário ajustado automaticamente para ${cfg.dailyLimit} leads hoje.`);
-      }
-    } catch (e) {}
-
+  if (changed) {
     saveConfig(cfg);
-    console.log(`[ConfigManager] 🌅 Novo dia (${today}): Contador de disparos resetado para 0.`);
   }
   return cfg;
 }

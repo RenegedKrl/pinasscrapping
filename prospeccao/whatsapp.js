@@ -637,6 +637,51 @@ async function resolveJid(targetPhoneOrJid) {
   return targetJid;
 }
 
+// Validar se um número de telefone está cadastrado no WhatsApp
+async function checkOnWhatsApp(rawPhoneOrJid) {
+  if (connectionStatus !== 'connected' || !sock) {
+    return { exists: false, reason: 'WhatsApp desconectado' };
+  }
+  if (!rawPhoneOrJid) {
+    return { exists: false, reason: 'Número vazio' };
+  }
+  if (rawPhoneOrJid.includes('@lid') || rawPhoneOrJid.includes('@g.us')) {
+    return { exists: true, jid: rawPhoneOrJid };
+  }
+  const clean = cleanPhoneForWhatsApp(rawPhoneOrJid);
+  if (!clean || clean.length < 10) {
+    return { exists: false, reason: 'Número inválido ou muito curto' };
+  }
+
+  const targetJid = `${clean}@s.whatsapp.net`;
+  try {
+    if (sock && typeof sock.onWhatsApp === 'function') {
+      const results = await sock.onWhatsApp(targetJid);
+      if (results && results.length > 0 && results[0].exists) {
+        return { exists: true, jid: results[0].jid };
+      }
+      // Variação do 9º dígito
+      if (clean.length === 13 && clean.startsWith('55') && clean[4] === '9') {
+        const alt = clean.slice(0, 4) + clean.slice(5);
+        const altResults = await sock.onWhatsApp(`${alt}@s.whatsapp.net`);
+        if (altResults && altResults.length > 0 && altResults[0].exists) {
+          return { exists: true, jid: altResults[0].jid };
+        }
+      } else if (clean.length === 12 && clean.startsWith('55')) {
+        const alt = clean.slice(0, 4) + '9' + clean.slice(4);
+        const altResults = await sock.onWhatsApp(`${alt}@s.whatsapp.net`);
+        if (altResults && altResults.length > 0 && altResults[0].exists) {
+          return { exists: true, jid: altResults[0].jid };
+        }
+      }
+      return { exists: false, reason: 'Número não possui conta no WhatsApp' };
+    }
+  } catch (err) {
+    console.warn('[WhatsApp] Erro na verificação onWhatsApp:', err.message);
+  }
+  return { exists: true, jid: targetJid };
+}
+
 // Registro de envios recentes para proteção absoluta contra disparo duplicado (Trava anti-spam de 3 minutos)
 const recentOutboundSends = new Map();
 setInterval(() => {
@@ -856,6 +901,7 @@ module.exports = {
   getStatus,
   isReady: () => connectionStatus === 'connected' && !!sock,
   sendMessage,
+  checkOnWhatsApp,
   sendMediaMessage,
   sendAudioMessage,
   sendAlertToSelf,

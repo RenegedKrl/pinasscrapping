@@ -462,6 +462,29 @@ class AutoPilotEngine {
     this.currentProcessingLeadId = lead.id;
     inFlightLeadIds.add(lead.id);
     this.currentLead = { id: lead.id, name: lead.name, phone: lead.phone, neighborhood: lead.neighborhood };
+
+    // 4.1 Validação Prévia de WhatsApp: Checar se o número é válido e possui conta no WhatsApp
+    // Solicitado pelo Kauê: se o número não funcionar ou não tiver WhatsApp, pula imediatamente e pega outro!
+    if (this.whatsapp && typeof this.whatsapp.checkOnWhatsApp === 'function') {
+      const waCheck = await this.whatsapp.checkOnWhatsApp(lead.cleanPhone);
+      if (!waCheck.exists) {
+        this.addLog('warn', `⚠️ [Número Inválido] "${lead.name}" (${lead.cleanPhone}): ${waCheck.reason}. Pulando este número e partindo para o próximo lead imediatamente...`);
+        
+        lead.status = 'ignorado';
+        lead.invalidPhone = true;
+        lead.notes = (lead.notes ? lead.notes + ' | ' : '') + `Telefone sem WhatsApp (${waCheck.reason})`;
+        const leadIndex = leads.findIndex(l => l.id === lead.id);
+        if (leadIndex !== -1) {
+          leads[leadIndex] = lead;
+          writeJson(LEADS_FILE, leads);
+        }
+
+        // Pula este número e tenta o próximo imediatamente (em 3 segundos)
+        this.scheduleNext(3000);
+        return;
+      }
+    }
+
     this.addLog('audit', `🔍 [1/3] Auditando site e Google Maps de "${lead.name}" (${lead.neighborhood || 'São Paulo'})...`);
 
     // 5. Executar Auditoria Técnica Real de Site + Google Maps
@@ -526,12 +549,30 @@ class AutoPilotEngine {
     // 7. Simular Digitação e Disparar pelo WhatsApp
     this.addLog('send', `🚀 [3/3] Disparando mensagem direta pelo WhatsApp para ${lead.name} (${lead.cleanPhone})...`);
 
+    let sendResult;
     try {
-      await this.whatsapp.sendTyping(lead.cleanPhone);
-      await new Promise(r => setTimeout(r, 3500)); // Simula digitação humana
-    } catch (tErr) {}
+      try {
+        await this.whatsapp.sendTyping(lead.cleanPhone);
+        await new Promise(r => setTimeout(r, 3500)); // Simula digitação humana
+      } catch (tErr) {}
 
-    const sendResult = await this.whatsapp.sendMessage(lead.cleanPhone, pitchResult.pitchText, { isBot: true });
+      sendResult = await this.whatsapp.sendMessage(lead.cleanPhone, pitchResult.pitchText, { isBot: true });
+    } catch (sendErr) {
+      this.addLog('warn', `⚠️ [Falha no Envio] Não foi possível entregar mensagem para "${lead.name}" (${lead.cleanPhone}): ${sendErr.message}. Pulando para o próximo lead imediatamente...`);
+      
+      lead.status = 'ignorado';
+      lead.sendFailed = true;
+      lead.notes = (lead.notes ? lead.notes + ' | ' : '') + `Falha no envio WhatsApp: ${sendErr.message}`;
+      if (leadIndex !== -1) {
+        leads[leadIndex] = lead;
+        writeJson(LEADS_FILE, leads);
+      }
+
+      // Se falhou o envio, tenta o próximo lead da fila imediatamente em 3 segundos!
+      this.scheduleNext(3000);
+      return;
+    }
+
     if (sendResult && sendResult.blockedDuplicate) {
       this.addLog('warn', `🛡️ [Anti-Spam WhatsApp] Disparo duplicado interceptado para "${lead.name}". Mensagem não repetida.`);
       this.scheduleNext(15000);
