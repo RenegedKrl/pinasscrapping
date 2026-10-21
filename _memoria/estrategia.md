@@ -15,10 +15,11 @@ Kauê atualmente divide o tempo entre trabalho CLT e a operação da Pinas. O ob
    - **Produto Principal:** Assessoria Contínua de Tráfego Pago (Google Ads & Meta Ads) com mensalidade fixa recorrente (ticket entre R$ 1.500 e R$ 2.500/mês).
    - **Papel do Site:** A criação ou otimização de landing pages entra como alicerce de alta conversão (setup inicial), mas o que sustenta o negócio no longo prazo e permite a saída segura do CLT é a **recorrência mensal de gestão de tráfego**.
    - **Ramos Foco:**
-     * 1º Clínicas Veterinárias & Hospitais Pet 24h (Case Petiva R$ 1.500/mês)
-     * 2º Escritórios de Advocacia (Ações de alto valor e honorários expressivos)
-     * 3º Clínicas Odontológicas (Implantes, próteses e alinhadores particulares)
-     * 4º Mentores de Negócios, Finanças e Treinamentos (Mentorias de alto ticket)
+     * 1º Arquitetura, Interiores & Reformas de Alto Padrão (Maior taxa de resposta ~66%, ticket alto por projeto, interesse comprovado)
+     * 2º Clínicas Veterinárias & Hospitais Pet 24h (Case Petiva R$ 1.500/mês)
+     * 3º Escritórios de Advocacia (Ações de alto valor e honorários expressivos)
+     * 4º Clínicas Odontológicas (Implantes, próteses e alinhadores particulares)
+     * 5º Mentores de Negócios, Finanças e Treinamentos (Mentorias de alto ticket)
     - **Metodologia Consultiva em 2 Etapas:** Abertura despretensiosa em 1 linha ➔ Diagnóstico cativante & dor real de faturamento (efeito "Caramba, eu preciso disso mesmo" — conectando a excelente reputação dele no bairro à perda invisível de clientes que pesquisam no Google e caem nos concorrentes que anunciam no topo, em no máximo 2 a 3 blocos curtos) + Pergunta de qualificação ➔ Call rápida de 10 a 15 min no Google Meet para apresentar a esteira de tráfego. (100% automático em texto, zero vídeos).
 
 ## Pra Tirar das Costas (Automação / Apoio do Agente)

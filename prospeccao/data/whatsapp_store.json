@@ -22,15 +22,15 @@
       "id": "5511941713647-1582482974@g.us",
       "name": "Testes🐦",
       "phone": "5511941713647-1582482974",
-      "unreadCount": 2,
+      "unreadCount": 1,
       "lastMessage": {
         "text": "Kauê Felix: 📷 Foto",
-        "timestamp": 1792606611000,
+        "timestamp": 1792607663000,
         "fromMe": false,
         "type": "image",
         "senderName": "Kauê Felix"
       },
-      "updatedAt": 1792606611000,
+      "updatedAt": 1792607663000,
       "isGroup": true,
       "isGroupSubject": true,
       "jid": "5511941713647-1582482974@g.us",
@@ -48407,20 +48407,20 @@
     "5511995494251@s.whatsapp.net": {
       "id": "5511995494251@s.whatsapp.net",
       "jid": "5511995494251@s.whatsapp.net",
-      "name": "Edna Rubi Coach Tarot",
+      "name": "Edna Rubi Tarot",
       "phone": "5511995494251",
       "isGroup": false,
       "isGroupSubject": false,
       "participantCount": 0,
       "unreadCount": 0,
       "lastMessage": {
-        "text": "Oi, tudo bem? É da Edna Rubi Coach Tarot?",
-        "timestamp": 1792602712774,
+        "text": "Opa Edna, tudo ótimo por aqui! Sou o Kauê, da Pinas.\n\nAchei seu posicionamento e autoridade muito bacanas! Mas reparei que hoje boa parte dos decisores e clientes qualificados que buscam mentoria e treinamento no Google aqui na região acabam caindo em concorrentes patrocinados, sem uma estrutura rápida direcionando pro seu WhatsApp.\n\nVocê já tem alguém rodando tráfego qualificado para a sua mentoria hoje ou depende de indicação orgânica?",
+        "timestamp": 1792610631989,
         "fromMe": true,
         "type": "text",
         "senderName": "Kauê"
       },
-      "updatedAt": 1792602712774
+      "updatedAt": 1792610631989
     },
     "5511953040822@s.whatsapp.net": {
       "id": "5511953040822@s.whatsapp.net",
@@ -48484,15 +48484,51 @@
       "isGroup": false,
       "isGroupSubject": false,
       "participantCount": 0,
-      "unreadCount": 3,
+      "unreadCount": 0,
       "lastMessage": {
-        "text": "Tudo bem?",
-        "timestamp": 1792606741000,
-        "fromMe": false,
+        "text": "Opa Letícia, tudo ótimo por aqui! Prazer, sou o Kauê, da Pinas.\n\nAchei a estrutura e a reputação de vocês aí em Santo Amaro excelentes! Mas reparei que muitos tutores que pesquisam veterinário no Google na região acabam caindo nos concorrentes que anunciam no topo, porque vocês ainda não têm uma página rápida direcionando direto pro WhatsApp da recepção.\n\nVocês já têm alguém rodando anúncios ou cuidando dessa captação no Google por aí hoje?",
+        "timestamp": 1792606866869,
+        "fromMe": true,
         "type": "text",
-        "senderName": "Clínica Veterinária Amalfi"
+        "senderName": "Kauê"
       },
-      "updatedAt": 1792606741000
+      "updatedAt": 1792606866869
+    },
+    "5511997941741@s.whatsapp.net": {
+      "id": "5511997941741@s.whatsapp.net",
+      "jid": "5511997941741@s.whatsapp.net",
+      "name": "Mozart Costa",
+      "phone": "5511997941741",
+      "isGroup": false,
+      "isGroupSubject": false,
+      "participantCount": 0,
+      "unreadCount": 0,
+      "lastMessage": {
+        "text": "Tudo ótimo por aqui! Prazer, sou o Kauê, da Pinas.\n\nAchei seu posicionamento e autoridade muito bacanas! Mas reparei que hoje boa parte dos decisores e clientes qualificados que buscam mentoria e treinamento no Google acabam caindo em concorrentes patrocinados, sem uma estrutura rápida direcionando pro seu WhatsApp.\n\nVocê já tem alguém rodando tráfego qualificado para a sua mentoria hoje ou depende de indicação orgânica?",
+        "timestamp": 1792611226463,
+        "fromMe": true,
+        "type": "text",
+        "senderName": "Kauê"
+      },
+      "updatedAt": 1792611226463
+    },
+    "5515991127524@s.whatsapp.net": {
+      "id": "5515991127524@s.whatsapp.net",
+      "jid": "5515991127524@s.whatsapp.net",
+      "name": "Lucas",
+      "phone": "5515991127524",
+      "isGroup": false,
+      "isGroupSubject": false,
+      "participantCount": 0,
+      "unreadCount": 0,
+      "lastMessage": {
+        "text": "Ah, entendi! Sem problemas. Muito sucesso nos seus projetos por aí, e se precisar de algo no futuro, é só chamar. Um abraço!",
+        "timestamp": 1792614039790,
+        "fromMe": true,
+        "type": "text",
+        "senderName": "Kauê"
+      },
+      "updatedAt": 1792614039790
     }
   },
   "messages": {
@@ -51183,19 +51219,6 @@
     ],
     "5511941713647-1582482974@g.us": [
       {
-        "id": "ACA41926D41477A1A531C92049047779",
-        "fromMe": true,
-        "senderName": "Kauê",
-        "participant": null,
-        "isGroup": true,
-        "text": "49",
-        "timestamp": 1785706307000,
-        "type": "text",
-        "mediaUrl": null,
-        "fileName": null,
-        "status": "delivered"
-      },
-      {
         "id": "AC65766BDAD785A750F972626F2AE38D",
         "fromMe": true,
         "senderName": "Kauê",
@@ -53784,6 +53807,20 @@
         "isGroup": true,
         "text": "",
         "timestamp": 1792606611000,
+        "type": "image",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": false,
+        "status": "delivered"
+      },
+      {
+        "id": "3EB0D95AFD1789E6630213",
+        "fromMe": false,
+        "senderName": "Kauê Felix",
+        "participant": "30820802764857@lid",
+        "isGroup": true,
+        "text": "",
+        "timestamp": 1792607663000,
         "type": "image",
         "mediaUrl": null,
         "fileName": null,
@@ -139366,6 +139403,34 @@
         "fileName": null,
         "isBot": true,
         "status": "sent"
+      },
+      {
+        "id": "ACE23E8EDF04BD135A25D7EFC93409FE",
+        "fromMe": false,
+        "senderName": "Edna Rubi Tarot",
+        "participant": null,
+        "isGroup": false,
+        "text": "Oi Kauê sim, posso ajudar?",
+        "timestamp": 1792610556000,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": false,
+        "status": "delivered"
+      },
+      {
+        "id": "3EB0C556CA274CE0961188",
+        "fromMe": true,
+        "senderName": "Kauê",
+        "participant": null,
+        "isGroup": false,
+        "text": "Opa Edna, tudo ótimo por aqui! Sou o Kauê, da Pinas.\n\nAchei seu posicionamento e autoridade muito bacanas! Mas reparei que hoje boa parte dos decisores e clientes qualificados que buscam mentoria e treinamento no Google aqui na região acabam caindo em concorrentes patrocinados, sem uma estrutura rápida direcionando pro seu WhatsApp.\n\nVocê já tem alguém rodando tráfego qualificado para a sua mentoria hoje ou depende de indicação orgânica?",
+        "timestamp": 1792610631989,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": true,
+        "status": "sent"
       }
     ],
     "5511953040822@s.whatsapp.net": [
@@ -139584,6 +139649,164 @@
         "fileName": null,
         "isBot": false,
         "status": "delivered"
+      },
+      {
+        "id": "3EB0342C476B8DAD8DA208",
+        "fromMe": false,
+        "senderName": "Clínica Veterinária Amalfi",
+        "participant": null,
+        "isGroup": false,
+        "text": "me chamo Letícia! Como posso te ajudar?",
+        "timestamp": 1792606780000,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": false,
+        "status": "delivered"
+      },
+      {
+        "id": "3EB0CDE4747CF144E7E8B7",
+        "fromMe": true,
+        "senderName": "Kauê",
+        "participant": null,
+        "isGroup": false,
+        "text": "Opa Letícia, tudo ótimo por aqui! Prazer, sou o Kauê, da Pinas.\n\nAchei a estrutura e a reputação de vocês aí em Santo Amaro excelentes! Mas reparei que muitos tutores que pesquisam veterinário no Google na região acabam caindo nos concorrentes que anunciam no topo, porque vocês ainda não têm uma página rápida direcionando direto pro WhatsApp da recepção.\n\nVocês já têm alguém rodando anúncios ou cuidando dessa captação no Google por aí hoje?",
+        "timestamp": 1792606866869,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": true,
+        "status": "sent"
+      }
+    ],
+    "5511997941741@s.whatsapp.net": [
+      {
+        "id": "3EB087BBED7A1119791F02",
+        "fromMe": true,
+        "senderName": "Kauê",
+        "participant": null,
+        "isGroup": false,
+        "text": "Opa, tudo bem? É da Mozart Coach?",
+        "timestamp": 1792610300800,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": true,
+        "status": "sent"
+      },
+      {
+        "id": "A5E48DC49D7A918080D58F2667960CDD",
+        "fromMe": false,
+        "senderName": "Mozart Costa",
+        "participant": null,
+        "isGroup": false,
+        "text": "Olá Félix, boa tarde!",
+        "timestamp": 1792611106000,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": false,
+        "status": "delivered"
+      },
+      {
+        "id": "A5DBC728B3C513FBB1E7A3CCC43CAF61",
+        "fromMe": false,
+        "senderName": "Mozart Costa",
+        "participant": null,
+        "isGroup": false,
+        "text": "Sim",
+        "timestamp": 1792611111000,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": false,
+        "status": "delivered"
+      },
+      {
+        "id": "A55D0AD9C8E0D5ACDE3D13CF5AB7161C",
+        "fromMe": false,
+        "senderName": "Mozart Costa",
+        "participant": null,
+        "isGroup": false,
+        "text": "Exato",
+        "timestamp": 1792611116000,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": false,
+        "status": "delivered"
+      },
+      {
+        "id": "A5194C9507748BE74EDAD35201934D8C",
+        "fromMe": false,
+        "senderName": "Mozart Costa",
+        "participant": null,
+        "isGroup": false,
+        "text": "Como posso ajudar?",
+        "timestamp": 1792611142000,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": false,
+        "status": "delivered"
+      },
+      {
+        "id": "3EB06C52765A5D12157BE9",
+        "fromMe": true,
+        "senderName": "Kauê",
+        "participant": null,
+        "isGroup": false,
+        "text": "Tudo ótimo por aqui! Prazer, sou o Kauê, da Pinas.\n\nAchei seu posicionamento e autoridade muito bacanas! Mas reparei que hoje boa parte dos decisores e clientes qualificados que buscam mentoria e treinamento no Google acabam caindo em concorrentes patrocinados, sem uma estrutura rápida direcionando pro seu WhatsApp.\n\nVocê já tem alguém rodando tráfego qualificado para a sua mentoria hoje ou depende de indicação orgânica?",
+        "timestamp": 1792611226463,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": true,
+        "status": "sent"
+      }
+    ],
+    "5515991127524@s.whatsapp.net": [
+      {
+        "id": "3EB09AD683907D840A97ED",
+        "fromMe": true,
+        "senderName": "Kauê",
+        "participant": null,
+        "isGroup": false,
+        "text": "Oi, tudo bem? Aqui é da LYK Coaching?",
+        "timestamp": 1792613393107,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": true,
+        "status": "sent"
+      },
+      {
+        "id": "3A01998EA674DDCE531C",
+        "fromMe": false,
+        "senderName": "Lucas",
+        "participant": null,
+        "isGroup": false,
+        "text": "Nao mais",
+        "timestamp": 1792613963000,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": false,
+        "status": "delivered"
+      },
+      {
+        "id": "3EB029BF8E326F514850D7",
+        "fromMe": true,
+        "senderName": "Kauê",
+        "participant": null,
+        "isGroup": false,
+        "text": "Ah, entendi! Sem problemas. Muito sucesso nos seus projetos por aí, e se precisar de algo no futuro, é só chamar. Um abraço!",
+        "timestamp": 1792614039790,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": true,
+        "status": "sent"
       }
     ]
   },
@@ -139606,8 +139829,8 @@
     "5511983940027@s.whatsapp.net": "VCLab Pathology",
     "5511985545925": "Psicólogo em Santo André | Gabriel Camargo | Terapia Cognitivo Comportamental (TCC)",
     "5511985545925@s.whatsapp.net": "Psicólogo em Santo André | Gabriel Camargo | Terapia Cognitivo Comportamental (TCC)",
-    "5511995494251": "Edna Rubi Coach Tarot",
-    "5511995494251@s.whatsapp.net": "Edna Rubi Coach Tarot",
+    "5511995494251": "Edna Rubi Tarot",
+    "5511995494251@s.whatsapp.net": "Edna Rubi Tarot",
     "5511953040822": "Fiori Implantes Tratamentos Odontológicos",
     "5511953040822@s.whatsapp.net": "Fiori Implantes Tratamentos Odontológicos",
     "5511935056265": "Hospital Veterinário Popular 24h Tatuapé",
@@ -139616,10 +139839,10 @@
     "5511940308745@s.whatsapp.net": "Clínica Veterinária Love 24 horas",
     "5511959084580": "Clínica Veterinária Amalfi",
     "5511959084580@s.whatsapp.net": "Clínica Veterinária Amalfi",
-    "5511997941741": "Mozart Coach",
-    "5511997941741@s.whatsapp.net": "Mozart Coach",
-    "5515991127524": "LYK Coaching",
-    "5515991127524@s.whatsapp.net": "LYK Coaching",
+    "5511997941741": "Mozart Costa",
+    "5511997941741@s.whatsapp.net": "Mozart Costa",
+    "5515991127524": "Lucas",
+    "5515991127524@s.whatsapp.net": "Lucas",
     "5511975940660": "MB Master Coach",
     "5511975940660@s.whatsapp.net": "MB Master Coach",
     "5511963554951": "Márcio Moraes",
@@ -140953,6 +141176,12 @@
     "5511941713647-1582482974@g.us": "Kauê Felix",
     "5511941713647-1582482974": "Kauê Felix",
     "251612136255718@lid": "Clínica Veterinária Amalfi",
-    "251612136255718": "Clínica Veterinária Amalfi"
+    "251612136255718": "Clínica Veterinária Amalfi",
+    "131198399607026@lid": "Edna Rubi Tarot",
+    "131198399607026": "Edna Rubi Tarot",
+    "138710448386295@lid": "Mozart Costa",
+    "138710448386295": "Mozart Costa",
+    "133079779791066@lid": "Lucas",
+    "133079779791066": "Lucas"
   }
 }

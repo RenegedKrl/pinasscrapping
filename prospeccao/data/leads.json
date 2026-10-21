@@ -1132,8 +1132,8 @@
     },
     "score": 10,
     "notes": "Clientela física forte (100 reviews, nota 5), mas perde buscas diárias no Google por não ter site próprio.",
-    "status": "contatado",
-    "lastContact": "2026-10-21T17:11:47.895Z",
+    "status": "respondeu",
+    "lastContact": "2026-10-21T19:23:51.990Z",
     "createdAt": "2026-10-13T19:41:17.326Z",
     "tier": "diamante",
     "priorityScore": 100,
@@ -1141,7 +1141,7 @@
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
     "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (100 reviews ★5.0) • WhatsApp Celular Direto",
-    "stage": 1,
+    "stage": 2,
     "siteAudit": {
       "hasWebsite": false,
       "isOnline": false,
@@ -1181,8 +1181,16 @@
         "auto": true,
         "ai": true,
         "text": "Oi, tudo bem? É da Edna Rubi Coach Tarot?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-21T19:23:51.990Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa Edna, tudo ótimo por aqui! Sou o Kauê, da Pinas.\n\nAchei seu posicionamento e autoridade muito bacanas! Mas reparei que hoje boa parte dos decisores e clientes qualificados que buscam mentoria e treinamento no Google aqui na região acabam caindo em concorrentes patrocinados, sem uma estrutura rápida direcionando pro seu WhatsApp.\n\nVocê já tem alguém rodando tráfego qualificado para a sua mentoria hoje ou depende de indicação orgânica?"
       }
-    ]
+    ],
+    "repliedAt": "2026-10-21T19:23:42.194Z"
   },
   {
     "id": "lead-1791923354443-j455xo",
@@ -1605,8 +1613,8 @@
     "neighborhood": "Santo Amaro SP",
     "city": "São Paulo",
     "notes": "Sem site cadastrado no Maps (Oportunidade alta para site + Google Ads).",
-    "status": "contatado",
-    "lastContact": "2026-10-21T18:18:10.890Z",
+    "status": "respondeu",
+    "lastContact": "2026-10-21T18:21:06.869Z",
     "createdAt": "2026-10-01T02:11:05.677Z",
     "opportunity": {
       "score": 100,
@@ -1696,7 +1704,7 @@
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
     "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (14 reviews ★5.0) • WhatsApp Celular Direto",
-    "stage": 1,
+    "stage": 2,
     "siteAudit": {
       "hasWebsite": false,
       "isOnline": false,
@@ -1736,8 +1744,16 @@
         "auto": true,
         "ai": true,
         "text": "Boa tarde, tudo bem? É da Amalfi Clínica Veterinária?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-21T18:21:06.869Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa Letícia, tudo ótimo por aqui! Prazer, sou o Kauê, da Pinas.\n\nAchei a estrutura e a reputação de vocês aí em Santo Amaro excelentes! Mas reparei que muitos tutores que pesquisam veterinário no Google na região acabam caindo nos concorrentes que anunciam no topo, porque vocês ainda não têm uma página rápida direcionando direto pro WhatsApp da recepção.\n\nVocês já têm alguém rodando anúncios ou cuidando dessa captação no Google por aí hoje?"
       }
-    ]
+    ],
+    "repliedAt": "2026-10-21T18:20:54.608Z"
   },
   {
     "id": "lead-1791920492990-8x9gpb",
@@ -1765,15 +1781,65 @@
     },
     "score": 9,
     "notes": "Clientela física forte (17 reviews, nota 5), mas perde buscas diárias no Google por não ter site próprio.",
-    "status": "novo",
-    "lastContact": null,
+    "status": "respondeu",
+    "lastContact": "2026-10-21T19:33:46.464Z",
     "createdAt": "2026-10-13T19:41:32.990Z",
     "tier": "diamante",
     "priorityScore": 100,
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (17 reviews ★5.0) • WhatsApp Celular Direto"
+    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (17 reviews ★5.0) • WhatsApp Celular Direto",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 17,
+      "neighborhood": "São Caetano do Sul, SP",
+      "localReputation": "média",
+      "diagnosisTags": [
+        "⭐ 17 avaliações"
+      ],
+      "strengths": [
+        "Boa presença com 17 avaliações (nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Caetano do Sul, SP. Avaliações: 17 (nota 5.0). Reputação local: média."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em São Caetano do Sul, SP (17 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Opa, tudo bem? É da Mozart Coach?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-21T19:18:16.405Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo bem? É da Mozart Coach?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-21T19:33:46.464Z",
+        "auto": true,
+        "ai": true,
+        "text": "Tudo ótimo por aqui! Prazer, sou o Kauê, da Pinas.\n\nAchei seu posicionamento e autoridade muito bacanas! Mas reparei que hoje boa parte dos decisores e clientes qualificados que buscam mentoria e treinamento no Google acabam caindo em concorrentes patrocinados, sem uma estrutura rápida direcionando pro seu WhatsApp.\n\nVocê já tem alguém rodando tráfego qualificado para a sua mentoria hoje ou depende de indicação orgânica?"
+      }
+    ],
+    "repliedAt": "2026-10-21T19:33:34.934Z"
   },
   {
     "id": "lead-1791920549459-ecdn0j",
@@ -1801,15 +1867,65 @@
     },
     "score": 9,
     "notes": "Clientela física forte (95 reviews, nota 4.3), mas perde buscas diárias no Google por não ter site próprio.",
-    "status": "novo",
-    "lastContact": null,
+    "status": "respondeu",
+    "lastContact": "2026-10-21T20:20:39.791Z",
     "createdAt": "2026-10-13T19:42:29.459Z",
     "tier": "diamante",
     "priorityScore": 100,
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (95 reviews ★4.3) • WhatsApp Celular Direto"
+    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (95 reviews ★4.3) • WhatsApp Celular Direto",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 4.3,
+      "reviews": 95,
+      "neighborhood": "Sorocaba, SP",
+      "localReputation": "média",
+      "diagnosisTags": [
+        "⭐ 95 avaliações"
+      ],
+      "strengths": [
+        "Boa presença com 95 avaliações (nota 4.3)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Sorocaba, SP. Avaliações: 95 (nota 4.3). Reputação local: média."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Sorocaba, SP (95 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Oi, tudo bem? Aqui é da LYK Coaching?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-21T20:09:48.430Z",
+        "auto": true,
+        "ai": true,
+        "text": "Oi, tudo bem? Aqui é da LYK Coaching?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-21T20:20:39.791Z",
+        "auto": true,
+        "ai": true,
+        "text": "Ah, entendi! Sem problemas. Muito sucesso nos seus projetos por aí, e se precisar de algo no futuro, é só chamar. Um abraço!"
+      }
+    ],
+    "repliedAt": "2026-10-21T20:20:26.346Z"
   },
   {
     "id": "lead-1791920492990-pf9k1q",

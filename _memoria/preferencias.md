@@ -30,10 +30,12 @@
    - Qualquer variação dos nomes dos clientes acima.
 
 ### Nichos de Maior Interesse (em ordem de foco):
-1. **Clínicas Veterinárias & Consultórios Pet** (Forte case com a Petiva, alto valor percebido)
-2. **Escritórios de Advocacia** (Necessidade de autoridade digital e captação ética qualificada)
-3. **Lojas de Roupas / Moda** (Prioridade mais baixa, e sempre FORA do Brás)
-4. **Outros comércios/serviços de alto ticket** (Aberto a oportunidades: energia solar, contabilidade, clínicas odontológicas, etc.)
+1. **Arquitetura, Interiores & Alto Padrão** (Validação comprovada do Kauê: 66% de taxa de resposta, interesse real AVMS e Morale, ticket alto de R$ 20k+ por projeto, donos atendem no WhatsApp e valorizam estética/vitrine editorial)
+2. **Clínicas Veterinárias & Consultórios Pet** (Forte case com a Petiva, alto valor percebido de consultas/cirurgias)
+3. **Escritórios de Advocacia** (Necessidade de autoridade digital e captação ética qualificada)
+4. **Clínicas Odontológicas** (Implantes, próteses e alinhadores particulares de alto ticket)
+5. **Mentores de Negócios, Finanças e Treinamentos** (Mentorias de alto ticket)
+6. **Lojas de Roupas / Moda** (Prioridade mais baixa, e sempre FORA do Brás)
 
 ### Regra de Ouro Anti-Spam & Abordagem Conversacional (Inviolável):
 - **CRONOGRAMA E VOLUME DE NOVOS CLIENTES:** O disparo de 1º contato (outbound/frio) ocorre no padrão definitivo de **Segunda e Quarta (10h às 19h)** e na **Sexta-feira (10h às 16h)**, com meta entre **12 e 17 leads/dia** distribuídos ao longo do dia comercial. Na sexta o envio encerra às 16h (4 da tarde) porque após esse horário o pessoal raramente vê mensagens.

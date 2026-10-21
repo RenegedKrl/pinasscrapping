@@ -406,17 +406,45 @@ function cleanLeadDisplayName(lead) {
   let rawName = (lead?.name || '').trim();
   let clean = rawName.replace(/\s+(LTDA|ME|EPP|S\/A|S\.A\.|EIRELI)\b/gi, '').trim();
 
-  // Se tiver nome de doutor(a) ou profissional:
+  // Se tiver nome de doutor(a) ou profissional explícito:
   const doctorMatch = clean.match(/\b(dra?\.?\s+[A-Za-zÀ-ÿ]+(?:\s+[A-Za-zÀ-ÿ]+)?)/i);
   if (doctorMatch) {
-    return doctorMatch[1].trim();
+    let doc = doctorMatch[1].trim();
+    return doc.toLowerCase().replace(/(?:^|\s)[a-zà-ÿ]/g, m => m.toUpperCase());
   }
 
-  const parts = clean.split(/\s*[\-\|\–]\s*/);
+  // Se tiver partes separadas por hífen, pipe ou travessão:
+  const parts = clean.split(/\s*[\-\|\–\—]\s*/);
   if (parts.length > 1) {
-    const candidate = parts.find(p => p.trim().length >= 4 && p.trim().length <= 32 && !/^(implantes|psicólogo|advocacia|loja|clínica veterinária e pet shop)/i.test(p.trim()));
-    if (candidate) return candidate.trim();
-    if (parts[0].trim().length >= 3) return parts[0].trim();
+    // Procura se alguma parte tem nome de pessoa (2 a 3 palavras simples sem palavras-chave comerciais)
+    const personPart = parts.find(p => {
+      const s = p.trim();
+      return /^[A-ZÀ-ÿ][a-zà-ÿ]+(?:\s+[A-ZÀ-ÿ][a-zà-ÿ]+){1,2}$/.test(s) &&
+        !/^(clínica|hospital|escritório|advocacia|advogado|psicólogo|arquitetura|estúdio|studio|centro|loja|reforma|engenharia|imóveis)/i.test(s);
+    });
+    if (personPart) {
+      return personPart.trim();
+    }
+
+    // Se a primeira parte for boa e não for genérica
+    const candidate = parts[0].trim();
+    if (candidate.length >= 4 && !/^(implantes|psicólogo|advocacia|loja|clínica veterinária e pet shop)/i.test(candidate)) {
+      clean = candidate;
+    } else {
+      const nextCand = parts.find(p => p.trim().length >= 4 && !/^(implantes|psicólogo|advocacia|loja)/i.test(p.trim()));
+      if (nextCand) clean = nextCand.trim();
+    }
+  }
+
+  // Remove sufixos comuns de SEO e localização que poluem o nome
+  clean = clean.replace(/\s*[\-\|\–\—]\s*(Especialista|Alvarás|Granja Viana|Alphaville|Alto Padrão|Zona Sul|Zona Norte|Zona Oeste|Zona Leste|em São Paulo|Reabilitação|Terapia|TCC|Impostos|INSS|DPVAT|Indenizações|Advogados Associados|Advogado|Advocacia Especializada|Consultoria|ME|LTDA|Centro Integrado|Hospital Veterinário 24 horas|Unidade [A-Za-zÀ-ÿ]+|em [A-Za-zÀ-ÿ]+).*$/i, '').trim();
+  clean = clean.replace(/\s+(?:de\s+)?(?:Santo Amaro|Vila Mariana|Moema|Pinheiros|Tatuapé|Itaim Bibi|Morumbi|Alphaville|Barueri|Cotia|Granja Viana)\s+SP\b/gi, '').trim();
+  clean = clean.replace(/\s+SP\b/gi, '').trim();
+  clean = clean.replace(/\s*\(.*?\)\s*/g, ' ').trim();
+
+  // Se estiver tudo em MAIÚSCULAS (ALL CAPS), converter para Title Case
+  if (clean === clean.toUpperCase() && clean.length > 3) {
+    clean = clean.toLowerCase().replace(/(?:^|\s|\/)[a-zà-ÿ]/g, m => m.toUpperCase());
   }
 
   return clean;
@@ -431,49 +459,52 @@ function formatOpeningMessage(lead) {
   const spHour = (now.getUTCHours() - 3 + 24) % 24;
   const timeGreeting = spHour < 12 ? 'Bom dia' : 'Boa tarde';
 
-  const isDra = /\bdra\.?\b/i.test(name);
-  const isDr = /\bdr\.?\b/i.test(name) && !isDra;
-  const isMasculine = isDr || /^(o |o\b|escritório|consultório|hospital|centro|instituto)/i.test(name);
-  const art = isMasculine ? 'do' : 'da';
+  const isDra = /\bdra\.?\b/i.test(name) || /^(Dra|Doutora)\b/i.test(name);
+  const isDr = (/\bdr\.?\b/i.test(name) || /^(Dr|Doutor)\b/i.test(name)) && !isDra;
+  
+  // Nomes masculinos comuns de pessoas físicas
+  const commonMaleNames = /^(Gabriel|Tiago|Thiago|Lucas|Rodrigo|Pedro|Paulo|Cleber|Vinicius|Marcelo|Rafael|Leandro|Felipe|Bruno|Gustavo|Leonardo|Diego|Eduardo|Guilherme|Fernando|Antonio|Carlos|Renato|Fabio|Daniel|Marcos|Alexandre|Victor|Vitor|Caio|Henrique|Matheus)\b/i;
+  const isMalePerson = isDr || commonMaleNames.test(name);
+  const isCompanyMasculine = /^(o |o\b|escritório|consultório|hospital|centro|instituto|studio|estúdio)/i.test(name);
+
+  const isMasculine = isMalePerson || isCompanyMasculine;
+  const art = isMasculine ? (isMalePerson ? 'o' : 'do') : (isDra ? 'a' : 'da');
   const comArt = isMasculine ? 'com o' : 'com a';
 
-  // Pool Amplo de Variação Humanizada (solicitado pelo Kauê: 'Olá', 'Oi', 'Opa', ou direto perguntando 'É da clínica...')
+  // Pool Amplo de Variação Humanizada (100% natural, sem cara de robô)
   const pool = [
-    // 1. Direto ao ponto (Sem saudação ou com pergunta direta)
-    `É ${art} ${name}?`,
+    // 1. Direto ao ponto
+    isMalePerson ? `É o ${name}?` : `É ${art} ${name}?`,
     `Falo ${comArt} ${name}?`,
-    `Aqui é ${art} ${name}?`,
-    `Por acaso é ${art} ${name}?`,
-    `Tudo bem? É ${art} ${name}?`,
-    `Tudo bom? Falo ${comArt} ${name}?`,
-    `Tudo bem por aí? É ${art} ${name}?`,
+    isMalePerson ? `Falo com o ${name}?` : `Aqui é ${art} ${name}?`,
+    `Tudo bem? Falo ${comArt} ${name}?`,
+    isMalePerson ? `Tudo bem? É o ${name}?` : `Tudo bem? É ${art} ${name}?`,
+    `Tudo bem por aí? Falo ${comArt} ${name}?`,
 
     // 2. Com 'Oi'
-    `Oi, tudo bem? É ${art} ${name}?`,
     `Oi, tudo bem? Falo ${comArt} ${name}?`,
-    `Oi, tudo certo? É ${art} ${name}?`,
-    `Oi! É ${art} ${name}?`,
-    `Oi oi, tudo bom? É ${art} ${name}?`,
-    `Oi, tudo bem? Aqui é ${art} ${name}?`,
+    isMalePerson ? `Oi, tudo bem? É o ${name}?` : `Oi, tudo bem? É ${art} ${name}?`,
+    `Oi, tudo certo? Falo ${comArt} ${name}?`,
+    isMalePerson ? `Oi! Falo com o ${name}?` : `Oi! É ${art} ${name}?`,
+    `Oi oi, tudo bom? Falo ${comArt} ${name}?`,
 
     // 3. Com 'Olá'
-    `Olá, tudo bem? É ${art} ${name}?`,
     `Olá, tudo bem? Falo ${comArt} ${name}?`,
-    `Olá! É o WhatsApp ${art} ${name}?`,
+    isMalePerson ? `Olá, tudo bem? É o ${name}?` : `Olá, tudo bem? É ${art} ${name}?`,
     `Olá, tudo certo por aí? Falo ${comArt} ${name}?`,
-    `Olá, como vai? É ${art} ${name}?`,
+    `Olá, como vai? Falo ${comArt} ${name}?`,
 
     // 4. Com 'Opa'
-    `Opa, tudo bem? É ${art} ${name}?`,
+    `Opa, tudo bem? Falo ${comArt} ${name}?`,
+    isMalePerson ? `Opa, tudo bem? É o ${name}?` : `Opa, tudo bem? É ${art} ${name}?`,
     `Opa, tudo certo? Falo ${comArt} ${name}?`,
-    `Opa, tudo bem por aí? É ${art} ${name}?`,
-    `Opa, como vai? Falo ${comArt} ${name}?`,
-    `Opa! É ${art} ${name}?`,
+    `Opa, tudo bem por aí? Falo ${comArt} ${name}?`,
+    isMalePerson ? `Opa! É o ${name}?` : `Opa! É ${art} ${name}?`,
 
     // 5. Temporal
-    `${timeGreeting}, tudo bem? É ${art} ${name}?`,
-    `${timeGreeting}! Falo ${comArt} ${name}?`,
-    `${timeGreeting}, tudo bem? Aqui é ${art} ${name}?`
+    `${timeGreeting}, tudo bem? Falo ${comArt} ${name}?`,
+    isMalePerson ? `${timeGreeting}! Falo com o ${name}?` : `${timeGreeting}! Falo ${comArt} ${name}?`,
+    isMalePerson ? `${timeGreeting}, tudo bem? É o ${name}?` : `${timeGreeting}, tudo bem? É ${art} ${name}?`
   ];
 
   if (cleanNeighborhood && cleanNeighborhood.length >= 3 && !cleanNeighborhood.toLowerCase().includes('são paulo')) {
@@ -618,6 +649,10 @@ DIRETRIZES DA VOZ DO KAUÊ (REGRAS ABSOLUTAS ANTI-ROBÔ):
    a) SE FOR A 1ª RESPOSTA DO CLIENTE (ele apenas confirmou o local, ex: "Sim", "Sou eu", "Em que posso ajudar?", "Quem fala?"):
       - Cumprimente simpaticamente e use o nome da pessoa caso ela tenha se apresentado ("Opa [Nome], tudo ótimo por aqui! Prazer, sou o Kauê, da Pinas.").
       - Diagnóstico CATIVANTE adaptado ao nicho e aos dados reais auditados:
+
+        * SE FOR ARQUITETURA / DESIGN DE INTERIORES / REFORMAS DE ALTO PADRÃO:
+          "Achei os projetos e o bom gosto do trabalho de vocês aí em ${neighborhood} incríveis! Mas reparei pelo celular que a vitrine digital de vocês não valoriza a sofisticação das obras, e clientes de alto padrão que pesquisam arquitetos na região acabam indo pra outros escritórios que anunciam no topo."
+          Pergunta: "Vocês já têm alguém cuidando dessa presença digital e anúncios para atrair clientes de alto padrão no Google por aí hoje?"
 
         * SE FOR CLÍNICA VETERINÁRIA (SEM SITE ou SEM ANÚNCIOS ATIVOS):
           "Achei a estrutura e a reputação de vocês aí em ${neighborhood} excelentes! Mas reparei que muitos tutores que pesquisam veterinário no Google na região acabam caindo nos concorrentes que anunciam no topo, porque vocês ainda não têm uma página rápida direcionando direto pro WhatsApp da recepção."
