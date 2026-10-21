@@ -5,8 +5,8 @@ const CONFIG_FILE = path.join(__dirname, 'data', 'config.json');
 
 const DEFAULT_CONFIG = {
   autoStartAutopilot: true,
-  onlyRespondReplies: true,
-  disableNewLeadOutbound: true,
+  onlyRespondReplies: false,
+  disableNewLeadOutbound: false,
   dailyLimit: 10,
   distributeOverDay: true,
   outboundStartHour: 10,
@@ -232,11 +232,11 @@ function saveConfig(updates = {}) {
 }
 
 const DYNAMIC_DAY_LIMITS = {
-  1: 11, // Segunda: 11 leads (aquecimento do início de semana)
-  2: 13, // Terça: 13 leads (dia ativo)
-  3: 15, // Quarta: 15 leads (pico solicitado pelo Kauê)
-  4: 10, // Quinta: 10 leads (desaceleração / proteção)
-  5: 14  // Sexta: 14 leads (fechamento de semana)
+  1: 10, // Segunda: 10 leads/dia
+  2: 10, // Terça: 10 leads/dia
+  3: 10, // Quarta: 10 leads/dia
+  4: 10, // Quinta: 10 leads/dia
+  5: 10  // Sexta: 10 leads/dia
 };
 
 function checkAndResetDailyLimit(config) {

@@ -25,6 +25,30 @@ const {
   isExcludedLead
 } = configManager;
 
+// Funções seguras de leitura e escrita de JSON
+function readJson(file, defaultVal = []) {
+  try {
+    if (!fs.existsSync(file)) {
+      fs.writeFileSync(file, JSON.stringify(defaultVal, null, 2), 'utf8');
+      return defaultVal;
+    }
+    return JSON.parse(fs.readFileSync(file, 'utf8'));
+  } catch (err) {
+    console.error(`[Autopilot] Erro ao ler ${file}:`, err.message);
+    return defaultVal;
+  }
+}
+
+function writeJson(file, data) {
+  try {
+    fs.writeFileSync(file, JSON.stringify(data, null, 2), 'utf8');
+    return true;
+  } catch (err) {
+    console.error(`[Autopilot] Erro ao salvar ${file}:`, err.message);
+    return false;
+  }
+}
+
 // Trava in-memory para impedir processamento simultâneo do mesmo lead
 const inFlightLeadIds = new Set();
 
@@ -119,7 +143,7 @@ function checkCommercialHours(config = {}) {
   }
 
   const nextDayName = DAY_NAMES[nextAllowedDay];
-  const allowedDaysText = 'Seg, Ter, Qui e Sex';
+  const allowedDaysText = 'Seg a Sex';
 
   return {
     isAllowed,

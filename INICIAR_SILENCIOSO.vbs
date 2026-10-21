@@ -14,7 +14,9 @@ End If
 
 ' Determinar caminho do executavel do Node.js
 Dim nodeExe
-If fso.FileExists("C:\Program Files\nodejs\node.exe") Then
+If fso.FileExists("G:\Programas\nodejs\node.exe") Then
+    nodeExe = """G:\Programas\nodejs\node.exe"""
+ElseIf fso.FileExists("C:\Program Files\nodejs\node.exe") Then
     nodeExe = """C:\Program Files\nodejs\node.exe"""
 ElseIf fso.FileExists("C:\Program Files (x86)\nodejs\node.exe") Then
     nodeExe = """C:\Program Files (x86)\nodejs\node.exe"""

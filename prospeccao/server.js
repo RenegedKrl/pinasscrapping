@@ -2088,6 +2088,13 @@ const server = app.listen(PORT, () => {
   initAutoResponder();
   autopilot.setPendingRepliesChecker(checkAndRespondPendingLeads);
 
+  // Auto-iniciar Piloto Automático no boot do servidor se configurado
+  const startupCfg = readConfig();
+  if (startupCfg.autoStartAutopilot !== false) {
+    console.log('[Startup] 🚀 Auto-iniciando Piloto Automático no boot do servidor...');
+    autopilot.start();
+  }
+
   // Executar reconciliação inicial de consistência de leads
   try {
     conversationGuard.reconcileLeadsDatabase(whatsapp.store);
