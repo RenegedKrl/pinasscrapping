@@ -25,15 +25,65 @@
     },
     "score": 10,
     "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
-    "status": "novo",
-    "lastContact": null,
+    "status": "respondeu",
+    "lastContact": "2026-10-21T14:19:45.671Z",
     "createdAt": "2026-10-13T20:29:14.447Z",
     "tier": "diamante",
     "priorityScore": 100,
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Odontologia (Alto Ticket Particular) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (26 reviews ★5.0) • WhatsApp Celular Direto"
+    "acceptanceReason": "Odontologia (Alto Ticket Particular) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (26 reviews ★5.0) • WhatsApp Celular Direto",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 26,
+      "neighborhood": "São Paulo",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (26 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (26 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Paulo. Avaliações: 26 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em São Paulo (26 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Opa, tudo bem por aí? É da Dra Bruna Vasconcelos?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-21T14:06:17.535Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo bem por aí? É da Dra Bruna Vasconcelos?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-21T14:19:45.671Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo bem? Prazer! Aqui é o Kauê, da Pinas.\n\nVi o perfil de vocês no Google Maps em São Paulo e achei muito bacana a reputação por aí. Dei uma olhada rápida na estrutura digital de vocês pelo celular e queria entender: vocês já têm alguém cuidando dessa parte de site e novos contatos por aí hoje?"
+      }
+    ],
+    "repliedAt": "2026-10-21T14:14:33.793Z"
   },
   {
     "id": "lead-1791923354444-elwt3n",
@@ -61,15 +111,81 @@
     },
     "score": 10,
     "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
-    "status": "novo",
-    "lastContact": null,
+    "status": "perdido",
+    "lastContact": "2026-10-21T14:49:54.187Z",
     "createdAt": "2026-10-13T20:29:14.444Z",
     "tier": "diamante",
     "priorityScore": 100,
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Odontologia (Alto Ticket Particular) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (60 reviews ★4.9) • WhatsApp Celular Direto"
+    "acceptanceReason": "Odontologia (Alto Ticket Particular) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (60 reviews ★4.9) • WhatsApp Celular Direto",
+    "stage": 4,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 4.9,
+      "reviews": 60,
+      "neighborhood": "São Paulo",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 4.9 (60 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (60 avaliações com nota 4.9)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Paulo. Avaliações: 60 (nota 4.9). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em São Paulo (60 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Oi, tudo bem? Aqui é da My Implants Odontologia de Alta Performance?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-21T14:25:18.838Z",
+        "auto": true,
+        "ai": true,
+        "text": "Oi, tudo bem? Aqui é da My Implants Odontologia de Alta Performance?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-21T14:27:48.343Z",
+        "auto": true,
+        "ai": true,
+        "text": "Show, prazer falar contigo! Sou o Kauê, da Pinas.\n\nA gente ajuda clínicas odontológicas aqui de SP a captarem pacientes particulares no Google todo mês. Dei uma olhada no perfil de vocês no Maps e vi que tem ótimas avaliações na região, mas notei pelo celular que vocês ainda não têm um site próprio cadastrado, o que acaba fazendo muita gente que pesquisa no Google acabar chamando o concorrente do lado.\n\nVocês já têm alguém cuidando dessa parte de site e novos contatos pelo Google por aí hoje ou a maioria dos pacientes ainda vem por indicação?"
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-21T14:41:33.259Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa Lethicia, tudo ótimo por aqui! Prazer falar contigo. Sou o Kauê, da Pinas.\n\nA gente ajuda clínicas aqui de SP a captarem pacientes particulares no Google todo mês. Vi que vocês têm uma nota excelente no Maps, mas notei que quem pesquisa pelo celular não encontra um site próprio com botão de WhatsApp e acaba indo pro concorrente que já anuncia no topo.\n\nVocês já têm alguém cuidando dessa parte de site e novos contatos pelo Google por aí hoje ou a maioria ainda vem por indicação boca a boca?"
+      },
+      {
+        "stage": 4,
+        "sentAt": "2026-10-21T14:49:54.187Z",
+        "auto": true,
+        "ai": true,
+        "text": "Ah, tá bom! Muito obrigado pelo retorno, viu? Se tiver interesse ou precisar de algo futuramente, é só entrar em contato. Um abraço e muito sucesso por aí!"
+      }
+    ],
+    "repliedAt": "2026-10-21T14:48:25.523Z",
+    "manualControl": true,
+    "humanTakeover": true
   },
   {
     "id": "lead-1791923354443-1wzjmo",
@@ -97,15 +213,74 @@
     },
     "score": 10,
     "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
-    "status": "novo",
-    "lastContact": null,
+    "status": "perdido",
+    "lastContact": "2026-10-21T15:39:49.020Z",
     "createdAt": "2026-10-13T20:29:14.443Z",
     "tier": "diamante",
     "priorityScore": 100,
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Odontologia (Alto Ticket Particular) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (281 reviews ★5.0) • WhatsApp Celular Direto"
+    "acceptanceReason": "Odontologia (Alto Ticket Particular) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (281 reviews ★5.0) • WhatsApp Celular Direto",
+    "stage": 3,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 281,
+      "neighborhood": "São Paulo",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (281 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (281 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Paulo. Avaliações: 281 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em São Paulo (281 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Tudo bom? Falo com o Dr. Vagner Carneiro?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-21T15:05:09.528Z",
+        "auto": true,
+        "ai": true,
+        "text": "Tudo bom? Falo com o Dr. Vagner Carneiro?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-21T15:09:43.233Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa Verônica, tudo ótimo por aqui! Prazer falar contigo.\n\nSou o Kauê, da Pinas. A gente ajuda clínicas aqui de São Paulo a captarem pacientes particulares no Google todo mês. Vi que vocês têm um trabalho fantástico com 5 estrelas no Maps, mas notei que quem pesquisa pelo celular não encontra um site próprio com botão direto de WhatsApp para agendar na hora.\n\nVocês já têm alguém cuidando dessa parte de site e captação no Google por aí hoje ou o Dr. Vagner ainda recebe a maioria dos pacientes por indicação?"
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-21T15:39:49.020Z",
+        "auto": true,
+        "ai": true,
+        "text": "Ah, tá bom! Muito obrigado pelo retorno, viu? Se tiver interesse ou precisar de algo futuramente, é só entrar em contato. Um abraço e muito sucesso por aí!"
+      }
+    ],
+    "repliedAt": "2026-10-21T15:39:35.412Z",
+    "manualControl": true,
+    "humanTakeover": true
   },
   {
     "id": "lead-1791220864216-y1g2ai",
@@ -133,8 +308,8 @@
     },
     "score": 10,
     "notes": "Clientela física forte (52 reviews, nota 4.9), mas perde buscas diárias no Google por não ter site próprio.",
-    "status": "novo",
-    "lastContact": null,
+    "status": "respondeu",
+    "lastContact": "2026-10-21T15:44:50.425Z",
     "createdAt": "2026-10-05T17:21:04.216Z",
     "conversationScript": {
       "hasCustomerReplied": false,
@@ -223,7 +398,64 @@
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (52 reviews ★4.9) • WhatsApp Celular Direto"
+    "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (52 reviews ★4.9) • WhatsApp Celular Direto",
+    "stage": 3,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 4.9,
+      "reviews": 52,
+      "neighborhood": "Vila Mariana, São Paulo - SP",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 4.9 (52 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (52 avaliações com nota 4.9)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Vila Mariana, São Paulo - SP. Avaliações: 52 (nota 4.9). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Vila Mariana, São Paulo - SP (52 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Oi, tudo certo? É da Santo Cão Clínica Veterinária e Pet Shop?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-21T15:07:05.090Z",
+        "auto": true,
+        "ai": true,
+        "text": "Oi, tudo certo? É da Santo Cão Clínica Veterinária e Pet Shop?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-21T15:07:42.526Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo certo por aqui! Sou o Kauê, da Pinas.\n\nA gente cuida da presença digital e captação de clientes para clínicas veterinárias aqui de SP. Vi o perfil de vocês no Google Maps aí na Vila Mariana e as avaliações são excelentes, nota 4.9.\n\nMas notei que vocês ainda não têm um site próprio cadastrado lá. Hoje em dia, quem pesquisa no Google pelo celular e não acha uma página rápida com botão de WhatsApp acaba indo pro concorrente da região que já anuncia no topo.\n\nVocês já têm alguém cuidando dessa parte de site e novos contatos pelo Google por aí hoje ou a maioria dos tutores ainda vem por indicação?"
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-21T15:44:50.425Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo ótimo por aqui! Prazer falar contigo, sou o Kauê, da Pinas.\n\nVi que vocês são referência na Vila Mariana com nota 4.9 no Google, o que é muito difícil de conseguir. Notei que vocês já fazem um trabalho legal de anúncios no Instagram, mas quem pesquisa por veterinário no Google pelo celular não encontra um site próprio de vocês com botão de WhatsApp, e acaba caindo nos concorrentes da região que já anunciam no topo.\n\nVocês já têm alguém cuidando dessa parte de site e captação no Google por aí hoje ou a maioria dos novos pacientes ainda vem por indicação e pelas redes sociais?"
+      }
+    ],
+    "repliedAt": "2026-10-21T15:44:36.992Z"
   },
   {
     "id": "lead-1790820665677-13crhk",
@@ -242,8 +474,8 @@
     "neighborhood": "Santo Amaro SP",
     "city": "São Paulo",
     "notes": "Sem site cadastrado no Maps (Oportunidade alta para site + Google Ads).",
-    "status": "novo",
-    "lastContact": null,
+    "status": "contatado",
+    "lastContact": "2026-10-21T15:49:41.996Z",
     "createdAt": "2026-10-01T02:11:05.677Z",
     "opportunity": {
       "score": 100,
@@ -341,7 +573,49 @@
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (65 reviews ★4.9) • WhatsApp Celular Direto"
+    "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (65 reviews ★4.9) • WhatsApp Celular Direto",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 4.9,
+      "reviews": 65,
+      "neighborhood": "Santo Amaro SP",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 4.9 (65 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (65 avaliações com nota 4.9)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Santo Amaro SP. Avaliações: 65 (nota 4.9). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Santo Amaro SP (65 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Olá, tudo bem? Falo com a Clínica Veterinária Vet Care Help de Santo Amaro SP?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-21T15:49:41.996Z",
+        "auto": true,
+        "ai": true,
+        "text": "Olá, tudo bem? Falo com a Clínica Veterinária Vet Care Help de Santo Amaro SP?"
+      }
+    ]
   },
   {
     "id": "lead-1",
@@ -477,8 +751,8 @@
     "address": "Morumbi, São Paulo - SP",
     "neighborhood": "Morumbi",
     "city": "São Paulo",
-    "notes": "Sem site próprio no Maps. Excelente oportunidade de Google Ads com IA para tutores de alta renda da região.",
-    "status": "novo",
+    "notes": "Sem site próprio no Maps. Excelente oportunidade de Google Ads com IA para tutores de alta renda da região. | Telefone sem WhatsApp (Número não possui conta no WhatsApp)",
+    "status": "ignorado",
     "lastContact": null,
     "createdAt": "2026-10-01T00:10:00.000Z",
     "opportunity": {
@@ -577,7 +851,8 @@
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (115 reviews ★4.7) • WhatsApp Celular Direto"
+    "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (115 reviews ★4.7) • WhatsApp Celular Direto",
+    "invalidPhone": true
   },
   {
     "id": "lead-1791220838723-c2ihan",
@@ -605,8 +880,8 @@
     },
     "score": 10,
     "notes": "Clientela física forte (15 reviews, nota 4.7), mas perde buscas diárias no Google por não ter site próprio.",
-    "status": "novo",
-    "lastContact": null,
+    "status": "respondeu",
+    "lastContact": "2026-10-21T16:56:30.153Z",
     "createdAt": "2026-10-05T17:20:38.723Z",
     "conversationScript": {
       "hasCustomerReplied": false,
@@ -686,7 +961,64 @@
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (15 reviews ★4.7) • WhatsApp Celular Direto"
+    "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (15 reviews ★4.7) • WhatsApp Celular Direto",
+    "stage": 3,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 4.7,
+      "reviews": 15,
+      "neighborhood": "Pinheiros, São Paulo - SP",
+      "localReputation": "média",
+      "diagnosisTags": [
+        "⭐ 15 avaliações"
+      ],
+      "strengths": [
+        "Boa presença com 15 avaliações (nota 4.7)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Pinheiros, São Paulo - SP. Avaliações: 15 (nota 4.7). Reputação local: média."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Pinheiros, São Paulo - SP (15 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Olá, como vai? É da VCLab Pathology?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-21T16:23:40.825Z",
+        "auto": true,
+        "ai": true,
+        "text": "Olá, como vai? É da VCLab Pathology?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-21T16:24:08.580Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo certo por aqui! Prazer falar com você, sou o Kauê, da Pinas.\n\nA gente ajuda clínicas veterinárias aqui de SP a atraírem mais clientes particulares pelo Google. Vi o perfil de vocês aí em Pinheiros com uma nota excelente, mas notei que ainda não possuem um site próprio cadastrado no Maps.\n\nHoje, quem pesquisa pelo celular e não encontra uma página rápida com botão direto de WhatsApp acaba indo para o concorrente da região que já anuncia. Vocês já têm alguém cuidando dessa parte de site e novos contatos no Google por aí ou a maioria dos tutores ainda vem por indicação?"
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-21T16:56:30.153Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo certo por aqui! Sou o Kauê, da Pinas.\n\nA gente cuida da presença digital e captação de clínicas veterinárias aqui em São Paulo. Vi o perfil de vocês no Google Maps aí em Pinheiros e achei a nota de vocês excelente, 4.7 estrelas é um baita diferencial.\n\nPorém, notei que vocês ainda não têm um site próprio cadastrado. Hoje em dia, quem pesquisa no Google pelo celular acaba não achando um botão direto de WhatsApp de vocês e termina indo pro concorrente da região que já está anunciando no topo.\n\nVocês já têm alguém cuidando dessa parte de site e anúncios no Google por aí hoje ou a maioria dos tutores ainda chega por indicação?"
+      }
+    ],
+    "repliedAt": "2026-10-21T16:56:16.206Z"
   },
   {
     "id": "lead-1791920477328-9vzh6d",
@@ -714,15 +1046,57 @@
     },
     "score": 10,
     "notes": "Clientela física forte (68 reviews, nota 5), mas perde buscas diárias no Google por não ter site próprio.",
-    "status": "novo",
-    "lastContact": null,
+    "status": "contatado",
+    "lastContact": "2026-10-21T17:01:32.839Z",
     "createdAt": "2026-10-13T19:41:17.328Z",
     "tier": "diamante",
     "priorityScore": 100,
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (68 reviews ★5.0) • WhatsApp Celular Direto"
+    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (68 reviews ★5.0) • WhatsApp Celular Direto",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 68,
+      "neighborhood": "Santo André, SP",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (68 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (68 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Santo André, SP. Avaliações: 68 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Santo André, SP (68 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Oi! É da Gabriel Camargo?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-21T17:01:32.839Z",
+        "auto": true,
+        "ai": true,
+        "text": "Oi! É da Gabriel Camargo?"
+      }
+    ]
   },
   {
     "id": "lead-1791920477326-cmagyp",
