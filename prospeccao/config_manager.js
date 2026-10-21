@@ -11,6 +11,7 @@ const DEFAULT_CONFIG = {
   distributeOverDay: true,
   outboundStartHour: 10,
   outboundEndHour: 19,
+  outboundEndHourFriday: 16,
   outboundDays: [1, 3, 5],
   sentToday: 0,
   lastResetDate: new Date().toISOString().split('T')[0],
@@ -232,9 +233,9 @@ function saveConfig(updates = {}) {
 }
 
 const DYNAMIC_DAY_LIMITS = {
-  1: 15, // Segunda: 15 leads (faixa de 12 a 17 leads/dia solicitada pelo Kauê)
-  3: 16, // Quarta: 16 leads (dia de pico)
-  5: 15  // Sexta: 15 leads (fechamento de semana)
+  1: 15, // Segunda: 15 leads (10h às 19h)
+  3: 16, // Quarta: 16 leads (10h às 19h)
+  5: 13  // Sexta: 13 leads (10h às 16h - janela mais curta até as 4 da tarde conforme pedido do Kauê)
 };
 
 function getDynamicDayLimit() {

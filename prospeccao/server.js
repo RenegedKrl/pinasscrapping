@@ -1768,7 +1768,7 @@ app.post('/api/server/shutdown', (req, res) => {
 
 // Configuração do Modo 24/7 Autônomo e limites do Piloto Automático
 app.post('/api/autopilot/config', (req, res) => {
-  const { autoStartAutopilot, dailyLimit, outboundStartHour, outboundEndHour, outboundDays, minDelaySeconds, maxDelaySeconds, onlyRespondReplies } = req.body;
+  const { autoStartAutopilot, dailyLimit, outboundStartHour, outboundEndHour, outboundEndHourFriday, outboundDays, minDelaySeconds, maxDelaySeconds, onlyRespondReplies } = req.body;
   const updates = {};
   if (typeof onlyRespondReplies === 'boolean') {
     updates.onlyRespondReplies = onlyRespondReplies;
@@ -1785,6 +1785,9 @@ app.post('/api/autopilot/config', (req, res) => {
   }
   if (typeof outboundEndHour === 'number' && outboundEndHour >= 0 && outboundEndHour <= 23) {
     updates.outboundEndHour = outboundEndHour;
+  }
+  if (typeof outboundEndHourFriday === 'number' && outboundEndHourFriday >= 0 && outboundEndHourFriday <= 23) {
+    updates.outboundEndHourFriday = outboundEndHourFriday;
   }
   if (Array.isArray(outboundDays)) {
     updates.outboundDays = outboundDays.map(Number).filter(n => !isNaN(n) && n >= 0 && n <= 6);

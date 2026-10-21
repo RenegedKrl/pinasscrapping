@@ -1046,8 +1046,8 @@
     },
     "score": 10,
     "notes": "Clientela física forte (68 reviews, nota 5), mas perde buscas diárias no Google por não ter site próprio.",
-    "status": "contatado",
-    "lastContact": "2026-10-21T17:01:32.839Z",
+    "status": "respondeu",
+    "lastContact": "2026-10-21T17:19:26.406Z",
     "createdAt": "2026-10-13T19:41:17.328Z",
     "tier": "diamante",
     "priorityScore": 100,
@@ -1055,7 +1055,7 @@
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
     "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (68 reviews ★5.0) • WhatsApp Celular Direto",
-    "stage": 1,
+    "stage": 2,
     "siteAudit": {
       "hasWebsite": false,
       "isOnline": false,
@@ -1095,8 +1095,16 @@
         "auto": true,
         "ai": true,
         "text": "Oi! É da Gabriel Camargo?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-21T17:19:26.406Z",
+        "auto": true,
+        "ai": true,
+        "text": "Tudo ótimo por aqui! Prazer falar contigo, Gabriel. Sou o Kauê, da Pinas.\n\nA gente ajuda profissionais e consultórios aqui de SP a captarem pacientes qualificados no Google. Vi sua ficha no Maps em Santo André com nota 5.0, o trabalho parece ser excelente, mas notei que quem te acha pelo celular não encontra um site rápido com botão de WhatsApp, o que faz muita gente acabar chamando o concorrente que já anuncia no topo.\n\nVocês já têm alguém cuidando dessa parte de site e anúncios por aí hoje ou a maioria dos pacientes ainda vem por indicação?"
       }
-    ]
+    ],
+    "repliedAt": "2026-10-21T17:19:07.970Z"
   },
   {
     "id": "lead-1791920477326-cmagyp",
@@ -1202,15 +1210,57 @@
     },
     "score": 10,
     "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
-    "status": "novo",
-    "lastContact": null,
+    "status": "contatado",
+    "lastContact": "2026-10-21T17:21:46.379Z",
     "createdAt": "2026-10-13T20:29:14.443Z",
     "tier": "diamante",
     "priorityScore": 100,
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Odontologia (Alto Ticket Particular) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (12 reviews ★4.7) • WhatsApp Celular Direto"
+    "acceptanceReason": "Odontologia (Alto Ticket Particular) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (12 reviews ★4.7) • WhatsApp Celular Direto",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 4.7,
+      "reviews": 12,
+      "neighborhood": "São Paulo",
+      "localReputation": "média",
+      "diagnosisTags": [
+        "⭐ 12 avaliações"
+      ],
+      "strengths": [
+        "Boa presença com 12 avaliações (nota 4.7)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Paulo. Avaliações: 12 (nota 4.7). Reputação local: média."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em São Paulo (12 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Olá, como vai? É da Fiori Implantes Tratamentos Odontológicos?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-21T17:21:46.379Z",
+        "auto": true,
+        "ai": true,
+        "text": "Olá, como vai? É da Fiori Implantes Tratamentos Odontológicos?"
+      }
+    ]
   },
   {
     "id": "lead-1790820689033-1g3wzz",

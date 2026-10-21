@@ -36,7 +36,7 @@
 4. **Outros comércios/serviços de alto ticket** (Aberto a oportunidades: energia solar, contabilidade, clínicas odontológicas, etc.)
 
 ### Regra de Ouro Anti-Spam & Abordagem Conversacional (Inviolável):
-- **CRONOGRAMA E VOLUME DE NOVOS CLIENTES:** O disparo de 1º contato (outbound/frio) ocorre exclusivamente de **Segunda, Quarta e Sexta**, entre as **10h e 19h** (Horário de Brasília), com meta entre **12 e 17 leads/dia** distribuídos ao longo do dia comercial.
+- **CRONOGRAMA E VOLUME DE NOVOS CLIENTES:** O disparo de 1º contato (outbound/frio) ocorre exclusivamente de **Segunda e Quarta (10h às 19h)** e na **Sexta-feira (10h às 16h)**, com meta entre **12 e 17 leads/dia** distribuídos ao longo do dia comercial. Na sexta o envio encerra às 16h (4 da tarde) porque após esse horário o pessoal raramente vê mensagens.
 - **DIAS PAUSADOS PARA NOVOS LEADS:** **Terça-feira**, **Quinta-feira**, **Sábado** e **Domingo** o sistema fica em Standby para prospecção fria de novos contatos.
 - **ATENDIMENTO A RESPOSTAS 24/7 (Sempre Ativo):** Leads que já responderam ou mandarem mensagem continuam sendo respondidos com delay humanizado (1 a 1.5 min) pela IA de forma contínua, **em qualquer dia da semana (inclusive terças, quintas e finais de semana) e 24h por dia**.
 - **LIMITE ESTRITO DE 1 MENSAGEM SEM RESPOSTA:** NUNCA enviar mais de uma mensagem para um lead se ele não responder. Se o primeiro contato foi enviado e o lead não respondeu, o sistema identifica esse estado e **NUNCA envia outra mensagem** (sem follow-ups forçados, sem etapas automáticas subsequentes).

@@ -6,12 +6,13 @@
   "distributeOverDay": true,
   "outboundStartHour": 10,
   "outboundEndHour": 19,
+  "outboundEndHourFriday": 16,
   "outboundDays": [
     1,
     3,
     5
   ],
-  "sentToday": 8,
+  "sentToday": 9,
   "lastResetDate": "2026-10-21",
   "minDelaySeconds": 300,
   "maxDelaySeconds": 330,

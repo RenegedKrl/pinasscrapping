@@ -88,17 +88,24 @@ function getBrazilTime() {
 
 // Janela comercial e cronograma de dias permitidos para NOVOS LEADS (Prospecção Fria Outbound)
 // Solicitado pelo Kauê:
-// - Disparos para novos clientes: Segunda, Quarta e Sexta (Terça, Quinta, Sábado e Domingo pausados para novos leads)
-// - Horário comercial: 10h da manhã até as 19h da noite (Horário de Brasília)
+// - Disparos para novos clientes: Segunda e Quarta (10h às 19h) e Sexta-feira (10h às 16h)
+// - Sexta-feira: até as 16h (4 da tarde), pois após as 16h as pessoas raramente veem mensagens
+// - Terça, Quinta, Sábado e Domingo pausados para novos leads frios
 // - Respostas de leads recebidas: Atendimento contínuo da IA 24/7 sem qualquer restrição de dia ou horário!
 function checkCommercialHours(config = {}) {
+  const { hour, minute, second, dayOfWeek } = getBrazilTime();
   const startHour = config.outboundStartHour !== undefined ? config.outboundStartHour : 10;
-  const endHour = config.outboundEndHour !== undefined ? config.outboundEndHour : 19;
+  
+  // Sexta-feira (dia 5): Encerra às 16h (4 da tarde) conforme pedido do Kauê
+  const isFriday = dayOfWeek === 5;
+  const endHour = isFriday
+    ? (config.outboundEndHourFriday !== undefined ? config.outboundEndHourFriday : 16)
+    : (config.outboundEndHour !== undefined ? config.outboundEndHour : 19);
+
   const outboundDays = Array.isArray(config.outboundDays) && config.outboundDays.length > 0
     ? config.outboundDays
-    : [1, 3, 5]; // Padrão: Seg, Qua e Sex (10h às 19h)
+    : [1, 3, 5]; // Padrão: Seg, Qua e Sex
 
-  const { hour, minute, second, dayOfWeek } = getBrazilTime();
   const dayName = DAY_NAMES[dayOfWeek];
   const isAllowedDay = outboundDays.includes(dayOfWeek);
   const isAllowedHour = hour >= startHour && hour < endHour;
@@ -598,8 +605,11 @@ class AutoPilotEngine {
     // 8. Agendar Próximo Disparo: Distribuição inteligente ao longo do dia comercial (10h às 19h)
     let randomIntervalSec;
     if (config.distributeOverDay) {
-      const { hour, minute } = getBrazilTime();
-      const endHour = config.outboundEndHour !== undefined ? config.outboundEndHour : 19;
+      const { hour, minute, dayOfWeek } = getBrazilTime();
+      const isFriday = dayOfWeek === 5;
+      const endHour = isFriday
+        ? (config.outboundEndHourFriday !== undefined ? config.outboundEndHourFriday : 16)
+        : (config.outboundEndHour !== undefined ? config.outboundEndHour : 19);
       const remainingMinutes = Math.max(15, (endHour - hour) * 60 - minute);
       const dailyLimit = config.dailyLimit || 10;
       const sentToday = config.sentToday || 0;
