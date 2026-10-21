@@ -1446,8 +1446,8 @@
     "neighborhood": "Santo Amaro SP",
     "city": "São Paulo",
     "notes": "Sem site cadastrado no Maps (Oportunidade alta para site + Google Ads).",
-    "status": "contatado",
-    "lastContact": "2026-10-21T17:55:30.201Z",
+    "status": "respondeu",
+    "lastContact": "2026-10-21T17:57:35.960Z",
     "createdAt": "2026-10-01T02:11:05.678Z",
     "opportunity": {
       "score": 100,
@@ -1537,7 +1537,7 @@
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
     "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (111 reviews ★4.2) • WhatsApp Celular Direto",
-    "stage": 1,
+    "stage": 2,
     "siteAudit": {
       "hasWebsite": false,
       "isOnline": false,
@@ -1577,8 +1577,16 @@
         "auto": true,
         "ai": true,
         "text": "Olá, tudo bem? Falo com a Clínica Veterinária Love 24 horas de Santo Amaro SP?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-21T17:57:35.960Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo ótimo por aqui também! Prazer, sou o Kauê, da Pinas.\n\nVi o perfil de vocês no Maps aí em Santo Amaro com nota 4.2, mas notei que ainda não têm um site próprio com botão direto de WhatsApp.\n\nVocês já têm alguém cuidando dessa parte de captação no Google por aí hoje?"
       }
-    ]
+    ],
+    "repliedAt": "2026-10-21T17:57:17.807Z"
   },
   {
     "id": "lead-1790820665677-n95wfp",
@@ -1597,8 +1605,8 @@
     "neighborhood": "Santo Amaro SP",
     "city": "São Paulo",
     "notes": "Sem site cadastrado no Maps (Oportunidade alta para site + Google Ads).",
-    "status": "novo",
-    "lastContact": null,
+    "status": "contatado",
+    "lastContact": "2026-10-21T18:18:10.890Z",
     "createdAt": "2026-10-01T02:11:05.677Z",
     "opportunity": {
       "score": 100,
@@ -1687,7 +1695,49 @@
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (14 reviews ★5.0) • WhatsApp Celular Direto"
+    "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (14 reviews ★5.0) • WhatsApp Celular Direto",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 14,
+      "neighborhood": "Santo Amaro SP",
+      "localReputation": "média",
+      "diagnosisTags": [
+        "⭐ 14 avaliações"
+      ],
+      "strengths": [
+        "Boa presença com 14 avaliações (nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Santo Amaro SP. Avaliações: 14 (nota 5.0). Reputação local: média."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Santo Amaro SP (14 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Boa tarde, tudo bem? É da Amalfi Clínica Veterinária?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-21T18:18:10.890Z",
+        "auto": true,
+        "ai": true,
+        "text": "Boa tarde, tudo bem? É da Amalfi Clínica Veterinária?"
+      }
+    ]
   },
   {
     "id": "lead-1791920492990-8x9gpb",

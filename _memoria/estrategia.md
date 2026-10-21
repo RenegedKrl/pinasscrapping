@@ -19,7 +19,7 @@ Kauê atualmente divide o tempo entre trabalho CLT e a operação da Pinas. O ob
      * 2º Escritórios de Advocacia (Ações de alto valor e honorários expressivos)
      * 3º Clínicas Odontológicas (Implantes, próteses e alinhadores particulares)
      * 4º Mentores de Negócios, Finanças e Treinamentos (Mentorias de alto ticket)
-    - **Metodologia Consultiva em 2 Etapas:** Abertura despretensiosa em 1 linha ➔ Diagnóstico técnico real (auditoria profunda em tempo real do site e Google Maps com dados concretos de velocidade, CMS e botão WhatsApp) + Pergunta de qualificação ➔ Call rápida de 10 a 15 min no Google Meet para apresentar a esteira de tráfego. (100% automático em texto, zero vídeos).
+    - **Metodologia Consultiva em 2 Etapas:** Abertura despretensiosa em 1 linha ➔ Diagnóstico cativante & dor real de faturamento (efeito "Caramba, eu preciso disso mesmo" — conectando a excelente reputação dele no bairro à perda invisível de clientes que pesquisam no Google e caem nos concorrentes que anunciam no topo, em no máximo 2 a 3 blocos curtos) + Pergunta de qualificação ➔ Call rápida de 10 a 15 min no Google Meet para apresentar a esteira de tráfego. (100% automático em texto, zero vídeos).
 
 ## Pra Tirar das Costas (Automação / Apoio do Agente)
 
@@ -27,7 +27,7 @@ Kauê atualmente divide o tempo entre trabalho CLT e a operação da Pinas. O ob
 - **Solução do gargalo da Pink Luxo:** Criar roteiros simples e fáceis para as clientes gravarem vídeos sem atrito + criar mini-playbook de atendimento no WhatsApp para aumentar a conversão de leads em agendamentos pagos.
 - **Relatórios de tráfego semanais:** Analisar exports de Meta/Google Ads via `/relatorio-ads` gerando relatórios executivos rápidos em minutos.
 - **SDR IA Autônomo de Prospecção (Pronto para Executar):**
-  - **Estratégia Conversacional Definida:** Não falar de venda ou site na primeira mensagem. Começar com abertura 100% despretensiosa em 1 linha ("Olá, tudo bem? É da clínica {nome}?"). Quando a pessoa responder ("Ah, sou sim", "Sim, é daqui"), aí sim apresentar a Pinas, a auditoria real e a pergunta de qualificação, conduzindo com paciência até agendar a call de 10 a 15 min no Google Meet (zero vídeo gravado).
+  - **Estratégia Conversacional Definida:** Não falar de venda ou site na primeira mensagem. Começar com abertura 100% despretensiosa em 1 linha ("Olá, tudo bem? É da clínica {nome}?"). Quando a pessoa responder ("Ah, sou sim", "Sim, é daqui"), aí sim apresentar a Pinas, a auditoria e a proposta de valor com tom cativante e de alto impacto que faça o lead pensar "Caramba, eu preciso disso mesmo", mantendo a estrutura enxuta de 2 a 3 blocos curtos, conduzindo com paciência até agendar a call de 10 a 15 min no Google Meet (zero vídeo gravado).
   - **Lead Piloto Já Auditado e Salvo no Painel:** Clínica Veterinária Tatuapé (`lead-1791504801537`, WhatsApp: `(11) 93380-9012`, Dr. Rodrigo / Dra. Tatiana).
   - **Modos de Operação:** Co-piloto (assistido no chat) ou SDR IA 24/7 (plugado no `server.js` via API gratuita do Google Gemini para rodar enquanto o Kauê está no CLT).
   - **Cronograma de Disparo para Novos Leads:** Disparos de novos clientes exclusivamente em **Segunda e Quarta (10h às 19h)** e na **Sexta-feira (10h às 16h)** com meta de **12 a 17 leads/dia** (nesta semana inicial de 21 a 25/10/2026, dispara excepcionalmente Quarta, Quinta e Sexta, migrando automaticamente na próxima semana). Atendimento a respostas recebidas sempre ativo 24/7 (todos os dias).

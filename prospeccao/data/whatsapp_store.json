@@ -22,15 +22,15 @@
       "id": "5511941713647-1582482974@g.us",
       "name": "Testes🐦",
       "phone": "5511941713647-1582482974",
-      "unreadCount": 0,
+      "unreadCount": 2,
       "lastMessage": {
         "text": "Kauê Felix: 📷 Foto",
-        "timestamp": 1792604904000,
+        "timestamp": 1792606611000,
         "fromMe": false,
         "type": "image",
         "senderName": "Kauê Felix"
       },
-      "updatedAt": 1792604904000,
+      "updatedAt": 1792606611000,
       "isGroup": true,
       "isGroupSubject": true,
       "jid": "5511941713647-1582482974@g.us",
@@ -48466,15 +48466,33 @@
       "isGroup": false,
       "isGroupSubject": false,
       "participantCount": 0,
-      "unreadCount": 2,
+      "unreadCount": 0,
       "lastMessage": {
-        "text": "Olá! 😊🐾\n\nSeja muito bem-vindo(a) à Clínica Veterinária Love 24 Horas! ❤️\n\n━━━━━━━━━━━━━━━\n\n🕒 Atendimento 24 horas\n\nAtendemos todos os dias, sem necessidade de agendamento e por ordem de chegada.\n\n💰 Valor da consulta veterinária:\n\n• Segunda a sábado, das 8h às 18h: R$ 290,00\n\n• Segunda a sábado, após as 18h, domingos e feriados: R$ 360,00\n\n━━━━━━━━━━━━━━━\nSerá um prazer cuidar do seu pet com todo o carinho, a atenção e a dedicação que ele merece! 🐶🐱❤️\n*Assim que possível retornaremos o contato*\nLove 24 Horas —",
-        "timestamp": 1792605335000,
+        "text": "Opa, tudo ótimo por aqui também! Prazer, sou o Kauê, da Pinas.\n\nVi o perfil de vocês no Maps aí em Santo Amaro com nota 4.2, mas notei que ainda não têm um site próprio com botão direto de WhatsApp.\n\nVocês já têm alguém cuidando dessa parte de captação no Google por aí hoje?",
+        "timestamp": 1792605455959,
+        "fromMe": true,
+        "type": "text",
+        "senderName": "Kauê"
+      },
+      "updatedAt": 1792605455959
+    },
+    "5511959084580@s.whatsapp.net": {
+      "id": "5511959084580@s.whatsapp.net",
+      "jid": "5511959084580@s.whatsapp.net",
+      "name": "Clínica Veterinária Amalfi",
+      "phone": "5511959084580",
+      "isGroup": false,
+      "isGroupSubject": false,
+      "participantCount": 0,
+      "unreadCount": 3,
+      "lastMessage": {
+        "text": "Tudo bem?",
+        "timestamp": 1792606741000,
         "fromMe": false,
         "type": "text",
-        "senderName": "Love Clínica"
+        "senderName": "Clínica Veterinária Amalfi"
       },
-      "updatedAt": 1792605335000
+      "updatedAt": 1792606741000
     }
   },
   "messages": {
@@ -51165,32 +51183,6 @@
     ],
     "5511941713647-1582482974@g.us": [
       {
-        "id": "3EB0AAD1A179C0ADF9B308",
-        "fromMe": true,
-        "senderName": "Kauê",
-        "participant": null,
-        "isGroup": true,
-        "text": "petiva 05 vlog fran.mp4",
-        "timestamp": 1785341911000,
-        "type": "document",
-        "mediaUrl": null,
-        "fileName": "petiva 05 vlog fran.mp4",
-        "status": "delivered"
-      },
-      {
-        "id": "3EB050AF2C46434E7569A4",
-        "fromMe": true,
-        "senderName": "Kauê",
-        "participant": null,
-        "isGroup": true,
-        "text": "Talita capa trend.png",
-        "timestamp": 1785527792000,
-        "type": "document",
-        "mediaUrl": null,
-        "fileName": "Talita capa trend.png",
-        "status": "delivered"
-      },
-      {
         "id": "ACA41926D41477A1A531C92049047779",
         "fromMe": true,
         "senderName": "Kauê",
@@ -53764,6 +53756,34 @@
         "isGroup": true,
         "text": "",
         "timestamp": 1792604904000,
+        "type": "image",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": false,
+        "status": "delivered"
+      },
+      {
+        "id": "3EB070F6A46BDD609BFF46",
+        "fromMe": false,
+        "senderName": "Kauê Felix",
+        "participant": "30820802764857@lid",
+        "isGroup": true,
+        "text": "",
+        "timestamp": 1792606526000,
+        "type": "image",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": false,
+        "status": "delivered"
+      },
+      {
+        "id": "ACE9A58B11B5DC7197B114DC048C7D0F",
+        "fromMe": false,
+        "senderName": "Kauê Felix",
+        "participant": "30820802764857@lid",
+        "isGroup": true,
+        "text": "",
+        "timestamp": 1792606611000,
         "type": "image",
         "mediaUrl": null,
         "fileName": null,
@@ -139478,6 +139498,92 @@
         "fileName": null,
         "isBot": false,
         "status": "delivered"
+      },
+      {
+        "id": "3EB02E0608A0A855CA9146",
+        "fromMe": false,
+        "senderName": "Love Clínica",
+        "participant": null,
+        "isGroup": false,
+        "text": "Boa tarde, bem e com você?",
+        "timestamp": 1792605372000,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": false,
+        "status": "delivered"
+      },
+      {
+        "id": "3EB00A8F59F292B94DC588",
+        "fromMe": true,
+        "senderName": "Kauê",
+        "participant": null,
+        "isGroup": false,
+        "text": "Opa, tudo ótimo por aqui também! Prazer, sou o Kauê, da Pinas.\n\nVi o perfil de vocês no Maps aí em Santo Amaro com nota 4.2, mas notei que ainda não têm um site próprio com botão direto de WhatsApp.\n\nVocês já têm alguém cuidando dessa parte de captação no Google por aí hoje?",
+        "timestamp": 1792605455959,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": true,
+        "status": "sent"
+      }
+    ],
+    "5511959084580@s.whatsapp.net": [
+      {
+        "id": "3EB08664A260D9F24E4E4A",
+        "fromMe": true,
+        "senderName": "Kauê",
+        "participant": null,
+        "isGroup": false,
+        "text": "Boa tarde, tudo bem? É da Amalfi Clínica Veterinária?",
+        "timestamp": 1792606695903,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": true,
+        "status": "sent"
+      },
+      {
+        "id": "A54CFAB6EE1B4F2ED3C30DECCC43779D",
+        "fromMe": false,
+        "senderName": "Clínica Veterinária Amalfi",
+        "participant": null,
+        "isGroup": false,
+        "text": "Olá! Seja bem-vindo(a) à *Clínica Veterinária Amalfi*!💚\n\n🕒 *Horário de funcionamento:*\n• Segunda a sexta: 8h às 18h\n• Sábado: 8h às 17h\n\n📅 *Atendimentos com agendamento prévio.*\n\n_Deixe sua mensagem informando o assunto do contato. Retornaremos assim que possível._\n\n🚨 *Em caso de emergência:* traga seu pet diretamente à clínica, sem necessidade de agendamento prévio.\n\n_Agradecemos o contato e a confiança na Amalfi!_",
+        "timestamp": 1792606698000,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": false,
+        "status": "delivered"
+      },
+      {
+        "id": "3EB05BE4996A9D7009EDCD",
+        "fromMe": false,
+        "senderName": "Clínica Veterinária Amalfi",
+        "participant": null,
+        "isGroup": false,
+        "text": "Olá, Boa tarde!",
+        "timestamp": 1792606737000,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": false,
+        "status": "delivered"
+      },
+      {
+        "id": "3EB090854D7821AFDAEB96",
+        "fromMe": false,
+        "senderName": "Clínica Veterinária Amalfi",
+        "participant": null,
+        "isGroup": false,
+        "text": "Tudo bem?",
+        "timestamp": 1792606741000,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": false,
+        "status": "delivered"
       }
     ]
   },
@@ -139506,10 +139612,10 @@
     "5511953040822@s.whatsapp.net": "Fiori Implantes Tratamentos Odontológicos",
     "5511935056265": "Hospital Veterinário Popular 24h Tatuapé",
     "5511935056265@s.whatsapp.net": "Hospital Veterinário Popular 24h Tatuapé",
-    "5511940308745": "Love Clínica",
-    "5511940308745@s.whatsapp.net": "Love Clínica",
-    "5511959084580": "Amalfi Clínica Veterinária",
-    "5511959084580@s.whatsapp.net": "Amalfi Clínica Veterinária",
+    "5511940308745": "Clínica Veterinária Love 24 horas",
+    "5511940308745@s.whatsapp.net": "Clínica Veterinária Love 24 horas",
+    "5511959084580": "Clínica Veterinária Amalfi",
+    "5511959084580@s.whatsapp.net": "Clínica Veterinária Amalfi",
     "5511997941741": "Mozart Coach",
     "5511997941741@s.whatsapp.net": "Mozart Coach",
     "5515991127524": "LYK Coaching",
@@ -140842,7 +140948,11 @@
     "5511968026950@s.whatsapp.net": "Boutique Linda Rios",
     "5511998947237": "CONPAVIM CONTRUTORA E PAVIMENTADORA",
     "5511998947237@s.whatsapp.net": "CONPAVIM CONTRUTORA E PAVIMENTADORA",
-    "207983858467001@lid": "Love Clínica",
-    "207983858467001": "Love Clínica"
+    "30820802764857@lid": "Kauê Felix",
+    "30820802764857": "Kauê Felix",
+    "5511941713647-1582482974@g.us": "Kauê Felix",
+    "5511941713647-1582482974": "Kauê Felix",
+    "251612136255718@lid": "Clínica Veterinária Amalfi",
+    "251612136255718": "Clínica Veterinária Amalfi"
   }
 }
