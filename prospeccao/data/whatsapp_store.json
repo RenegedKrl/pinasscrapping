@@ -24,13 +24,13 @@
       "phone": "5511941713647-1582482974",
       "unreadCount": 0,
       "lastMessage": {
-        "text": "Kauê Felix: A Pinas ajuda empresas a atrair mais clientes e crescer no digital. Trabalhamos com tráfego pago, criação de sites e estratégias de marketing feitas sob medida para cada negócio, com foco em resultados reais.",
-        "timestamp": 1792604513000,
+        "text": "Kauê Felix: 📷 Foto",
+        "timestamp": 1792604904000,
         "fromMe": false,
-        "type": "text",
+        "type": "image",
         "senderName": "Kauê Felix"
       },
-      "updatedAt": 1792604513000,
+      "updatedAt": 1792604904000,
       "isGroup": true,
       "isGroupSubject": true,
       "jid": "5511941713647-1582482974@g.us",
@@ -48450,13 +48450,31 @@
       "participantCount": 0,
       "unreadCount": 0,
       "lastMessage": {
-        "text": "HOSPITAL VETERINÁRIO POPULAR TATUAPÉ - 24 HORAS\n\nEstamos felizes em ajudar você e seu pet ☺️.\n\n*Qual seu nome e o nome do seu Pet?*\n*O que está acontecendo com o seu animalzinho? Conte para nós quais sintomas ele está apresentando ou o motivo do contato. Assim conseguimos agilizar seu atendimento.* 🩺🐈‍⬛🦮🐾🦜🐇",
-        "timestamp": 1792604517000,
+        "text": "Opa, tudo certo por aqui! Sou o Kauê, da Pinas.\n\nVi o perfil de vocês no Maps aqui no Tatuapé com nota 4.1, mas notei que ainda não têm um site próprio com botão direto de WhatsApp.\n\nVocês já têm alguém cuidando dessa parte de captação no Google por aí hoje?",
+        "timestamp": 1792604600602,
+        "fromMe": true,
+        "type": "text",
+        "senderName": "Kauê"
+      },
+      "updatedAt": 1792604600602
+    },
+    "5511940308745@s.whatsapp.net": {
+      "id": "5511940308745@s.whatsapp.net",
+      "jid": "5511940308745@s.whatsapp.net",
+      "name": "Love Clínica",
+      "phone": "5511940308745",
+      "isGroup": false,
+      "isGroupSubject": false,
+      "participantCount": 0,
+      "unreadCount": 2,
+      "lastMessage": {
+        "text": "Olá! 😊🐾\n\nSeja muito bem-vindo(a) à Clínica Veterinária Love 24 Horas! ❤️\n\n━━━━━━━━━━━━━━━\n\n🕒 Atendimento 24 horas\n\nAtendemos todos os dias, sem necessidade de agendamento e por ordem de chegada.\n\n💰 Valor da consulta veterinária:\n\n• Segunda a sábado, das 8h às 18h: R$ 290,00\n\n• Segunda a sábado, após as 18h, domingos e feriados: R$ 360,00\n\n━━━━━━━━━━━━━━━\nSerá um prazer cuidar do seu pet com todo o carinho, a atenção e a dedicação que ele merece! 🐶🐱❤️\n*Assim que possível retornaremos o contato*\nLove 24 Horas —",
+        "timestamp": 1792605335000,
         "fromMe": false,
         "type": "text",
-        "senderName": "Hospital Veterinário Popular 24h Tatuapé"
+        "senderName": "Love Clínica"
       },
-      "updatedAt": 1792604517000
+      "updatedAt": 1792605335000
     }
   },
   "messages": {
@@ -51147,19 +51165,6 @@
     ],
     "5511941713647-1582482974@g.us": [
       {
-        "id": "3EB0163FEBC86EAD28827A",
-        "fromMe": true,
-        "senderName": "Kauê",
-        "participant": null,
-        "isGroup": true,
-        "text": "petiva 06 vlog fran.mp4",
-        "timestamp": 1785341911000,
-        "type": "document",
-        "mediaUrl": null,
-        "fileName": "petiva 06 vlog fran.mp4",
-        "status": "delivered"
-      },
-      {
         "id": "3EB0AAD1A179C0ADF9B308",
         "fromMe": true,
         "senderName": "Kauê",
@@ -53746,6 +53751,20 @@
         "text": "A Pinas ajuda empresas a atrair mais clientes e crescer no digital. Trabalhamos com tráfego pago, criação de sites e estratégias de marketing feitas sob medida para cada negócio, com foco em resultados reais.",
         "timestamp": 1792604513000,
         "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": false,
+        "status": "delivered"
+      },
+      {
+        "id": "3EB0117682D43A95135842",
+        "fromMe": false,
+        "senderName": "Kauê Felix",
+        "participant": "30820802764857@lid",
+        "isGroup": true,
+        "text": "",
+        "timestamp": 1792604904000,
+        "type": "image",
         "mediaUrl": null,
         "fileName": null,
         "isBot": false,
@@ -139401,6 +139420,64 @@
         "fileName": null,
         "isBot": false,
         "status": "delivered"
+      },
+      {
+        "id": "3EB02F63DE238439B4B134",
+        "fromMe": true,
+        "senderName": "Kauê",
+        "participant": null,
+        "isGroup": false,
+        "text": "Opa, tudo certo por aqui! Sou o Kauê, da Pinas.\n\nVi o perfil de vocês no Maps aqui no Tatuapé com nota 4.1, mas notei que ainda não têm um site próprio com botão direto de WhatsApp.\n\nVocês já têm alguém cuidando dessa parte de captação no Google por aí hoje?",
+        "timestamp": 1792604600602,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": true,
+        "status": "sent"
+      }
+    ],
+    "5511940308745@s.whatsapp.net": [
+      {
+        "id": "3EB01C5F5D8D6C0257E40C",
+        "fromMe": true,
+        "senderName": "Kauê",
+        "participant": null,
+        "isGroup": false,
+        "text": "Olá, tudo bem? Falo com a Clínica Veterinária Love 24 horas de Santo Amaro SP?",
+        "timestamp": 1792605334877,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": true,
+        "status": "sent"
+      },
+      {
+        "id": "A579FBD6919A3E145FEC68C803DEE5EB",
+        "fromMe": false,
+        "senderName": "Love Clínica",
+        "participant": null,
+        "isGroup": false,
+        "text": "Olá! 😊🐾\n\nSeja muito bem-vindo(a) à Clínica Veterinária Love 24 Horas! ❤️\n━━━━━━━━━━━━━━━\n\n🕒 Atendimento 24 horas\n\nAtendemos todos os dias, sem necessidade de agendamento e por ordem de chegada.\n\n💰 Valor da consulta veterinária:\n\n• Segunda a sábado, das 8h às 18h: R$ 290,00\n\n• Segunda a sábado, após as 18h, domingos e feriados: R$ 360,00\n\n━━━━━━━━━━━━━━━\nSerá um prazer cuidar do seu pet com todo o carinho, a atenção e a dedicação que ele merece! 🐶🐱❤️\n\n*Assim que possível retornaremos o contato*",
+        "timestamp": 1792605335000,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": false,
+        "status": "delivered"
+      },
+      {
+        "id": "A5A88FDED518C6B402F4071CB3B941AB",
+        "fromMe": false,
+        "senderName": "Love Clínica",
+        "participant": null,
+        "isGroup": false,
+        "text": "Olá! 😊🐾\n\nSeja muito bem-vindo(a) à Clínica Veterinária Love 24 Horas! ❤️\n\n━━━━━━━━━━━━━━━\n\n🕒 Atendimento 24 horas\n\nAtendemos todos os dias, sem necessidade de agendamento e por ordem de chegada.\n\n💰 Valor da consulta veterinária:\n\n• Segunda a sábado, das 8h às 18h: R$ 290,00\n\n• Segunda a sábado, após as 18h, domingos e feriados: R$ 360,00\n\n━━━━━━━━━━━━━━━\nSerá um prazer cuidar do seu pet com todo o carinho, a atenção e a dedicação que ele merece! 🐶🐱❤️\n*Assim que possível retornaremos o contato*\nLove 24 Horas —",
+        "timestamp": 1792605335000,
+        "type": "text",
+        "mediaUrl": null,
+        "fileName": null,
+        "isBot": false,
+        "status": "delivered"
       }
     ]
   },
@@ -139429,8 +139506,8 @@
     "5511953040822@s.whatsapp.net": "Fiori Implantes Tratamentos Odontológicos",
     "5511935056265": "Hospital Veterinário Popular 24h Tatuapé",
     "5511935056265@s.whatsapp.net": "Hospital Veterinário Popular 24h Tatuapé",
-    "5511940308745": "Clínica Veterinária Love 24 horas",
-    "5511940308745@s.whatsapp.net": "Clínica Veterinária Love 24 horas",
+    "5511940308745": "Love Clínica",
+    "5511940308745@s.whatsapp.net": "Love Clínica",
     "5511959084580": "Amalfi Clínica Veterinária",
     "5511959084580@s.whatsapp.net": "Amalfi Clínica Veterinária",
     "5511997941741": "Mozart Coach",
@@ -140765,11 +140842,7 @@
     "5511968026950@s.whatsapp.net": "Boutique Linda Rios",
     "5511998947237": "CONPAVIM CONTRUTORA E PAVIMENTADORA",
     "5511998947237@s.whatsapp.net": "CONPAVIM CONTRUTORA E PAVIMENTADORA",
-    "30820802764857@lid": "Kauê Felix",
-    "30820802764857": "Kauê Felix",
-    "5511941713647-1582482974@g.us": "Kauê Felix",
-    "5511941713647-1582482974": "Kauê Felix",
-    "126598607048913@lid": "Hospital Veterinário Popular 24h Tatuapé",
-    "126598607048913": "Hospital Veterinário Popular 24h Tatuapé"
+    "207983858467001@lid": "Love Clínica",
+    "207983858467001": "Love Clínica"
   }
 }

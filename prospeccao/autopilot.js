@@ -102,9 +102,12 @@ function checkCommercialHours(config = {}) {
     ? (config.outboundEndHourFriday !== undefined ? config.outboundEndHourFriday : 16)
     : (config.outboundEndHour !== undefined ? config.outboundEndHour : 19);
 
+  const scheduledDefault = (typeof configManager.getScheduledOutboundDays === 'function')
+    ? configManager.getScheduledOutboundDays()
+    : [1, 3, 5];
   const outboundDays = Array.isArray(config.outboundDays) && config.outboundDays.length > 0
     ? config.outboundDays
-    : [1, 3, 5]; // Padrão: Seg, Qua e Sex
+    : scheduledDefault;
 
   const dayName = DAY_NAMES[dayOfWeek];
   const isAllowedDay = outboundDays.includes(dayOfWeek);

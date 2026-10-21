@@ -8,11 +8,11 @@
   "outboundEndHour": 19,
   "outboundEndHourFriday": 16,
   "outboundDays": [
-    1,
     3,
+    4,
     5
   ],
-  "sentToday": 10,
+  "sentToday": 11,
   "lastResetDate": "2026-10-21",
   "minDelaySeconds": 300,
   "maxDelaySeconds": 330,

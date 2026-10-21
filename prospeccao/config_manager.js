@@ -3,6 +3,25 @@ const path = require('path');
 
 const CONFIG_FILE = path.join(__dirname, 'data', 'config.json');
 
+// Transição programada solicitada pelo Kauê:
+// - Apenas nesta semana (até 25/10/2026): Quarta (3), Quinta (4) e Sexta (5).
+// - A partir da próxima semana (segunda-feira 26/10/2026 em diante): Segunda (1), Quarta (3) e Sexta (5) definitivo.
+function getScheduledOutboundDays() {
+  try {
+    const spDateStr = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'America/Sao_Paulo',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).format(new Date());
+
+    if (spDateStr <= '2026-10-25') {
+      return [3, 4, 5]; // Quarta, Quinta e Sexta (exclusivo desta semana)
+    }
+  } catch (e) {}
+  return [1, 3, 5]; // Segunda, Quarta e Sexta (padrão a partir da semana que vem)
+}
+
 const DEFAULT_CONFIG = {
   autoStartAutopilot: true,
   onlyRespondReplies: false,
@@ -12,7 +31,7 @@ const DEFAULT_CONFIG = {
   outboundStartHour: 10,
   outboundEndHour: 19,
   outboundEndHourFriday: 16,
-  outboundDays: [1, 3, 5],
+  outboundDays: getScheduledOutboundDays(),
   sentToday: 0,
   lastResetDate: new Date().toISOString().split('T')[0],
   minDelaySeconds: 300,
@@ -235,6 +254,7 @@ function saveConfig(updates = {}) {
 const DYNAMIC_DAY_LIMITS = {
   1: 15, // Segunda: 15 leads (10h às 19h)
   3: 16, // Quarta: 16 leads (10h às 19h)
+  4: 15, // Quinta: 15 leads (10h às 19h - ativo nesta semana de transição conforme pedido do Kauê)
   5: 13  // Sexta: 13 leads (10h às 16h - janela mais curta até as 4 da tarde conforme pedido do Kauê)
 };
 
@@ -256,7 +276,17 @@ function checkAndResetDailyLimit(config) {
   const cfg = config && config.excludedChains ? config : readConfig();
   const today = new Date().toISOString().split('T')[0];
   const dynamicLimit = getDynamicDayLimit();
+  const scheduledDays = getScheduledOutboundDays();
   let changed = false;
+
+  // Auto-transição de dias programada pelo Kauê:
+  const currentDaysStr = JSON.stringify(cfg.outboundDays || []);
+  const scheduledDaysStr = JSON.stringify(scheduledDays);
+  if (currentDaysStr !== scheduledDaysStr) {
+    cfg.outboundDays = scheduledDays;
+    changed = true;
+    console.log(`[ConfigManager] 📅 Cronograma programado atualizado automaticamente: [${scheduledDays.join(', ')}]`);
+  }
 
   if (cfg.lastResetDate !== today) {
     cfg.sentToday = 0;
@@ -355,6 +385,7 @@ module.exports = {
   readConfig,
   saveConfig,
   checkAndResetDailyLimit,
+  getScheduledOutboundDays,
   stripAccents,
   matchesExclusionTerm,
   isExcludedLead
