@@ -1210,8 +1210,8 @@
     },
     "score": 10,
     "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
-    "status": "contatado",
-    "lastContact": "2026-10-21T17:21:46.379Z",
+    "status": "respondeu",
+    "lastContact": "2026-10-21T17:23:15.004Z",
     "createdAt": "2026-10-13T20:29:14.443Z",
     "tier": "diamante",
     "priorityScore": 100,
@@ -1219,7 +1219,7 @@
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
     "acceptanceReason": "Odontologia (Alto Ticket Particular) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (12 reviews ★4.7) • WhatsApp Celular Direto",
-    "stage": 1,
+    "stage": 2,
     "siteAudit": {
       "hasWebsite": false,
       "isOnline": false,
@@ -1259,8 +1259,16 @@
         "auto": true,
         "ai": true,
         "text": "Olá, como vai? É da Fiori Implantes Tratamentos Odontológicos?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-21T17:23:15.004Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo ótimo por aqui! Prazer falar com você. Sou o Kauê, da Pinas.\n\nA gente ajuda clínicas odontológicas aqui de São Paulo a captarem pacientes particulares no Google todo mês. Vi que vocês têm uma avaliação excelente no Maps, mas notei que quem pesquisa pelo celular não encontra um site rápido com botão de WhatsApp, o que faz muita gente acabar chamando o concorrente da região que já aparece no topo.\n\nVocês já têm alguém cuidando dessa parte de site e anúncios no Google por aí hoje ou a maioria dos pacientes ainda vem por indicação?"
       }
-    ]
+    ],
+    "repliedAt": "2026-10-21T17:22:59.447Z"
   },
   {
     "id": "lead-1790820689033-1g3wzz",
@@ -1279,8 +1287,8 @@
     "neighborhood": "Tatuapé SP",
     "city": "São Paulo",
     "notes": "Sem site cadastrado no Maps (Oportunidade alta para site + Google Ads).",
-    "status": "novo",
-    "lastContact": null,
+    "status": "contatado",
+    "lastContact": "2026-10-21T17:41:51.745Z",
     "createdAt": "2026-10-01T02:11:29.033Z",
     "opportunity": {
       "score": 100,
@@ -1369,7 +1377,49 @@
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (52 reviews ★4.1) • WhatsApp Celular Direto"
+    "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (52 reviews ★4.1) • WhatsApp Celular Direto",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 4.1,
+      "reviews": 52,
+      "neighborhood": "Tatuapé SP",
+      "localReputation": "média",
+      "diagnosisTags": [
+        "⭐ 52 avaliações"
+      ],
+      "strengths": [
+        "Boa presença com 52 avaliações (nota 4.1)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Tatuapé SP. Avaliações: 52 (nota 4.1). Reputação local: média."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Tatuapé SP (52 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Opa! É do Hospital Veterinário Popular 24h Tatuapé?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-21T17:41:51.745Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa! É do Hospital Veterinário Popular 24h Tatuapé?"
+      }
+    ]
   },
   {
     "id": "lead-1790820665678-x0sph1",
