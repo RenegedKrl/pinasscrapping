@@ -358,6 +358,10 @@ class AutoPilotEngine {
     const isWaConnected = this.whatsapp && (typeof this.whatsapp.isReady === 'function' ? this.whatsapp.isReady() : (this.whatsapp.getStatus && this.whatsapp.getStatus().connected));
     if (!isWaConnected) {
       this.addLog('warn', '⚠️ WhatsApp desconectado. Aguardando conexão para disparar...');
+      try {
+        const notifier = require('./notifier');
+        notifier.notifyWhatsAppDisconnected('Piloto Automático pausado: aguardando QR Code');
+      } catch (e) {}
       this.scheduleNext(20000);
       return;
     }
@@ -565,11 +569,30 @@ class AutoPilotEngine {
       writeJson(LEADS_FILE, leads);
     }
 
-    // 7. Simular Digitação e Disparar pelo WhatsApp
+    // 7. Salvar Contato no WhatsApp, Simular Digitação e Disparar pelo WhatsApp
     this.addLog('send', `🚀 [3/3] Disparando mensagem direta pelo WhatsApp para ${lead.name} (${lead.cleanPhone})...`);
 
     let sendResult;
     try {
+      // REGRA ANTI-SPAM META: Salva o contato no WhatsApp antes de disparar o primeiro caractere
+      try {
+        if (typeof this.whatsapp.saveContact === 'function') {
+          let displayName = String(lead.name || '').trim();
+          const nicheLower = String(lead.niche || '').toLowerCase();
+          let prefix = 'Lead';
+          if (nicheLower.includes('vet') || nicheLower.includes('pet')) prefix = 'Vet';
+          else if (nicheLower.includes('advog')) prefix = 'Adv';
+          else if (nicheLower.includes('coach') || nicheLower.includes('mentor')) prefix = 'Coach';
+          else if (nicheLower.includes('dent') || nicheLower.includes('odonto')) prefix = 'Odonto';
+          else if (nicheLower.includes('arq') || nicheLower.includes('interiores')) prefix = 'Arq';
+          
+          if (!displayName.toLowerCase().includes(prefix.toLowerCase())) {
+            displayName = `${prefix} • ${displayName}`;
+          }
+          await this.whatsapp.saveContact(lead.cleanPhone, displayName);
+        }
+      } catch (scErr) {}
+
       try {
         await this.whatsapp.sendTyping(lead.cleanPhone);
         await new Promise(r => setTimeout(r, 3500)); // Simula digitação humana

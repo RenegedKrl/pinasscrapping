@@ -67,10 +67,12 @@ class PinasSilentLauncher
             // 4. Iniciar Node.js em background 100% silencioso
             string logFile = Path.Combine(prospeccaoDir, "server_background.log");
 
+            string targetScript = File.Exists(Path.Combine(prospeccaoDir, "supervisor.js")) ? "supervisor.js" : "server.js";
+
             ProcessStartInfo psi = new ProcessStartInfo
             {
                 FileName = "cmd.exe",
-                Arguments = "/c \"\"" + nodeExe + "\" server.js >> \"" + logFile + "\" 2>&1\"",
+                Arguments = "/c \"\"" + nodeExe + "\" " + targetScript + " >> \"" + logFile + "\" 2>&1\"",
                 WorkingDirectory = prospeccaoDir,
                 UseShellExecute = false,
                 CreateNoWindow = true,
@@ -123,6 +125,7 @@ class PinasSilentLauncher
     {
         string[] candidates = new string[]
         {
+            @"G:\Programas\nodejs\node.exe",
             @"C:\Program Files\nodejs\node.exe",
             @"C:\Program Files (x86)\nodejs\node.exe",
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Programs\node\node.exe")

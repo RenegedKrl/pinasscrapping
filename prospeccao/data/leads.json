@@ -1,5 +1,67 @@
 [
   {
+    "id": "lead-1792800317723-iberer",
+    "name": "Hospital Veterinário AMVET São Paulo Santo Amaro",
+    "niche": "clinica veterinaria",
+    "phone": "(11) 92225-0566",
+    "cleanPhone": "5511922250566",
+    "hasPhone": true,
+    "hasMobile": true,
+    "website": "https://www.meupetmelhor.com.br/amvet",
+    "hasWebsite": true,
+    "mapsUrl": "https://www.google.com/maps/place/Hospital+Veterin%C3%A1rio+AMVET+S%C3%A3o+Paulo+Santo+Amaro/data=!4m7!3m6!1s0x94ce51cd1ad4cfdb:0x2a21d5fb1d0a41e8!8m2!3d-23.6415143!4d-46.7152857!16s%2Fg%2F11rv99yz84!19sChIJ28_UGs1RzpQR6EEKHfvVISo?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAyMC4wIJJjKgBIAVAD&rclk=1",
+    "rating": "4.6",
+    "reviews": 45,
+    "address": "Hospital Veterinário ·  · R. Bragança Paulista, 566",
+    "neighborhood": "Santo Amaro, São Paulo - SP",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 4,
+      "numericRank": 85,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (45 avaliações ★4.6)"
+    },
+    "priorityScore": 85,
+    "tier": "diamante",
+    "score": 4,
+    "notes": "Nicho Veterinário (Case Petiva / Alto Ticket) | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (45 avaliações ★4.6)",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-24T00:05:17.723Z"
+  },
+  {
+    "id": "lead-1792800317722-rmm8ik",
+    "name": "Ikigai Centro de Reabilitação Veterinária - Unidade Santo Amaro",
+    "niche": "clinica veterinaria",
+    "phone": "(11) 99355-6252",
+    "cleanPhone": "5511993556252",
+    "hasPhone": true,
+    "hasMobile": true,
+    "website": "",
+    "hasWebsite": false,
+    "mapsUrl": "https://www.google.com/maps/place/Ikigai+Centro+de+Reabilita%C3%A7%C3%A3o+Veterin%C3%A1ria+-+Unidade+Santo+Amaro/data=!4m7!3m6!1s0x94ce51002de50c0b:0x9868919567587549!8m2!3d-23.6381287!4d-46.7108189!16s%2Fg%2F11vps_2tt9!19sChIJCwzlLQBRzpQRSXVYZ5WRaJg?authuser=0&hl=pt-BR&g_ep=EgoyMDI2MTAyMC4wIJJjKgBIAVAD&rclk=1",
+    "rating": "5.0",
+    "reviews": 127,
+    "address": "Veterinário · R. Visc. de Taunay, 910",
+    "neighborhood": "Santo Amaro, São Paulo - SP",
+    "city": "São Paulo",
+    "opportunity": {
+      "score": 5,
+      "numericRank": 100,
+      "type": "diamante",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Nicho Veterinário (Case Petiva / Alto Ticket) | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (127 avaliações ★5)"
+    },
+    "priorityScore": 100,
+    "tier": "diamante",
+    "score": 5,
+    "notes": "Nicho Veterinário (Case Petiva / Alto Ticket) | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (127 avaliações ★5)",
+    "status": "novo",
+    "lastContact": null,
+    "createdAt": "2026-10-24T00:05:17.722Z"
+  },
+  {
     "id": "lead-1791923354447-s0b8o6",
     "name": "Implantes Dentários e reabilitação oral na Aclimação - Dra Bruna Vasconcelos -",
     "niche": "Clínica Odontológica",
@@ -24,7 +86,7 @@
       "tier": "Diamante"
     },
     "score": 10,
-    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
+    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads | Atendimento manual do Kauê (IA desativada)",
     "status": "respondeu",
     "lastContact": "2026-10-21T14:19:45.671Z",
     "createdAt": "2026-10-13T20:29:14.447Z",
@@ -83,7 +145,10 @@
         "text": "Opa, tudo bem? Prazer! Aqui é o Kauê, da Pinas.\n\nVi o perfil de vocês no Google Maps em São Paulo e achei muito bacana a reputação por aí. Dei uma olhada rápida na estrutura digital de vocês pelo celular e queria entender: vocês já têm alguém cuidando dessa parte de site e novos contatos por aí hoje?"
       }
     ],
-    "repliedAt": "2026-10-21T14:14:33.793Z"
+    "repliedAt": "2026-10-21T14:14:33.793Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-21T14:06:20.000Z"
   },
   {
     "id": "lead-1791923354444-elwt3n",
@@ -110,7 +175,7 @@
       "tier": "Diamante"
     },
     "score": 10,
-    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
+    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads | Atendimento manual do Kauê (IA desativada)",
     "status": "perdido",
     "lastContact": "2026-10-21T14:49:54.187Z",
     "createdAt": "2026-10-13T20:29:14.444Z",
@@ -185,7 +250,8 @@
     ],
     "repliedAt": "2026-10-21T14:48:25.523Z",
     "manualControl": true,
-    "humanTakeover": true
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-21T14:25:23.000Z"
   },
   {
     "id": "lead-1791923354443-1wzjmo",
@@ -212,7 +278,7 @@
       "tier": "Diamante"
     },
     "score": 10,
-    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
+    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads | Atendimento manual do Kauê (IA desativada)",
     "status": "perdido",
     "lastContact": "2026-10-21T15:39:49.020Z",
     "createdAt": "2026-10-13T20:29:14.443Z",
@@ -280,7 +346,8 @@
     ],
     "repliedAt": "2026-10-21T15:39:35.412Z",
     "manualControl": true,
-    "humanTakeover": true
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-21T15:05:13.000Z"
   },
   {
     "id": "lead-1791220864216-y1g2ai",
@@ -307,7 +374,7 @@
       "tier": "Diamante"
     },
     "score": 10,
-    "notes": "Clientela física forte (52 reviews, nota 4.9), mas perde buscas diárias no Google por não ter site próprio.",
+    "notes": "Clientela física forte (52 reviews, nota 4.9), mas perde buscas diárias no Google por não ter site próprio. | Atendimento manual do Kauê (IA desativada)",
     "status": "respondeu",
     "lastContact": "2026-10-21T15:44:50.425Z",
     "createdAt": "2026-10-05T17:21:04.216Z",
@@ -455,7 +522,10 @@
         "text": "Opa, tudo ótimo por aqui! Prazer falar contigo, sou o Kauê, da Pinas.\n\nVi que vocês são referência na Vila Mariana com nota 4.9 no Google, o que é muito difícil de conseguir. Notei que vocês já fazem um trabalho legal de anúncios no Instagram, mas quem pesquisa por veterinário no Google pelo celular não encontra um site próprio de vocês com botão de WhatsApp, e acaba caindo nos concorrentes da região que já anunciam no topo.\n\nVocês já têm alguém cuidando dessa parte de site e captação no Google por aí hoje ou a maioria dos novos pacientes ainda vem por indicação e pelas redes sociais?"
       }
     ],
-    "repliedAt": "2026-10-21T15:44:36.992Z"
+    "repliedAt": "2026-10-21T15:44:36.992Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-21T15:07:09.000Z"
   },
   {
     "id": "lead-1790820665677-13crhk",
@@ -473,7 +543,7 @@
     "address": "Veterinário · R. Cel. Luís Barroso, 102",
     "neighborhood": "Santo Amaro SP",
     "city": "São Paulo",
-    "notes": "Sem site cadastrado no Maps (Oportunidade alta para site + Google Ads).",
+    "notes": "Sem site cadastrado no Maps (Oportunidade alta para site + Google Ads). | Atendimento manual do Kauê (IA desativada)",
     "status": "contatado",
     "lastContact": "2026-10-21T15:49:41.996Z",
     "createdAt": "2026-10-01T02:11:05.677Z",
@@ -615,7 +685,10 @@
         "ai": true,
         "text": "Olá, tudo bem? Falo com a Clínica Veterinária Vet Care Help de Santo Amaro SP?"
       }
-    ]
+    ],
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-21T15:49:46.000Z"
   },
   {
     "id": "lead-1",
@@ -879,7 +952,7 @@
       "tier": "Diamante"
     },
     "score": 10,
-    "notes": "Clientela física forte (15 reviews, nota 4.7), mas perde buscas diárias no Google por não ter site próprio.",
+    "notes": "Clientela física forte (15 reviews, nota 4.7), mas perde buscas diárias no Google por não ter site próprio. | Atendimento manual do Kauê (IA desativada)",
     "status": "respondeu",
     "lastContact": "2026-10-21T16:56:30.153Z",
     "createdAt": "2026-10-05T17:20:38.723Z",
@@ -1018,7 +1091,10 @@
         "text": "Opa, tudo certo por aqui! Sou o Kauê, da Pinas.\n\nA gente cuida da presença digital e captação de clínicas veterinárias aqui em São Paulo. Vi o perfil de vocês no Google Maps aí em Pinheiros e achei a nota de vocês excelente, 4.7 estrelas é um baita diferencial.\n\nPorém, notei que vocês ainda não têm um site próprio cadastrado. Hoje em dia, quem pesquisa no Google pelo celular acaba não achando um botão direto de WhatsApp de vocês e termina indo pro concorrente da região que já está anunciando no topo.\n\nVocês já têm alguém cuidando dessa parte de site e anúncios no Google por aí hoje ou a maioria dos tutores ainda chega por indicação?"
       }
     ],
-    "repliedAt": "2026-10-21T16:56:16.206Z"
+    "repliedAt": "2026-10-21T16:56:16.206Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-21T16:23:45.000Z"
   },
   {
     "id": "lead-1791920477328-9vzh6d",
@@ -1045,7 +1121,7 @@
       "tier": "Diamante"
     },
     "score": 10,
-    "notes": "Clientela física forte (68 reviews, nota 5), mas perde buscas diárias no Google por não ter site próprio.",
+    "notes": "Clientela física forte (68 reviews, nota 5), mas perde buscas diárias no Google por não ter site próprio. | Atendimento manual do Kauê (IA desativada)",
     "status": "respondeu",
     "lastContact": "2026-10-21T17:19:26.406Z",
     "createdAt": "2026-10-13T19:41:17.328Z",
@@ -1104,7 +1180,10 @@
         "text": "Tudo ótimo por aqui! Prazer falar contigo, Gabriel. Sou o Kauê, da Pinas.\n\nA gente ajuda profissionais e consultórios aqui de SP a captarem pacientes qualificados no Google. Vi sua ficha no Maps em Santo André com nota 5.0, o trabalho parece ser excelente, mas notei que quem te acha pelo celular não encontra um site rápido com botão de WhatsApp, o que faz muita gente acabar chamando o concorrente que já anuncia no topo.\n\nVocês já têm alguém cuidando dessa parte de site e anúncios por aí hoje ou a maioria dos pacientes ainda vem por indicação?"
       }
     ],
-    "repliedAt": "2026-10-21T17:19:07.970Z"
+    "repliedAt": "2026-10-21T17:19:07.970Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-21T17:01:37.000Z"
   },
   {
     "id": "lead-1791920477326-cmagyp",
@@ -1131,7 +1210,7 @@
       "tier": "Diamante"
     },
     "score": 10,
-    "notes": "Clientela física forte (100 reviews, nota 5), mas perde buscas diárias no Google por não ter site próprio.",
+    "notes": "Clientela física forte (100 reviews, nota 5), mas perde buscas diárias no Google por não ter site próprio. | Atendimento manual do Kauê (IA desativada)",
     "status": "respondeu",
     "lastContact": "2026-10-21T19:23:51.990Z",
     "createdAt": "2026-10-13T19:41:17.326Z",
@@ -1190,7 +1269,10 @@
         "text": "Opa Edna, tudo ótimo por aqui! Sou o Kauê, da Pinas.\n\nAchei seu posicionamento e autoridade muito bacanas! Mas reparei que hoje boa parte dos decisores e clientes qualificados que buscam mentoria e treinamento no Google aqui na região acabam caindo em concorrentes patrocinados, sem uma estrutura rápida direcionando pro seu WhatsApp.\n\nVocê já tem alguém rodando tráfego qualificado para a sua mentoria hoje ou depende de indicação orgânica?"
       }
     ],
-    "repliedAt": "2026-10-21T19:23:42.194Z"
+    "repliedAt": "2026-10-21T19:23:42.194Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-21T17:11:51.000Z"
   },
   {
     "id": "lead-1791923354443-j455xo",
@@ -1217,7 +1299,7 @@
       "tier": "Diamante"
     },
     "score": 10,
-    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
+    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads | Atendimento manual do Kauê (IA desativada)",
     "status": "respondeu",
     "lastContact": "2026-10-21T17:23:15.004Z",
     "createdAt": "2026-10-13T20:29:14.443Z",
@@ -1276,7 +1358,10 @@
         "text": "Opa, tudo ótimo por aqui! Prazer falar com você. Sou o Kauê, da Pinas.\n\nA gente ajuda clínicas odontológicas aqui de São Paulo a captarem pacientes particulares no Google todo mês. Vi que vocês têm uma avaliação excelente no Maps, mas notei que quem pesquisa pelo celular não encontra um site rápido com botão de WhatsApp, o que faz muita gente acabar chamando o concorrente da região que já aparece no topo.\n\nVocês já têm alguém cuidando dessa parte de site e anúncios no Google por aí hoje ou a maioria dos pacientes ainda vem por indicação?"
       }
     ],
-    "repliedAt": "2026-10-21T17:22:59.447Z"
+    "repliedAt": "2026-10-21T17:22:59.447Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-21T17:21:49.000Z"
   },
   {
     "id": "lead-1790820689033-1g3wzz",
@@ -1294,7 +1379,7 @@
     "address": "Veterinário ·  · R. Bento Gonçalves, 384",
     "neighborhood": "Tatuapé SP",
     "city": "São Paulo",
-    "notes": "Sem site cadastrado no Maps (Oportunidade alta para site + Google Ads).",
+    "notes": "Sem site cadastrado no Maps (Oportunidade alta para site + Google Ads). | Atendimento manual do Kauê (IA desativada)",
     "status": "respondeu",
     "lastContact": "2026-10-21T17:43:20.603Z",
     "createdAt": "2026-10-01T02:11:29.033Z",
@@ -1435,7 +1520,10 @@
         "text": "Opa, tudo certo por aqui! Sou o Kauê, da Pinas.\n\nVi o perfil de vocês no Maps aqui no Tatuapé com nota 4.1, mas notei que ainda não têm um site próprio com botão direto de WhatsApp.\n\nVocês já têm alguém cuidando dessa parte de captação no Google por aí hoje?"
       }
     ],
-    "repliedAt": "2026-10-21T17:43:05.963Z"
+    "repliedAt": "2026-10-21T17:43:05.963Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-21T17:41:55.000Z"
   },
   {
     "id": "lead-1790820665678-x0sph1",
@@ -1453,7 +1541,7 @@
     "address": "Veterinário ·  · Av. Roque Petroni Júnior, 232",
     "neighborhood": "Santo Amaro SP",
     "city": "São Paulo",
-    "notes": "Sem site cadastrado no Maps (Oportunidade alta para site + Google Ads).",
+    "notes": "Sem site cadastrado no Maps (Oportunidade alta para site + Google Ads). | Atendimento manual do Kauê (IA desativada)",
     "status": "respondeu",
     "lastContact": "2026-10-21T17:57:35.960Z",
     "createdAt": "2026-10-01T02:11:05.678Z",
@@ -1594,7 +1682,10 @@
         "text": "Opa, tudo ótimo por aqui também! Prazer, sou o Kauê, da Pinas.\n\nVi o perfil de vocês no Maps aí em Santo Amaro com nota 4.2, mas notei que ainda não têm um site próprio com botão direto de WhatsApp.\n\nVocês já têm alguém cuidando dessa parte de captação no Google por aí hoje?"
       }
     ],
-    "repliedAt": "2026-10-21T17:57:17.807Z"
+    "repliedAt": "2026-10-21T17:57:17.807Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-21T17:55:33.000Z"
   },
   {
     "id": "lead-1790820665677-n95wfp",
@@ -1612,7 +1703,7 @@
     "address": "Veterinário · Rua São Benedito, 1127",
     "neighborhood": "Santo Amaro SP",
     "city": "São Paulo",
-    "notes": "Sem site cadastrado no Maps (Oportunidade alta para site + Google Ads).",
+    "notes": "Sem site cadastrado no Maps (Oportunidade alta para site + Google Ads). | Atendimento manual do Kauê (IA desativada)",
     "status": "respondeu",
     "lastContact": "2026-10-21T18:21:06.869Z",
     "createdAt": "2026-10-01T02:11:05.677Z",
@@ -1753,7 +1844,10 @@
         "text": "Opa Letícia, tudo ótimo por aqui! Prazer, sou o Kauê, da Pinas.\n\nAchei a estrutura e a reputação de vocês aí em Santo Amaro excelentes! Mas reparei que muitos tutores que pesquisam veterinário no Google na região acabam caindo nos concorrentes que anunciam no topo, porque vocês ainda não têm uma página rápida direcionando direto pro WhatsApp da recepção.\n\nVocês já têm alguém rodando anúncios ou cuidando dessa captação no Google por aí hoje?"
       }
     ],
-    "repliedAt": "2026-10-21T18:20:54.608Z"
+    "repliedAt": "2026-10-21T18:20:54.608Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-21T18:18:14.000Z"
   },
   {
     "id": "lead-1791920492990-8x9gpb",
@@ -1780,7 +1874,7 @@
       "tier": "Diamante"
     },
     "score": 9,
-    "notes": "Clientela física forte (17 reviews, nota 5), mas perde buscas diárias no Google por não ter site próprio.",
+    "notes": "Clientela física forte (17 reviews, nota 5), mas perde buscas diárias no Google por não ter site próprio. | Atendimento manual do Kauê (IA desativada)",
     "status": "respondeu",
     "lastContact": "2026-10-21T19:33:46.464Z",
     "createdAt": "2026-10-13T19:41:32.990Z",
@@ -1839,7 +1933,10 @@
         "text": "Tudo ótimo por aqui! Prazer, sou o Kauê, da Pinas.\n\nAchei seu posicionamento e autoridade muito bacanas! Mas reparei que hoje boa parte dos decisores e clientes qualificados que buscam mentoria e treinamento no Google acabam caindo em concorrentes patrocinados, sem uma estrutura rápida direcionando pro seu WhatsApp.\n\nVocê já tem alguém rodando tráfego qualificado para a sua mentoria hoje ou depende de indicação orgânica?"
       }
     ],
-    "repliedAt": "2026-10-21T19:33:34.934Z"
+    "repliedAt": "2026-10-21T19:33:34.934Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-21T19:18:19.000Z"
   },
   {
     "id": "lead-1791920549459-ecdn0j",
@@ -1866,7 +1963,7 @@
       "tier": "Diamante"
     },
     "score": 9,
-    "notes": "Clientela física forte (95 reviews, nota 4.3), mas perde buscas diárias no Google por não ter site próprio.",
+    "notes": "Clientela física forte (95 reviews, nota 4.3), mas perde buscas diárias no Google por não ter site próprio. | Atendimento manual do Kauê (IA desativada)",
     "status": "respondeu",
     "lastContact": "2026-10-21T20:20:39.791Z",
     "createdAt": "2026-10-13T19:42:29.459Z",
@@ -1925,7 +2022,10 @@
         "text": "Ah, entendi! Sem problemas. Muito sucesso nos seus projetos por aí, e se precisar de algo no futuro, é só chamar. Um abraço!"
       }
     ],
-    "repliedAt": "2026-10-21T20:20:26.346Z"
+    "repliedAt": "2026-10-21T20:20:26.346Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-21T20:09:52.000Z"
   },
   {
     "id": "lead-1791920492990-pf9k1q",
@@ -1952,16 +2052,69 @@
       "tier": "Diamante"
     },
     "score": 9,
-    "notes": "Clientela física forte (35 reviews, nota 4.2), mas perde buscas diárias no Google por não ter site próprio.",
-    "status": "novo",
-    "lastContact": null,
+    "notes": "Clientela física forte (35 reviews, nota 4.2), mas perde buscas diárias no Google por não ter site próprio. | Atendimento manual do Kauê (IA desativada)",
+    "status": "respondeu",
+    "lastContact": "2026-10-21T21:11:51.477Z",
     "createdAt": "2026-10-13T19:41:32.990Z",
     "tier": "diamante",
     "priorityScore": 100,
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (35 reviews ★4.2) • WhatsApp Celular Direto"
+    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (35 reviews ★4.2) • WhatsApp Celular Direto",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 4.2,
+      "reviews": 35,
+      "neighborhood": "São Caetano do Sul, SP",
+      "localReputation": "média",
+      "diagnosisTags": [
+        "⭐ 35 avaliações"
+      ],
+      "strengths": [
+        "Boa presença com 35 avaliações (nota 4.2)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Caetano do Sul, SP. Avaliações: 35 (nota 4.2). Reputação local: média."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em São Caetano do Sul, SP (35 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Tudo bem? É da MB Master Coach?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-21T21:09:53.658Z",
+        "auto": true,
+        "ai": true,
+        "text": "Tudo bem? É da MB Master Coach?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-21T21:11:51.477Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo ótimo por aqui! Sou o Kauê, da Pinas.\n\nAchei seu posicionamento e autoridade muito bacanas! Mas reparei que hoje boa parte dos decisores e clientes qualificados que buscam mentoria e treinamento no Google acabam caindo em concorrentes patrocinados, sem uma estrutura rápida direcionando pro seu WhatsApp.\n\nVocê já tem alguém rodando tráfego qualificado para a sua mentoria hoje ou depende de indicação orgânica?"
+      }
+    ],
+    "repliedAt": "2026-10-21T21:11:41.761Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-21T21:09:57.000Z"
   },
   {
     "id": "lead-1791920477328-f2g3pw",
@@ -1988,16 +2141,69 @@
       "tier": "Diamante"
     },
     "score": 9,
-    "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
-    "status": "novo",
-    "lastContact": null,
+    "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads. | Atendimento manual do Kauê (IA desativada)",
+    "status": "respondeu",
+    "lastContact": "2026-10-21T21:47:01.560Z",
     "createdAt": "2026-10-13T19:41:17.328Z",
     "tier": "diamante",
     "priorityScore": 100,
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (9 reviews ★4.9) • WhatsApp Celular Direto"
+    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (9 reviews ★4.9) • WhatsApp Celular Direto",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 4.9,
+      "reviews": 9,
+      "neighborhood": "Santo André, SP",
+      "localReputation": "média",
+      "diagnosisTags": [
+        "⭐ 9 avaliações"
+      ],
+      "strengths": [
+        "Boa presença com 9 avaliações (nota 4.9)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Santo André, SP. Avaliações: 9 (nota 4.9). Reputação local: média."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Santo André, SP (9 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Oi, tudo certo? É da Márcio Moraes em Santo André?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-21T21:38:39.027Z",
+        "auto": true,
+        "ai": true,
+        "text": "Oi, tudo certo? É da Márcio Moraes em Santo André?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-21T21:47:01.560Z",
+        "auto": true,
+        "ai": true,
+        "text": "Fala Márcio, tudo ótimo por aqui! Sou o Kauê, da Pinas.\n\nAchei seu posicionamento e autoridade muito bacanas! Mas reparei que hoje boa parte dos decisores e clientes qualificados que buscam mentoria e treinamento no Google acabam caindo em concorrentes patrocinados, sem uma estrutura rápida direcionando pro seu WhatsApp.\n\nVocê já tem alguém rodando tráfego qualificado para a sua mentoria hoje ou depende de indicação orgânica?"
+      }
+    ],
+    "repliedAt": "2026-10-21T21:46:45.241Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-21T21:38:42.000Z"
   },
   {
     "id": "lead-1791919900344-hgq8an",
@@ -2024,16 +2230,70 @@
       "tier": "Diamante"
     },
     "score": 9,
-    "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
-    "status": "novo",
-    "lastContact": null,
+    "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads. | Áudio recebido do lead — Kauê notificado para responder no manual | Atendimento manual do Kauê (IA desativada)",
+    "status": "respondeu",
+    "lastContact": "2026-10-22T13:04:32.848Z",
     "createdAt": "2026-10-13T19:31:40.344Z",
     "tier": "diamante",
     "priorityScore": 100,
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (8 reviews ★4.9) • WhatsApp Celular Direto"
+    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (8 reviews ★4.9) • WhatsApp Celular Direto",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 4.9,
+      "reviews": 8,
+      "neighborhood": "Pinheiros, São Paulo - SP",
+      "localReputation": "média",
+      "diagnosisTags": [
+        "⭐ 8 avaliações"
+      ],
+      "strengths": [
+        "Boa presença com 8 avaliações (nota 4.9)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Pinheiros, São Paulo - SP. Avaliações: 8 (nota 4.9). Reputação local: média."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Pinheiros, São Paulo - SP (8 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Opa, tudo bem? É da homenscommetas?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-22T13:00:00.804Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo bem? É da homenscommetas?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-22T13:04:32.848Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo certo por aqui! Sou o Kauê, da Pinas.\n\nAchei seu posicionamento e autoridade muito bacanas! Mas reparei que decisores que buscam mentoria no Google acabam caindo em concorrentes patrocinados, porque falta uma página rápida direcionando direto pro seu WhatsApp.\n\nVocê já tem alguém rodando tráfego qualificado para a sua mentoria hoje ou depende mais de indicação?"
+      }
+    ],
+    "repliedAt": "2026-10-22T13:08:22.224Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastAudioReceivedAt": "2026-10-22T13:08:32.482Z",
+    "lastManualMessageAt": "2026-10-22T13:00:04.000Z"
   },
   {
     "id": "lead-1791923362289-yi0k2i",
@@ -2061,8 +2321,8 @@
     },
     "score": 9,
     "notes": "Captação ativa de clientes qualificados no Google Search para ações de alto valor",
-    "status": "novo",
-    "lastContact": null,
+    "status": "contatado",
+    "lastContact": "2026-10-22T13:42:58.768Z",
     "createdAt": "2026-10-13T20:29:22.289Z",
     "tier": "diamante",
     "priorityScore": 100,
@@ -2080,7 +2340,84 @@
     "opportunityType": "sem_whatsapp",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Nicho #2 Pinas (Advocacia) • ⚠️ Site sem botão direto de WhatsApp • Forte reputação local (132 reviews ★4.9) • WhatsApp Celular Direto"
+    "acceptanceReason": "Nicho #2 Pinas (Advocacia) • ⚠️ Site sem botão direto de WhatsApp • Forte reputação local (132 reviews ★4.9) • WhatsApp Celular Direto",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "http://www.bernardoesantosadvocacia.com.br/",
+      "isOnline": true,
+      "loadTimeMs": 77,
+      "title": "Bernardo e Santos Advocacia | advocacia | Rua Amélia Marquês de Oliveira, 28 - Jardim Maria Beatriz, Carapicuíba - State of São Paulo, Brazil",
+      "hasWhatsApp": true,
+      "hasMetaPixel": false,
+      "hasGoogleAdsOrTag": false,
+      "hasAnalytics": false,
+      "doesPaidTraffic": false,
+      "isMobileResponsive": true,
+      "isSlow": false,
+      "diagnosisTags": [
+        "✅ Tem WhatsApp",
+        "🔍 Sem Tráfego Pago Ativo"
+      ],
+      "strengths": [
+        "Carregamento ágil (0.1s)",
+        "Possui botão de WhatsApp no site"
+      ],
+      "weaknesses": [
+        "Não possui Pixel do Facebook ou Google Ads ativo (não faz tráfego qualificado)"
+      ],
+      "opportunityScore": 8,
+      "attackAngle": "A empresa tem site funcional mas não usa tráfego pago para atrair os clientes da região.",
+      "domDetails": {
+        "metaDescription": "Somos a Bernardo e Santos um escritório de advocacia especializado em previdenciário.",
+        "h1List": [],
+        "h2List": [
+          "Voc&ecirc; ja fez a revis&atilde;o da sua&nbsp;",
+          "APOSENTADORIA?",
+          "N&atilde;o perca tempo! Entre em contato conosco e fa&ccedil;a sua revis&atilde;o.",
+          "SOBRE N&Oacute;S",
+          "fundadores",
+          "Invent&aacute;rio Sem Complica&ccedil;&otilde;es: Solucione Agora!"
+        ],
+        "h3List": [],
+        "imgCount": 15,
+        "imgsWithoutAlt": 5,
+        "buttonCtaList": [
+          "FALE COM UM ADVOGADO AGORA"
+        ],
+        "detectedCms": "Wix, RD Station, Bootstrap",
+        "sectionsFound": "Sobre/Quem Somos, Depoimentos/Prova Social, Formulário/Contato"
+      },
+      "summary": "Site ativo (0.1s). Possui botão de WhatsApp. SEM tags de tráfego pago."
+    },
+    "mapsAudit": {
+      "rating": 4.9,
+      "reviews": 132,
+      "neighborhood": "São Paulo",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 4.9 (132 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (132 avaliações com nota 4.9)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Paulo. Avaliações: 132 (nota 4.9). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem site e boa reputação em São Paulo, mas NÃO FAZ tráfego pago no Google/Meta (sem tags de anúncio). Foco em atrair mais clientes locais com campanhas no bairro.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Olá, tudo certo por aí? Falo com a Bernardo e Santos Advocacia?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-22T13:42:58.768Z",
+        "auto": true,
+        "ai": true,
+        "text": "Olá, tudo certo por aí? Falo com a Bernardo e Santos Advocacia?"
+      }
+    ]
   },
   {
     "id": "lead-1791923362289-xw3is1",
@@ -2107,9 +2444,9 @@
       "tier": "Diamante"
     },
     "score": 9,
-    "notes": "Captação ativa de clientes qualificados no Google Search para ações de alto valor",
-    "status": "novo",
-    "lastContact": null,
+    "notes": "Captação ativa de clientes qualificados no Google Search para ações de alto valor | Atendimento manual do Kauê (IA desativada)",
+    "status": "contatado",
+    "lastContact": "2026-10-22T17:53:28.006Z",
     "createdAt": "2026-10-13T20:29:22.289Z",
     "tier": "diamante",
     "priorityScore": 100,
@@ -2127,7 +2464,93 @@
     "opportunityType": "sem_whatsapp",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Nicho #2 Pinas (Advocacia) • ⚠️ Site sem botão direto de WhatsApp • Forte reputação local (60 reviews ★5.0) • WhatsApp Celular Direto"
+    "acceptanceReason": "Nicho #2 Pinas (Advocacia) • ⚠️ Site sem botão direto de WhatsApp • Forte reputação local (60 reviews ★5.0) • WhatsApp Celular Direto",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "http://www.lhsadvocacia.com.br/",
+      "isOnline": true,
+      "loadTimeMs": 36,
+      "title": "Início - Atuação Especializada",
+      "hasWhatsApp": true,
+      "hasMetaPixel": false,
+      "hasGoogleAdsOrTag": true,
+      "hasAnalytics": true,
+      "doesPaidTraffic": true,
+      "isMobileResponsive": true,
+      "isSlow": false,
+      "diagnosisTags": [
+        "✅ Tem WhatsApp",
+        "📈 Já Investe em Anúncios"
+      ],
+      "strengths": [
+        "Carregamento ágil (0.0s)",
+        "Possui botão de WhatsApp no site",
+        "Já possui pixels de anúncio (investe em tráfego)"
+      ],
+      "weaknesses": [],
+      "opportunityScore": 6,
+      "attackAngle": "Otimização de conversão e atração local.",
+      "domDetails": {
+        "metaDescription": "",
+        "h1List": [
+          "ESPECIALISTA EM DIREITOS DO TRABALHADOR"
+        ],
+        "h2List": [
+          "Não Abra Mão dos Seus Direitos",
+          "Trabalhadores e Beneficiários em Foco:",
+          "Dúvidas frequentes:"
+        ],
+        "h3List": [
+          "Defesa Especializada no Direito do Trabalho",
+          "Atendimento a Segurados do INSS em Todo o Brasil",
+          "Consultoria Jurídica Personalizada",
+          "⚖️ Está com dúvidas ou se identificou em alguma dessas situações?"
+        ],
+        "imgCount": 12,
+        "imgsWithoutAlt": 9,
+        "buttonCtaList": [
+          "FALE COM UM ADVOGADO",
+          "FALE COM UM ADVOGADO",
+          "FALE COM UM ADVOGADO",
+          "FALE COM UM ADVOGADO"
+        ],
+        "detectedCms": "WordPress, RD Station",
+        "sectionsFound": "Sobre/Quem Somos, Depoimentos/Prova Social, Formulário/Contato"
+      },
+      "summary": "Site ativo (0.0s). Possui botão de WhatsApp. Já tem tags de anúncios."
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 60,
+      "neighborhood": "São Paulo",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (60 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (60 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Paulo. Avaliações: 60 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa já investe em digital. Foco em posicionamento comercial, aceleração de resultados e melhoria da taxa de conversão no WhatsApp.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Oi oi, tudo bom? Falo com a LHS Advocacia e Consultoria Jurídica?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-22T17:53:28.006Z",
+        "auto": true,
+        "ai": true,
+        "text": "Oi oi, tudo bom? Falo com a LHS Advocacia e Consultoria Jurídica?"
+      }
+    ],
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-22T17:53:31.000Z"
   },
   {
     "id": "lead-1791923362289-7od8i3",
@@ -2154,9 +2577,9 @@
       "tier": "Diamante"
     },
     "score": 9,
-    "notes": "Captação ativa de clientes qualificados no Google Search para ações de alto valor",
-    "status": "novo",
-    "lastContact": null,
+    "notes": "Captação ativa de clientes qualificados no Google Search para ações de alto valor | Atendimento manual do Kauê (IA desativada)",
+    "status": "respondeu",
+    "lastContact": "2026-10-22T18:15:36.447Z",
     "createdAt": "2026-10-13T20:29:22.289Z",
     "tier": "diamante",
     "priorityScore": 100,
@@ -2174,7 +2597,86 @@
     "opportunityType": "sem_whatsapp",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Nicho #2 Pinas (Advocacia) • ⚠️ Site sem botão direto de WhatsApp • Forte reputação local (62 reviews ★4.8) • WhatsApp Celular Direto"
+    "acceptanceReason": "Nicho #2 Pinas (Advocacia) • ⚠️ Site sem botão direto de WhatsApp • Forte reputação local (62 reviews ★4.8) • WhatsApp Celular Direto",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "https://condottoerodrigues.jurisoft.site/",
+      "isOnline": true,
+      "loadTimeMs": 265,
+      "title": "Condotto & Rodrigues",
+      "hasWhatsApp": false,
+      "hasMetaPixel": false,
+      "hasGoogleAdsOrTag": false,
+      "hasAnalytics": false,
+      "doesPaidTraffic": false,
+      "isMobileResponsive": true,
+      "isSlow": false,
+      "diagnosisTags": [
+        "❌ Sem Botão WhatsApp",
+        "🔍 Sem Tráfego Pago Ativo"
+      ],
+      "strengths": [
+        "Carregamento ágil (0.3s)"
+      ],
+      "weaknesses": [
+        "Não possui botão direto de WhatsApp visível",
+        "Não possui Pixel do Facebook ou Google Ads ativo (não faz tráfego qualificado)"
+      ],
+      "opportunityScore": 8,
+      "attackAngle": "O site atual não facilita o contato direto pelo WhatsApp. Uma página de alta conversão aumentaria muito os orçamentos.",
+      "domDetails": {
+        "metaDescription": "Escritório de advocacia",
+        "h1List": [],
+        "h2List": [],
+        "h3List": [],
+        "imgCount": 0,
+        "imgsWithoutAlt": 0,
+        "buttonCtaList": [],
+        "detectedCms": "Código Próprio / Personalizado",
+        "sectionsFound": "Estrutura simples / Institucional"
+      },
+      "summary": "Site ativo (0.3s). SEM botão direto de WhatsApp. SEM tags de tráfego pago."
+    },
+    "mapsAudit": {
+      "rating": 4.8,
+      "reviews": 62,
+      "neighborhood": "São Paulo",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 4.8 (62 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (62 avaliações com nota 4.8)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Paulo. Avaliações: 62 (nota 4.8). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem site no ar, mas NÃO TEM botão direto de WhatsApp. O cliente precisa procurar o telefone ou preencher formulário, perdendo conversões imediatas.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Boa tarde! Falo com a Condotto e Rodrigues Advocacia & Consultoria Jurídica?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-22T18:14:05.656Z",
+        "auto": true,
+        "ai": true,
+        "text": "Boa tarde! Falo com a Condotto e Rodrigues Advocacia & Consultoria Jurídica?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-22T18:15:36.447Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo bem por aí? Prazer, sou o Kauê, da Pinas.\n\nAchei a atuação e as avaliações do escritório de vocês excelentes aqui em São Paulo! Mas reparei que clientes com causas que buscam especialistas no Google acabam caindo nos concorrentes patrocinados no topo, porque falta uma página rápida direcionando direto pro WhatsApp.\n\nVocês já têm alguém cuidando dessa captação no Google hoje?"
+      }
+    ],
+    "repliedAt": "2026-10-22T18:15:20.815Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-22T18:14:09.000Z"
   },
   {
     "id": "lead-1791923354449-abnvd7",
@@ -2201,9 +2703,9 @@
       "tier": "Diamante"
     },
     "score": 9,
-    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
-    "status": "novo",
-    "lastContact": null,
+    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads | Atendimento manual do Kauê (IA desativada)",
+    "status": "perdido",
+    "lastContact": "2026-10-22T18:40:18.876Z",
     "createdAt": "2026-10-13T20:29:14.449Z",
     "tier": "diamante",
     "priorityScore": 100,
@@ -2221,7 +2723,95 @@
     "opportunityType": "sem_whatsapp",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Odontologia (Alto Ticket Particular) • ⚠️ Site sem botão direto de WhatsApp • Forte reputação local (117 reviews ★4.9) • WhatsApp Celular Direto"
+    "acceptanceReason": "Odontologia (Alto Ticket Particular) • ⚠️ Site sem botão direto de WhatsApp • Forte reputação local (117 reviews ★4.9) • WhatsApp Celular Direto",
+    "stage": 3,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "http://www.belavistaimplantes.com.br/",
+      "isOnline": true,
+      "loadTimeMs": 674,
+      "title": "Bela Vista Implantes | Fulll.ink",
+      "hasWhatsApp": true,
+      "hasMetaPixel": false,
+      "hasGoogleAdsOrTag": false,
+      "hasAnalytics": false,
+      "doesPaidTraffic": false,
+      "isMobileResponsive": true,
+      "isSlow": false,
+      "diagnosisTags": [
+        "✅ Tem WhatsApp",
+        "🔍 Sem Tráfego Pago Ativo"
+      ],
+      "strengths": [
+        "Carregamento ágil (0.7s)",
+        "Possui botão de WhatsApp no site"
+      ],
+      "weaknesses": [
+        "Não possui Pixel do Facebook ou Google Ads ativo (não faz tráfego qualificado)"
+      ],
+      "opportunityScore": 8,
+      "attackAngle": "A empresa tem site funcional mas não usa tráfego pago para atrair os clientes da região.",
+      "domDetails": {
+        "metaDescription": "Agende sua avaliação 🦷",
+        "h1List": [
+          "Bela Vista Implantes"
+        ],
+        "h2List": [],
+        "h3List": [],
+        "imgCount": 3,
+        "imgsWithoutAlt": 0,
+        "buttonCtaList": [],
+        "detectedCms": "Código Próprio / Personalizado",
+        "sectionsFound": "Hero/Banner, Serviços/Especialidades, Sobre/Quem Somos, Depoimentos/Prova Social, Galeria de Fotos, Formulário/Contato"
+      },
+      "summary": "Site ativo (0.7s). Possui botão de WhatsApp. SEM tags de tráfego pago."
+    },
+    "mapsAudit": {
+      "rating": 4.9,
+      "reviews": 117,
+      "neighborhood": "São Paulo",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 4.9 (117 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (117 avaliações com nota 4.9)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Paulo. Avaliações: 117 (nota 4.9). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem site e boa reputação em São Paulo, mas NÃO FAZ tráfego pago no Google/Meta (sem tags de anúncio). Foco em atrair mais clientes locais com campanhas no bairro.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Falo com a Clínica Odontológica Bela Vista Implantes?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-22T18:35:35.766Z",
+        "auto": true,
+        "ai": true,
+        "text": "Falo com a Clínica Odontológica Bela Vista Implantes?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-22T18:37:44.843Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo bem por aí? Prazer, sou o Kauê, da Pinas.\n\nAchei a estrutura e as avaliações excelentes! Mas reparei que potenciais pacientes pesquisando por implantes no Google na região acabam indo para os concorrentes que anunciam no topo, porque vocês ainda não têm anúncios ativos.\n\nVocês já têm alguém cuidando dessa captação no Google hoje?"
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-22T18:40:18.876Z",
+        "auto": true,
+        "ai": true,
+        "text": "Ah, tá bom! Muito obrigado pelo retorno, viu? Se tiver interesse ou precisar de algo futuramente, é só entrar em contato. Um abraço e muito sucesso por aí!"
+      }
+    ],
+    "repliedAt": "2026-10-22T18:39:44.880Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-22T18:35:39.000Z"
   },
   {
     "id": "lead-1791923354448-uwtr31",
@@ -2248,16 +2838,71 @@
       "tier": "Diamante"
     },
     "score": 9,
-    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
-    "status": "novo",
-    "lastContact": null,
+    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads | Atendimento manual do Kauê (IA desativada)",
+    "status": "respondeu",
+    "lastContact": "2026-10-22T18:58:52.635Z",
     "createdAt": "2026-10-13T20:29:14.448Z",
     "tier": "diamante",
     "priorityScore": 100,
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Odontologia (Alto Ticket Particular) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (56 reviews ★5.0) • WhatsApp Celular Direto"
+    "acceptanceReason": "Odontologia (Alto Ticket Particular) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (56 reviews ★5.0) • WhatsApp Celular Direto",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "https://www.facebook.com/pg/CoelhoImplantes",
+      "isOnline": false,
+      "loadTimeMs": 189,
+      "summary": "Site cadastrado está instável ou fora do ar (Erro 400).",
+      "details": "O link que consta no Google não abre para os clientes, gerando perda imediata de confiança.",
+      "opportunityScore": 9,
+      "attackAngle": "Site fora do ar ou inacessível. Oportunidade de alertar com cuidado e oferecer reconstrução moderna.",
+      "diagnosisTags": [
+        "❌ Site Fora do Ar",
+        "⚠️ Link Inacessível no Maps",
+        "🎯 Oportunidade Urgente"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 56,
+      "neighborhood": "São Paulo",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (56 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (56 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Paulo. Avaliações: 56 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "O site cadastrado no Maps (https://www.facebook.com/pg/CoelhoImplantes) está FORA DO AR ou inacessível. Oportunidade urgente de alertar o responsável com gentileza e oferecer um site novo no ar rapidamente.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Oi, tudo certo? Falo com a Coelho Implantes Odontologia Especializada?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-22T18:52:08.485Z",
+        "auto": true,
+        "ai": true,
+        "text": "Oi, tudo certo? Falo com a Coelho Implantes Odontologia Especializada?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-22T18:58:52.635Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo bem? Prazer! Sou o Kauê, da Pinas.\n\nAchei a estrutura e a reputação de vocês aí em São Paulo excelentes! Mas reparei que o site oficial de vocês está com erro e fora do ar, fazendo com que pacientes que pesquisam no Google acabem caindo nos concorrentes do topo.\n\nVocês já têm alguém rodando anúncios ou cuidando dessa captação no Google por aí hoje?"
+      }
+    ],
+    "repliedAt": "2026-10-22T18:58:13.408Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-22T18:52:11.000Z"
   },
   {
     "id": "lead-1791923354447-61xks2",
@@ -2284,16 +2929,95 @@
       "tier": "Diamante"
     },
     "score": 9,
-    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
-    "status": "novo",
-    "lastContact": null,
+    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads | Atendimento manual do Kauê (IA desativada)",
+    "status": "respondeu",
+    "lastContact": "2026-10-22T19:14:43.732Z",
     "createdAt": "2026-10-13T20:29:14.447Z",
     "tier": "diamante",
     "priorityScore": 100,
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Odontologia (Alto Ticket Particular) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (206 reviews ★5.0) • WhatsApp Celular Direto"
+    "acceptanceReason": "Odontologia (Alto Ticket Particular) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (206 reviews ★5.0) • WhatsApp Celular Direto",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "https://www.instagram.com/ingriidfraanco?igsh=amZzemFpd2lhaG5z&utm_source=qr",
+      "isOnline": true,
+      "loadTimeMs": 292,
+      "title": "Instagram",
+      "hasWhatsApp": false,
+      "hasMetaPixel": false,
+      "hasGoogleAdsOrTag": false,
+      "hasAnalytics": false,
+      "doesPaidTraffic": false,
+      "isMobileResponsive": true,
+      "isSlow": false,
+      "diagnosisTags": [
+        "❌ Sem Botão WhatsApp",
+        "🔍 Sem Tráfego Pago Ativo"
+      ],
+      "strengths": [
+        "Carregamento ágil (0.3s)"
+      ],
+      "weaknesses": [
+        "Não possui botão direto de WhatsApp visível",
+        "Não possui Pixel do Facebook ou Google Ads ativo (não faz tráfego qualificado)"
+      ],
+      "opportunityScore": 8,
+      "attackAngle": "O site atual não facilita o contato direto pelo WhatsApp. Uma página de alta conversão aumentaria muito os orçamentos.",
+      "domDetails": {
+        "metaDescription": "",
+        "h1List": [],
+        "h2List": [],
+        "h3List": [],
+        "imgCount": 2,
+        "imgsWithoutAlt": 2,
+        "buttonCtaList": [],
+        "detectedCms": "Shopify, RD Station, Bootstrap",
+        "sectionsFound": "Hero/Banner, Depoimentos/Prova Social"
+      },
+      "summary": "Site ativo (0.3s). SEM botão direto de WhatsApp. SEM tags de tráfego pago."
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 206,
+      "neighborhood": "São Paulo",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (206 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (206 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Paulo. Avaliações: 206 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem site no ar, mas NÃO TEM botão direto de WhatsApp. O cliente precisa procurar o telefone ou preencher formulário, perdendo conversões imediatas.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Olá, tudo bem? É da IF Odontologia Integrada?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-22T19:13:21.069Z",
+        "auto": true,
+        "ai": true,
+        "text": "Olá, tudo bem? É da IF Odontologia Integrada?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-22T19:14:43.732Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo ótimo por aqui! Sou o Kauê, da Pinas.\n\nAchei a estrutura e as avaliações de vocês aí em São Paulo excelentes! Mas reparei pelo celular que vocês ainda não têm um botão de WhatsApp visível e nem anúncios ativos, fazendo com que pacientes que pesquisam dentista no Google na região acabem indo para os concorrentes do topo.\n\nVocês já têm alguém rodando tráfego ou cuidando dessa captação no Google por aí hoje?"
+      }
+    ],
+    "repliedAt": "2026-10-22T19:14:29.007Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-22T19:13:24.000Z"
   },
   {
     "id": "lead-1791923354442-u13i6y",
@@ -2320,16 +3044,64 @@
       "tier": "Diamante"
     },
     "score": 9,
-    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
-    "status": "novo",
-    "lastContact": null,
+    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads | Atendimento manual do Kauê (IA desativada)",
+    "status": "contatado",
+    "lastContact": "2026-10-22T19:31:42.462Z",
     "createdAt": "2026-10-13T20:29:14.442Z",
     "tier": "diamante",
     "priorityScore": 100,
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Odontologia (Alto Ticket Particular) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (46 reviews ★5.0) • WhatsApp Celular Direto"
+    "acceptanceReason": "Odontologia (Alto Ticket Particular) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (46 reviews ★5.0) • WhatsApp Celular Direto",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "/aclk?sa=L&ai=DChsSEwiE5NHT6reXAxU4SEgAHbrBJgkYACICCAEQCRoCY2U&co=1&ase=2&gclid=EAIaIQobChMIhOTR0-q3lwMVOEhIAB26wSYJEBAYAiAAEgJeTvD_BwE&cid=CAASuwHkaMN9sk1YFssiBBSP8U24YTclMkegYbtNecC7HxM9xb5LfsDJamyK-3cgik732Rkp5-CEqRwmLCl2OkQx7E1ne7x1MgPNRc-FzOxhRVxmhQYyYx0H838ORZ0cZd-tB6W_kKsMtJ7C_PikZAp1Z-3J0VPUg7U2-yAcm4VDfPzlyqDtGe0I19LUZyfRohZqZ_mdQMDjG62dDdpLiqME3hljzVU99XPpbSVGYyxzbo4Sb6cKDnxPnqz61OIL&cce=2&category=acrcp_v1_32&sig=AOD64_157f6wBt-dfT5OqbZqUBhstWO6oA&adurl&q&ctype=99&nis=5",
+      "isOnline": false,
+      "error": "getaddrinfo ENOTFOUND aclk",
+      "loadTimeMs": 2696,
+      "summary": "Site cadastrado está instável ou fora do ar (getaddrinfo ENOTFOUND aclk).",
+      "details": "O link que consta no Google não abre para os clientes, gerando perda imediata de confiança.",
+      "opportunityScore": 9,
+      "attackAngle": "Site fora do ar ou inacessível. Oportunidade de alertar com cuidado e oferecer reconstrução moderna.",
+      "diagnosisTags": [
+        "❌ Site Fora do Ar",
+        "⚠️ Link Inacessível no Maps",
+        "🎯 Oportunidade Urgente"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 46,
+      "neighborhood": "São Paulo",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (46 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (46 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Paulo. Avaliações: 46 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "O site cadastrado no Maps (/aclk?sa=L&ai=DChsSEwiE5NHT6reXAxU4SEgAHbrBJgkYACICCAEQCRoCY2U&co=1&ase=2&gclid=EAIaIQobChMIhOTR0-q3lwMVOEhIAB26wSYJEBAYAiAAEgJeTvD_BwE&cid=CAASuwHkaMN9sk1YFssiBBSP8U24YTclMkegYbtNecC7HxM9xb5LfsDJamyK-3cgik732Rkp5-CEqRwmLCl2OkQx7E1ne7x1MgPNRc-FzOxhRVxmhQYyYx0H838ORZ0cZd-tB6W_kKsMtJ7C_PikZAp1Z-3J0VPUg7U2-yAcm4VDfPzlyqDtGe0I19LUZyfRohZqZ_mdQMDjG62dDdpLiqME3hljzVU99XPpbSVGYyxzbo4Sb6cKDnxPnqz61OIL&cce=2&category=acrcp_v1_32&sig=AOD64_157f6wBt-dfT5OqbZqUBhstWO6oA&adurl&q&ctype=99&nis=5) está FORA DO AR ou inacessível. Oportunidade urgente de alertar o responsável com gentileza e oferecer um site novo no ar rapidamente.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Tudo bem por aí? Falo com a Dra. Jessica Meneses?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-22T19:31:42.462Z",
+        "auto": true,
+        "ai": true,
+        "text": "Tudo bem por aí? Falo com a Dra. Jessica Meneses?"
+      }
+    ],
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-22T19:31:45.000Z"
   },
   {
     "id": "lead-1791221043830-87xwrw",
@@ -2356,9 +3128,9 @@
       "tier": "Diamante"
     },
     "score": 9,
-    "notes": "Clientela física forte (26 reviews, nota 5), mas perde buscas diárias no Google por não ter site próprio.",
-    "status": "novo",
-    "lastContact": null,
+    "notes": "Clientela física forte (26 reviews, nota 5), mas perde buscas diárias no Google por não ter site próprio. | Atendimento manual do Kauê (IA desativada)",
+    "status": "respondeu",
+    "lastContact": "2026-10-22T19:50:20.842Z",
     "createdAt": "2026-10-05T17:24:03.830Z",
     "conversationScript": {
       "hasCustomerReplied": false,
@@ -2438,7 +3210,53 @@
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (26 reviews ★5.0) • WhatsApp Celular Direto"
+    "acceptanceReason": "💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (26 reviews ★5.0) • WhatsApp Celular Direto",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 26,
+      "neighborhood": "Vila Mariana, São Paulo - SP",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (26 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (26 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Vila Mariana, São Paulo - SP. Avaliações: 26 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Vila Mariana, São Paulo - SP (26 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Olá, como vai? Falo com a NYLA concept?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-22T19:50:20.842Z",
+        "auto": true,
+        "ai": true,
+        "text": "Olá, como vai? Falo com a NYLA concept?"
+      }
+    ],
+    "repliedAt": "2026-10-22T19:50:32.000Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-22T19:50:24.000Z"
   },
   {
     "id": "lead-1791221043830-kyerhx",
@@ -2465,8 +3283,8 @@
       "tier": "Diamante"
     },
     "score": 9,
-    "notes": "Clientela física forte (65 reviews, nota 4.8), mas perde buscas diárias no Google por não ter site próprio.",
-    "status": "novo",
+    "notes": "Clientela física forte (65 reviews, nota 4.8), mas perde buscas diárias no Google por não ter site próprio. | Telefone sem WhatsApp (Número não possui conta no WhatsApp)",
+    "status": "ignorado",
     "lastContact": null,
     "createdAt": "2026-10-05T17:24:03.830Z",
     "conversationScript": {
@@ -2547,7 +3365,8 @@
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (65 reviews ★4.8) • WhatsApp Celular Direto"
+    "acceptanceReason": "💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (65 reviews ★4.8) • WhatsApp Celular Direto",
+    "invalidPhone": true
   },
   {
     "id": "lead-1791220864216-ipdi2h",
@@ -2574,9 +3393,9 @@
       "tier": "Diamante"
     },
     "score": 9,
-    "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas.",
-    "status": "novo",
-    "lastContact": null,
+    "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas. | Atendimento manual do Kauê (IA desativada) | Contato comercial adicionado: (11) 94655-1205. Mensagem de abordagem enviada para o comercial.",
+    "status": "respondeu",
+    "lastContact": "2026-10-22T20:09:13.833Z",
     "createdAt": "2026-10-05T17:21:04.216Z",
     "conversationScript": {
       "hasCustomerReplied": false,
@@ -2667,7 +3486,94 @@
     "opportunityType": "sem_whatsapp",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • ⚠️ Site sem botão direto de WhatsApp • Forte reputação local (94 reviews ★4.8) • WhatsApp Celular Direto"
+    "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • ⚠️ Site sem botão direto de WhatsApp • Forte reputação local (94 reviews ★4.8) • WhatsApp Celular Direto",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "https://www.oncarevet.com.br/",
+      "isOnline": true,
+      "loadTimeMs": 1549,
+      "title": "Home",
+      "hasWhatsApp": true,
+      "hasMetaPixel": false,
+      "hasGoogleAdsOrTag": false,
+      "hasAnalytics": false,
+      "doesPaidTraffic": false,
+      "isMobileResponsive": true,
+      "isSlow": false,
+      "diagnosisTags": [
+        "✅ Tem WhatsApp",
+        "🔍 Sem Tráfego Pago Ativo"
+      ],
+      "strengths": [
+        "Possui botão de WhatsApp no site"
+      ],
+      "weaknesses": [
+        "Não possui Pixel do Facebook ou Google Ads ativo (não faz tráfego qualificado)"
+      ],
+      "opportunityScore": 8,
+      "attackAngle": "A empresa tem site funcional mas não usa tráfego pago para atrair os clientes da região.",
+      "domDetails": {
+        "metaDescription": "",
+        "h1List": [],
+        "h2List": [
+          "Segunda a s&aacute;bado das 9:00 as 1800hs(11) 97176.1899 - 5549.1899contato@oncarevet.com.brRua Santa Cruz, 843 - Vila Mariana"
+        ],
+        "h3List": [
+          "Profissionais t&eacute;cnicos, respeito ao seu pet e pre&ccedil;o justo.",
+          "Siga-Nos!"
+        ],
+        "imgCount": 1,
+        "imgsWithoutAlt": 1,
+        "buttonCtaList": [
+          "WhatsApp",
+          "E-MAIL"
+        ],
+        "detectedCms": "RD Station, Bootstrap",
+        "sectionsFound": "Sobre/Quem Somos, Formulário/Contato"
+      },
+      "summary": "Site ativo (1.5s). Possui botão de WhatsApp. SEM tags de tráfego pago."
+    },
+    "mapsAudit": {
+      "rating": 4.8,
+      "reviews": 94,
+      "neighborhood": "Vila Mariana, São Paulo - SP",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 4.8 (94 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (94 avaliações com nota 4.8)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Vila Mariana, São Paulo - SP. Avaliações: 94 (nota 4.8). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem site e boa reputação em Vila Mariana, São Paulo - SP, mas NÃO FAZ tráfego pago no Google/Meta (sem tags de anúncio). Foco em atrair mais clientes locais com campanhas no bairro.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "É da OnCare Veterinária?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-22T20:07:44.739Z",
+        "auto": true,
+        "ai": true,
+        "text": "É da OnCare Veterinária?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-22T20:09:13.833Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo bem? Prazer, sou o Kauê, da Pinas.\n\nAchei a estrutura e a reputação de vocês aí em Vila Mariana excelentes! Mas reparei que tutores que pesquisam veterinário no Google na região acabam caindo nos concorrentes que anunciam no topo, porque vocês ainda não têm anúncios ativos.\n\nVocês já têm alguém rodando tráfego ou cuidando dessa captação no Google por aí hoje?"
+      }
+    ],
+    "repliedAt": "2026-10-22T20:09:03.110Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-22T20:07:48.000Z",
+    "commercialPhone": "(11) 94655-1205"
   },
   {
     "id": "lead-1791220818721-h10ddu",
@@ -2695,8 +3601,8 @@
     },
     "score": 9,
     "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas.",
-    "status": "novo",
-    "lastContact": null,
+    "status": "respondeu",
+    "lastContact": "2026-10-23T17:46:11.850Z",
     "createdAt": "2026-10-05T17:20:18.721Z",
     "conversationScript": {
       "hasCustomerReplied": false,
@@ -2776,7 +3682,61 @@
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (290 reviews ★4.8) • WhatsApp Celular Direto"
+    "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (290 reviews ★4.8) • WhatsApp Celular Direto",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "/aclk?sa=L&ai=DChsSEwjLkdXDsaOXAxUqTEgAHT11CxMYACICCAEQAhoCY2U&co=1&ase=2&gclid=EAIaIQobChMIy5HVw7GjlwMVKkxIAB09dQsTEBAYASAAEgKJCvD_BwE&cid=CAASuwHkaM-WRAgi8tV42f89MMAK68SYFmfDvgaB-hXjuM3ZKGOQWgFQqbpN6hK2pwnQBJps5TEAlTX2cqwwEPf-sy-UOUsEYapcBsdJwSojAQfCZQA2oV7ylGI_6gnf2WZbacyp7IxjCp4hk579ALRiR1ZhHvbwgZk5cL-dZqN3S8nUmiNJHwon_P06EMvYA6dST8xgeeqZTdp_GqARaD0zn8H6WIr_nYtAzgNj8OH9146MjgaVcywLYrciisgl&cce=2&category=acrcp_v1_32&sig=AOD64_3cmlfuveSRb-OPV7GpvdGRMQWhWg&adurl&q&ctype=99&nis=5",
+      "isOnline": false,
+      "error": "getaddrinfo ENOTFOUND aclk",
+      "loadTimeMs": 2692,
+      "summary": "Site cadastrado está instável ou fora do ar (getaddrinfo ENOTFOUND aclk).",
+      "details": "O link que consta no Google não abre para os clientes, gerando perda imediata de confiança.",
+      "opportunityScore": 9,
+      "attackAngle": "Site fora do ar ou inacessível. Oportunidade de alertar com cuidado e oferecer reconstrução moderna.",
+      "diagnosisTags": [
+        "❌ Site Fora do Ar",
+        "⚠️ Link Inacessível no Maps",
+        "🎯 Oportunidade Urgente"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 4.8,
+      "reviews": 290,
+      "neighborhood": "Pinheiros, São Paulo - SP",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 4.8 (290 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (290 avaliações com nota 4.8)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Pinheiros, São Paulo - SP. Avaliações: 290 (nota 4.8). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "O site cadastrado no Maps (/aclk?sa=L&ai=DChsSEwjLkdXDsaOXAxUqTEgAHT11CxMYACICCAEQAhoCY2U&co=1&ase=2&gclid=EAIaIQobChMIy5HVw7GjlwMVKkxIAB09dQsTEBAYASAAEgKJCvD_BwE&cid=CAASuwHkaM-WRAgi8tV42f89MMAK68SYFmfDvgaB-hXjuM3ZKGOQWgFQqbpN6hK2pwnQBJps5TEAlTX2cqwwEPf-sy-UOUsEYapcBsdJwSojAQfCZQA2oV7ylGI_6gnf2WZbacyp7IxjCp4hk579ALRiR1ZhHvbwgZk5cL-dZqN3S8nUmiNJHwon_P06EMvYA6dST8xgeeqZTdp_GqARaD0zn8H6WIr_nYtAzgNj8OH9146MjgaVcywLYrciisgl&cce=2&category=acrcp_v1_32&sig=AOD64_3cmlfuveSRb-OPV7GpvdGRMQWhWg&adurl&q&ctype=99&nis=5) está FORA DO AR ou inacessível. Oportunidade urgente de alertar o responsável com gentileza e oferecer um site novo no ar rapidamente.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Olá, tudo certo por aí? Falo com a Revivere?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-23T17:42:32.402Z",
+        "auto": true,
+        "ai": true,
+        "text": "Olá, tudo certo por aí? Falo com a Revivere?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-23T17:46:11.850Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo bem por aí? Prazer, sou o Kauê, da Pinas.\n\nAchei a estrutura e a reputação de vocês aí em Pinheiros excelentes! Mas reparei que muitos tutores que pesquisam veterinário no Google na região acabam caindo nos concorrentes que anunciam no topo, porque vocês ainda não têm uma página rápida direcionando direto pro WhatsApp.\n\nVocês já têm alguém rodando anúncios ou cuidando dessa captação no Google por aí hoje?"
+      }
+    ],
+    "autopilotAttempts": 1,
+    "repliedAt": "2026-10-23T17:45:55.805Z"
   },
   {
     "id": "lead-1790820665678-gkujo3",
@@ -2795,8 +3755,8 @@
     "neighborhood": "Santo Amaro SP",
     "city": "São Paulo",
     "notes": "Já possui site. Oportunidade em Tráfego Pago / Anúncios.",
-    "status": "novo",
-    "lastContact": null,
+    "status": "respondeu",
+    "lastContact": "2026-10-23T18:03:46.818Z",
     "createdAt": "2026-10-01T02:11:05.678Z",
     "opportunity": {
       "score": 100,
@@ -2897,7 +3857,85 @@
     "acceptanceTier": "Diamante",
     "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • ⚠️ Site sem botão direto de WhatsApp • Forte reputação local (104 reviews ★5.0) • WhatsApp Celular Direto",
     "siteHasWhatsApp": false,
-    "siteHasPixel": false
+    "siteHasPixel": false,
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "https://clinicabonitopet.lovable.app/",
+      "isOnline": true,
+      "loadTimeMs": 1432,
+      "title": "Clínica Bonito Pet | Veterinária em Santo Amaro - SP",
+      "hasWhatsApp": false,
+      "hasMetaPixel": false,
+      "hasGoogleAdsOrTag": false,
+      "hasAnalytics": false,
+      "doesPaidTraffic": false,
+      "isMobileResponsive": true,
+      "isSlow": false,
+      "diagnosisTags": [
+        "❌ Sem Botão WhatsApp",
+        "🔍 Sem Tráfego Pago Ativo"
+      ],
+      "strengths": [
+        "Carregamento ágil (1.4s)"
+      ],
+      "weaknesses": [
+        "Não possui botão direto de WhatsApp visível",
+        "Não possui Pixel do Facebook ou Google Ads ativo (não faz tráfego qualificado)"
+      ],
+      "opportunityScore": 8,
+      "attackAngle": "O site atual não facilita o contato direto pelo WhatsApp. Uma página de alta conversão aumentaria muito os orçamentos.",
+      "domDetails": {
+        "metaDescription": "Clínica veterinária em Santo Amaro, São Paulo. Consultas, vacinação, exames, banho e tosa. Atendimento humanizado com nota 5.0. Agende pelo WhatsApp!",
+        "h1List": [],
+        "h2List": [],
+        "h3List": [],
+        "imgCount": 0,
+        "imgsWithoutAlt": 0,
+        "buttonCtaList": [
+          "Edit with"
+        ],
+        "detectedCms": "Código Próprio / Personalizado",
+        "sectionsFound": "Formulário/Contato"
+      },
+      "summary": "Site ativo (1.4s). SEM botão direto de WhatsApp. SEM tags de tráfego pago."
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 104,
+      "neighborhood": "Santo Amaro SP",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (104 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (104 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Santo Amaro SP. Avaliações: 104 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem site no ar, mas NÃO TEM botão direto de WhatsApp. O cliente precisa procurar o telefone ou preencher formulário, perdendo conversões imediatas.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Tudo bem? Falo com a Bonito Pet?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-23T17:51:05.463Z",
+        "auto": true,
+        "ai": true,
+        "text": "Tudo bem? Falo com a Bonito Pet?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-23T18:03:46.818Z",
+        "auto": true,
+        "ai": true,
+        "text": "Tudo ótimo por aqui também! Prazer, sou o Kauê, da Pinas.\n\nAchei a estrutura e a reputação de vocês aí em Santo Amaro excelentes! Mas reparei que muitos tutores que pesquisam veterinário no Google na região acabam caindo nos concorrentes que anunciam no topo, porque vocês ainda não têm uma página rápida direcionando direto pro WhatsApp da recepção.\n\nVocês já têm alguém rodando anúncios ou cuidando dessa captação no Google por aí hoje?"
+      }
+    ],
+    "repliedAt": "2026-10-23T18:03:35.916Z"
   },
   {
     "id": "lead-1790820665678-tfjdga",
@@ -2915,9 +3953,9 @@
     "address": "Veterinário ·  · R. São Sebastião, 436",
     "neighborhood": "Santo Amaro SP",
     "city": "São Paulo",
-    "notes": "Já possui site. Oportunidade em Tráfego Pago / Anúncios.",
-    "status": "novo",
-    "lastContact": null,
+    "notes": "Já possui site. Oportunidade em Tráfego Pago / Anúncios. | Áudio pendente recebido — Kauê notificado",
+    "status": "contatado",
+    "lastContact": "2026-10-23T17:57:47.558Z",
     "createdAt": "2026-10-01T02:11:05.678Z",
     "opportunity": {
       "score": 100,
@@ -3018,7 +4056,81 @@
     "acceptanceTier": "Diamante",
     "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • ⚠️ Site sem botão direto de WhatsApp • Forte reputação local (132 reviews ★4.8) • WhatsApp Celular Direto",
     "siteHasWhatsApp": false,
-    "siteHasPixel": false
+    "siteHasPixel": false,
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "http://www.reinosilvestre.com.br/",
+      "isOnline": true,
+      "loadTimeMs": 288,
+      "title": "Reino Silvestre - Atendimento veterinário especializado e exclusivo para animais silvestres e exóticos",
+      "hasWhatsApp": false,
+      "hasMetaPixel": false,
+      "hasGoogleAdsOrTag": true,
+      "hasAnalytics": true,
+      "doesPaidTraffic": true,
+      "isMobileResponsive": true,
+      "isSlow": false,
+      "diagnosisTags": [
+        "❌ Sem Botão WhatsApp",
+        "📈 Já Investe em Anúncios"
+      ],
+      "strengths": [
+        "Carregamento ágil (0.3s)",
+        "Já possui pixels de anúncio (investe em tráfego)"
+      ],
+      "weaknesses": [
+        "Não possui botão direto de WhatsApp visível"
+      ],
+      "opportunityScore": 8,
+      "attackAngle": "O site atual não facilita o contato direto pelo WhatsApp. Uma página de alta conversão aumentaria muito os orçamentos.",
+      "domDetails": {
+        "metaDescription": "Atendimento veterinário especializado e exclusivo para animais silvestres e exóticos.",
+        "h1List": [
+          "Atendimento veterinário especializado e exclusivo para animais silvestres e exóticos",
+          "***Atendimento domiciliar e em clínicas *** -- Oferecemos hospedagem exclusiva",
+          "Parceiros:"
+        ],
+        "h2List": [],
+        "h3List": [],
+        "imgCount": 8,
+        "imgsWithoutAlt": 0,
+        "buttonCtaList": [],
+        "detectedCms": "Bootstrap",
+        "sectionsFound": "Sobre/Quem Somos, Depoimentos/Prova Social, Formulário/Contato"
+      },
+      "summary": "Site ativo (0.3s). SEM botão direto de WhatsApp. Já tem tags de anúncios."
+    },
+    "mapsAudit": {
+      "rating": 4.8,
+      "reviews": 132,
+      "neighborhood": "Santo Amaro SP",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 4.8 (132 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (132 avaliações com nota 4.8)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Santo Amaro SP. Avaliações: 132 (nota 4.8). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem site no ar, mas NÃO TEM botão direto de WhatsApp. O cliente precisa procurar o telefone ou preencher formulário, perdendo conversões imediatas.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Boa tarde, tudo bem? É da Reino Silvestre?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-23T17:57:47.558Z",
+        "auto": true,
+        "ai": true,
+        "text": "Boa tarde, tudo bem? É da Reino Silvestre?"
+      }
+    ],
+    "manualControl": true,
+    "humanTakeover": true
   },
   {
     "id": "lead-1790820665678-z3teuj",
@@ -3037,8 +4149,8 @@
     "neighborhood": "Santo Amaro SP",
     "city": "São Paulo",
     "notes": "Já possui site. Oportunidade em Tráfego Pago / Anúncios.",
-    "status": "novo",
-    "lastContact": null,
+    "status": "respondeu",
+    "lastContact": "2026-10-23T18:09:58.446Z",
     "createdAt": "2026-10-01T02:11:05.678Z",
     "opportunity": {
       "score": 100,
@@ -3127,7 +4239,83 @@
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (62 reviews ★4.9) • WhatsApp Celular Direto"
+    "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (62 reviews ★4.9) • WhatsApp Celular Direto",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "https://www.instagram.com/masters.veterinaria/",
+      "isOnline": true,
+      "loadTimeMs": 773,
+      "title": "Instagram",
+      "hasWhatsApp": false,
+      "hasMetaPixel": false,
+      "hasGoogleAdsOrTag": false,
+      "hasAnalytics": false,
+      "doesPaidTraffic": false,
+      "isMobileResponsive": true,
+      "isSlow": false,
+      "diagnosisTags": [
+        "❌ Sem Botão WhatsApp",
+        "🔍 Sem Tráfego Pago Ativo"
+      ],
+      "strengths": [
+        "Carregamento ágil (0.8s)"
+      ],
+      "weaknesses": [
+        "Não possui botão direto de WhatsApp visível",
+        "Não possui Pixel do Facebook ou Google Ads ativo (não faz tráfego qualificado)"
+      ],
+      "opportunityScore": 8,
+      "attackAngle": "O site atual não facilita o contato direto pelo WhatsApp. Uma página de alta conversão aumentaria muito os orçamentos.",
+      "domDetails": {
+        "metaDescription": "",
+        "h1List": [],
+        "h2List": [],
+        "h3List": [],
+        "imgCount": 2,
+        "imgsWithoutAlt": 2,
+        "buttonCtaList": [],
+        "detectedCms": "Shopify, RD Station, Bootstrap",
+        "sectionsFound": "Hero/Banner, Depoimentos/Prova Social"
+      },
+      "summary": "Site ativo (0.8s). SEM botão direto de WhatsApp. SEM tags de tráfego pago."
+    },
+    "mapsAudit": {
+      "rating": 4.9,
+      "reviews": 62,
+      "neighborhood": "Santo Amaro SP",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 4.9 (62 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (62 avaliações com nota 4.9)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Santo Amaro SP. Avaliações: 62 (nota 4.9). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem site no ar, mas NÃO TEM botão direto de WhatsApp. O cliente precisa procurar o telefone ou preencher formulário, perdendo conversões imediatas.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Oi, tudo bem? Falo com a MASTERS Especialidades Veterinárias?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-23T18:03:45.786Z",
+        "auto": true,
+        "ai": true,
+        "text": "Oi, tudo bem? Falo com a MASTERS Especialidades Veterinárias?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-23T18:09:58.446Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa Dra. Iara, tudo ótimo por aqui! Sou o Kauê, da Pinas.\n\nAchei a estrutura e a reputação de vocês aí em Santo Amaro SP excelentes! Mas reparei que muitos tutores que pesquisam veterinário no Google na região acabam caindo nos concorrentes que anunciam no topo, porque vocês ainda não têm uma página rápida direcionando direto pro WhatsApp da recepção.\n\nVocês já têm alguém rodando anúncios ou cuidando dessa captação no Google por aí hoje?"
+      }
+    ],
+    "repliedAt": "2026-10-23T18:09:45.175Z"
   },
   {
     "id": "lead-1791920508308-wid0uw",
@@ -3154,8 +4342,8 @@
       "tier": "Diamante"
     },
     "score": 8,
-    "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
-    "status": "novo",
+    "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads. | Telefone sem WhatsApp (Número não possui conta no WhatsApp)",
+    "status": "ignorado",
     "lastContact": null,
     "createdAt": "2026-10-13T19:41:48.308Z",
     "tier": "diamante",
@@ -3163,7 +4351,8 @@
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (5 reviews ★5.0) • WhatsApp Celular Direto"
+    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (5 reviews ★5.0) • WhatsApp Celular Direto",
+    "invalidPhone": true
   },
   {
     "id": "lead-1791920492989-paah4l",
@@ -3191,15 +4380,65 @@
     },
     "score": 8,
     "notes": "Comércio sem site oficial. Oportunidade direta de landing page rápida + Google Ads.",
-    "status": "novo",
-    "lastContact": null,
+    "status": "respondeu",
+    "lastContact": "2026-10-23T18:28:25.463Z",
     "createdAt": "2026-10-13T19:41:32.989Z",
     "tier": "diamante",
     "priorityScore": 100,
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (7 reviews ★5.0) • WhatsApp Celular Direto"
+    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Presença local ativa (7 reviews ★5.0) • WhatsApp Celular Direto",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 7,
+      "neighborhood": "São Caetano do Sul, SP",
+      "localReputation": "média",
+      "diagnosisTags": [
+        "⭐ 7 avaliações"
+      ],
+      "strengths": [
+        "Boa presença com 7 avaliações (nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Caetano do Sul, SP. Avaliações: 7 (nota 5.0). Reputação local: média."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em São Caetano do Sul, SP (7 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Opa! É da Conexões Sistêmica?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-23T18:09:57.909Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa! É da Conexões Sistêmica?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-23T18:28:25.463Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo ótimo por aqui! Sou o Kauê, da Pinas.\n\nAchei seu posicionamento e autoridade muito bacanas! Mas reparei que hoje boa parte dos decisores e clientes qualificados que buscam mentoria e treinamento no Google acabam caindo em concorrentes patrocinados, sem uma estrutura rápida direcionando pro seu WhatsApp.\n\nVocê já tem alguém rodando tráfego qualificado para a sua mentoria hoje ou depende de indicação orgânica?"
+      }
+    ],
+    "repliedAt": "2026-10-23T18:28:05.317Z"
   },
   {
     "id": "lead-1791221043830-zsz4nq",
@@ -3227,8 +4466,8 @@
     },
     "score": 8,
     "notes": "Clientela física forte (23 reviews, nota 4.7), mas perde buscas diárias no Google por não ter site próprio.",
-    "status": "novo",
-    "lastContact": null,
+    "status": "respondeu",
+    "lastContact": "2026-10-23T18:24:27.994Z",
     "createdAt": "2026-10-05T17:24:03.830Z",
     "conversationScript": {
       "hasCustomerReplied": false,
@@ -3308,7 +4547,57 @@
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (23 reviews ★4.7) • WhatsApp Celular Direto"
+    "acceptanceReason": "💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (23 reviews ★4.7) • WhatsApp Celular Direto",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": false,
+      "isOnline": false,
+      "summary": "Não possui site oficial cadastrado.",
+      "details": "A empresa depende exclusivamente de redes sociais ou Maps. Perde centenas de buscas qualificadas no Google todo mês.",
+      "opportunityScore": 10,
+      "attackAngle": "Sem site próprio. Oportunidade direta de criar uma landing page veloz com botão de WhatsApp.",
+      "diagnosisTags": [
+        "🚫 Sem Site Próprio",
+        "⚠️ Depende 100% de Redes Sociais",
+        "🎯 Oportunidade Alta"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 4.7,
+      "reviews": 23,
+      "neighborhood": "Vila Mariana, São Paulo - SP",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 4.7 (23 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (23 avaliações com nota 4.7)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Vila Mariana, São Paulo - SP. Avaliações: 23 (nota 4.7). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem presença local em Vila Mariana, São Paulo - SP (23 avaliações), mas NÃO TEM SITE PRÓPRIO. Foco total em propor uma landing page moderna com botão de WhatsApp direto para captar quem pesquisa no Google.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Oi! É da Mar & Montanha?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-23T18:16:56.228Z",
+        "auto": true,
+        "ai": true,
+        "text": "Oi! É da Mar & Montanha?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-23T18:24:27.994Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo ótimo por aqui! Sou o Kauê, da Pinas.\n\nAchei a estrutura e as avaliações de vocês aí em Vila Mariana muito boas! Mas reparei que pessoas pesquisando por roupas e moda no Google na região acabam caindo nos concorrentes que anunciam no topo, porque vocês ainda não têm uma página rápida com WhatsApp direto.\n\nVocês já têm alguém estruturando essa captação no Google por aí hoje?"
+      }
+    ],
+    "repliedAt": "2026-10-23T18:23:54.606Z"
   },
   {
     "id": "lead-1791220838723-jsmgyk",
@@ -3336,8 +4625,8 @@
     },
     "score": 8,
     "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas.",
-    "status": "novo",
-    "lastContact": null,
+    "status": "perdido",
+    "lastContact": "2026-10-23T18:31:26.442Z",
     "createdAt": "2026-10-05T17:20:38.723Z",
     "conversationScript": {
       "hasCustomerReplied": false,
@@ -3429,7 +4718,109 @@
     "acceptanceTier": "Diamante",
     "acceptanceReason": "Nicho #1 Pinas (Clínica Veterinária) • ⚠️ Site sem botão direto de WhatsApp • Forte reputação local (23 reviews ★5.0) • WhatsApp Celular Direto",
     "siteHasWhatsApp": false,
-    "siteHasPixel": false
+    "siteHasPixel": false,
+    "stage": 3,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "http://www.catcaresp.com.br/",
+      "isOnline": true,
+      "loadTimeMs": 62,
+      "title": "CatCareSP | Clinica Especialista em Gatos",
+      "hasWhatsApp": true,
+      "hasMetaPixel": false,
+      "hasGoogleAdsOrTag": false,
+      "hasAnalytics": false,
+      "doesPaidTraffic": false,
+      "isMobileResponsive": true,
+      "isSlow": false,
+      "diagnosisTags": [
+        "✅ Tem WhatsApp",
+        "🔍 Sem Tráfego Pago Ativo"
+      ],
+      "strengths": [
+        "Carregamento ágil (0.1s)",
+        "Possui botão de WhatsApp no site"
+      ],
+      "weaknesses": [
+        "Não possui Pixel do Facebook ou Google Ads ativo (não faz tráfego qualificado)"
+      ],
+      "opportunityScore": 8,
+      "attackAngle": "A empresa tem site funcional mas não usa tráfego pago para atrair os clientes da região.",
+      "domDetails": {
+        "metaDescription": "CatCare é uma clínica especialista em gatos com atendimento veterinário exclusivo aos felinos.",
+        "h1List": [
+          "Deisielle M. Garcia",
+          "aMANDA SANTOS"
+        ],
+        "h2List": [
+          "QUEM SOMOS",
+          "NOSSOS SERVI&Ccedil;OS",
+          "GATINHOS FELIZES",
+          "FALE CONOSCO"
+        ],
+        "h3List": [
+          "Em breve teremos interna&ccedil;&atilde;o."
+        ],
+        "imgCount": 7,
+        "imgsWithoutAlt": 1,
+        "buttonCtaList": [
+          "Agende uma consulta",
+          "QUEM SOMOS",
+          "SERVIÇOS",
+          "A CLÍNICA",
+          "WhatsApp",
+          "Enviar"
+        ],
+        "detectedCms": "Wix, RD Station, Bootstrap",
+        "sectionsFound": "Hero/Banner, Serviços/Especialidades, Sobre/Quem Somos, Depoimentos/Prova Social, Galeria de Fotos, Formulário/Contato"
+      },
+      "summary": "Site ativo (0.1s). Possui botão de WhatsApp. SEM tags de tráfego pago."
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 23,
+      "neighborhood": "Pinheiros, São Paulo - SP",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (23 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (23 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: Pinheiros, São Paulo - SP. Avaliações: 23 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem site e boa reputação em Pinheiros, São Paulo - SP, mas NÃO FAZ tráfego pago no Google/Meta (sem tags de anúncio). Foco em atrair mais clientes locais com campanhas no bairro.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Falo com a Cat Care?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-23T18:23:25.473Z",
+        "auto": true,
+        "ai": true,
+        "text": "Falo com a Cat Care?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-23T18:26:03.964Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo ótimo por aqui! Sou o Kauê, da Pinas.\n\nAchei a estrutura e a reputação de vocês aí em Pinheiros, São Paulo - SP excelentes! Mas reparei que muitos tutores que pesquisam veterinário no Google na região acabam caindo nos concorrentes que anunciam no topo, porque vocês ainda não têm anúncios rodando.\n\nVocês já têm alguém rodando anúncios ou cuidando dessa captação no Google por aí hoje?"
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-23T18:31:26.442Z",
+        "auto": true,
+        "ai": true,
+        "text": "Ah, tá bom! Muito obrigado pelo retorno, viu? Se tiver interesse ou precisar de algo futuramente, é só entrar em contato. Um abraço e muito sucesso por aí!"
+      }
+    ],
+    "repliedAt": "2026-10-23T18:31:16.155Z",
+    "manualControl": true,
+    "humanTakeover": true
   },
   {
     "id": "lead-1791922821472-upw5b1",
@@ -3457,8 +4848,8 @@
     },
     "score": 8,
     "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas.",
-    "status": "novo",
-    "lastContact": null,
+    "status": "respondeu",
+    "lastContact": "2026-10-24T00:04:56.819Z",
     "createdAt": "2026-10-13T20:20:21.472Z",
     "tier": "diamante",
     "priorityScore": 100,
@@ -3473,7 +4864,85 @@
     "isBadSite": true,
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Coach & Mentor • 🛑 SITE FORA DO AR / ERRO DE ACESSO (Oportunidade Crítica) • Forte reputação local (37 reviews ★5.0) • WhatsApp Celular Direto"
+    "acceptanceReason": "Coach & Mentor • 🛑 SITE FORA DO AR / ERRO DE ACESSO (Oportunidade Crítica) • Forte reputação local (37 reviews ★5.0) • WhatsApp Celular Direto",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "https://www.mixpalestras.com.br/palestrante/3971/bruno-bitencourt",
+      "isOnline": true,
+      "loadTimeMs": 1261,
+      "title": "Bruno Bitencourt",
+      "hasWhatsApp": true,
+      "hasMetaPixel": false,
+      "hasGoogleAdsOrTag": true,
+      "hasAnalytics": true,
+      "doesPaidTraffic": true,
+      "isMobileResponsive": true,
+      "isSlow": false,
+      "diagnosisTags": [
+        "✅ Tem WhatsApp",
+        "📈 Já Investe em Anúncios"
+      ],
+      "strengths": [
+        "Carregamento ágil (1.3s)",
+        "Possui botão de WhatsApp no site",
+        "Já possui pixels de anúncio (investe em tráfego)"
+      ],
+      "weaknesses": [],
+      "opportunityScore": 6,
+      "attackAngle": "Otimização de conversão e atração local.",
+      "domDetails": {
+        "metaDescription": "Palestrante, Treinador de Inteligência Emocional e Psicoterapeuta, Fundador e Head Trainer. Apaixonado por ajudar pessoas a superarem seus medos e bloqueios emocionais ocultos, Bruno desenvolveu uma carreira focada na transformação emocional e comportamental, guiando pessoas e empresas a alcançarem seu máximo potencial.",
+        "h1List": [],
+        "h2List": [],
+        "h3List": [],
+        "imgCount": 1,
+        "imgsWithoutAlt": 0,
+        "buttonCtaList": [
+          "(13) 9.9663-6622",
+          "(11) 3522-6622"
+        ],
+        "detectedCms": "RD Station, Bootstrap",
+        "sectionsFound": "Hero/Banner, Serviços/Especialidades, Sobre/Quem Somos, Formulário/Contato"
+      },
+      "summary": "Site ativo (1.3s). Possui botão de WhatsApp. Já tem tags de anúncios."
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 37,
+      "neighborhood": "São Paulo",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (37 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (37 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Paulo. Avaliações: 37 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa já investe em digital. Foco em posicionamento comercial, aceleração de resultados e melhoria da taxa de conversão no WhatsApp.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Tudo bem por aí? Falo com o Bruno Bitencourt Palestrante?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-23T18:31:19.343Z",
+        "auto": true,
+        "ai": true,
+        "text": "Tudo bem por aí? Falo com o Bruno Bitencourt Palestrante?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-24T00:04:56.819Z",
+        "auto": true,
+        "ai": true,
+        "text": "Fala Bruno, tudo ótimo por aqui! Prazer...\n\nAchei seu posicionamento e autoridade muito bacanas! Mas reparei que hoje boa parte dos decisores e clientes qualificados que buscam mentoria e treinamento no Google acabam caindo em concorrentes patrocinados, sem uma estrutura rápida direcionando pro seu WhatsApp.\n\nVocê já tem alguém rodando tráfego qualificado para a sua mentoria hoje ou depende de indicação orgânica?"
+      }
+    ],
+    "repliedAt": "2026-10-24T00:04:45.712Z"
   },
   {
     "id": "lead-1791922809936-qusf5m",
@@ -3501,8 +4970,8 @@
     },
     "score": 8,
     "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas.",
-    "status": "novo",
-    "lastContact": null,
+    "status": "perdido",
+    "lastContact": "2026-10-23T18:54:30.206Z",
     "createdAt": "2026-10-13T20:20:09.936Z",
     "tier": "diamante",
     "priorityScore": 100,
@@ -3517,7 +4986,92 @@
     "isBadSite": true,
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Coach & Mentor • 🛑 SITE FORA DO AR / ERRO DE ACESSO (Oportunidade Crítica) • Forte reputação local (26 reviews ★5.0) • WhatsApp Celular Direto"
+    "acceptanceReason": "Coach & Mentor • 🛑 SITE FORA DO AR / ERRO DE ACESSO (Oportunidade Crítica) • Forte reputação local (26 reviews ★5.0) • WhatsApp Celular Direto",
+    "stage": 3,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "https://www.consultoriadecarreira.net.br/",
+      "isOnline": true,
+      "loadTimeMs": 73,
+      "title": "Um momento, por favor…",
+      "hasWhatsApp": false,
+      "hasMetaPixel": false,
+      "hasGoogleAdsOrTag": false,
+      "hasAnalytics": false,
+      "doesPaidTraffic": false,
+      "isMobileResponsive": true,
+      "isSlow": false,
+      "diagnosisTags": [
+        "❌ Sem Botão WhatsApp",
+        "🔍 Sem Tráfego Pago Ativo"
+      ],
+      "strengths": [
+        "Carregamento ágil (0.1s)"
+      ],
+      "weaknesses": [
+        "Não possui botão direto de WhatsApp visível",
+        "Não possui Pixel do Facebook ou Google Ads ativo (não faz tráfego qualificado)"
+      ],
+      "opportunityScore": 8,
+      "attackAngle": "O site atual não facilita o contato direto pelo WhatsApp. Uma página de alta conversão aumentaria muito os orçamentos.",
+      "domDetails": {
+        "metaDescription": "",
+        "h1List": [],
+        "h2List": [],
+        "h3List": [],
+        "imgCount": 0,
+        "imgsWithoutAlt": 0,
+        "buttonCtaList": [],
+        "detectedCms": "Código Próprio / Personalizado",
+        "sectionsFound": "Estrutura simples / Institucional"
+      },
+      "summary": "Site ativo (0.1s). SEM botão direto de WhatsApp. SEM tags de tráfego pago."
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 26,
+      "neighborhood": "São Paulo",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (26 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (26 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Paulo. Avaliações: 26 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem site no ar, mas NÃO TEM botão direto de WhatsApp. O cliente precisa procurar o telefone ou preencher formulário, perdendo conversões imediatas.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "É da Angela Gardinalli?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-23T18:37:51.749Z",
+        "auto": true,
+        "ai": true,
+        "text": "É da Angela Gardinalli?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-23T18:39:35.064Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa Angela, tudo ótimo por aqui! Sou o Kauê, da Pinas.\n\nAchei seu posicionamento e autoridade muito bacanas! Mas reparei que hoje boa parte dos clientes qualificados que buscam mentoria e treinamento no Google acabam caindo em concorrentes patrocinados, sem uma estrutura rápida direcionando pro seu WhatsApp.\n\nVocê já tem alguém rodando tráfego qualificado para a sua mentoria hoje ou depende de indicação orgânica?"
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-23T18:54:30.206Z",
+        "auto": true,
+        "ai": true,
+        "text": "Ah, tá bom! Muito obrigado pelo retorno, viu? Se tiver interesse ou precisar de algo futuramente, é só entrar em contato. Um abraço e muito sucesso por aí!"
+      }
+    ],
+    "repliedAt": "2026-10-23T18:54:16.062Z",
+    "manualControl": true,
+    "humanTakeover": true
   },
   {
     "id": "lead-1791922809935-odlfeo",
@@ -3545,8 +5099,8 @@
     },
     "score": 8,
     "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas.",
-    "status": "novo",
-    "lastContact": null,
+    "status": "respondeu",
+    "lastContact": "2026-10-23T18:48:46.626Z",
     "createdAt": "2026-10-13T20:20:09.935Z",
     "tier": "diamante",
     "priorityScore": 100,
@@ -3561,7 +5115,98 @@
     "isBadSite": true,
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Coach & Mentor • 🛑 SITE FORA DO AR / ERRO DE ACESSO (Oportunidade Crítica) • Forte reputação local (36 reviews ★5.0) • WhatsApp Celular Direto"
+    "acceptanceReason": "Coach & Mentor • 🛑 SITE FORA DO AR / ERRO DE ACESSO (Oportunidade Crítica) • Forte reputação local (36 reviews ★5.0) • WhatsApp Celular Direto",
+    "stage": 2,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "https://fernandaalbuquerquecarreira.com/",
+      "isOnline": true,
+      "loadTimeMs": 2441,
+      "title": "Fernanda Albuquerque — Estrategista de Carreira | Promoção, Reposicionamento e Transição Profissional",
+      "hasWhatsApp": true,
+      "hasMetaPixel": false,
+      "hasGoogleAdsOrTag": true,
+      "hasAnalytics": true,
+      "doesPaidTraffic": true,
+      "isMobileResponsive": true,
+      "isSlow": false,
+      "diagnosisTags": [
+        "✅ Tem WhatsApp",
+        "📈 Já Investe em Anúncios"
+      ],
+      "strengths": [
+        "Possui botão de WhatsApp no site",
+        "Já possui pixels de anúncio (investe em tráfego)"
+      ],
+      "weaknesses": [],
+      "opportunityScore": 6,
+      "attackAngle": "Otimização de conversão e atração local.",
+      "domDetails": {
+        "metaDescription": "Clareza, posicionamento e estratégia para profissionais que querem crescer, se reposicionar ou tomar decisões melhores na carreira.",
+        "h1List": [
+          "FERNANDA ALBUQUERQUE"
+        ],
+        "h2List": [
+          "ESCOLHA A SOLUÇÃO MAIS ADEQUADAPARA O SEU MOMENTO PROFISSIONAL",
+          "Resultados construídos em diferentes momentos da carreira",
+          "SOBRE FERNANDA ALBUQUERQUE"
+        ],
+        "h3List": [
+          "Mentoria de Transição de Carreira",
+          "Mentoria de Reposicionamento de Alta Performance",
+          "Crescimento e Promoção",
+          "Liderança e Posicionamento Executivo",
+          "AINDA NÃO SABE QUAL ESCOLHER?",
+          "COMO POSSO AJUDAR"
+        ],
+        "imgCount": 1,
+        "imgsWithoutAlt": 0,
+        "buttonCtaList": [
+          "Fale comigo no WhatsApp",
+          "Quero ajuda para escolher",
+          "Edit with"
+        ],
+        "detectedCms": "RD Station",
+        "sectionsFound": "Sobre/Quem Somos"
+      },
+      "summary": "Site ativo (2.4s). Possui botão de WhatsApp. Já tem tags de anúncios."
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 36,
+      "neighborhood": "São Paulo",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (36 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (36 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Paulo. Avaliações: 36 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa já investe em digital. Foco em posicionamento comercial, aceleração de resultados e melhoria da taxa de conversão no WhatsApp.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Opa, tudo bem? Falo com a Fernanda Albuquerque?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-23T18:47:16.788Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo bem? Falo com a Fernanda Albuquerque?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-23T18:48:46.626Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa, tudo ótimo por aqui! Sou o Kauê, da Pinas.\n\nAchei seu posicionamento e autoridade muito bacanas! Mas reparei que hoje boa parte dos decisores e clientes qualificados que buscam mentoria e treinamento no Google acabam caindo em concorrentes patrocinados, sem uma estrutura rápida direcionando pro seu WhatsApp.\n\nVocê já tem alguém rodando tráfego qualificado para a sua mentoria hoje ou depende de indicação orgânica?"
+      }
+    ],
+    "repliedAt": "2026-10-23T18:48:33.917Z"
   },
   {
     "id": "lead-1791922801898-adi649",
@@ -3581,23 +5226,264 @@
     "city": "São Paulo",
     "opportunity": {
       "score": 100,
-      "numericRank": 100,
+      "numericRank": 95,
       "type": "diamante",
-      "label": "💎 Diamante (100% Aceite)",
-      "attackAngle": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (48 reviews ★5.0) • WhatsApp Celular Direto",
+      "label": "💎 Diamante (Alta Conversão)",
+      "attackAngle": "Mentoria / Negócios de Alto Valor | Site Fora do Ar no Maps (Urgência Imediata) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (48 avaliações ★5)",
       "tier": "Diamante"
     },
     "score": 8,
-    "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas.",
-    "status": "novo",
-    "lastContact": null,
+    "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas. | Áudio recebido do lead — Kauê notificado para responder no manual | Atendimento manual do Kauê (IA desativada)",
+    "status": "contatado",
+    "lastContact": "2026-10-23T20:11:39.259Z",
     "createdAt": "2026-10-13T20:20:01.898Z",
     "tier": "diamante",
-    "priorityScore": 100,
+    "priorityScore": 95,
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (48 reviews ★5.0) • WhatsApp Celular Direto"
+    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (48 reviews ★5.0) • WhatsApp Celular Direto",
+    "stage": 3,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "https://leituraprofissional.my.canva.site/",
+      "isOnline": false,
+      "loadTimeMs": 233,
+      "summary": "Site cadastrado está instável ou fora do ar (Erro 404).",
+      "details": "O link que consta no Google não abre para os clientes, gerando perda imediata de confiança.",
+      "opportunityScore": 9,
+      "attackAngle": "Site fora do ar ou inacessível. Oportunidade de alertar com cuidado e oferecer reconstrução moderna.",
+      "diagnosisTags": [
+        "❌ Site Fora do Ar",
+        "⚠️ Link Inacessível no Maps",
+        "🎯 Oportunidade Urgente"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 48,
+      "neighborhood": "São Paulo",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (48 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (48 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Paulo. Avaliações: 48 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "O site cadastrado no Maps (https://leituraprofissional.my.canva.site/) está FORA DO AR ou inacessível. Oportunidade urgente de alertar o responsável com gentileza e oferecer um site novo no ar rapidamente.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "É da Mentoria de Carreira e Executiva?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-23T18:52:28.762Z",
+        "auto": true,
+        "ai": true,
+        "text": "É da Mentoria de Carreira e Executiva?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-23T18:54:33.762Z",
+        "auto": true,
+        "ai": true,
+        "text": "Opa Bruna, tudo ótimo por aqui! Prazer, sou o Kauê, da Pinas.\n\nAchei seu posicionamento e autoridade muito bacanas! Mas reparei que hoje boa parte dos decisores e clientes qualificados que buscam mentoria e treinamento no Google acabam caindo em concorrentes patrocinados, sem uma estrutura rápida direcionando pro seu WhatsApp.\n\nVocê já tem alguém rodando tráfego qualificado para a sua mentoria hoje ou depende de indicação orgânica?"
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-23T19:09:05.919Z",
+        "auto": true,
+        "ai": true,
+        "text": "Show! Perguntei porque nós cuidamos de toda essa esteira aqui na Pinas: colocamos você no topo do Google em São Paulo e estruturamos uma página rápida que abre em 1s no celular, trazendo os clientes prontos para agendar no seu WhatsApp.\n\nTopa 10 minutinhos no Meet essa semana para eu te mostrar como funciona na prática?"
+      }
+    ],
+    "repliedAt": "2026-10-23T19:08:53.819Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastAudioReceivedAt": "2026-10-23T19:10:04.118Z",
+    "lastManualMessageAt": "2026-10-23T20:07:44.000Z",
+    "conversationScript": {
+      "hasCustomerReplied": true,
+      "conversationSummary": "A conversa começou com o Kauê abordando a Bruna Taioli, mentora de carreira e executiva, destacando seu bom posicionamento mas alertando sobre a perda de clientes no Google para concorrentes patrocinados. Bruna respondeu de forma muito simpática e aberta, confirmando que hoje sua captação é 100% orgânica.\n\nApós o convite do Kauê para uma conversa rápida de 10 minutos no Meet para apresentar a estrutura da Pinas, Bruna enviou um áudio de resposta que foi ouvido e respondido pelo Kauê via novos áudios no WhatsApp, mantendo o canal aquecido para o fechamento da reunião.",
+      "interlocutor": {
+        "name": "Bruna Taioli",
+        "role": "Dono",
+        "tone": "Simpático e receptivo",
+        "decisionPower": "Alto (Decisor Final)"
+      },
+      "painsAndNeeds": [
+        "Dependência exclusiva de captação orgânica e indicações, sem previsibilidade de novos mentorados.",
+        "Perda de clientes qualificados de alto padrão que buscam mentoria no Google e caem nos concorrentes patrocinados.",
+        "Falta de uma estrutura de página rápida e tráfego pago direcionando leads direto para o WhatsApp."
+      ],
+      "objectionsAndAnswers": [
+        {
+          "objection": "Nunca fiz anúncio pago antes, não sei se funciona para mentoria.",
+          "howToCounter": "Explicar que executivos e profissionais buscam mentoria ativamente no Google quando estão insatisfeitos na carreira. O anúncio apenas acelera esse encontro, colocando ela na frente de quem já quer comprar."
+        },
+        {
+          "objection": "Meu orçamento está apertado / Preciso ver se vale o investimento.",
+          "howToCounter": "Mostrar que fechar apenas um contrato de mentoria executiva por mês já paga todo o investimento em tráfego e na estrutura da Pinas com folga."
+        }
+      ],
+      "agreedNextSteps": "Avançar para a call rápida no Google Meet para demonstrar a operação na prática e alinhar o início da assessoria.",
+      "callScript": {
+        "title": "Roteiro da Call de Fechamento Baseado no WhatsApp",
+        "openingHook": "Oi Bruna! Que bacana falar com você por aqui. Ouvi seu áudio e adorei saber mais sobre o seu trabalho com mentoria executiva. Vamos bater um papo rápido de 15 minutos para eu te mostrar como a gente acelera essa captação no Google?",
+        "steps": [
+          {
+            "time": "00:00 - 03:00",
+            "title": "Abertura & Conexão pelo WhatsApp",
+            "objective": "Reconectar pelo que foi conversado no chat",
+            "script": "Bruna, pelo que você comentou no WhatsApp, hoje sua agenda de mentorados roda muito em cima de indicações e do orgânico. Meu objetivo hoje é te mostrar como transformar isso em uma torneira que você abre e fecha quando quiser novos clientes.",
+            "tip": "Mantenha o tom leve, sorridente e de parceiro de negócios."
+          },
+          {
+            "time": "03:00 - 07:00",
+            "title": "Aprofundamento nas Dores Admitidas",
+            "objective": "Fazer o lead elaborar sobre o problema que citou no WhatsApp",
+            "questions": [
+              {
+                "question": "Hoje, quando um executivo ou profissional te procura por indicação, qual é o ticket médio e o fechamento dessa mentoria?",
+                "why": "Dimensionar o valor de um único cliente para justificar o investimento no tráfego."
+              },
+              {
+                "question": "Você já tentou rodar alguma coisa no Google ou Instagram sozinha antes, ou essa vai ser a primeira experiência com tráfego pago?",
+                "why": "Identificar experiências anteriores e eventuais traumas com agências ruins."
+              }
+            ]
+          },
+          {
+            "time": "07:00 - 11:00",
+            "title": "Apresentação da Solução Pinas Sob Medida",
+            "objective": "Mostrar a solução na tela compartilhada",
+            "keyPoints": [
+              "Colocar você no topo do Google em São Paulo para quem busca mentoria de carreira e executiva.",
+              "Criação de uma página de alta conversão que abre em 1 segundo no celular.",
+              "Direcionamento imediato dos leads qualificados para o seu WhatsApp com scripts de alinhamento."
+            ]
+          },
+          {
+            "time": "11:00 - 15:00",
+            "title": "Proposta & Fechamento Comercial",
+            "objective": "Apresentar condições e combinar início do projeto",
+            "script": "Bruna, o nosso trabalho na Pinas é justamente assumir todo esse operacional para você focar apenas em mentorar. Fechando um único contrato por mês através das nossas campanhas, o projeto já se paga com lucro. Vamos colocar isso para rodar?",
+            "callToAction": "Enviar o link de contratação e alinhar o onboarding para a próxima semana."
+          }
+        ],
+        "goldenClosingPhrase": "Bruna, quem pesquisa por mentoria executiva hoje no Google vai fechar com alguém. Se não for com você, vai ser com o concorrente que está aparecendo no topo. Vamos garantir que esses clientes cheguem direto no seu WhatsApp?"
+      }
+    },
+    "conversationScriptGeneratedAt": "2026-10-23T19:18:00.933Z",
+    "metaAds": {
+      "checked": false,
+      "hasActiveAds": false,
+      "adCount": 0,
+      "error": "browserType.launch: Chromium distribution 'msedge' is not found at C:\\Users\\kauek\\AppData\\Local\\Microsoft\\Edge\\Application\\msedge.exe\nRun \"npx playwright install msedge\"",
+      "companyQueried": "Mentoria de Carreira",
+      "searchUrl": "https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=BR&q=Mentoria%20de%20Carreira&search_type=keyword_unordered&media_type=all",
+      "checkedAt": "2026-10-23T19:30:30.976Z"
+    },
+    "lastAudioTranscript": "Maravilha, Kauê. Vamos fazer assim, ó. Me chama no começo da semana para a gente ver uma agenda, porque agora eu não vou conseguir, tenho algumas indefinições ainda na agenda, não vou conseguir ter clareza dos meus horários, e aí a gente marca para você me apresentar, pode ser?",
+    "deepVisualAudit": {
+      "overallRating": "Nota 3/10",
+      "firstImpression": "A página atual está fora do ar ou extremamente frágil em termos de estrutura, perdendo todas as oportunidades de conversão dos profissionais que buscam mentoria executiva pelo celular em São Paulo.",
+      "sections": [
+        {
+          "name": "Hero Section (Topo)",
+          "status": "Crítico",
+          "critique": "O link atual encontra-se fora do ar, impossibilitando qualquer leitura de promessa inicial ou proposta de valor para os executivos.",
+          "improvement": "Criar uma Hero Section magnética com uma promessa direta de transformação de carreira e um botão flutuante de agendamento imediato."
+        },
+        {
+          "name": "Imagens & Identidade Visual",
+          "status": "Crítico",
+          "critique": "Inexistência de elementos visuais institucionais consistentes, falhando em transmitir a autoridade e o prestígio exigidos pelo mercado de mentoria executiva.",
+          "improvement": "Inserir fotos profissionais e um design sofisticado que transmita confiança e solidez para líderes e gestores."
+        },
+        {
+          "name": "Experiência Mobile & Velocidade",
+          "status": "Crítico",
+          "critique": "Como o site está fora do ar, a experiência mobile é nula, fazendo com que qualquer executivo busquede pois outro mentor no Google e saia frustrado.",
+          "improvement": "Desenvolver uma landing page otimizada que abre em menos de 1 segundo no celular, com tipografia legível e botões grandes para o polegar."
+        },
+        {
+          "name": "Conversão & Prova Social",
+          "status": "Crítico",
+          "critique": "Ausência total de canais de contato diretos, como botão de WhatsApp e exibição das avaliações de nota 5 estrelas do Google Maps.",
+          "improvement": "Destacar as 48 avaliações nota máxima em uma seção de destaque e implementar um botão de WhatsApp fixo para captar o cliente na hora."
+        }
+      ],
+      "pinasRedesignPitch": "Apresentamos a nova landing page da Pinas focada em três pilares: velocidade de carregamento em 1s no celular, clareza absoluta na oferta de mentoria executiva e um canal direto e humanizado para o WhatsApp que transforma visitantes em clientes particulares toda semana."
+    },
+    "callScript": {
+      "totalTime": "15 minutos",
+      "steps": [
+        {
+          "time": "00:00 - 03:00",
+          "title": "Abertura & Conexão Local",
+          "objective": "Quebrar o gelo e validar a autoridade dele na região",
+          "script": "Opa, tudo bem? Sou o Kauê, da Pinas. Vi que vocês têm uma reputação impecável com 48 avaliações nota 5 no Google Maps aqui em São Paulo, o que mostra o nível do trabalho de mentoria executiva que vocês entregam.",
+          "tip": "Sorria, mantenha um tom de voz calmo, amigável e demonstre genuína admiração pela nota dele no Google."
+        },
+        {
+          "time": "03:00 - 07:00",
+          "title": "Perguntas de Diagnóstico",
+          "objective": "Fazer o cliente falar sobre a captação atual e volume de atendimentos",
+          "questions": [
+            {
+              "question": "Hoje, quando um executivo ou profissional busca mentoria em São Paulo pelo celular, de que forma eles chegam até vocês?",
+              "why": "Identificar se ele depende apenas do boca a boca ou se tem uma estrutura ativa de captação."
+            },
+            {
+              "question": "Você sabia que o link atual da sua mentoria está fora do ar para quem tenta acessar pelo celular?",
+              "why": "Gerar um gatilho imediato de percepção de perda de clientes qualificados."
+            },
+            {
+              "question": "Se vocês tivessem de 3 a 5 novos clientes de mentoria executiva fechando todo mês com previsibilidade, como isso impactaria o seu negócio?",
+              "why": "Conectar a solução técnica ao desejo financeiro e de crescimento."
+            }
+          ]
+        },
+        {
+          "time": "07:00 - 11:00",
+          "title": "Apresentação Visual na Tela",
+          "objective": "Compartilhar a tela, mostrar os pontos cegos e encantar com a solução",
+          "whatToShow": [
+            "O site atual fora do ar no celular",
+            "O modelo de landing page rápida de 1s da Pinas com botão de WhatsApp integrado"
+          ],
+          "presentationScript": "Olha só, quando a gente coloca uma página rápida que abre em 1 segundo e deixa o botão de WhatsApp visível para o executivo agendar a mentoria na hora, o cenário muda completamente. É isso que construímos para você."
+        },
+        {
+          "time": "11:00 - 14:00",
+          "title": "Quebra de Objeções",
+          "objective": "Desarmar as principais dúvidas com naturalidade",
+          "objections": [
+            {
+              "objection": "Quanto custa o projeto?",
+              "answer": "O investimento é extremamente acessível perto do valor de um único contrato de mentoria executiva fechado. Em vez de um custo, pense nisso como o canal que vai trazer novos clientes particulares todos os meses de forma previsível."
+            },
+            {
+              "objection": "Já tentei anúncio ou site antes e não funcionou",
+              "answer": "Eu entendo perfeitamente. O problema é que muitas agências criam sites pesados ou anúncios genéricos. Na Pinas nós unimos velocidade de 1s no celular, tráfego focado na sua região em São Paulo e scripts simples para o seu WhatsApp."
+            }
+          ]
+        },
+        {
+          "time": "14:00 - 15:00",
+          "title": "Fechamento & Próximo Passo",
+          "objective": "Concretizar o fechamento com proposta formal",
+          "closingScript": "Faz sentido a gente estruturar essa nova página e colocar para rodar em 5 a 7 dias úteis? Posso te enviar nossa proposta sem compromisso ainda hoje para começarmos.",
+          "callToAction": "Enviar a proposta resumida no WhatsApp logo após desligar a chamada."
+        }
+      ]
+    },
+    "deepAuditGeneratedAt": "2026-10-23T20:11:32.474Z"
   },
   {
     "id": "lead-1791922801897-m9bich",
@@ -3625,15 +5511,83 @@
     },
     "score": 8,
     "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas.",
-    "status": "novo",
-    "lastContact": null,
+    "status": "contatado",
+    "lastContact": "2026-10-23T18:58:59.123Z",
     "createdAt": "2026-10-13T20:20:01.897Z",
     "tier": "diamante",
     "priorityScore": 100,
     "opportunityType": "sem_site",
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (195 reviews ★5.0) • WhatsApp Celular Direto"
+    "acceptanceReason": "Coach & Mentor • 💎 SEM SITE PRÓPRIO (Necessidade Evidente) • Forte reputação local (195 reviews ★5.0) • WhatsApp Celular Direto",
+    "stage": 1,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "https://www.instagram.com/mentorbusinesshealth/",
+      "isOnline": true,
+      "loadTimeMs": 519,
+      "title": "Instagram",
+      "hasWhatsApp": false,
+      "hasMetaPixel": false,
+      "hasGoogleAdsOrTag": false,
+      "hasAnalytics": false,
+      "doesPaidTraffic": false,
+      "isMobileResponsive": true,
+      "isSlow": false,
+      "diagnosisTags": [
+        "❌ Sem Botão WhatsApp",
+        "🔍 Sem Tráfego Pago Ativo"
+      ],
+      "strengths": [
+        "Carregamento ágil (0.5s)"
+      ],
+      "weaknesses": [
+        "Não possui botão direto de WhatsApp visível",
+        "Não possui Pixel do Facebook ou Google Ads ativo (não faz tráfego qualificado)"
+      ],
+      "opportunityScore": 8,
+      "attackAngle": "O site atual não facilita o contato direto pelo WhatsApp. Uma página de alta conversão aumentaria muito os orçamentos.",
+      "domDetails": {
+        "metaDescription": "",
+        "h1List": [],
+        "h2List": [],
+        "h3List": [],
+        "imgCount": 2,
+        "imgsWithoutAlt": 2,
+        "buttonCtaList": [],
+        "detectedCms": "Shopify, RD Station, Bootstrap",
+        "sectionsFound": "Hero/Banner, Depoimentos/Prova Social"
+      },
+      "summary": "Site ativo (0.5s). SEM botão direto de WhatsApp. SEM tags de tráfego pago."
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 195,
+      "neighborhood": "São Paulo",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (195 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (195 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Paulo. Avaliações: 195 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "A empresa tem site no ar, mas NÃO TEM botão direto de WhatsApp. O cliente precisa procurar o telefone ou preencher formulário, perdendo conversões imediatas.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Olá, tudo bem? É da Mentor Business Health?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-23T18:58:59.123Z",
+        "auto": true,
+        "ai": true,
+        "text": "Olá, tudo bem? É da Mentor Business Health?"
+      }
+    ]
   },
   {
     "id": "lead-1791922793694-ieki9v",
@@ -3660,9 +5614,9 @@
       "tier": "Diamante"
     },
     "score": 8,
-    "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas.",
-    "status": "novo",
-    "lastContact": null,
+    "notes": "Já possui site. Oportunidade em campanhas inteligentes no Meta e Google para acelerar vendas. | Atendimento manual do Kauê (IA desativada)",
+    "status": "respondeu",
+    "lastContact": "2026-10-23T20:37:32.714Z",
     "createdAt": "2026-10-13T20:19:53.694Z",
     "tier": "diamante",
     "priorityScore": 100,
@@ -3677,7 +5631,84 @@
     "isBadSite": true,
     "conversionScore": 100,
     "acceptanceTier": "Diamante",
-    "acceptanceReason": "Coach & Mentor • 🛑 SITE FORA DO AR / ERRO DE ACESSO (Oportunidade Crítica) • Forte reputação local (64 reviews ★5.0) • WhatsApp Celular Direto"
+    "acceptanceReason": "Coach & Mentor • 🛑 SITE FORA DO AR / ERRO DE ACESSO (Oportunidade Crítica) • Forte reputação local (64 reviews ★5.0) • WhatsApp Celular Direto",
+    "stage": 5,
+    "siteAudit": {
+      "hasWebsite": true,
+      "url": "https://coachingerealize.com.br/",
+      "isOnline": false,
+      "error": "Tempo limite esgotado (site não respondeu em 5s)",
+      "loadTimeMs": 5000,
+      "summary": "Site cadastrado está instável ou fora do ar (Tempo limite esgotado (site não respondeu em 5s)).",
+      "details": "O link que consta no Google não abre para os clientes, gerando perda imediata de confiança.",
+      "opportunityScore": 9,
+      "attackAngle": "Site fora do ar ou inacessível. Oportunidade de alertar com cuidado e oferecer reconstrução moderna.",
+      "diagnosisTags": [
+        "❌ Site Fora do Ar",
+        "⚠️ Link Inacessível no Maps",
+        "🎯 Oportunidade Urgente"
+      ]
+    },
+    "mapsAudit": {
+      "rating": 5,
+      "reviews": 64,
+      "neighborhood": "São Paulo",
+      "localReputation": "forte",
+      "diagnosisTags": [
+        "⭐ Nota 5.0 (64 reviews)"
+      ],
+      "strengths": [
+        "Excelente autoridade no Google (64 avaliações com nota 5.0)"
+      ],
+      "weaknesses": [],
+      "summary": "Localização: São Paulo. Avaliações: 64 (nota 5.0). Reputação local: forte."
+    },
+    "aiAnalysis": {
+      "summary": "O site cadastrado no Maps (https://coachingerealize.com.br/) está FORA DO AR ou inacessível. Oportunidade urgente de alertar o responsável com gentileza e oferecer um site novo no ar rapidamente.",
+      "bestAngle": "Abertura despretensiosa (confirmação do local sem cara de venda)"
+    },
+    "initialPitch": "Aqui é da Coaching & Realize?",
+    "stageHistory": [
+      {
+        "stage": 1,
+        "sentAt": "2026-10-23T18:59:18.552Z",
+        "auto": true,
+        "ai": true,
+        "text": "Aqui é da Coaching & Realize?"
+      },
+      {
+        "stage": 2,
+        "sentAt": "2026-10-23T19:00:54.995Z",
+        "auto": true,
+        "ai": true,
+        "text": "Fala Valney, tudo ótimo por aqui! Sou o Kauê, da Pinas.\n\nAchei seu posicionamento e autoridade muito bacanas! Mas reparei que hoje boa parte dos decisores e clientes qualificados que buscam mentoria e treinamento no Google acabam caindo em concorrentes patrocinados, sem uma estrutura rápida direcionando pro seu WhatsApp.\n\nVocê já tem alguém rodando tráfego qualificado para a sua mentoria hoje ou depende de indicação orgânica?"
+      },
+      {
+        "stage": 3,
+        "sentAt": "2026-10-23T20:27:01.451Z",
+        "auto": true,
+        "ai": true,
+        "text": "Poxa, Valney, te entendo perfeitamente! Passar por experiência ruim com agência frustra demais e a fase econômica aperta mesmo.\n\nMas me diz uma coisa: tirando essa fase, no ano passado quando você teve resultado orgânico, da onde vinham esses clientes que te procuravam?"
+      },
+      {
+        "stage": 4,
+        "sentAt": "2026-10-23T20:32:13.654Z",
+        "auto": true,
+        "ai": true,
+        "text": "Te entendo perfeitamente, Valney! Passar por essa experiência ruim com agência frustra mesmo e a fase econômica aperta.\n\nMas me diz uma coisa: quando você teve resultado orgânico no ano passado, qual era o tipo de mentoria que mais atraía clientes para você?"
+      },
+      {
+        "stage": 5,
+        "sentAt": "2026-10-23T20:37:32.714Z",
+        "auto": true,
+        "ai": true,
+        "text": "Poxa, Valney, te entendo demais! Desenvolvimento pessoal e liderança são áreas muito fortes.\n\nE me diz uma coisa: hoje em dia, como tem sido para fechar novas mentorias? A maior parte ainda vem por indicação ou você sente falta de um fluxo constante de clientes?\n\nTopa bater um papo rápido de 10 minutinhos no Meet para eu te mostrar como destravar isso sem erro?"
+      }
+    ],
+    "repliedAt": "2026-10-23T20:37:14.959Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-23T21:08:49.000Z"
   },
   {
     "id": "lead-1791920549460-1vaotn",
@@ -30758,7 +32789,7 @@
     "priorityScore": 70,
     "tier": "ouro",
     "score": 4,
-    "notes": "Comércio / Serviço Local | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (151 avaliações ★4.6) | Descartado automaticamente: Ramo / Palavra excluída (estética)",
+    "notes": "Comércio / Serviço Local | Site Sem Botão Direto de WhatsApp | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (151 avaliações ★4.6) | Descartado automaticamente: Ramo / Palavra excluída (estética) | Atendimento manual do Kauê (IA desativada)",
     "status": "respondeu",
     "lastContact": "2026-10-20T22:28:03.052Z",
     "createdAt": "2026-10-20T21:55:19.933Z",
@@ -30830,7 +32861,10 @@
         "ai": true,
         "text": "Show, prazer falar contigo! Sou o Kauê, da Pinas.\n\nA gente cuida do tráfego pago e da captação de clínicas e centros de estética aqui de SP para trazer pacientes particulares direto no WhatsApp.\n\nDei uma olhada no perfil de vocês no Maps e vi que tem ótimas avaliações na Vila Madalena, mas notei pelo celular que vocês não têm um site próprio com botão direto de WhatsApp, o que acaba fazendo quem pesquisa pelo celular ir para a concorrência.\n\nVocês já têm alguém cuidando dessa parte de anúncios e novos contatos pelo Google por aí hoje?"
       }
-    ]
+    ],
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-20T21:56:16.000Z"
   },
   {
     "id": "lead-1792464626122-0ee6ka",
@@ -64152,7 +66186,7 @@
       "attackAngle": "Odontologia (Implantes & Particular) | Sem Site Próprio (Oportunidade Máxima Landing Page) | Sem Anúncios Ativos (Oportunidade Tráfego do Zero) | WhatsApp Celular Direto Verificado | Ficha Forte no Maps (137 avaliações ★4.9)"
     },
     "score": 10,
-    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads",
+    "notes": "Atração contínua de pacientes particulares para implantes e próteses via Google Ads | Atendimento manual do Kauê (IA desativada)",
     "status": "respondeu",
     "lastContact": "2026-10-20T21:56:30.726Z",
     "createdAt": "2026-10-13T20:29:14.448Z",
@@ -64207,7 +66241,10 @@
         "text": "Show, muito obrigado pela resposta!\n\nSou o Kauê, da Pinas. A gente ajuda clínicas e consultórios aqui na região de São Paulo a captarem pacientes particulares no Google todo mês com previsibilidade.\n\nNotei pelo Maps que vocês têm um trabalho muito bem avaliado por aí, mas quem pesquisa pelo celular não encontra um site próprio com botão direto de WhatsApp, acabando por chamar o concorrente que já anuncia.\n\nVocês já têm alguém cuidando dessa parte de site e captação no Google por aí hoje?"
       }
     ],
-    "repliedAt": "2026-10-20T21:56:24.726Z"
+    "repliedAt": "2026-10-20T21:56:24.726Z",
+    "manualControl": true,
+    "humanTakeover": true,
+    "lastManualMessageAt": "2026-10-20T21:55:57.000Z"
   },
   {
     "id": "lead-1791923354448-wvnun5",

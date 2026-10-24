@@ -11,10 +11,11 @@ echo ==============================================================
 echo.
 
 powershell -NoProfile -ExecutionPolicy Bypass -Command ^
+  "New-Item -ItemType File -Force -Path '%~dp0prospeccao\data\.shutdown' -ErrorAction SilentlyContinue | Out-Null; " ^
   "$killed = 0; " ^
   "Get-NetTCPConnection -LocalPort 3333 -ErrorAction SilentlyContinue | Where-Object { $_.OwningProcess -gt 0 } | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue; $killed++ }; " ^
-  "Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'node.exe' -and $_.CommandLine -like '*server.js*' } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue; $killed++ }; " ^
-  "if ($killed -gt 0) { Write-Host \"[OK] Processos do servidor foram encerrados com sucesso!\" -ForegroundColor Green } else { Write-Host \"[INFO] Nenhum processo ativo do servidor foi encontrado.\" -ForegroundColor Yellow }; " ^
+  "Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'node.exe' -and ($_.CommandLine -like '*server.js*' -or $_.CommandLine -like '*supervisor.js*') } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue; $killed++ }; " ^
+  "if ($killed -gt 0) { Write-Host \"[OK] Processos do servidor e supervisor foram encerrados com sucesso!\" -ForegroundColor Green } else { Write-Host \"[INFO] Nenhum processo ativo do servidor foi encontrado.\" -ForegroundColor Yellow }; " ^
   "Start-Sleep -Milliseconds 400; " ^
   "$check = Get-NetTCPConnection -LocalPort 3333 -ErrorAction SilentlyContinue; " ^
   "if (-not $check) { Write-Host \"[CONFIRMADO] Porta 3333 liberada. Servidor 100%% DESLIGADO!\" -ForegroundColor Green } else { Write-Host \"[AVISO] Verificando porta...\" -ForegroundColor Yellow }"

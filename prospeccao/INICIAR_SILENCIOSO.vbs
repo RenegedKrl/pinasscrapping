@@ -24,17 +24,36 @@ Else
     nodeExe = "node"
 End If
 
-' Evitar iniciar em duplicidade se a porta 3333 ja estiver em uso
+' Evitar iniciar em duplicidade se o supervisor.js ja estiver rodando (100% silencioso via WMI)
+Dim isRunning
+isRunning = False
 On Error Resume Next
-Dim oExec, strOutput
-Set oExec = WshShell.Exec("cmd /c netstat -ano | findstr :3333 | findstr LISTENING")
-strOutput = oExec.StdOut.ReadAll()
-If InStr(strOutput, ":3333") > 0 Then
+Dim objWMIService, colProcesses, objProcess
+Set objWMIService = GetObject("winmgmts:\\.\root\cimv2")
+Set colProcesses = objWMIService.ExecQuery("Select CommandLine from Win32_Process Where Name = 'node.exe'")
+For Each objProcess In colProcesses
+    If Not IsNull(objProcess.CommandLine) Then
+        If InStr(objProcess.CommandLine, "supervisor.js") > 0 Then
+            isRunning = True
+            Exit For
+        End If
+    End If
+Next
+On Error GoTo 0
+
+If isRunning Then
     WScript.Quit 0
 End If
-On Error GoTo 0
+
+Dim runTarget
+If fso.FileExists(targetDir & "\supervisor.js") Then
+    runTarget = "supervisor.js"
+Else
+    runTarget = "server.js"
+End If
 
 WshShell.CurrentDirectory = targetDir
 Dim runCmd
-runCmd = "cmd /c set PATH=G:\Programas\nodejs;C:\Program Files\nodejs;%PATH% && " & nodeExe & " server.js >> server_background.log 2>&1"
+runCmd = "cmd.exe /s /c ""set PATH=G:\Programas\nodejs;C:\Program Files\nodejs;%PATH% && " & nodeExe & " " & runTarget & " >> """ & targetDir & "\server_background.log"" 2>&1"""
 WshShell.Run runCmd, 0, False
+

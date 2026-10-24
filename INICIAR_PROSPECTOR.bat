@@ -81,7 +81,11 @@ echo  * Para rodar 100%% invisivel, utilize o INICIAR_SILENCIOSO.vbs.
 echo --------------------------------------------------------------
 echo.
 
-node server.js
+if exist "supervisor.js" (
+    node supervisor.js
+) else (
+    node server.js
+)
 
 echo.
 echo ============================================================== 

@@ -5,6 +5,9 @@ process.on('uncaughtException', (err) => {
 process.on('unhandledRejection', (reason) => {
   console.error('[Servidor Aviso] Rejeição de Promise não capturada:', reason);
 });
+process.on('exit', (code) => {
+  console.error(`[PROCESS EXIT] Processo do servidor encerrado com código: ${code}`);
+});
 
 const express = require('express');
 const cors = require('cors');
@@ -31,6 +34,7 @@ const auditor = require('./auditor');
 const autopilot = require('./autopilot');
 const geminiGuard = require('./gemini_guard');
 const conversationGuard = require('./conversation_guard');
+const notifier = require('./notifier');
 
 autopilot.setWhatsAppInstance(whatsapp);
 
@@ -441,6 +445,27 @@ app.post('/api/whatsapp/send', async (req, res) => {
   }
 
   try {
+    // REGRA ANTI-SPAM: Salvar contato no WhatsApp antes do envio
+    try {
+      if (typeof whatsapp.saveContact === 'function') {
+        let contactDisplayName = lead?.name || req.body.contactName;
+        if (contactDisplayName) {
+          const nicheLower = String(lead?.niche || '').toLowerCase();
+          let prefix = 'Lead';
+          if (nicheLower.includes('vet') || nicheLower.includes('pet')) prefix = 'Vet';
+          else if (nicheLower.includes('advog')) prefix = 'Adv';
+          else if (nicheLower.includes('coach') || nicheLower.includes('mentor')) prefix = 'Coach';
+          else if (nicheLower.includes('dent') || nicheLower.includes('odonto')) prefix = 'Odonto';
+          else if (nicheLower.includes('arq') || nicheLower.includes('interiores')) prefix = 'Arq';
+
+          if (!contactDisplayName.toLowerCase().includes(prefix.toLowerCase())) {
+            contactDisplayName = `${prefix} • ${contactDisplayName}`;
+          }
+          await whatsapp.saveContact(phone, contactDisplayName);
+        }
+      }
+    } catch (scErr) {}
+
     const sendResult = await whatsapp.sendMessage(phone, text);
 
     // Se fornecido leadId, atualizar status do lead
@@ -497,6 +522,75 @@ app.post('/api/whatsapp/sync-groups', async (req, res) => {
 app.get('/api/whatsapp/messages/:jid', (req, res) => {
   const { jid } = req.params;
   res.json(whatsapp.store.getMessages(jid));
+});
+
+// Transcrever áudio sob demanda via Gemini
+app.post('/api/whatsapp/transcribe-audio', async (req, res) => {
+  const { jid, messageId } = req.body;
+  if (!jid || !messageId) {
+    return res.status(400).json({ error: 'JID e messageId são obrigatórios.' });
+  }
+
+  try {
+    const messages = whatsapp.store.getMessages(jid);
+    const msg = messages.find(m => m.id === messageId);
+    if (!msg) {
+      return res.status(404).json({ error: 'Mensagem não encontrada.' });
+    }
+
+    if (msg.transcript) {
+      return res.json({ success: true, transcript: msg.transcript, message: msg });
+    }
+
+    if (!msg.mediaUrl) {
+      return res.status(400).json({ error: 'Mensagem não possui arquivo de áudio.' });
+    }
+
+    // Resolver caminho absoluto do áudio
+    let audioFilePath = path.join(__dirname, 'data', msg.mediaUrl.replace(/^\/media\//, 'media/'));
+    if (!fs.existsSync(audioFilePath)) {
+      audioFilePath = path.join(__dirname, 'data', 'media', path.basename(msg.mediaUrl));
+    }
+
+    if (!fs.existsSync(audioFilePath)) {
+      return res.status(404).json({ error: `Arquivo de áudio não encontrado no disco: ${msg.mediaUrl}` });
+    }
+
+    const cleanDigits = String(jid).replace(/\D/g, '');
+    const leads = readJson(LEADS_FILE, []);
+    const lead = findLeadByPhone(leads, cleanDigits) || { name: msg.senderName || 'Contato', cleanPhone: cleanDigits };
+
+    console.log(`[Transcribe Audio] 🎙️ Transcrevendo áudio ${messageId} de "${lead.name}"...`);
+    const audioAnalysis = await gemini.analyzeAndRespondAudioMessage({
+      lead,
+      audioFilePath,
+      messages: messages.slice(-8)
+    });
+
+    if (audioAnalysis && audioAnalysis.transcript) {
+      msg.transcript = audioAnalysis.transcript;
+      msg.text = `🎙️ [Áudio Transcrito]: "${audioAnalysis.transcript}"`;
+      if (whatsapp.store.saveStore) whatsapp.store.saveStore();
+
+      // Atualizar também no lead se for lead cadastrado
+      if (lead.id) {
+        lead.lastAudioTranscript = audioAnalysis.transcript;
+        const lIdx = leads.findIndex(l => l.id === lead.id);
+        if (lIdx !== -1) {
+          leads[lIdx] = { ...leads[lIdx], ...lead };
+          writeJson(LEADS_FILE, leads);
+        }
+      }
+
+      console.log(`[Transcribe Audio] ✅ Transcrito com sucesso: "${audioAnalysis.transcript}"`);
+      return res.json({ success: true, transcript: audioAnalysis.transcript, message: msg });
+    } else {
+      return res.status(500).json({ error: 'Não foi possível transcrever o áudio.' });
+    }
+  } catch (err) {
+    console.error('[Transcribe Audio Error]:', err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // Marcar mensagens do chat como lidas
@@ -1160,13 +1254,10 @@ async function executeLeadResponse(lead, text, targetJid = null, source = 'realt
     if (isAiChatActive) {
       try {
         console.log(`[Auto-Responder AI 24/7] Gerando resposta adaptativa com Gemini para "${currentLead.name}"...`);
-        const recentLeadTexts = chatHistory.filter(m => !m.fromMe && m.text).map(m => m.text);
-        const contextText = recentLeadTexts.slice(-3).join(' | ') || text;
-
         const aiResult = await gemini.generateAutoPilotReply({
           lead: currentLead,
           messages: chatHistory,
-          lastIncomingMessage: contextText
+          lastIncomingMessage: String(text || '').trim()
         });
 
         if (aiResult && aiResult.replyText) {
@@ -1439,24 +1530,43 @@ function initAutoResponder() {
       return;
     }
 
+    // 🔔 ALERTA NATIVO DO WINDOWS (Solicitado pelo Kauê): Notificar visualmente e com som na área de trabalho!
+    try {
+      notifier.notifyLeadReplied(lead.name, text || '[Áudio de voz]');
+    } catch (notifErr) {}
+
+    // 📞 DETECÇÃO INTELIGENTE DE NOVO NÚMERO / CONTATO COMERCIAL (Ex: caso OnCare Veterinária):
+    try {
+      if (text) {
+        const phoneRegex = /(?:(?:\+?55\s?)?(?:\(?\d{2}\)?\s?)?(?:9\d{4}[-\s]?\d{4}|\d{4}[-\s]?\d{4}))/g;
+        const matches = text.match(phoneRegex);
+        if (matches && matches.length > 0) {
+          const detectedPhone = matches.find(m => m.replace(/\D/g, '') !== cleanDigits && m.replace(/\D/g, '').length >= 8);
+          if (detectedPhone) {
+            console.log(`[Lead Alerta] 📞 O lead "${lead.name}" enviou um novo número de contato/comercial: ${detectedPhone}`);
+            notifier.showWindowsNotification({
+              title: `📞 Novo Contato: ${lead.name}`,
+              message: `O lead informou o número: ${detectedPhone}`
+            });
+            whatsapp.sendAlertToSelf(`📞 [Pinas Alerta] O lead *${lead.name}* enviou um novo telefone/comercial:\n"${text}"\n\nNúmero detectado: *${detectedPhone}*`);
+          }
+        }
+      }
+    } catch (phoneDetectErr) {}
+
     // SEGURANÇA MÁXIMA 3.1 (HUMAN TAKEOVER): Se o Kauê já assumiu o atendimento manual deste lead, IA 100% SILENCIADA!
     if (lead.manualControl || lead.humanTakeover) {
       console.log(`[Auto-Responder] 👤 Lead "${lead.name}" está em atendimento manual pelo Kauê. IA desativada.`);
       return;
     }
 
-    // SEGURANÇA MÁXIMA 3.15 (ÁUDIO RECEBIDO DE LEAD):
-    // Se o lead enviou uma mensagem de áudio:
-    // 1. A IA NÃO tenta interpretar nem finge ouvir.
-    // 2. Manda apenas uma mensagem curta e educada: "Opa! Só um minutinho que já ouço aqui e te respondo!"
-    // 3. Marca humanTakeover: true e manualControl: true para a IA sair da conversa.
-    // 4. Dispara alerta com link direto no WhatsApp do próprio Kauê (https://wa.me/{numero})
+    // SEGURANÇA MÁXIMA 3.15 (ÁUDIO RECEBIDO DE LEAD - ESCUTA & RESPOSTA INTELIGENTE):
     const isAudio = (type === 'audio') || 
                     (text && (text.includes('[Áudio de voz]') || text.includes('[Audio]'))) ||
                     (mediaUrl && mediaUrl.includes('audio_'));
 
     if (isAudio) {
-      console.log(`[Auto-Responder] 🎧 ÁUDIO RECEBIDO do lead "${lead.name}" (${cleanDigits})!`);
+      console.log(`[Auto-Responder 🎙️] ÁUDIO RECEBIDO do lead "${lead.name}" (${cleanDigits})! Iniciando análise de áudio...`);
 
       // Cancelar qualquer timer pendente desse lead na fila
       if (autoResponderQueue.has(lead.id)) {
@@ -1464,43 +1574,124 @@ function initAutoResponder() {
         autoResponderQueue.delete(lead.id);
       }
 
-      // Enviar resposta curta e acolhedora
-      const audioAck = "Opa! Só um minutinho que já ouço aqui e te respondo!";
+      // 1. Localizar arquivo de áudio físico em disco
+      let audioFile = null;
+      if (mediaUrl) {
+        audioFile = path.join(__dirname, 'data', 'media', path.basename(mediaUrl));
+      } else if (msgId) {
+        const mediaDir = path.join(__dirname, 'data', 'media');
+        if (fs.existsSync(mediaDir)) {
+          const files = fs.readdirSync(mediaDir);
+          const found = files.find(f => f.includes(msgId));
+          if (found) audioFile = path.join(mediaDir, found);
+        }
+      }
+
+      // Fallback: se não encontrou pelo msgId, pega o arquivo de áudio gravado nos últimos 30 segundos
+      if (!audioFile || !fs.existsSync(audioFile)) {
+        const mediaDir = path.join(__dirname, 'data', 'media');
+        if (fs.existsSync(mediaDir)) {
+          const files = fs.readdirSync(mediaDir)
+            .filter(f => f.startsWith('audio_'))
+            .map(f => ({ name: f, time: fs.statSync(path.join(mediaDir, f)).mtimeMs }))
+            .sort((a, b) => b.time - a.time);
+          if (files.length > 0 && (Date.now() - files[0].time < 60000)) {
+            audioFile = path.join(mediaDir, files[0].name);
+          }
+        }
+      }
+
+      const targetJid = jid || `${cleanDigits}@s.whatsapp.net`;
+      const messages = whatsapp.store.getMessages(targetJid) || [];
+
+      try {
+        console.log(`[Auto-Responder 🎙️] Ouvindo áudio via Google Gemini Multimodal: ${audioFile || 'N/A'}`);
+        const audioAnalysis = await gemini.analyzeAndRespondAudioMessage({
+          lead,
+          audioFilePath: audioFile,
+          messages
+        });
+
+        if (audioAnalysis && audioAnalysis.success) {
+          console.log(`[Auto-Responder 🎙️] ✅ Áudio transcrito com sucesso: "${audioAnalysis.transcript}"`);
+
+          // 1. Salvar transcrição no histórico do chat para o Kauê ler na Inbox
+          whatsapp.store.addMessage(targetJid, {
+            id: `transcription_${Date.now()}`,
+            fromMe: false,
+            senderName: lead.name,
+            text: `🎙️ [Áudio Transcrito]: "${audioAnalysis.transcript}"`,
+            type: 'text',
+            timestamp: Date.now() - 1000,
+            status: 'delivered'
+          });
+
+          // Também atualiza a propriedade transcript no próprio objeto de áudio
+          const currentChatMsgs = whatsapp.store.getMessages(targetJid);
+          const origAudioMsg = currentChatMsgs.find(m => m.id === msgId || (m.type === 'audio' && !m.transcript));
+          if (origAudioMsg) {
+            origAudioMsg.transcript = audioAnalysis.transcript;
+            origAudioMsg.text = `🎙️ [Áudio Transcrito]: "${audioAnalysis.transcript}"`;
+          }
+          if (whatsapp.store.saveStore) whatsapp.store.saveStore();
+
+          // 2. Notificação visual no Windows para o Kauê
+          try {
+            notifier.showWindowsNotification({
+              title: `🎙️ Áudio de ${lead.name}`,
+              message: (audioAnalysis.transcript || 'Áudio recebido').slice(0, 100)
+            });
+          } catch (notifErr) {}
+
+          // 3. Notificação no próprio WhatsApp do Kauê
+          try {
+            const waLink = `https://wa.me/${cleanDigits}`;
+            const alertText = `🎙️ *ÁUDIO DE LEAD OUVIDO PELA IA!*\n\n*Lead:* ${lead.name} (${lead.neighborhood || 'SP'})\n*Transcrição:* "${audioAnalysis.transcript}"\n*Resposta da IA:* "${audioAnalysis.replyText}"\n\n👉 *Ver conversa:* ${waLink}`;
+            await whatsapp.sendAlertToSelf(alertText);
+          } catch (selfErr) {}
+
+          // 4. Manter presença "digitando..." e enviar a resposta no tom do Kauê
+          if (audioAnalysis.replyText) {
+            await whatsapp.sendTyping(lead.cleanPhone);
+            await new Promise(r => setTimeout(r, 8000)); // 8s de digitação humana
+
+            await whatsapp.sendMessage(lead.cleanPhone, audioAnalysis.replyText, { isBot: true });
+            console.log(`[Auto-Responder 🎙️] Resposta enviada com sucesso para "${lead.name}"!`);
+          }
+
+          // 5. Atualizar status do lead
+          if (audioAnalysis.action === 'mark_meeting') {
+            lead.status = 'reuniao_agendada';
+          } else if (audioAnalysis.action === 'mark_lost') {
+            lead.status = 'perdido';
+          }
+
+          lead.lastAudioTranscript = audioAnalysis.transcript;
+          lead.lastContact = new Date().toISOString();
+          lead.notes = (lead.notes ? lead.notes + ' | ' : '') + `Áudio ouvido pela IA: "${(audioAnalysis.transcript || '').slice(0, 60)}"`;
+
+          const toSaveLeads = readJson(LEADS_FILE, []);
+          const lIdx = toSaveLeads.findIndex(l => l.id === lead.id);
+          if (lIdx !== -1) {
+            toSaveLeads[lIdx] = { ...toSaveLeads[lIdx], ...lead };
+            writeJson(LEADS_FILE, toSaveLeads);
+          }
+
+          return; // Concluído com sucesso
+        }
+      } catch (audioErr) {
+        console.warn(`[Auto-Responder 🎙️] Aviso na análise de áudio com Gemini: ${audioErr.message}. Enviando mensagem de confirmação...`);
+      }
+
+      // Fallback elegante caso o áudio esteja inaudível ou corrompido:
+      const fallbackAck = "Opa! Tentei ouvir seu áudio aqui, mas deu uma falhadinha no som e não consegui escutar direito. Se puder mandar em texto ou gravar de novo, agradeço bastante!";
       try {
         await whatsapp.sendTyping(lead.cleanPhone);
-        await new Promise(r => setTimeout(r, 2000));
-        await whatsapp.sendMessage(lead.cleanPhone, audioAck, { isBot: true });
-        console.log(`[Auto-Responder] Resposta de confirmação de áudio enviada para "${lead.name}".`);
-      } catch (sendErr) {
-        console.warn(`[Auto-Responder] Erro ao enviar confirmação de áudio para "${lead.name}":`, sendErr.message);
-      }
+        await new Promise(r => setTimeout(r, 3000));
+        await whatsapp.sendMessage(lead.cleanPhone, fallbackAck, { isBot: true });
+      } catch (e) {}
 
-      // Ativar Human Takeover imediato (IA 100% pausada para esse lead)
-      lead.manualControl = true;
-      lead.humanTakeover = true;
-      lead.lastAudioReceivedAt = new Date().toISOString();
-      const audioNote = 'Áudio recebido do lead — Kauê notificado para responder no manual';
-      lead.notes = lead.notes ? `${lead.notes} | ${audioNote}` : audioNote;
-
-      const toSaveLeads = readJson(LEADS_FILE, []);
-      const lIdx = toSaveLeads.findIndex(l => l.id === lead.id);
-      if (lIdx !== -1) {
-        toSaveLeads[lIdx] = { ...toSaveLeads[lIdx], ...lead };
-        writeJson(LEADS_FILE, toSaveLeads);
-      }
-
-      // Disparar notificação imediata para o WhatsApp do Kauê
-      try {
-        const waLink = `https://wa.me/${cleanDigits}`;
-        const alertText = `🎧 *ÁUDIO RECEBIDO DE LEAD!*\n\n*Lead:* ${lead.name}\n*Nicho:* ${lead.niche || 'Geral'} (${lead.neighborhood || lead.city || 'SP'})\n*Telefone:* ${lead.phone || cleanDigits}\n\n👉 *Toque aqui para abrir a conversa no WhatsApp:*\n${waLink}\n\n_(A IA avisou que você já vai ouvir e pausou para você atender no manual!)_`;
-
-        await whatsapp.sendAlertToSelf(alertText);
-        console.log(`[Auto-Responder] 📲 Notificação com link wa.me disparada para o WhatsApp do Kauê!`);
-      } catch (alertErr) {
-        console.warn('[Auto-Responder] Falha ao enviar alerta de áudio para o Kauê:', alertErr.message);
-      }
-
-      return; // Interrompe na hora — nunca chama o Gemini
+      return;
     }
 
     // SEGURANÇA MÁXIMA 3.2: Se a mensagem recebida for uma resposta automática de WhatsApp Business (secretária eletrônica)
@@ -1531,9 +1722,9 @@ function initAutoResponder() {
       autoResponderQueue.delete(lead.id);
     }
 
-    // Tempo de espera humanizado solicitado pelo Kauê: 1 a 1.5 minutos (~60 a 75 segundos de debounce + 8 a 12s de digitação)
-    // Se o lead mandar mais mensagens nesse intervalo, o timer reinicia e aguarda ele terminar!
-    const debounceDelayMs = Math.floor(Math.random() * (75000 - 60000 + 1)) + 60000;
+    // Tempo de espera humanizado e ágil no WhatsApp: 14 a 22 segundos de debounce + digitação
+    // Se o lead mandar mais mensagens nesse intervalo, o timer reinicia e aguarda ele terminar de falar!
+    const debounceDelayMs = Math.floor(Math.random() * (22000 - 14000 + 1)) + 14000;
     console.log(`[Auto-Responder Realtime] ⏳ Lead "${lead.name}" mandou mensagem. Aguardando intervalo humanizado de ~${Math.round(debounceDelayMs / 1000)}s antes de responder...`);
 
     const timerId = setTimeout(async () => {
@@ -1601,6 +1792,64 @@ app.get('/api/export', (req, res) => {
   res.setHeader('Content-Type', 'text/csv; charset=utf-8');
   res.setHeader('Content-Disposition', 'attachment; filename="leads-pinas.csv"');
   res.send('\uFEFF' + csv); // BOM para abrir perfeitamente no Excel brasileiro
+});
+
+// Gerar VCF (vCard 3.0) para salvar leads na agenda nativa do celular (Android/iPhone)
+function buildLeadsVcf(leadsList) {
+  return leadsList
+    .filter(l => l.phone)
+    .map(l => {
+      const cleanPhone = String(l.phone).replace(/\D/g, '');
+      const intlPhone = cleanPhone.startsWith('55') ? `+${cleanPhone}` : `+55${cleanPhone}`;
+      const safeName = (l.name || 'Lead Pinas').replace(/[\r\n;,]/g, ' ').trim();
+      const niche = l.niche ? ` (${l.niche})` : '';
+      return [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        `FN:${safeName}${niche}`,
+        `TEL;TYPE=CELL,VOICE:${intlPhone}`,
+        l.neighborhood ? `ADR;TYPE=WORK:;;;${l.neighborhood};São Paulo;SP;;` : '',
+        l.website ? `URL:${l.website}` : '',
+        'NOTE:Lead Pinas Studio - Prospecção',
+        'END:VCARD'
+      ].filter(Boolean).join('\r\n');
+    })
+    .join('\r\n');
+}
+
+// Download do arquivo .vcf com todos os contatos
+app.get('/api/leads/export-vcf', (req, res) => {
+  const leads = readJson(LEADS_FILE, []);
+  const vcfContent = buildLeadsVcf(leads);
+  res.setHeader('Content-Type', 'text/vcard; charset=utf-8');
+  res.setHeader('Content-Disposition', 'attachment; filename="contatos-leads-pinas.vcf"');
+  res.send(vcfContent);
+});
+
+// Enviar arquivo .vcf diretamente para o WhatsApp do Kauê
+app.post('/api/leads/send-vcf-to-me', async (req, res) => {
+  try {
+    const leads = readJson(LEADS_FILE, []);
+    const vcfContent = buildLeadsVcf(leads);
+    if (!vcfContent) {
+      return res.status(400).json({ error: 'Nenhum lead com telefone para gerar VCF.' });
+    }
+
+    const base64Data = Buffer.from(vcfContent, 'utf8').toString('base64');
+    const myPhone = whatsapp.getStatus()?.user?.phone || '5511941713647';
+    const targetJid = `${String(myPhone).replace(/\D/g, '')}@s.whatsapp.net`;
+
+    const result = await whatsapp.sendMediaMessage(targetJid, {
+      base64Data,
+      mimetype: 'text/vcard',
+      fileName: 'contatos_leads_pinas.vcf',
+      caption: '📲 *Contatos de Leads da Pinas*\n\nAbra esse arquivo no celular e toque em *Salvar todos os contatos* para adicioná-los à sua agenda nativa!'
+    });
+
+    res.json({ success: true, count: leads.length, result });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // ==================== ROTAS DE IA (GOOGLE GEMINI) ====================
@@ -1758,6 +2007,9 @@ app.post('/api/autopilot/stop', (req, res) => {
 app.post('/api/server/shutdown', (req, res) => {
   try {
     autopilot.stop();
+  } catch (e) {}
+  try {
+    fs.writeFileSync(path.join(__dirname, 'data', '.shutdown'), new Date().toISOString());
   } catch (e) {}
   res.json({ success: true, message: 'Servidor encerrando em 1 segundo...' });
   setTimeout(() => {
@@ -2162,8 +2414,10 @@ server.on('error', (err) => {
   if (err.code === 'EADDRINUSE') {
     console.error(`\n[AVISO] A porta ${PORT} ja esta sendo usada por outra instancia do Prospector.`);
     console.error(`O sistema ja esta ativo em segundo plano! Acesse: http://localhost:${PORT}\n`);
+    process.exit(0);
   } else {
     console.error('[ERRO DO SERVIDOR]', err);
+    process.exit(1);
   }
 });
 

@@ -40,15 +40,25 @@ function loadLeadsIntoContacts() {
   }
 }
 
+// Cache em memória para resolução ultrarrápida de LIDs (evita estourar descritores de arquivo EMFILE)
+const lidToPhoneCache = new Map();
+const phoneToLidCache = new Map();
+
 // Resolver LID do WhatsApp para telefone real via mapeamentos do Baileys
 function resolveLidToPhone(lid) {
   if (!lid) return null;
   const rawId = String(lid).split('@')[0].split(':')[0];
+  if (lidToPhoneCache.has(rawId)) return lidToPhoneCache.get(rawId);
+
   const reverseFile = path.join(SESSION_DIR, `lid-mapping-${rawId}_reverse.json`);
   if (fs.existsSync(reverseFile)) {
     try {
       const phone = JSON.parse(fs.readFileSync(reverseFile, 'utf8'));
-      return String(phone).replace(/\D/g, '');
+      const clean = String(phone).replace(/\D/g, '');
+      if (clean) {
+        lidToPhoneCache.set(rawId, clean);
+        return clean;
+      }
     } catch (e) {}
   }
   return null;
@@ -58,11 +68,17 @@ function resolveLidToPhone(lid) {
 function resolvePhoneToLid(phone) {
   if (!phone) return null;
   const clean = String(phone).replace(/\D/g, '');
+  if (phoneToLidCache.has(clean)) return phoneToLidCache.get(clean);
+
   const forwardFile = path.join(SESSION_DIR, `lid-mapping-${clean}.json`);
   if (fs.existsSync(forwardFile)) {
     try {
       const lid = JSON.parse(fs.readFileSync(forwardFile, 'utf8'));
-      return `${lid}@lid`;
+      if (lid) {
+        const fullLid = `${lid}@lid`;
+        phoneToLidCache.set(clean, fullLid);
+        return fullLid;
+      }
     } catch (e) {}
   }
   return null;
@@ -583,5 +599,10 @@ module.exports = {
   getChats,
   getMessages,
   markChatAsRead,
+  reloadStore: loadStore,
+  saveStore: scheduleSave,
+  contacts: store.contacts,
+  chats: store.chats,
+  messages: store.messages,
   getStore: () => store
 };

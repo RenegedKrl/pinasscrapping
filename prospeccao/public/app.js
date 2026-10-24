@@ -44,8 +44,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const filterOpp = document.getElementById('filter-opportunity');
   if (filterOpp) filterOpp.addEventListener('change', loadLeads);
   document.getElementById('filter-website').addEventListener('change', loadLeads);
-  document.getElementById('filter-only-mobile').addEventListener('change', loadLeads);
   document.getElementById('btn-export-csv').addEventListener('click', () => window.location.href = '/api/export');
+  
+  const btnExportVcf = document.getElementById('btn-export-vcf');
+  if (btnExportVcf) {
+    btnExportVcf.addEventListener('click', () => window.location.href = '/api/leads/export-vcf');
+  }
+
+  const btnSendVcf = document.getElementById('btn-send-vcf-whatsapp');
+  if (btnSendVcf) {
+    btnSendVcf.addEventListener('click', async () => {
+      btnSendVcf.disabled = true;
+      btnSendVcf.innerHTML = '<span class="btn-icon">⏳</span> Enviando...';
+      try {
+        const res = await fetch('/api/leads/send-vcf-to-me', { method: 'POST' });
+        const data = await res.json();
+        if (data.success) {
+          showToast(`📲 Agenda com ${data.count} leads enviada para o seu WhatsApp com sucesso!`, 'success');
+        } else {
+          showToast(data.error || 'Erro ao enviar contatos.', 'error');
+        }
+      } catch (err) {
+        showToast('Falha na comunicação com o servidor: ' + err.message, 'error');
+      } finally {
+        btnSendVcf.disabled = false;
+        btnSendVcf.innerHTML = '<span class="btn-icon">📲</span> Enviar Agenda pro WhatsApp';
+      }
+    });
+  }
 
   // WhatsApp, Inbox & Autopilot
   initToastSystem();
@@ -4405,6 +4431,32 @@ function renderSingleMessageBubbleHtml(msg, isChatGroup) {
         </audio>
       </div>
     `;
+
+    // Se já tiver transcrição: renderizar caixinha de destaque da IA
+    const hasTranscript = !!msg.transcript || (msg.text && (msg.text.includes('[Áudio Transcrito]') || msg.text.startsWith('🎙️')));
+    if (hasTranscript) {
+      let cleanTranscript = msg.transcript;
+      if (!cleanTranscript && msg.text) {
+        cleanTranscript = msg.text.replace(/^[🎙️\s]*\[Áudio Transcrito\]:?\s*"?/i, '').replace(/"?$/, '');
+      }
+      contentHtml += `
+        <div class="msg-audio-transcript-card" style="margin-top: 8px; padding: 10px 12px; background: rgba(59, 130, 246, 0.12); border-left: 3px solid #3B82F6; border-radius: 8px; font-size: 0.88rem; line-height: 1.45; color: #E2E8F0;">
+          <div style="font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: #60A5FA; margin-bottom: 4px; display: flex; align-items: center; gap: 5px;">
+            <span>🎙️ Transcrição do Áudio (IA)</span>
+          </div>
+          <div style="font-style: italic; color: #F1F5F9;">"${escapeHtml(cleanTranscript)}"</div>
+        </div>
+      `;
+    } else {
+      // Botão para transcrever áudio sob demanda
+      contentHtml += `
+        <div class="msg-audio-transcribe-action" style="margin-top: 6px;">
+          <button type="button" class="btn btn-xs btn-outline btn-transcribe-audio" onclick="transcribeAudioMessage('${escapeHtml(activeChatJid || '')}', '${escapeHtml(msg.id || '')}', this)" style="font-size: 0.74rem; padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px; border-color: rgba(255,255,255,0.2); cursor: pointer; color: var(--color-text-muted);">
+            <span>🎙️ Transcrever Áudio</span>
+          </button>
+        </div>
+      `;
+    }
   }
 
   // Documento / Arquivo / PDF
@@ -4420,8 +4472,9 @@ function renderSingleMessageBubbleHtml(msg, isChatGroup) {
     `;
   }
 
-  // Texto da Mensagem
-  if (msg.text) {
+  // Texto da Mensagem (Oculta texto redundante de áudio de voz ou transcrição duplicada)
+  const isRedundantAudioText = isAudio && (msg.text === '[Áudio de voz]' || msg.text === '[Audio]' || msg.text.includes('[Áudio Transcrito]') || msg.text.startsWith('🎙️'));
+  if (msg.text && !isRedundantAudioText) {
     contentHtml += `<div class="msg-text">${formatMessageText(msg.text)}</div>`;
   }
 
@@ -4468,9 +4521,10 @@ function renderChatMessages(messages, forceScroll = false) {
   // 1. Verificar se há algum áudio ou vídeo reproduzindo no momento
   const isAnyMediaPlaying = Array.from(container.querySelectorAll('audio, video')).some(el => !el.paused && !el.ended && el.currentTime > 0);
 
-  // 2. Hash rápido do conjunto de mensagens para detectar mudanças
+  // 2. Hash rápido do conjunto de mensagens para detectar mudanças (inclui contagem de transcrições)
   const lastMsg = messages[messages.length - 1];
-  const newHash = `${messages.length}_${lastMsg?.id || ''}_${lastMsg?.timestamp || ''}_${lastMsg?.status || ''}`;
+  const transcriptsCount = messages.filter(m => !!m.transcript || (m.text && m.text.includes('[Áudio Transcrito]'))).length;
+  const newHash = `${messages.length}_${lastMsg?.id || ''}_${lastMsg?.timestamp || ''}_${transcriptsCount}_${lastMsg?.status || ''}`;
 
   // Se nada mudou e não é rolagem forçada: não tocar no DOM (preserva áudio rodando e posição)
   if (container.dataset.renderedHash === newHash && !forceScroll) {
@@ -5313,5 +5367,38 @@ window.checkMetaAds = async function(leadId, btnElement) {
   }
 };
 
+// Função para disparar a transcrição de um áudio sob demanda
+async function transcribeAudioMessage(jid, msgId, btnElement) {
+  if (!jid || !msgId) return;
+  const originalHtml = btnElement ? btnElement.innerHTML : '';
+  if (btnElement) {
+    btnElement.disabled = true;
+    btnElement.innerHTML = '<span>⏳ Transcrevendo com IA...</span>';
+  }
+  try {
+    const res = await fetch('/api/whatsapp/transcribe-audio', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ jid, messageId: msgId })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Falha ao transcrever áudio');
 
-
+    if (window.showToast) {
+      showToast('Áudio transcrito com sucesso pela IA!', 'success');
+    }
+    await loadActiveChatMessages(jid, false);
+  } catch (err) {
+    console.error('Erro na transcrição:', err);
+    if (window.showToast) {
+      showToast(`Erro na transcrição: ${err.message}`, 'error');
+    } else {
+      alert(`Erro na transcrição: ${err.message}`);
+    }
+    if (btnElement) {
+      btnElement.disabled = false;
+      btnElement.innerHTML = originalHtml;
+    }
+  }
+}
+window.transcribeAudioMessage = transcribeAudioMessage;

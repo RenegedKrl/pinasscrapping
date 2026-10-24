@@ -2,7 +2,7 @@
   "autoStartAutopilot": true,
   "onlyRespondReplies": false,
   "disableNewLeadOutbound": false,
-  "dailyLimit": 16,
+  "dailyLimit": 13,
   "distributeOverDay": true,
   "outboundStartHour": 10,
   "outboundEndHour": 19,
@@ -12,8 +12,8 @@
     4,
     5
   ],
-  "sentToday": 14,
-  "lastResetDate": "2026-10-21",
+  "sentToday": 0,
+  "lastResetDate": "2026-10-24",
   "minDelaySeconds": 300,
   "maxDelaySeconds": 330,
   "excludedChains": [
@@ -112,27 +112,6 @@
     "coach amani"
   ],
   "defaultNiches": [
-    {
-      "name": "Escritórios de Arquitetura",
-      "query": "escritorio de arquitetura",
-      "templateId": "arquitetura",
-      "priority": 1,
-      "active": true
-    },
-    {
-      "name": "Arquitetos de Alto Padrão",
-      "query": "arquiteto alto padrao",
-      "templateId": "arquitetura",
-      "priority": 1,
-      "active": true
-    },
-    {
-      "name": "Designers de Interiores",
-      "query": "designer de interiores",
-      "templateId": "arquitetura",
-      "priority": 1,
-      "active": true
-    },
     {
       "name": "Clínicas Veterinárias",
       "query": "clinica veterinaria",

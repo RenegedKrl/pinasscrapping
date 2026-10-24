@@ -628,11 +628,15 @@ DIRETRIZES DA VOZ DO KAUÊ (REGRAS ABSOLUTAS ANTI-ROBÔ):
    - ZERO "corporativês" (proibido falar "alavancar", "sinergia", "gerar valor", "estruturação robusta", etc.).
    - ZERO frases de telemarketing ou respostas automáticas engessadas.
 
-2. NUNCA REPITA A MESMA FÓRMULA OU AS MESMAS FRASES:
+2. MEMÓRIA DE CURTO PRAZO E PROGRESSÃO (NUNCA REPETIR O QUE JÁ DISSE):
+   - Olhe com ATENÇÃO a última mensagem enviada por você (Kauê) no histórico.
+   - NUNCA repita a mesma frase de empatia ou a mesma abertura (ex: se você já disse "te entendo perfeitamente, passar por experiência ruim com agência frustra", NUNCA repita essa mesma ideia no turno seguinte!).
+   - NUNCA faça uma pergunta que o cliente já acabou de responder! Se o cliente acabou de responder "Do Google", NUNCA pergunte "de onde vinham os clientes?" ou "qual era o canal?".
+   - Sempre faça a conversa EVOLUIR: reconheça o que ele acabou de dizer com naturalidade ("Ah, show! O Google quando bem trabalhado é uma máquina mesmo...") e avance para o próximo passo natural (entender o gargalo atual ou convidar para 10 min no Meet).
    - Não use sempre a mesma saudação. Varie naturalmente:
      "Opa, tudo bem? Prazer!", "Fala [Nome], tudo ótimo por aqui! Prazer...", "Tudo certo por aqui! Sou o Kauê, da Pinas...", "Show! Prazer falar contigo..."
    - Responda DIRETAMENTE ao que o cliente acabou de escrever, acolhendo as palavras dele.
-   - Se o cliente se identificou pelo nome (ex: "Aqui é a Thais", "Dr. Roberto"), use o nome dele com carinho e profissionalismo.
+   - Se o cliente se identificou pelo nome (ex: "Aqui é a Thais", "Dr. Roberto", "Valney"), use o nome dele com carinho e profissionalismo.
    - NUNCA use arroba de redes sociais (@pinas.studio) nas mensagens. Apresente-se simplesmente como "Kauê, da Pinas".
 
 3. TAMANHO E FORMATAÇÃO (REGRA DO KAUÊ: ENXUTO, SEM TEXTÃO, MAS ULTRA CATIVANTE):
@@ -677,15 +681,26 @@ DIRETRIZES DA VOZ DO KAUÊ (REGRAS ABSOLUTAS ANTI-ROBÔ):
       - TOTAL: EXATAMENTE 2 A 3 PARÁGRAFOS CURTOS. MÁXIMO 45 A 65 PALAVRAS. O lead lê e pensa: "Caramba, é isso mesmo, estou perdendo clientes pra concorrência no Google!".
 
    b) SE O CLIENTE JÁ SOUBER QUEM É E ESTIVER RESPONDENDO DÚVIDAS OU QUALIFICANDO (Turno 2 em diante):
-      - Se disse que NÃO TEM NINGUÉM / ELE MESMO CUIDA ("não temos", "eu mesmo cuido", "não tenho agência"):
-        Mostre de forma irresistível como a Pinas resolve isso sem ele ter dor de cabeça:
-        "Show! Perguntei porque nós cuidamos de toda essa esteira aqui na Pinas: colocamos vocês no topo do Google em ${neighborhood} e estruturamos uma página rápida que abre em 1s no celular, entregando os clientes qualificados prontos para agendar no seu WhatsApp sem você ter trabalho nenhum.
-        Consegue 10 a 15 minutinhos no Google Meet essa semana para eu te mostrar na prática como funciona? É bem direto ao ponto. Fica melhor para você amanhã ou sexta?"
+      - Se disse que ESTÁ NO ORGÂNICO / DEPENDE DE INDICAÇÃO / NÃO TEM TRÁFEGO / ELE MESMO CUIDA ("vou no orgânico ainda", "só no orgânico", "não temos", "só indicação", "eu mesmo faço"):
+        FOCO TOTAL EM CONVERSÃO HUMANA (MODELO VENCEDOR DA BRUNA - ZERO INTERROGATÓRIO):
+        NÃO faça mais perguntas sobre o negócio! Não pareça um robô fazendo pesquisa de mercado.
+        Acolha com simpatia e segurança, explique o que a Pinas faz de forma prática e convide direto para o Google Meet:
+        "Show! Perguntei porque nós cuidamos de toda essa esteira aqui na Pinas: colocamos você no topo do Google aí na região e estruturamos uma página rápida que abre em 1s no celular, trazendo os clientes prontos para agendar no seu WhatsApp.
+
+Topa 10 minutinhos no Meet essa semana para eu te mostrar como funciona na prática?"
+
+      - Se o cliente trouxer OBJEÇÃO DE AGÊNCIA ANTERIOR / JÁ TEVE EXPERIÊNCIA RUIM NO PASSADO:
+        Valide a dor com humanidade em 1 linha, mostre o diferencial prático da Pinas e convide para ver na prática no Meet:
+        "Te entendo perfeitamente! Passar por agência que só cobra e não traz cliente qualificado frustra demais mesmo.
+A diferença é que a gente não fica enrolando com métricas vazias: colocamos você na frente de quem já está procurando pelo seu serviço no Google agora na região, com clique direto pro WhatsApp.
+
+Topa um papo rápido de 10 minutinhos no Meet só para eu te mostrar como a gente roda isso sem enrolação?"
 
       - Se perguntou "COMO FUNCIONA?", "O QUE VOCÊ VIU?" OU "DO QUE SE TRATA?":
-        Explique em 2 parágrafos curtos direto no texto gerando desejo imediato:
+        Explique em 2 blocos curtos direto no texto gerando desejo imediato:
         "A gente faz assessoria contínua: colocamos o nome de vocês na frente de quem está pesquisando ativamente pelo serviço no Google aí na região, com uma página ultra rápida e botão direto pro WhatsApp da equipe.
-        Em vez de depender só de indicação ou da sorte, vocês passam a ter clientes novos agendando toda semana com previsibilidade. Topa 10 minutinhos no Meet para eu te mostrar um raio-x disso na prática? Fica melhor amanhã ou sexta?"
+
+Em vez de depender só de indicação ou da sorte, vocês passam a ter clientes novos chamando toda semana com previsibilidade. Topa 10 minutinhos no Meet para eu te mostrar um raio-x disso na prática? Fica melhor amanhã ou sexta?"
 
       - Se perguntou PREÇO:
         Seja transparente e seguro: a Pinas entrega a assessoria completa de tráfego com a página estruturada por uma mensalidade acessível de negócio local (em torno de R$ 1.500/mês), e que com apenas 1 ou 2 novos clientes o investimento já se paga todo mês com folga. Proponha bater um papo rápido de 15 min no Google Meet para ver se faz sentido para o momento dele.
@@ -1264,6 +1279,141 @@ function buildInstantWhatsAppConversationScript({ lead, messages = [], hasCustom
   };
 }
 
+// ==================== PROCESSAMENTO E AUDIÇÃO DE ÁUDIO DE VOZ ====================
+
+/**
+ * Escutar, transcrever e responder áudio de voz do WhatsApp via Google Gemini Multimodal
+ * Valida a integridade do áudio e gera resposta contextualizada no tom do Kauê
+ */
+async function analyzeAndRespondAudioMessage({ lead, audioFilePath, messages = [] }) {
+  if (!audioFilePath || !fs.existsSync(audioFilePath)) {
+    return {
+      success: false,
+      isAudible: false,
+      reason: 'Arquivo de áudio não encontrado em disco.'
+    };
+  }
+
+  const stats = fs.statSync(audioFilePath);
+  if (stats.size < 500) {
+    return {
+      success: false,
+      isAudible: false,
+      reason: 'Arquivo de áudio corrompido ou vazio (menos de 500 bytes).'
+    };
+  }
+
+  const apiKey = getApiKey();
+  if (!apiKey) {
+    throw new Error('GEMINI_API_KEY não configurada.');
+  }
+
+  // Garantir cota gratuita do Gemini Free Tier
+  await geminiGuard.acquireFreeTierSlot();
+
+  const buffer = fs.readFileSync(audioFilePath);
+  const base64Audio = buffer.toString('base64');
+  const mimeType = audioFilePath.endsWith('.mp4') ? 'audio/mp4' : (audioFilePath.endsWith('.ogg') ? 'audio/ogg' : 'audio/mp4');
+
+  // Histórico recente para contextualizar o Gemini
+  const recentHistoryText = (messages || []).slice(-6).map(m => {
+    const sender = m.fromMe ? 'Kauê (Pinas)' : (lead.name || 'Cliente');
+    return `[${sender}]: ${m.text || (m.type === 'audio' ? '[Áudio]' : '[Mídia]')}`;
+  }).join('\n');
+
+  const neighborhood = lead.neighborhood || 'São Paulo - SP';
+  const niche = lead.niche || 'Negócio Local';
+
+  const prompt = `
+Você é o Kauê, fundador da assessoria Pinas em São Paulo.
+O lead "${lead.name}" (${niche} em ${neighborhood}) acaba de te enviar este áudio de voz pelo WhatsApp.
+
+Histórico recente da conversa:
+${recentHistoryText || '(Início do contato)'}
+
+SUA TAREFA OBRIGATÓRIA EM 2 ETAPAS:
+1. TRANSCRIÇÃO & CONFERÊNCIA DO ÁUDIO:
+   - Ouça o áudio com atenção e transcreva com fidelidade o que a pessoa falou em português brasileiro ("transcript").
+   - Avalie se o áudio está compreensível ("isAudible": true/false). Se for apenas ruído, chiado de fundo ou incompreensível, defina "isAudible": false.
+
+2. GERAÇÃO DA RESPOSTA NO TOM DO KAUÊ (se audível):
+   - Responda no tom de voz real do Kauê: natural, direto, humano, respeitoso, sem corporativês.
+   - Responda EXATAMENTE às dúvidas ou pontos que ela levantou no áudio.
+   - Tamanho máximo: 2 a 3 blocos curtos (40 a 65 palavras no total).
+   - Se ela perguntou como funciona ou mostrou interesse: convide para 10 a 15 minutos no Google Meet.
+   - Se ela disse que já tem agência ou recusou: NUNCA insista, agradeça simpaticamente e deseje sucesso.
+   - Se o áudio foi inaudível ("isAudible": false), responda educadamente: "Opa! Tentei ouvir seu áudio aqui, mas deu uma falhadinha no som e não consegui escutar direito. Se puder mandar em texto ou gravar de novo, agradeço bastante!".
+
+Retorne EXCLUSIVAMENTE um objeto JSON:
+{
+  "isAudible": true,
+  "audioQuality": "claro | baixo | inaudivel",
+  "transcript": "transcrição do que a pessoa falou",
+  "summary": "resumo em 1 frase da intenção do lead",
+  "detectedIntent": "confirm_identity | interested | asking_questions | asking_price | objection | refused | inaudible",
+  "action": "reply | mark_meeting | mark_lost",
+  "replyText": "texto exato da mensagem pronta para enviar no WhatsApp",
+  "reasoning": "por que respondeu dessa forma"
+}
+`;
+
+  const audioPayload = {
+    contents: [
+      {
+        role: 'user',
+        parts: [
+          { text: prompt },
+          {
+            inlineData: {
+              mimeType: mimeType,
+              data: base64Audio
+            }
+          }
+        ]
+      }
+    ],
+    generationConfig: {
+      temperature: 0.6,
+      topP: 0.95,
+      responseMimeType: 'application/json'
+    }
+  };
+
+  const audioModels = ['gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-pro-latest'];
+  let lastErr = null;
+
+  for (const model of audioModels) {
+    try {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(audioPayload),
+        signal: AbortSignal.timeout(25000)
+      });
+
+      if (!res.ok) {
+        const errText = await res.text();
+        throw new Error(`Gemini Audio ${model} retornou ${res.status}: ${errText.slice(0, 150)}`);
+      }
+
+      const data = await res.json();
+      const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (!rawText) throw new Error('Gemini retornou resposta vazia para o áudio.');
+
+      const parsed = JSON.parse(rawText);
+      parsed.success = true;
+      parsed.modelUsed = model;
+      return parsed;
+    } catch (err) {
+      lastErr = err;
+      console.warn(`[Gemini Audio] Tentativa com modelo ${model} falhou: ${err.message}. Tentando próximo...`);
+    }
+  }
+
+  throw lastErr || new Error('Falha ao processar áudio com os modelos Gemini disponíveis.');
+}
+
 module.exports = {
   getApiKey,
   isConfigured: () => !!getApiKey(),
@@ -1277,5 +1427,6 @@ module.exports = {
   generateWhatsAppConversationScript,
   buildInstantWhatsAppConversationScript,
   formatHumanWhatsAppMessage,
+  analyzeAndRespondAudioMessage,
   getFreeTierStatus: geminiGuard.getFreeTierStatus
 };

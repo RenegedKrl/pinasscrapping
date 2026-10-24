@@ -56,7 +56,9 @@ function saveUsage(data) {
   try {
     const dir = path.dirname(USAGE_FILE);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(USAGE_FILE, JSON.stringify(data, null, 2), 'utf8');
+    const tmpPath = `${USAGE_FILE}.${Date.now()}.${Math.random().toString(36).substring(2, 6)}.tmp`;
+    fs.writeFileSync(tmpPath, JSON.stringify(data, null, 2), 'utf8');
+    fs.renameSync(tmpPath, USAGE_FILE);
   } catch (err) {
     console.warn('[GeminiGuard] Falha ao salvar gemini_usage.json:', err.message);
   }

@@ -10,6 +10,7 @@ const path = require('path');
 const fs = require('fs');
 const EventEmitter = require('events');
 const store = require('./whatsapp_store');
+const notifier = require('./notifier');
 
 const waEvents = new EventEmitter();
 const SESSION_DIR = path.join(__dirname, 'data', 'whatsapp_session');
@@ -406,6 +407,9 @@ async function initWhatsApp(force = false) {
           qrCodeDataUrl = await QRCode.toDataURL(qr, { margin: 2, scale: 6 });
           connectionStatus = 'qr_ready';
           console.log('[WhatsApp] Novo QR Code gerado para conexão no Prospector.');
+          try {
+            notifier.notifyWhatsAppDisconnected('Novo QR Code gerado para o Prospector');
+          } catch (notifErr) {}
         } catch (err) {
           console.error('[WhatsApp] Erro ao converter QR Code para imagem:', err);
         }
@@ -456,6 +460,9 @@ async function initWhatsApp(force = false) {
           qrCodeDataUrl = null;
           qrRaw = null;
           sock = null;
+          try {
+            notifier.notifyWhatsAppDisconnected('Sessão encerrada ou desconectada');
+          } catch (notifErr) {}
           try {
             fs.rmSync(SESSION_DIR, { recursive: true, force: true });
           } catch (e) {}
@@ -904,12 +911,50 @@ async function sendAlertToSelf(text) {
   }
 }
 
+// 2. Salvar/Sincronizar contato diretamente no WhatsApp antes do envio (Proteção Anti-Spam da Meta)
+async function saveContact(rawPhoneOrJid, name) {
+  if (connectionStatus !== 'connected' || !sock) {
+    return false;
+  }
+  if (!rawPhoneOrJid) return false;
+
+  try {
+    const targetJid = await resolveJid(rawPhoneOrJid);
+    const cleanDigits = targetJid.replace(/\D/g, '');
+    const cleanName = name ? String(name).trim() : `Lead ${cleanDigits.slice(-4)}`;
+
+    // 1. Atualizar contatos locais no store oficial
+    if (typeof store.setContact === 'function') {
+      store.setContact(targetJid, cleanName);
+    }
+    if (typeof store.upsertChat === 'function') {
+      store.upsertChat(targetJid, { name: cleanName, phone: cleanDigits });
+    }
+
+    // 2. Sincronizar com a nuvem do WhatsApp via Baileys (ContactAction com saveOnPrimaryAddressbook)
+    if (typeof sock.addOrEditContact === 'function') {
+      const firstName = cleanName.split(' ')[0] || cleanName;
+      await sock.addOrEditContact(targetJid, {
+        fullName: cleanName,
+        firstName: firstName,
+        saveOnPrimaryAddressbook: true
+      });
+      console.log(`[WhatsApp Contato] 📇 Contato "${cleanName}" salvo no WhatsApp (${targetJid}) antes do disparo.`);
+      return true;
+    }
+  } catch (err) {
+    console.warn(`[WhatsApp Contato] Aviso ao salvar contato no WhatsApp (${rawPhoneOrJid}):`, err.message);
+  }
+  return false;
+}
+
 module.exports = {
   initWhatsApp,
   disconnectWhatsApp,
   getStatus,
   isReady: () => connectionStatus === 'connected' && !!sock,
   sendMessage,
+  saveContact,
   checkOnWhatsApp,
   sendMediaMessage,
   sendAudioMessage,
